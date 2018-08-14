@@ -23,6 +23,13 @@ namespace SplineSharp
             return Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, t);
         }
 
+        public Vector2 GetVelocity(float t)
+        {
+            Vector2 Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, t);
+            Velocity.Normalize();
+            return Velocity;
+        }
+
         public void DrawCurve(SpriteBatch spriteBatch)
         {
             if (Setup.Pixel == null)
@@ -57,6 +64,7 @@ namespace SplineSharp
                 float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
 
                 DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor);
+                DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)lineSteps), angleStep, 50f, Color.LightGreen);
 
                 lineStart = lineEnd;
             }

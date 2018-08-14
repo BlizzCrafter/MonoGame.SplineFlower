@@ -51,7 +51,7 @@ namespace SplineSharp
                 distance = Vector2.Distance(points[i].Position, points[i + 1].Position);
                 angle = (float)Math.Atan2(points[i + 1].Position.Y - points[i].Position.Y, points[i + 1].Position.X - points[i].Position.X);
 
-                DrawLine(spriteBatch, points[i].Position, angle, distance, Setup.BaseLineColor);
+                DrawLine(spriteBatch, points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
                 DrawPoint(spriteBatch, points[i].Position, angle);
             }
 
@@ -63,14 +63,15 @@ namespace SplineSharp
                 float distanceStep = Vector2.Distance(lineStart, lineEnd);
                 float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
 
-                DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor);
-                DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)lineSteps), angleStep, 50f, Color.LightGreen);
+                DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+                DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)lineSteps), angleStep, 
+                    Setup.VelocityLineLength, Setup.VelocityLineColor, Setup.VelocityLineThickness);
 
                 lineStart = lineEnd;
             }
         }
 
-        private void DrawLine(SpriteBatch spriteBatch, Vector2 position, float angle, float distance, Color color)
+        private void DrawLine(SpriteBatch spriteBatch, Vector2 position, float angle, float distance, Color color, float thickness)
         {
             spriteBatch.Draw(Setup.Pixel,
                              position,
@@ -78,7 +79,7 @@ namespace SplineSharp
                              color,
                              angle,
                              Vector2.Zero,
-                             new Vector2(distance, Setup.BaseLineThickness),
+                             new Vector2(distance, thickness),
                              SpriteEffects.None,
                              0);
         }

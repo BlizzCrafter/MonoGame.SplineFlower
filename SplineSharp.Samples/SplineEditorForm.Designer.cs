@@ -39,9 +39,9 @@
             this.tabPageCubicBezier = new System.Windows.Forms.TabPage();
             this.splineEditorCurveCubic = new SplineSharp.Samples.SplineEditorCurve();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
+            this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
             this.splineEditorBezierSpline = new SplineSharp.Samples.SplineEditorBezierSpline();
-            this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageSimpleLine.SuspendLayout();
@@ -174,8 +174,21 @@
             this.tabPageBezierSpline.Text = "Beziér Spline";
             this.tabPageBezierSpline.UseVisualStyleBackColor = true;
             // 
+            // buttonAddCurveRight
+            // 
+            this.buttonAddCurveRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAddCurveRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddCurveRight.Location = new System.Drawing.Point(167, 357);
+            this.buttonAddCurveRight.Name = "buttonAddCurveRight";
+            this.buttonAddCurveRight.Size = new System.Drawing.Size(158, 37);
+            this.buttonAddCurveRight.TabIndex = 2;
+            this.buttonAddCurveRight.Text = "Add Curve Right";
+            this.buttonAddCurveRight.UseVisualStyleBackColor = true;
+            this.buttonAddCurveRight.Click += new System.EventHandler(this.buttonAddCurveRight_Click);
+            // 
             // buttonAddCurveLeft
             // 
+            this.buttonAddCurveLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAddCurveLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddCurveLeft.Location = new System.Drawing.Point(3, 357);
             this.buttonAddCurveLeft.Name = "buttonAddCurveLeft";
@@ -198,17 +211,6 @@
             this.splineEditorBezierSpline.TabIndex = 0;
             this.splineEditorBezierSpline.Text = "Beziér Spline Sample";
             this.splineEditorBezierSpline.TryGetTransformFromPosition = null;
-            // 
-            // buttonAddCurveRight
-            // 
-            this.buttonAddCurveRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddCurveRight.Location = new System.Drawing.Point(167, 357);
-            this.buttonAddCurveRight.Name = "buttonAddCurveRight";
-            this.buttonAddCurveRight.Size = new System.Drawing.Size(158, 37);
-            this.buttonAddCurveRight.TabIndex = 2;
-            this.buttonAddCurveRight.Text = "Add Curve Right";
-            this.buttonAddCurveRight.UseVisualStyleBackColor = true;
-            this.buttonAddCurveRight.Click += new System.EventHandler(this.buttonAddCurveRight_Click);
             // 
             // SplineEditorForm
             // 

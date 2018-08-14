@@ -5,8 +5,11 @@ namespace SplineSharp
 {
     public static class Setup
     {
-        public static Color LineColor { get; set; } = Color.White;
-        public static float LineThickness { get; set; } = 1f;
+        public static Color BaseLineColor { get; set; } = Color.White;
+        public static float BaseLineThickness { get; set; } = 1f;
+
+        public static Color CurveLineColor { get; set; } = Color.Yellow;
+        public static float CurveLineThickness { get; set; } = 1f;
 
         public static Color PointColor { get; set; } = Color.Red;
         public static int PointThickness { get; set; } = 10;

@@ -7,6 +7,8 @@ namespace SplineSharp
 {
     public class BezierCurve
     {
+        private const int lineSteps = 10;
+
         public Transform[] points;
 
         public Transform TryGetTransformFromPosition(Vector2 position)
@@ -14,6 +16,11 @@ namespace SplineSharp
             if (points.Any(x => x.TryGetPosition(position))) return points.First(x => x.TryGetPosition(position));
 
             return null;
+        }
+
+        public Vector2 GetPoint(float t)
+        {
+            return Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, t);
         }
 
         public void DrawCurve(SpriteBatch spriteBatch)
@@ -37,18 +44,35 @@ namespace SplineSharp
                 distance = Vector2.Distance(points[i].Position, points[i + 1].Position);
                 angle = (float)Math.Atan2(points[i + 1].Position.Y - points[i].Position.Y, points[i + 1].Position.X - points[i].Position.X);
 
-                spriteBatch.Draw(Setup.Pixel,
-                                 points[i].Position,
-                                 null,
-                                 Setup.LineColor,
-                                 angle,
-                                 Vector2.Zero,
-                                 new Vector2(distance, Setup.LineThickness),
-                                 SpriteEffects.None,
-                                 0);
-
+                DrawLine(spriteBatch, points[i].Position, angle, distance, Setup.BaseLineColor);
                 DrawPoint(spriteBatch, points[i].Position, angle);
             }
+
+            Vector2 lineStart = GetPoint(0f);
+            for (int i = 1; i <= lineSteps; i++)
+            {
+                Vector2 lineEnd = GetPoint(i / (float)lineSteps);
+
+                float distanceStep = Vector2.Distance(lineStart, lineEnd);
+                float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
+
+                DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor);
+
+                lineStart = lineEnd;
+            }
+        }
+
+        private void DrawLine(SpriteBatch spriteBatch, Vector2 position, float angle, float distance, Color color)
+        {
+            spriteBatch.Draw(Setup.Pixel,
+                             position,
+                             null,
+                             color,
+                             angle,
+                             Vector2.Zero,
+                             new Vector2(distance, Setup.BaseLineThickness),
+                             SpriteEffects.None,
+                             0);
         }
 
         private void DrawPoint(SpriteBatch spriteBatch, Vector2 point, float angle)
@@ -70,7 +94,7 @@ namespace SplineSharp
             {
                 new Transform(new Vector2(100, 100)),
                 new Transform(new Vector2(200, 100)),
-                new Transform(new Vector2(300, 100))
+                new Transform(new Vector2(200, 300))
             };
         }
     }

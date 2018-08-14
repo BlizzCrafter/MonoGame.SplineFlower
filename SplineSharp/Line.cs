@@ -47,10 +47,10 @@ namespace SplineSharp
             spriteBatch.Draw(Setup.Pixel,
                              p0.Position,
                              null,
-                             Setup.LineColor,
+                             Setup.BaseLineColor,
                              angle,
                              Vector2.Zero,
-                             new Vector2(distance, Setup.LineThickness),
+                             new Vector2(distance, Setup.BaseLineThickness),
                              SpriteEffects.None,
                              0);
 

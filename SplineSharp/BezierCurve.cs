@@ -77,8 +77,12 @@ namespace SplineSharp
                 float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
 
                 DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
-                DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)lineSteps), angleStep, 
-                    Setup.VelocityLineLength, Setup.VelocityLineColor, Setup.VelocityLineThickness);
+
+                if (Setup.ShowVelocityVectors)
+                {
+                    DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)lineSteps), angleStep,
+                        Setup.VelocityLineLength, Setup.VelocityLineColor, Setup.VelocityLineThickness);
+                }
 
                 lineStart = lineEnd;
             }

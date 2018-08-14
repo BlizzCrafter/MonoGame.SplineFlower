@@ -14,6 +14,7 @@ namespace SplineSharp
         public static Color VelocityLineColor { get; set; } = Color.LightGreen;
         public static float VelocityLineThickness { get; set; } = 1f;
         public static float VelocityLineLength { get; set; } = 50f;
+        public static bool ShowVelocityVectors { get; set; } = true;
 
         public static Color PointColor { get; set; } = Color.Red;
         public static int PointThickness { get; set; } = 10;

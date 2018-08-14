@@ -11,6 +11,11 @@ namespace SplineSharp
 
         public Transform[] points;
 
+        private int CurveCount
+        {
+            get { return (points.Length - 1) / 3; }
+        }
+
         public Transform TryGetTransformFromPosition(Vector2 position)
         {
             if (points.Any(x => x.TryGetPosition(position))) return points.First(x => x.TryGetPosition(position));
@@ -82,7 +87,7 @@ namespace SplineSharp
             }
 
             Vector2 lineStart = GetPoint(0f, 0);
-            for (int j = 0; j < (points.Length - 1) / 3; j++)
+            for (int j = 0; j < CurveCount; j++)
             {
                 for (int i = 1; i <= LineSteps; i++)
                 {

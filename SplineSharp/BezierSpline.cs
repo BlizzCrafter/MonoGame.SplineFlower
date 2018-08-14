@@ -18,9 +18,13 @@ namespace SplineSharp
             return null;
         }
 
-        public Vector2 GetPoint(float t)
+        public Vector2 GetPoint(float t, int curveIndex)
         {
-            return Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
+            return Bezier.GetPoint(
+                points[0 + (curveIndex * 3)].Position, 
+                points[1 + (curveIndex * 3)].Position, 
+                points[2 + (curveIndex * 3)].Position, 
+                points[3 + (curveIndex * 3)].Position, t);
         }
 
         public Vector2 GetVelocity(float t)
@@ -30,6 +34,26 @@ namespace SplineSharp
             Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
             Velocity.Normalize();
             return Velocity;
+        }
+
+        public void AddCurveLeft()
+        {
+            Transform point = points[points.Length - 1];
+            Array.Resize(ref points, points.Length + 3);
+            
+            points[points.Length - 3] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 0f));            
+            points[points.Length - 2] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 80f));            
+            points[points.Length - 1] = new Transform(new Vector2(point.Position.X + 0f, point.Position.Y - 80f));
+        }
+
+        public void AddCurveRight()
+        {
+            Transform point = points[points.Length - 1];
+            Array.Resize(ref points, points.Length + 3);
+
+            points[points.Length - 3] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 0f));
+            points[points.Length - 2] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 80f));
+            points[points.Length - 1] = new Transform(new Vector2(point.Position.X - 0f, point.Position.Y - 80f));
         }
 
         public void DrawSpline(SpriteBatch spriteBatch)
@@ -57,23 +81,26 @@ namespace SplineSharp
                 DrawPoint(spriteBatch, points[i].Position, angle);
             }
 
-            Vector2 lineStart = GetPoint(0f);
-            for (int i = 1; i <= LineSteps; i++)
+            Vector2 lineStart = GetPoint(0f, 0);
+            for (int j = 0; j < (points.Length - 1) / 3; j++)
             {
-                Vector2 lineEnd = GetPoint(i / (float)LineSteps);
-
-                float distanceStep = Vector2.Distance(lineStart, lineEnd);
-                float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
-
-                DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
-
-                if (Setup.ShowVelocityVectors)
+                for (int i = 1; i <= LineSteps; i++)
                 {
-                    DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)LineSteps), angleStep,
-                        Setup.VelocityLineLength, Setup.VelocityLineColor, Setup.VelocityLineThickness);
-                }
+                    Vector2 lineEnd = GetPoint(i / (float)LineSteps, j);
 
-                lineStart = lineEnd;
+                    float distanceStep = Vector2.Distance(lineStart, lineEnd);
+                    float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
+
+                    DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+
+                    if (Setup.ShowVelocityVectors)
+                    {
+                        DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)LineSteps), angleStep,
+                            Setup.VelocityLineLength, Setup.VelocityLineColor, Setup.VelocityLineThickness);
+                    }
+
+                    lineStart = lineEnd;
+                }
             }
         }
 

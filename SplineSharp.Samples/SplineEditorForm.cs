@@ -17,5 +17,15 @@ namespace SplineSharp.Samples
             splineEditorCurveCubic.AddPointsMode = toolStripButtonAddPoint.Checked;
             splineEditorBezierSpline.AddPointsMode = toolStripButtonAddPoint.Checked;
         }
+
+        private void buttonAddCurve_Click(object sender, EventArgs e)
+        {
+            splineEditorBezierSpline.MySpline.AddCurveLeft();
+        }
+
+        private void buttonAddCurveRight_Click(object sender, EventArgs e)
+        {
+            splineEditorBezierSpline.MySpline.AddCurveRight();
+        }
     }
 }

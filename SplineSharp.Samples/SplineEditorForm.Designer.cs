@@ -32,14 +32,14 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAddPoint = new System.Windows.Forms.ToolStripButton();
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
-            this.tabPageLineEditor = new System.Windows.Forms.TabPage();
+            this.tabPageSimpleLine = new System.Windows.Forms.TabPage();
             this.splineEditorLine = new SplineSharp.Samples.SplineEditorLine();
-            this.tabPageCurveEditor = new System.Windows.Forms.TabPage();
+            this.tabPageQuadraticBezier = new System.Windows.Forms.TabPage();
             this.splineEditorCurve = new SplineSharp.Samples.SplineEditorCurve();
             this.toolStrip1.SuspendLayout();
             this.tabControlEditorTabs.SuspendLayout();
-            this.tabPageLineEditor.SuspendLayout();
-            this.tabPageCurveEditor.SuspendLayout();
+            this.tabPageSimpleLine.SuspendLayout();
+            this.tabPageQuadraticBezier.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -68,8 +68,8 @@
             // 
             // tabControlEditorTabs
             // 
-            this.tabControlEditorTabs.Controls.Add(this.tabPageLineEditor);
-            this.tabControlEditorTabs.Controls.Add(this.tabPageCurveEditor);
+            this.tabControlEditorTabs.Controls.Add(this.tabPageSimpleLine);
+            this.tabControlEditorTabs.Controls.Add(this.tabPageQuadraticBezier);
             this.tabControlEditorTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlEditorTabs.Location = new System.Drawing.Point(0, 27);
             this.tabControlEditorTabs.Name = "tabControlEditorTabs";
@@ -77,16 +77,16 @@
             this.tabControlEditorTabs.Size = new System.Drawing.Size(482, 426);
             this.tabControlEditorTabs.TabIndex = 2;
             // 
-            // tabPageLineEditor
+            // tabPageSimpleLine
             // 
-            this.tabPageLineEditor.Controls.Add(this.splineEditorLine);
-            this.tabPageLineEditor.Location = new System.Drawing.Point(4, 25);
-            this.tabPageLineEditor.Name = "tabPageLineEditor";
-            this.tabPageLineEditor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLineEditor.Size = new System.Drawing.Size(474, 397);
-            this.tabPageLineEditor.TabIndex = 0;
-            this.tabPageLineEditor.Text = "Line Editor";
-            this.tabPageLineEditor.UseVisualStyleBackColor = true;
+            this.tabPageSimpleLine.Controls.Add(this.splineEditorLine);
+            this.tabPageSimpleLine.Location = new System.Drawing.Point(4, 25);
+            this.tabPageSimpleLine.Name = "tabPageSimpleLine";
+            this.tabPageSimpleLine.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageSimpleLine.Size = new System.Drawing.Size(474, 397);
+            this.tabPageSimpleLine.TabIndex = 0;
+            this.tabPageSimpleLine.Text = "Simple Line";
+            this.tabPageSimpleLine.UseVisualStyleBackColor = true;
             // 
             // splineEditorLine
             // 
@@ -100,19 +100,19 @@
             this.splineEditorLine.Name = "splineEditorLine";
             this.splineEditorLine.Size = new System.Drawing.Size(468, 391);
             this.splineEditorLine.TabIndex = 0;
-            this.splineEditorLine.Text = "Line Editor Sample";
+            this.splineEditorLine.Text = "Simple Line Sample";
             this.splineEditorLine.TryGetTransformFromPosition = null;
             // 
-            // tabPageCurveEditor
+            // tabPageQuadraticBezier
             // 
-            this.tabPageCurveEditor.Controls.Add(this.splineEditorCurve);
-            this.tabPageCurveEditor.Location = new System.Drawing.Point(4, 25);
-            this.tabPageCurveEditor.Name = "tabPageCurveEditor";
-            this.tabPageCurveEditor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCurveEditor.Size = new System.Drawing.Size(474, 397);
-            this.tabPageCurveEditor.TabIndex = 1;
-            this.tabPageCurveEditor.Text = "Curve Editor";
-            this.tabPageCurveEditor.UseVisualStyleBackColor = true;
+            this.tabPageQuadraticBezier.Controls.Add(this.splineEditorCurve);
+            this.tabPageQuadraticBezier.Location = new System.Drawing.Point(4, 25);
+            this.tabPageQuadraticBezier.Name = "tabPageQuadraticBezier";
+            this.tabPageQuadraticBezier.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageQuadraticBezier.Size = new System.Drawing.Size(474, 397);
+            this.tabPageQuadraticBezier.TabIndex = 1;
+            this.tabPageQuadraticBezier.Text = "Quadratic Beziér Curve";
+            this.tabPageQuadraticBezier.UseVisualStyleBackColor = true;
             // 
             // splineEditorCurve
             // 
@@ -124,7 +124,7 @@
             this.splineEditorCurve.Name = "splineEditorCurve";
             this.splineEditorCurve.Size = new System.Drawing.Size(468, 391);
             this.splineEditorCurve.TabIndex = 0;
-            this.splineEditorCurve.Text = "Curve Editor Sample";
+            this.splineEditorCurve.Text = "Quadratic Beziér Sample";
             this.splineEditorCurve.TryGetTransformFromPosition = null;
             // 
             // SplineEditorForm
@@ -139,8 +139,8 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabControlEditorTabs.ResumeLayout(false);
-            this.tabPageLineEditor.ResumeLayout(false);
-            this.tabPageCurveEditor.ResumeLayout(false);
+            this.tabPageSimpleLine.ResumeLayout(false);
+            this.tabPageQuadraticBezier.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,8 +152,8 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonAddPoint;
         private System.Windows.Forms.TabControl tabControlEditorTabs;
-        private System.Windows.Forms.TabPage tabPageLineEditor;
-        private System.Windows.Forms.TabPage tabPageCurveEditor;
+        private System.Windows.Forms.TabPage tabPageSimpleLine;
+        private System.Windows.Forms.TabPage tabPageQuadraticBezier;
         private SplineEditorCurve splineEditorCurve;
     }
 }

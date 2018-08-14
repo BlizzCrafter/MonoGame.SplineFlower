@@ -14,6 +14,8 @@ namespace SplineSharp.Samples
         {
             splineEditorLine.AddPointsMode = toolStripButtonAddPoint.Checked;
             splineEditorCurve.AddPointsMode = toolStripButtonAddPoint.Checked;
+            splineEditorCurveCubic.AddPointsMode = toolStripButtonAddPoint.Checked;
+            splineEditorBezierSpline.AddPointsMode = toolStripButtonAddPoint.Checked;
         }
     }
 }

@@ -5,15 +5,8 @@ using System.Linq;
 
 namespace SplineSharp
 {
-    public class BezierCurve
+    public class BezierSpline
     {
-        public enum Type
-        {
-            Quadratic,
-            Cubic
-        }
-        private Type BezierType = Type.Quadratic;
-
         private const int LineSteps = 10;
 
         public Transform[] points;
@@ -27,23 +20,19 @@ namespace SplineSharp
 
         public Vector2 GetPoint(float t)
         {
-            return BezierType == Type.Cubic ?
-                Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t) :
-                Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, t);
+            return Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
         }
 
         public Vector2 GetVelocity(float t)
         {
             Vector2 Velocity = Vector2.Zero;
 
-            if (BezierType == Type.Cubic) Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
-            else Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, t);
-
+            Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
             Velocity.Normalize();
             return Velocity;
         }
 
-        public void DrawCurve(SpriteBatch spriteBatch)
+        public void DrawSpline(SpriteBatch spriteBatch)
         {
             if (Setup.Pixel == null)
             {
@@ -114,22 +103,9 @@ namespace SplineSharp
                              0f);
         }
 
-        public void CreateQuadratic()
+
+        public void Reset()
         {
-            BezierType = Type.Quadratic;
-
-            points = new Transform[]
-            {
-                new Transform(new Vector2(100, 100)),
-                new Transform(new Vector2(300, 100)),
-                new Transform(new Vector2(300, 300))
-            };
-        }
-
-        public void CreateCubic()
-        {
-            BezierType = Type.Cubic;
-
             points = new Transform[]
             {
                 new Transform(new Vector2(50, 50)),

@@ -67,7 +67,13 @@
     <Compile Include="EditorBase\LineEditor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EditorBase\SplineEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EditorBase\TransformControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SplineEditorBezierSpline.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SplineEditorCurve.cs">

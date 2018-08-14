@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Forms.Controls;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace SplineSharp.Samples.EditorBase
@@ -8,10 +9,11 @@ namespace SplineSharp.Samples.EditorBase
     public abstract class TransformControl : UpdateWindow
     {
         public bool AddPointsMode { get; set; } = true;
-        public bool TranslatePointClick = false;
-        public System.Drawing.Point TranslatePointFirstClick;
-        public Transform SelectedTransform;
+        protected bool TranslatePointClick = false;
+        protected System.Drawing.Point TranslatePointFirstClick;
+        protected Transform SelectedTransform;
 
+        [Browsable(false)]
         public Func<Vector2, Transform> TryGetTransformFromPosition { get; set; }
 
         protected override void OnMouseUp(MouseEventArgs e)

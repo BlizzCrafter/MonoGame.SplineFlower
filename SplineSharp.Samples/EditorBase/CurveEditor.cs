@@ -1,19 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGame.Forms.Controls;
+using System.ComponentModel;
 
 namespace SplineSharp.Samples.EditorBase
 {
     public abstract class CurveEditor : TransformControl
     {
+        public enum BezierType
+        {
+            Quadratic,
+            Cubic
+        }
+        [DisplayName("BezierType")]
+        [DefaultValue(BezierType.Quadratic)]
+        public BezierType GetBezierType { get; set; } = BezierType.Quadratic;
+
         public BezierCurve MyCurve;
 
         protected override void Initialize()
         {
             base.Initialize();
-
             Setup.Initialize(Editor.graphics);
+
             MyCurve = new BezierCurve();
-            MyCurve.CreateCubic();
+
+            if (GetBezierType == BezierType.Cubic) MyCurve.CreateCubic();
+            else MyCurve.CreateQuadratic();
+
             TryGetTransformFromPosition = MyCurve.TryGetTransformFromPosition;
         }
 

@@ -7,6 +7,13 @@ namespace SplineSharp
 {
     public class BezierCurve
     {
+        public enum Type
+        {
+            Quadratic,
+            Cubic
+        }
+        private Type BezierType = Type.Quadratic;
+
         private const int lineSteps = 10;
 
         public Transform[] points;
@@ -20,12 +27,18 @@ namespace SplineSharp
 
         public Vector2 GetPoint(float t)
         {
-            return Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, t);
+            return BezierType == Type.Cubic ?
+                Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t) :
+                Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, t);
         }
 
         public Vector2 GetVelocity(float t)
         {
-            Vector2 Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, t);
+            Vector2 Velocity = Vector2.Zero;
+
+            if (BezierType == Type.Cubic) Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
+            else Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, t);
+
             Velocity.Normalize();
             return Velocity;
         }
@@ -97,13 +110,28 @@ namespace SplineSharp
                              0f);
         }
 
-        public void Reset()
+        public void CreateQuadratic()
         {
+            BezierType = Type.Quadratic;
+
             points = new Transform[]
             {
                 new Transform(new Vector2(100, 100)),
                 new Transform(new Vector2(200, 100)),
                 new Transform(new Vector2(200, 300))
+            };
+        }
+
+        public void CreateCubic()
+        {
+            BezierType = Type.Cubic;
+
+            points = new Transform[]
+            {
+                new Transform(new Vector2(50, 50)),
+                new Transform(new Vector2(300, 50)),
+                new Transform(new Vector2(50, 300)),
+                new Transform(new Vector2(300, 300))
             };
         }
     }

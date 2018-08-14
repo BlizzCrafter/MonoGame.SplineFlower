@@ -13,7 +13,7 @@ namespace SplineSharp.Samples.EditorBase
 
             Setup.Initialize(Editor.graphics);
             MyCurve = new BezierCurve();
-            MyCurve.Reset();
+            MyCurve.CreateCubic();
             TryGetTransformFromPosition = MyCurve.TryGetTransformFromPosition;
         }
 

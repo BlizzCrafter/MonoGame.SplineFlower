@@ -6,7 +6,7 @@ namespace SplineSharp.Samples.EditorBase
     public abstract class SplineEditor : TransformControl
     {
         public BezierSpline MySpline;
-        public SplineWalker MySplineWalker;
+        public SpriteMan MySplineWalker;
 
         protected override void Initialize()
         {
@@ -18,8 +18,8 @@ namespace SplineSharp.Samples.EditorBase
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
             MovePointDiff += SplineEditor_MovePointDiff;
 
-            MySplineWalker = new SplineWalker();
-            MySplineWalker.CreateSplineWalker(MySpline, 10f);
+            MySplineWalker = new SpriteMan();
+            MySplineWalker.CreateSplineWalker(MySpline, 7f);
         }
 
         private void SplineEditor_MovePointDiff(Vector2 obj)

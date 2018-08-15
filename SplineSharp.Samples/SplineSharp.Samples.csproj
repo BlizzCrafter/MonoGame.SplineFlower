@@ -90,6 +90,7 @@
     <Compile Include="SplineEditorLine.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SpriteMan.cs" />
     <EmbeddedResource Include="SplineEditorForm.resx">
       <DependentUpon>SplineEditorForm.cs</DependentUpon>
     </EmbeddedResource>

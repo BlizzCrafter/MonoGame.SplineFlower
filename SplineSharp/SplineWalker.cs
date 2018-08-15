@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SplineSharp
 {
-    public class SplineWalker
+    public abstract class SplineWalker
     {
         private BezierSpline Spline;
 
-        public Transform GetTransform { get; set; }
+        protected Transform GetTransform { get; set; }
 
-        public float Duration { get; set; }
+        protected float Duration { get; set; }
         private float _Progress;
 
         public bool Initialized { get; private set; } = false;

@@ -10,8 +10,8 @@ namespace SplineSharp.Samples.EditorBase
         protected override void Initialize()
         {
             base.Initialize();
-
             Setup.Initialize(Editor.graphics);
+
             MySpline = new BezierSpline();
             MySpline.Reset();
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;

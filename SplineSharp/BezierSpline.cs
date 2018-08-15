@@ -57,6 +57,24 @@ namespace SplineSharp
             EnforceMode(index);
         }
 
+        public void MoveAxis(int index, Vector2 diff)
+        {
+            if (Setup.MovePointAxis)
+            {
+                if (index % 3 == 0)
+                {
+                    if (index > 0)
+                    {
+                        points[index - 1].Translate(diff);
+                    }
+                    if (index + 1 < points.Length)
+                    {
+                        points[index + 1].Translate(diff);
+                    }
+                }
+            }
+        }
+
         public void EnforceMode(int index)
         {
             int modeIndex = (index + 1) / 3;

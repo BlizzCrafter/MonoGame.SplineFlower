@@ -16,6 +16,9 @@ namespace SplineSharp.Samples.EditorBase
         [Browsable(false)]
         public Func<Vector2, Transform> TryGetTransformFromPosition { get; set; }
 
+        [Browsable(false)]
+        public event Action<Vector2> MovePointDiff = delegate { };
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -52,6 +55,7 @@ namespace SplineSharp.Samples.EditorBase
                 int yDiff = TranslatePointFirstClick.Y - e.Location.Y;
 
                 SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
+                MovePointDiff.Invoke(new Vector2(-xDiff, -yDiff));
 
                 TranslatePointFirstClick.X = e.Location.X;
                 TranslatePointFirstClick.Y = e.Location.Y;

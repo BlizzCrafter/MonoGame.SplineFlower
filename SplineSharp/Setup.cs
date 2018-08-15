@@ -19,6 +19,8 @@ namespace SplineSharp
         public static Color PointColor { get; set; } = Color.Red;
         public static int PointThickness { get; set; } = 10;
 
+        public static bool MovePointAxis { get; set; } = true;
+
         internal static Texture2D Pixel { get; set; }
 
         public static void Initialize(GraphicsDevice graphicsDevice)

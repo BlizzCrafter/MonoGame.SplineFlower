@@ -15,6 +15,12 @@ namespace SplineSharp.Samples.EditorBase
             MySpline = new BezierSpline();
             MySpline.Reset();
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
+            MovePointDiff += SplineEditor_MovePointDiff;   
+        }
+
+        private void SplineEditor_MovePointDiff(Vector2 obj)
+        {
+            MySpline.MoveAxis(SelectedTransform.Index, obj);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

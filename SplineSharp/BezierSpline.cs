@@ -308,10 +308,10 @@ namespace SplineSharp
             spriteBatch.Draw(Setup.Pixel,
                              points[index].Position,
                              null,
-                             modeColors[(int)GetControlPointMode(index)],
+                             (index == 0 ? Setup.StartPointColor : modeColors[(int)GetControlPointMode(index)]),
                              angle,
                              new Vector2(0.5f),
-                             Setup.PointThickness,
+                             Setup.PointThickness * (index == 0 ? Setup.StartPointThickness : 1f),
                              SpriteEffects.None,
                              0f);
         }

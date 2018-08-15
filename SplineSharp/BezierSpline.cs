@@ -143,6 +143,7 @@ namespace SplineSharp
 
             Array.Resize(ref modes, modes.Length + 1);
             modes[modes.Length - 1] = modes[modes.Length - 2];
+            EnforceMode(points.Length - 4);
         }
 
         public void AddCurveRight()
@@ -156,6 +157,7 @@ namespace SplineSharp
 
             Array.Resize(ref modes, modes.Length + 1);
             modes[modes.Length - 1] = modes[modes.Length - 2];
+            EnforceMode(points.Length - 4);
         }
 
         public void DrawSpline(SpriteBatch spriteBatch)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Windows.Forms;
+using Microsoft.Xna.Framework;
 
 namespace SplineSharp.Samples.EditorBase
 {
@@ -14,6 +15,28 @@ namespace SplineSharp.Samples.EditorBase
             MySpline = new BezierSpline();
             MySpline.Reset();
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            
+            if (e.Button == MouseButtons.Right)
+            {
+                SelectedTransform = TryGetTransformFromPosition(new Vector2(e.X, e.Y));
+                if (SelectedTransform != null)
+                {
+                    BezierSpline.BezierControlPointMode nextMode = MySpline.GetControlPointMode(SelectedTransform.Index).Next();
+                    MySpline.SetControlPointMode(SelectedTransform.Index, nextMode);
+                }
+            }
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            if (SelectedTransform != null) MySpline.EnforceMode(SelectedTransform.Index);
         }
 
         protected override void Update(GameTime gameTime)

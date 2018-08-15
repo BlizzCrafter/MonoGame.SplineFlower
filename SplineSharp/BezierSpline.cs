@@ -7,13 +7,86 @@ namespace SplineSharp
 {
     public class BezierSpline
     {
+        public enum BezierControlPointMode
+        {
+            Free,
+            Aligned,
+            Mirrored
+        }
+        private BezierControlPointMode[] modes;
+
+        private static Color[] modeColors = {
+            Setup.PointColor,
+            Color.Yellow,
+            Color.Cyan
+        };
+
         private const int LineSteps = 10;
 
-        public Transform[] points;
+        private Transform[] points;
 
         private int CurveCount
         {
             get { return (points.Length - 1) / 3; }
+        }
+
+        public int ControlPointCount
+        {
+            get { return points.Length; }
+        }
+
+        public Transform GetControlPoint(int index)
+        {
+            return points[index];
+        }
+
+        public void SetControlPoint(int index, Transform point)
+        {
+            points[index] = point;
+            EnforceMode(index);
+        }
+
+        public BezierControlPointMode GetControlPointMode(int index)
+        {
+            return modes[(index + 1) / 3];
+        }
+
+        public void SetControlPointMode(int index, BezierControlPointMode mode)
+        {
+            modes[(index + 1) / 3] = mode;
+            EnforceMode(index);
+        }
+
+        public void EnforceMode(int index)
+        {
+            int modeIndex = (index + 1) / 3;
+            BezierControlPointMode mode = modes[modeIndex];
+            if (mode == BezierControlPointMode.Free || modeIndex == 0 || modeIndex == modes.Length - 1)
+            {
+                return;
+            }
+
+            int middleIndex = modeIndex * 3;
+            int fixedIndex, enforcedIndex;
+            if (index <= middleIndex)
+            {
+                fixedIndex = middleIndex - 1;
+                enforcedIndex = middleIndex + 1;
+            }
+            else
+            {
+                fixedIndex = middleIndex + 1;
+                enforcedIndex = middleIndex - 1;
+            }
+
+            Transform middle = points[middleIndex];
+            Vector2 enforcedTangent = middle.Position - points[fixedIndex].Position;
+            if (mode == BezierControlPointMode.Aligned)
+            {
+                enforcedTangent.Normalize();
+                enforcedTangent *= Vector2.Distance(middle.Position, points[enforcedIndex].Position);
+            }
+            points[enforcedIndex].SetPosition(middle.Position + enforcedTangent);
         }
 
         public Transform TryGetTransformFromPosition(Vector2 position)
@@ -49,6 +122,9 @@ namespace SplineSharp
             points[points.Length - 3] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 0f));            
             points[points.Length - 2] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 80f));            
             points[points.Length - 1] = new Transform(new Vector2(point.Position.X + 0f, point.Position.Y - 80f));
+
+            Array.Resize(ref modes, modes.Length + 1);
+            modes[modes.Length - 1] = modes[modes.Length - 2];
         }
 
         public void AddCurveRight()
@@ -59,6 +135,9 @@ namespace SplineSharp
             points[points.Length - 3] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 0f));
             points[points.Length - 2] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 80f));
             points[points.Length - 1] = new Transform(new Vector2(point.Position.X - 0f, point.Position.Y - 80f));
+
+            Array.Resize(ref modes, modes.Length + 1);
+            modes[modes.Length - 1] = modes[modes.Length - 2];
         }
 
         public void DrawSpline(SpriteBatch spriteBatch)
@@ -73,9 +152,11 @@ namespace SplineSharp
             float distance = 0, angle = 0;
             for (int i = 0; i < points.Length; i++)
             {
+                points[i].Index = i;
+
                 if (i + 1 > points.Length - 1)
                 {
-                    DrawPoint(spriteBatch, points[i].Position, angle);
+                    DrawPoint(spriteBatch, i, angle);
                     break;
                 }
 
@@ -83,7 +164,7 @@ namespace SplineSharp
                 angle = (float)Math.Atan2(points[i + 1].Position.Y - points[i].Position.Y, points[i + 1].Position.X - points[i].Position.X);
 
                 DrawLine(spriteBatch, points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
-                DrawPoint(spriteBatch, points[i].Position, angle);
+                DrawPoint(spriteBatch, i, angle);
             }
 
             Vector2 lineStart = GetPoint(0f, 0);
@@ -122,12 +203,12 @@ namespace SplineSharp
                              0);
         }
 
-        private void DrawPoint(SpriteBatch spriteBatch, Vector2 point, float angle)
+        private void DrawPoint(SpriteBatch spriteBatch, int index, float angle)
         {
             spriteBatch.Draw(Setup.Pixel,
-                             point,
+                             points[index].Position,
                              null,
-                             Setup.PointColor,
+                             modeColors[(int)GetControlPointMode(index)],
                              angle,
                              new Vector2(0.5f),
                              Setup.PointThickness,
@@ -144,6 +225,11 @@ namespace SplineSharp
                 new Transform(new Vector2(300, 50)),
                 new Transform(new Vector2(50, 300)),
                 new Transform(new Vector2(300, 300))
+            };
+
+            modes = new BezierControlPointMode[] {
+                BezierControlPointMode.Free,
+                BezierControlPointMode.Free
             };
         }
     }

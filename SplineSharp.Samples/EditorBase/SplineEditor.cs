@@ -63,8 +63,12 @@ namespace SplineSharp.Samples.EditorBase
             Editor.spriteBatch.Begin();
 
             if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
-            if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
+            if (MySplineWalker != null && MySplineWalker.Initialized)
+            {
+                MySplineWalker.Draw(Editor.spriteBatch);
 
+                Editor.spriteBatch.DrawString(Editor.Font, MySplineWalker._Velocity.ToString(), new Vector2(100, 100), Color.White);
+            }
             Editor.spriteBatch.End();
         }
     }

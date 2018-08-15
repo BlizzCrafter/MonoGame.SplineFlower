@@ -6,7 +6,7 @@ namespace SplineSharp
     {
         public Rectangle Size = Rectangle.Empty;
         public Vector2 Position { get; private set; } = Vector2.Zero;
-        public float Rotation { get; private set; } = 0f;
+        public float Rotation { get; set; } = 0f;
         public int Index { get; set; } = -1;
 
         public Transform() { }

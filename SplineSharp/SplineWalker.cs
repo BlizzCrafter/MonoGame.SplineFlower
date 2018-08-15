@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace SplineSharp
 {
@@ -8,16 +9,18 @@ namespace SplineSharp
         private BezierSpline Spline;
 
         protected Transform GetTransform { get; set; }
-
         protected float Duration { get; set; }
-        private float _Progress;
 
         public bool Initialized { get; private set; } = false;
+        public bool LookForward { get; private set; } = true;
+
+        private float _Progress;
+        public Vector2 _Velocity;
 
         public virtual void CreateSplineWalker(BezierSpline spline, float duration)
         {
             Spline = spline;
-            Duration = duration;
+            Duration = 10f;
 
             GetTransform = new Transform(spline.GetPointWalker(0));
 
@@ -36,6 +39,16 @@ namespace SplineSharp
             {
                 _Progress = 1f;
             }
+
+            //Vector2 position = Spline.GetPointWalker(_Progress);
+            //GetTransform.SetPosition(position);
+            if (LookForward)
+            {
+                _Velocity = Spline.GetVelocityWalker(_Progress);
+                _Velocity.Normalize();
+                GetTransform.Rotation = MathHelper.ToRadians(45f) + (float)Math.Atan2(_Velocity.X, -_Velocity.Y);
+            }
+
             GetTransform.SetPosition(Spline.GetPointWalker(_Progress));
         }
 
@@ -45,8 +58,8 @@ namespace SplineSharp
                              GetTransform.Size,
                              null,
                              Color.White,
-                             0f,
-                             new Vector2(0f),
+                             GetTransform.Rotation,
+                             new Vector2(_Velocity.Y, _Velocity.X),
                              SpriteEffects.None,
                              0f);
         }

@@ -21,7 +21,7 @@ namespace SplineSharp
             Color.Cyan
         };
 
-        private const int LineSteps = 10;
+        private const int LineSteps = 20;
 
         private Transform[] points;
 

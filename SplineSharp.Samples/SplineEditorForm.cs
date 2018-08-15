@@ -32,5 +32,10 @@ namespace SplineSharp.Samples
         {
             splineEditorBezierSpline.MySpline.Loop = true;
         }
+
+        private void buttonResetSplineWalker_Click(object sender, EventArgs e)
+        {
+            splineEditorBezierSpline.MySplineWalker.Reset();
+        }
     }
 }

@@ -189,6 +189,24 @@ namespace SplineSharp
                 points[3 + (curveIndex * 3)].Position, t);
         }
 
+        public Vector2 GetPointWalker(float t)
+        {
+            int i;
+            if (t >= 1f)
+            {
+                t = 1f;
+                i = points.Length - 4;
+            }
+            else
+            {
+                t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
+                i = (int)t;
+                t -= i;
+                i *= 3;
+            }
+            return Bezier.GetPoint(points[i].Position, points[i + 1].Position, points[i + 2].Position, points[i + 3].Position, t);
+        }
+
         public Vector2 GetVelocity(float t)
         {
             Vector2 Velocity = Vector2.Zero;
@@ -196,6 +214,24 @@ namespace SplineSharp
             Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
             Velocity.Normalize();
             return Velocity;
+        }
+
+        public Vector2 GetVelocityWalker(float t)
+        {
+            int i;
+            if (t >= 1f)
+            {
+                t = 1f;
+                i = points.Length - 4;
+            }
+            else
+            {
+                t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
+                i = (int)t;
+                t -= i;
+                i *= 3;
+            }
+            return Bezier.GetFirstDerivative(points[i].Position, points[i + 1].Position, points[i + 2].Position, points[i + 3].Position, t);
         }
 
         public void AddCurveLeft()

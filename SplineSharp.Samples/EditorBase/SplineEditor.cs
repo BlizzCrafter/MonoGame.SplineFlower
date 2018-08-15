@@ -6,6 +6,7 @@ namespace SplineSharp.Samples.EditorBase
     public abstract class SplineEditor : TransformControl
     {
         public BezierSpline MySpline;
+        public SplineWalker MySplineWalker;
 
         protected override void Initialize()
         {
@@ -15,7 +16,10 @@ namespace SplineSharp.Samples.EditorBase
             MySpline = new BezierSpline();
             MySpline.Reset();
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
-            MovePointDiff += SplineEditor_MovePointDiff;   
+            MovePointDiff += SplineEditor_MovePointDiff;
+
+            MySplineWalker = new SplineWalker();
+            MySplineWalker.CreateSplineWalker(MySpline, 10f);
         }
 
         private void SplineEditor_MovePointDiff(Vector2 obj)
@@ -48,6 +52,8 @@ namespace SplineSharp.Samples.EditorBase
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Update(gameTime);
         }
 
         protected override void Draw()
@@ -57,6 +63,7 @@ namespace SplineSharp.Samples.EditorBase
             Editor.spriteBatch.Begin();
 
             if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+            if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
 
             Editor.spriteBatch.End();
         }

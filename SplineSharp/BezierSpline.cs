@@ -25,6 +25,21 @@ namespace SplineSharp
 
         private Transform[] points;
 
+        public bool Loop
+        {
+            get { return _Loop; }
+            set
+            {
+                _Loop = value;
+                if (value)
+                {
+                    modes[modes.Length - 1] = modes[0];
+                    SetControlPoint(points.Length -1, points[0]);
+                }
+            }
+        }
+        private bool _Loop;
+
         private int CurveCount
         {
             get { return (points.Length - 1) / 3; }
@@ -53,7 +68,19 @@ namespace SplineSharp
 
         public void SetControlPointMode(int index, BezierControlPointMode mode)
         {
-            modes[(index + 1) / 3] = mode;
+            int modeIndex = (index + 1) / 3;
+            modes[modeIndex] = mode;
+            if (_Loop)
+            {
+                if (modeIndex == 0)
+                {
+                    modes[modes.Length - 1] = mode;
+                }
+                else if (modeIndex == modes.Length - 1)
+                {
+                    modes[0] = mode;
+                }
+            }
             EnforceMode(index);
         }
 
@@ -63,13 +90,36 @@ namespace SplineSharp
             {
                 if (index % 3 == 0)
                 {
-                    if (index > 0)
+                    if (_Loop)
                     {
-                        points[index - 1].Translate(diff);
+                        if (index == 0)
+                        {
+                            points[1].Translate(diff);
+                            points[points.Length - 2].Translate(diff);
+                            points[points.Length - 1] = points[0];
+                        }
+                        else if (index == points.Length - 1)
+                        {
+                            points[0] = points[points.Length - 1];
+                            points[1].Translate(diff);
+                            points[index - 1].Translate(diff);
+                        }
+                        else
+                        {
+                            points[index - 1].Translate(diff);
+                            points[index + 1].Translate(diff);
+                        }
                     }
-                    if (index + 1 < points.Length)
+                    else
                     {
-                        points[index + 1].Translate(diff);
+                        if (index > 0)
+                        {
+                            points[index - 1].Translate(diff);
+                        }
+                        if (index + 1 < points.Length)
+                        {
+                            points[index + 1].Translate(diff);
+                        }
                     }
                 }
             }

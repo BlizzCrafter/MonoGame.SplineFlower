@@ -27,5 +27,10 @@ namespace SplineSharp.Samples
         {
             splineEditorBezierSpline.MySpline.AddCurveRight();
         }
+
+        private void buttonLoop_Click(object sender, EventArgs e)
+        {
+            splineEditorBezierSpline.MySpline.Loop = true;
+        }
     }
 }

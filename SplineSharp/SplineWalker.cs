@@ -14,31 +14,30 @@ namespace SplineSharp
         }
         public SplineWalkerMode Mode { get; set; }
 
-
-        private BezierSpline Spline;
+        private BezierSpline _Spline;
 
         protected Vector2 Position { get; private set; }
         protected Vector2 Direction { get; private set; }
         protected float Rotation { get; private set; }
         protected float Duration { get; set; }
-        private Rectangle Size = new Rectangle(0, 0, 10, 10);
+        private Rectangle _Size = new Rectangle(0, 0, 10, 10);
         private void SetPosition(Vector2 position)
         {
             Position = position;
-            Size.X = (int)position.X;
-            Size.Y = (int)position.Y;
+            _Size.X = (int)position.X;
+            _Size.Y = (int)position.Y;
         }
 
         public bool Initialized { get; private set; } = false;
-        public bool LookForward { get; private set; } = true;
 
         private float _Progress;
         private bool _GoingForward = true;
+        private bool _LookForward = true;
 
-        public virtual void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
+        public void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
         {
-            Spline = spline;
-            Duration = 12f;
+            _Spline = spline;
+            Duration = duration;
             Mode = SplineWalkerMode.Once;
 
             SetPosition(spline.GetPointWalker(0));
@@ -51,7 +50,7 @@ namespace SplineSharp
             _Progress = 0;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             if (_GoingForward)
             {
@@ -83,20 +82,20 @@ namespace SplineSharp
                 }
             }
             
-            if (LookForward)
+            if (_LookForward)
             {
-                Direction = Spline.GetVelocityWalker(_Progress);
+                Direction = _Spline.GetVelocityWalker(_Progress);
                 Direction.Normalize();
                 Rotation = (float)Math.Atan2(Direction.X, -Direction.Y);
             }
 
-            SetPosition(Spline.GetPointWalker(_Progress));
+            SetPosition(_Spline.GetPointWalker(_Progress));
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Setup.Pixel,
-                             Size,
+                             _Size,
                              null,
                              Color.White,
                              Rotation,

@@ -69,18 +69,27 @@ namespace SplineSharp.Samples.Controls
                     SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
                     MovePointDiff.Invoke(new Vector2(-xDiff, -yDiff));
                 }
-                else if (TranslateAllPointsClick)
-                {
-                    Transform[] allPoints = GetAllPoints().Distinct().ToArray();
-                    for (int i = 0; i < allPoints.Length; i++)
-                    {
-                        allPoints[i].Translate(new Vector2(-xDiff, -yDiff));
-                    }
-                }
+                else if (TranslateAllPointsClick) TranslateAllPoints(new Vector2(-xDiff, -yDiff));
 
                 TranslatePointFirstClick.X = e.Location.X;
                 TranslatePointFirstClick.Y = e.Location.Y;
             }
+        }
+
+        protected void TranslateAllPoints(Vector2 amount)
+        {
+            Transform[] allPoints = GetAllPoints().Distinct().ToArray();
+            for (int i = 0; i < allPoints.Length; i++)
+            {
+                allPoints[i].Translate(new Vector2(amount.X, amount.Y));
+            }
+        }
+
+        protected void TranslateAllPointsToScreenCenter(Vector2 bezierCenter)
+        {
+            TranslateAllPoints(new Vector2(
+                (ClientSize.Width / 2) - bezierCenter.X,
+                (ClientSize.Height / 2) - bezierCenter.Y));
         }
     }
 }

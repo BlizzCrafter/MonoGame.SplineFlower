@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace SplineSharp
 {
-    public class Transform
+    public class Transform : IComparable<Transform>
     {
         private Rectangle Size = Rectangle.Empty;
         internal Vector2 Position { get; private set; } = Vector2.Zero;
@@ -40,6 +41,13 @@ namespace SplineSharp
             if (Size.Contains(position)) return true;
 
             return false;
+        }
+
+        public int CompareTo(Transform other)
+        {
+            if (Position.X >= other.Position.X &&
+                Position.Y >= other.Position.Y) return 1;
+            return -1;
         }
     }
 }

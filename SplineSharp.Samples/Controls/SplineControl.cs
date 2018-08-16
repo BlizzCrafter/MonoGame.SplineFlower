@@ -21,6 +21,8 @@ namespace SplineSharp.Samples.Controls
 
             MySplineWalker = new SpriteMan();
             MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
+
+            TranslateAllPointsToScreenCenter(MySpline.GetBezierCenter);
         }
 
         private void SplineEditor_MovePointDiff(Vector2 obj)

@@ -30,7 +30,6 @@
         {
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageSimpleLine = new System.Windows.Forms.TabPage();
-            this.lineControl = new SplineSharp.Samples.Controls.LineControl();
             this.tabPageQuadraticBezier = new System.Windows.Forms.TabPage();
             this.tabPageCubicBezier = new System.Windows.Forms.TabPage();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
@@ -39,6 +38,7 @@
             this.buttonLoop = new System.Windows.Forms.Button();
             this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
+            this.lineControl = new SplineSharp.Samples.Controls.LineControl();
             this.curveControlQuadratic = new SplineSharp.Samples.Controls.CurveControl();
             this.curveControlCubic = new SplineSharp.Samples.Controls.CurveControl();
             this.splineControl = new SplineSharp.Samples.Controls.SplineControl();
@@ -72,21 +72,6 @@
             this.tabPageSimpleLine.TabIndex = 0;
             this.tabPageSimpleLine.Text = "Simple Line";
             this.tabPageSimpleLine.UseVisualStyleBackColor = true;
-            // 
-            // lineControl
-            // 
-            this.lineControl.BackColor = System.Drawing.Color.Lavender;
-            this.lineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lineControl.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lineControl.GetAllPoints = null;
-            this.lineControl.Location = new System.Drawing.Point(3, 3);
-            this.lineControl.MyLine = null;
-            this.lineControl.Name = "lineControl";
-            this.lineControl.Size = new System.Drawing.Size(768, 718);
-            this.lineControl.TabIndex = 0;
-            this.lineControl.Text = "Simple Line Sample";
-            this.lineControl.TryGetTransformFromPosition = null;
             // 
             // tabPageQuadraticBezier
             // 
@@ -188,6 +173,21 @@
             this.buttonAddCurveLeft.Text = "Add Curve Left";
             this.buttonAddCurveLeft.UseVisualStyleBackColor = true;
             this.buttonAddCurveLeft.Click += new System.EventHandler(this.buttonAddCurve_Click);
+            // 
+            // lineControl
+            // 
+            this.lineControl.BackColor = System.Drawing.Color.Lavender;
+            this.lineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lineControl.ForeColor = System.Drawing.Color.CadetBlue;
+            this.lineControl.GetAllPoints = null;
+            this.lineControl.Location = new System.Drawing.Point(3, 3);
+            this.lineControl.MyLine = null;
+            this.lineControl.Name = "lineControl";
+            this.lineControl.Size = new System.Drawing.Size(768, 718);
+            this.lineControl.TabIndex = 0;
+            this.lineControl.Text = "Simple Line Sample";
+            this.lineControl.TryGetTransformFromPosition = null;
             // 
             // curveControlQuadratic
             // 

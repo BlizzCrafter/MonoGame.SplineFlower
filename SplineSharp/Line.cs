@@ -4,7 +4,7 @@ using System;
 
 namespace SplineSharp
 {
-    public class Line
+    public class Line : PointBase
     {
         public Transform FirstPoint
         {
@@ -78,8 +78,10 @@ namespace SplineSharp
 
         public void Reset()
         {
-            FirstPoint.SetPosition(new Vector2(200, 200));
-            SecondPoint.SetPosition(new Vector2(400, 200));
+            FirstPoint.SetPosition(new Vector2(0, 0));
+            SecondPoint.SetPosition(new Vector2(200, 0));
+
+            CalculateBezierCenter(new Transform[] { FirstPoint, SecondPoint });
         }
     }
 }

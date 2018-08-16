@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SplineSharp
 {
-    public class BezierSpline
+    public class BezierSpline : PointBase
     {
         public enum BezierControlPointMode
         {
@@ -256,6 +256,8 @@ namespace SplineSharp
                 _Modes[_Modes.Length - 1] = _Modes[0];
                 EnforceMode(0);
             }
+
+            CalculateBezierCenter(_Points);
         }
 
         public void AddCurveRight()
@@ -277,6 +279,8 @@ namespace SplineSharp
                 _Modes[_Modes.Length - 1] = _Modes[0];
                 EnforceMode(0);
             }
+
+            CalculateBezierCenter(_Points);
         }
 
         public void DrawSpline(SpriteBatch spriteBatch)
@@ -360,11 +364,13 @@ namespace SplineSharp
         {
             _Points = new Transform[]
             {
-                new Transform(new Vector2(50, 50)),
-                new Transform(new Vector2(300, 50)),
-                new Transform(new Vector2(50, 300)),
-                new Transform(new Vector2(300, 300))
+                new Transform(new Vector2(0, 0)),
+                new Transform(new Vector2(250, 0)),
+                new Transform(new Vector2(0, 250)),
+                new Transform(new Vector2(250, 250))
             };
+
+            CalculateBezierCenter(_Points);
 
             _Modes = new BezierControlPointMode[] {
                 BezierControlPointMode.Free,

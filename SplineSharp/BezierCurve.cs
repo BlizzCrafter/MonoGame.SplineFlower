@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SplineSharp
 {
-    public class BezierCurve
+    public class BezierCurve : PointBase
     {
         internal enum Type
         {
@@ -124,10 +124,12 @@ namespace SplineSharp
 
             _Points = new Transform[]
             {
-                new Transform(new Vector2(100, 100)),
-                new Transform(new Vector2(300, 100)),
-                new Transform(new Vector2(300, 300))
+                new Transform(new Vector2(0, 0)),
+                new Transform(new Vector2(200, 0)),
+                new Transform(new Vector2(200, 200))
             };
+
+            CalculateBezierCenter(_Points);
         }
 
         public void CreateCubic()
@@ -141,6 +143,8 @@ namespace SplineSharp
                 new Transform(new Vector2(50, 300)),
                 new Transform(new Vector2(300, 300))
             };
+
+            CalculateBezierCenter(_Points);
         }
     }
 }

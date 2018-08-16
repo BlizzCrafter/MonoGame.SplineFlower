@@ -28,6 +28,8 @@ namespace SplineSharp.Samples.Controls
 
             TryGetTransformFromPosition = MyCurve.TryGetTransformFromPosition;
             GetAllPoints = MyCurve.GetAllPoints;
+
+            TranslateAllPointsToScreenCenter(MyCurve.GetBezierCenter);
         }
 
         protected override void Update(GameTime gameTime)

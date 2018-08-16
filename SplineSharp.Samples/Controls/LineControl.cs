@@ -1,4 +1,6 @@
-﻿namespace SplineSharp.Samples.Controls
+﻿using Microsoft.Xna.Framework;
+
+namespace SplineSharp.Samples.Controls
 {
     public class LineControl : TransformControl
     {
@@ -13,6 +15,8 @@
             TryGetTransformFromPosition = MyLine.TryGetTransformFromPosition;
             GetAllPoints = MyLine.GetAllPoints;
             MyLine.Reset();
+
+            TranslateAllPointsToScreenCenter(MyLine.GetBezierCenter);
         }
 
         protected override void Draw()

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System.ComponentModel;
 
-namespace SplineSharp.Samples.EditorBase
+namespace SplineSharp.Samples.Controls
 {
-    public abstract class CurveEditor : TransformControl
+    public class CurveControl : TransformControl
     {
         public enum BezierType
         {

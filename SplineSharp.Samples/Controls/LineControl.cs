@@ -1,6 +1,6 @@
-﻿namespace SplineSharp.Samples.EditorBase
+﻿namespace SplineSharp.Samples.Controls
 {
-    public abstract class LineEditor : TransformControl
+    public class LineControl : TransformControl
     {
         public Line MyLine { get; set; }
         private bool FirstPointSet = false;

@@ -17,32 +17,32 @@ namespace SplineSharp.Samples
 
         private void buttonAddCurve_Click(object sender, EventArgs e)
         {
-            splineEditorBezierSpline.MySpline.AddCurveLeft();
+            splineControl.MySpline.AddCurveLeft();
         }
 
         private void buttonAddCurveRight_Click(object sender, EventArgs e)
         {
-            splineEditorBezierSpline.MySpline.AddCurveRight();
+            splineControl.MySpline.AddCurveRight();
         }
 
         private void buttonLoop_Click(object sender, EventArgs e)
         {
-            splineEditorBezierSpline.MySpline.Loop = true;
+            splineControl.MySpline.Loop = true;
             buttonLoop.Enabled = false;
         }
 
         private void buttonResetSplineWalker_Click(object sender, EventArgs e)
         {
-            splineEditorBezierSpline.MySplineWalker.Reset();
+            splineControl.MySplineWalker.Reset();
         }
 
         private void comboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (splineEditorBezierSpline.MySplineWalker != null && splineEditorBezierSpline.MySplineWalker.Initialized)
+            if (splineControl.MySplineWalker != null && splineControl.MySplineWalker.Initialized)
             {
-                if (comboBoxWalkerMode.SelectedIndex == 0) splineEditorBezierSpline.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.Once;
-                else if (comboBoxWalkerMode.SelectedIndex == 1) splineEditorBezierSpline.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.Loop;
-                else if (comboBoxWalkerMode.SelectedIndex == 2) splineEditorBezierSpline.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.PingPong;
+                if (comboBoxWalkerMode.SelectedIndex == 0) splineControl.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.Once;
+                else if (comboBoxWalkerMode.SelectedIndex == 1) splineControl.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.Loop;
+                else if (comboBoxWalkerMode.SelectedIndex == 2) splineControl.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.PingPong;
             }
         }
     }

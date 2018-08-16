@@ -1,9 +1,9 @@
 ﻿using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 
-namespace SplineSharp.Samples.EditorBase
+namespace SplineSharp.Samples.Controls
 {
-    public abstract class SplineEditor : TransformControl
+    public class SplineControl : TransformControl
     {
         public BezierSpline MySpline;
         public SpriteMan MySplineWalker;

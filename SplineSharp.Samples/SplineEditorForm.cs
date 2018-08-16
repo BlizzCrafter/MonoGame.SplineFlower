@@ -15,10 +15,6 @@ namespace SplineSharp.Samples
             comboBoxWalkerMode.SelectedIndex = 0;            
         }
 
-        private void toolStripButtonAddPoint_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
         private void buttonAddCurve_Click(object sender, EventArgs e)
         {
             splineEditorBezierSpline.MySpline.AddCurveLeft();

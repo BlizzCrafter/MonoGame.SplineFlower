@@ -8,9 +8,9 @@ namespace SplineSharp
     {
         public enum SplineWalkerMode
         {
-            Once,
-            Loop,
-            PingPong
+            Once = 0,
+            Loop = 1,
+            PingPong = 2
         }
         public SplineWalkerMode Mode { get; set; }
 

@@ -38,11 +38,10 @@ namespace SplineSharp.Samples
 
         private void comboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (splineControl.MySplineWalker != null && splineControl.MySplineWalker.Initialized)
+            if (splineControl.MySplineWalker != null && 
+                splineControl.MySplineWalker.Initialized)
             {
-                if (comboBoxWalkerMode.SelectedIndex == 0) splineControl.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.Once;
-                else if (comboBoxWalkerMode.SelectedIndex == 1) splineControl.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.Loop;
-                else if (comboBoxWalkerMode.SelectedIndex == 2) splineControl.MySplineWalker.Mode = SplineWalker.SplineWalkerMode.PingPong;
+                splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
             }
         }
     }

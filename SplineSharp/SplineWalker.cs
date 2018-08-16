@@ -6,23 +6,42 @@ namespace SplineSharp
 {
     public abstract class SplineWalker
     {
+        public enum SplineWalkerMode
+        {
+            Once,
+            Loop,
+            PingPong
+        }
+        public SplineWalkerMode Mode { get; set; }
+
+
         private BezierSpline Spline;
 
-        protected Transform GetTransform { get; set; }
+        protected Vector2 Position { get; private set; }
+        protected Vector2 Direction { get; private set; }
+        protected float Rotation { get; private set; }
         protected float Duration { get; set; }
+        private Rectangle Size = new Rectangle(0, 0, 10, 10);
+        private void SetPosition(Vector2 position)
+        {
+            Position = position;
+            Size.X = (int)position.X;
+            Size.Y = (int)position.Y;
+        }
 
         public bool Initialized { get; private set; } = false;
         public bool LookForward { get; private set; } = true;
 
         private float _Progress;
-        public Vector2 _Velocity;
+        private bool _GoingForward = true;
 
-        public virtual void CreateSplineWalker(BezierSpline spline, float duration)
+        public virtual void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
         {
             Spline = spline;
-            Duration = 10f;
+            Duration = 12f;
+            Mode = SplineWalkerMode.Once;
 
-            GetTransform = new Transform(spline.GetPointWalker(0));
+            SetPosition(spline.GetPointWalker(0));
 
             Initialized = true;
         }
@@ -34,32 +53,54 @@ namespace SplineSharp
 
         public virtual void Update(GameTime gameTime)
         {
-            _Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
-            if (_Progress > 1f)
+            if (_GoingForward)
             {
-                _Progress = 1f;
+                _Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+                if (_Progress > 1f)
+                {
+                    if (Mode == SplineWalkerMode.Once)
+                    {
+                        _Progress = 1f;
+                    }
+                    else if (Mode == SplineWalkerMode.Loop)
+                    {
+                        _Progress -= 1f;
+                    }
+                    else
+                    {
+                        _Progress = 2f - _Progress;
+                        _GoingForward = false;
+                    }
+                }
             }
-
-            //Vector2 position = Spline.GetPointWalker(_Progress);
-            //GetTransform.SetPosition(position);
+            else
+            {
+                _Progress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+                if (_Progress < 0f)
+                {
+                    _Progress = -_Progress;
+                    _GoingForward = true;
+                }
+            }
+            
             if (LookForward)
             {
-                _Velocity = Spline.GetVelocityWalker(_Progress);
-                _Velocity.Normalize();
-                GetTransform.Rotation = MathHelper.ToRadians(45f) + (float)Math.Atan2(_Velocity.X, -_Velocity.Y);
+                Direction = Spline.GetVelocityWalker(_Progress);
+                Direction.Normalize();
+                Rotation = (float)Math.Atan2(Direction.X, -Direction.Y);
             }
 
-            GetTransform.SetPosition(Spline.GetPointWalker(_Progress));
+            SetPosition(Spline.GetPointWalker(_Progress));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Setup.Pixel,
-                             GetTransform.Size,
+                             Size,
                              null,
                              Color.White,
-                             GetTransform.Rotation,
-                             new Vector2(_Velocity.Y, _Velocity.X),
+                             Rotation,
+                             new Vector2(0.5f),
                              SpriteEffects.None,
                              0f);
         }

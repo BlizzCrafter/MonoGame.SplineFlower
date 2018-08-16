@@ -5,9 +5,9 @@ namespace SplineSharp.Samples
 {
     public class SpriteMan : SplineWalker
     {
-        public override void CreateSplineWalker(BezierSpline spline, float duration)
+        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
         {
-            base.CreateSplineWalker(spline, duration);
+            base.CreateSplineWalker(spline, mode, duration);
         }
 
         public override void Update(GameTime gameTime)

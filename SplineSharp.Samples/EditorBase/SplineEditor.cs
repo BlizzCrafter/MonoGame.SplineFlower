@@ -19,7 +19,7 @@ namespace SplineSharp.Samples.EditorBase
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MySplineWalker = new SpriteMan();
-            MySplineWalker.CreateSplineWalker(MySpline, 7f);
+            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
         }
 
         private void SplineEditor_MovePointDiff(Vector2 obj)

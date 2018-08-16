@@ -32,6 +32,8 @@ namespace SplineSharp.Samples.Controls
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
+            
+            if (TranslatePointClick || TranslateAllPointsClick) RecalculateBezierCenter.Invoke();
 
             TranslatePointClick = false;
             TranslateAllPointsClick = false;
@@ -76,8 +78,6 @@ namespace SplineSharp.Samples.Controls
                     MovePointDiff.Invoke(new Vector2(-xDiff, -yDiff));
                 }
                 else if (TranslateAllPointsClick) TranslateAllPoints(new Vector2(-xDiff, -yDiff));
-
-                RecalculateBezierCenter.Invoke();
 
                 TranslatePointFirstClick.X = e.Location.X;
                 TranslatePointFirstClick.Y = e.Location.Y;

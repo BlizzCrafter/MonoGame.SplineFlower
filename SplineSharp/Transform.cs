@@ -4,26 +4,21 @@ namespace SplineSharp
 {
     public class Transform
     {
-        public Rectangle Size = Rectangle.Empty;
-        public Vector2 Position { get; private set; } = Vector2.Zero;
-        public float Rotation { get; set; } = 0f;
-        public int Index { get; set; } = -1;
+        private Rectangle Size = Rectangle.Empty;
+        internal Vector2 Position { get; private set; } = Vector2.Zero;
+        public int Index { get; internal set; } = -1;
 
-        public Transform() { }
-        public Transform(Vector2 position) : this()
+        internal Transform() { }
+        internal Transform(Vector2 position) : this()
         {
             SetPosition(position);
         }
-        public Transform(ref Vector2 position) : this(position)
+        internal Transform(ref Vector2 position) : this(position)
         {
             
         }
-        public Transform(ref Vector2 position, ref float rotation) : this(ref position)
-        {
-            Rotation = rotation;
-        }
 
-        public void SetPosition(Vector2 position)
+        internal void SetPosition(Vector2 position)
         {
             Position = new Vector2(position.X, position.Y);
             Size = new Rectangle(

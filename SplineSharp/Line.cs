@@ -56,16 +56,6 @@ namespace SplineSharp
 
             DrawPoint(spriteBatch, p0.Position, angle);
             DrawPoint(spriteBatch, p1.Position, angle);
-
-            //Debug
-            //spriteBatch.Draw(Setup.Pixel,
-            //                 FirstPoint.Size,
-            //                 null,
-            //                 Color.Yellow,
-            //                 0,
-            //                 new Vector2(0f),
-            //                 SpriteEffects.None,
-            //                 0f);
         }
 
         private void DrawPoint(SpriteBatch spriteBatch, Vector2 point, float angle)

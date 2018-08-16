@@ -13,9 +13,9 @@ namespace SplineSharp
             Aligned,
             Mirrored
         }
-        private BezierControlPointMode[] modes;
+        private BezierControlPointMode[] _Modes;
 
-        private static Color[] modeColors = {
+        private static Color[] _ModeColors = {
             Setup.PointColor,
             Color.Yellow,
             Color.Cyan
@@ -23,7 +23,7 @@ namespace SplineSharp
 
         private const int LineSteps = 20;
 
-        private Transform[] points;
+        private Transform[] _Points;
 
         public bool Loop
         {
@@ -33,52 +33,52 @@ namespace SplineSharp
                 _Loop = value;
                 if (value)
                 {
-                    modes[modes.Length - 1] = modes[0];
-                    SetControlPoint(points.Length -1, points[0]);
+                    _Modes[_Modes.Length - 1] = _Modes[0];
+                    SetControlPoint(_Points.Length -1, _Points[0]);
                 }
             }
         }
         private bool _Loop;
 
-        private int CurveCount
+        public int CurveCount
         {
-            get { return (points.Length - 1) / 3; }
+            get { return (_Points.Length - 1) / 3; }
         }
 
         public int ControlPointCount
         {
-            get { return points.Length; }
+            get { return _Points.Length; }
         }
 
         public Transform GetControlPoint(int index)
         {
-            return points[index];
+            return _Points[index];
         }
 
         public void SetControlPoint(int index, Transform point)
         {
-            points[index] = point;
+            _Points[index] = point;
             EnforceMode(index);
         }
 
         public BezierControlPointMode GetControlPointMode(int index)
         {
-            return modes[(index + 1) / 3];
+            return _Modes[(index + 1) / 3];
         }
 
         public void SetControlPointMode(int index, BezierControlPointMode mode)
         {
             int modeIndex = (index + 1) / 3;
-            modes[modeIndex] = mode;
+            _Modes[modeIndex] = mode;
             if (_Loop)
             {
                 if (modeIndex == 0)
                 {
-                    modes[modes.Length - 1] = mode;
+                    _Modes[_Modes.Length - 1] = mode;
                 }
-                else if (modeIndex == modes.Length - 1)
+                else if (modeIndex == _Modes.Length - 1)
                 {
-                    modes[0] = mode;
+                    _Modes[0] = mode;
                 }
             }
             EnforceMode(index);
@@ -94,31 +94,31 @@ namespace SplineSharp
                     {
                         if (index == 0)
                         {
-                            points[1].Translate(diff);
-                            points[points.Length - 2].Translate(diff);
-                            points[points.Length - 1] = points[0];
+                            _Points[1].Translate(diff);
+                            _Points[_Points.Length - 2].Translate(diff);
+                            _Points[_Points.Length - 1] = _Points[0];
                         }
-                        else if (index == points.Length - 1)
+                        else if (index == _Points.Length - 1)
                         {
-                            points[0] = points[points.Length - 1];
-                            points[1].Translate(diff);
-                            points[index - 1].Translate(diff);
+                            _Points[0] = _Points[_Points.Length - 1];
+                            _Points[1].Translate(diff);
+                            _Points[index - 1].Translate(diff);
                         }
                         else
                         {
-                            points[index - 1].Translate(diff);
-                            points[index + 1].Translate(diff);
+                            _Points[index - 1].Translate(diff);
+                            _Points[index + 1].Translate(diff);
                         }
                     }
                     else
                     {
                         if (index > 0)
                         {
-                            points[index - 1].Translate(diff);
+                            _Points[index - 1].Translate(diff);
                         }
-                        if (index + 1 < points.Length)
+                        if (index + 1 < _Points.Length)
                         {
-                            points[index + 1].Translate(diff);
+                            _Points[index + 1].Translate(diff);
                         }
                     }
                 }
@@ -128,8 +128,8 @@ namespace SplineSharp
         public void EnforceMode(int index)
         {
             int modeIndex = (index + 1) / 3;
-            BezierControlPointMode mode = modes[modeIndex];
-            if (mode == BezierControlPointMode.Free || !Loop && (modeIndex == 0 || modeIndex == modes.Length - 1))
+            BezierControlPointMode mode = _Modes[modeIndex];
+            if (mode == BezierControlPointMode.Free || !Loop && (modeIndex == 0 || modeIndex == _Modes.Length - 1))
             {
                 return;
             }
@@ -141,10 +141,10 @@ namespace SplineSharp
                 fixedIndex = middleIndex - 1;
                 if (fixedIndex < 0)
                 {
-                    fixedIndex = points.Length - 2;
+                    fixedIndex = _Points.Length - 2;
                 }
                 enforcedIndex = middleIndex + 1;
-                if (enforcedIndex >= points.Length)
+                if (enforcedIndex >= _Points.Length)
                 {
                     enforcedIndex = 1;
                 }
@@ -152,50 +152,67 @@ namespace SplineSharp
             else
             {
                 fixedIndex = middleIndex + 1;
-                if (fixedIndex >= points.Length)
+                if (fixedIndex >= _Points.Length)
                 {
                     fixedIndex = 1;
                 }
                 enforcedIndex = middleIndex - 1;
                 if (enforcedIndex < 0)
                 {
-                    enforcedIndex = points.Length - 2;
+                    enforcedIndex = _Points.Length - 2;
                 }
             }
 
-            Transform middle = points[middleIndex];
-            Vector2 enforcedTangent = middle.Position - points[fixedIndex].Position;
+            Transform middle = _Points[middleIndex];
+            Vector2 enforcedTangent = middle.Position - _Points[fixedIndex].Position;
             if (mode == BezierControlPointMode.Aligned)
             {
                 enforcedTangent.Normalize();
-                enforcedTangent *= Vector2.Distance(middle.Position, points[enforcedIndex].Position);
+                enforcedTangent *= Vector2.Distance(middle.Position, _Points[enforcedIndex].Position);
             }
-            points[enforcedIndex].SetPosition(middle.Position + enforcedTangent);
+            _Points[enforcedIndex].SetPosition(middle.Position + enforcedTangent);
         }
 
         public Transform TryGetTransformFromPosition(Vector2 position)
         {
-            if (points.Any(x => x.TryGetPosition(position))) return points.First(x => x.TryGetPosition(position));
+            if (_Points.Any(x => x.TryGetPosition(position))) return _Points.First(x => x.TryGetPosition(position));
 
             return null;
-        }
+        }        
 
-        public Vector2 GetPoint(float t, int curveIndex)
+        public Vector2 GetPoint(float t)
+        {
+            int i;
+            if (t >= 1f)
+            {
+                t = 1f;
+                i = _Points.Length - 4;
+            }
+            else
+            {
+                t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
+                i = (int)t;
+                t -= i;
+                i *= 3;
+            }
+            return Bezier.GetPoint(_Points[i].Position, _Points[i + 1].Position, _Points[i + 2].Position, _Points[i + 3].Position, t);
+        }
+        private Vector2 GetPointIntern(float t, int curveIndex)
         {
             return Bezier.GetPoint(
-                points[0 + (curveIndex * 3)].Position, 
-                points[1 + (curveIndex * 3)].Position, 
-                points[2 + (curveIndex * 3)].Position, 
-                points[3 + (curveIndex * 3)].Position, t);
+                _Points[0 + (curveIndex * 3)].Position,
+                _Points[1 + (curveIndex * 3)].Position,
+                _Points[2 + (curveIndex * 3)].Position,
+                _Points[3 + (curveIndex * 3)].Position, t);
         }
 
-        public Vector2 GetPointWalker(float t)
+        public Vector2 GetDirection(float t)
         {
             int i;
             if (t >= 1f)
             {
                 t = 1f;
-                i = points.Length - 4;
+                i = _Points.Length - 4;
             }
             else
             {
@@ -204,74 +221,55 @@ namespace SplineSharp
                 t -= i;
                 i *= 3;
             }
-            return Bezier.GetPoint(points[i].Position, points[i + 1].Position, points[i + 2].Position, points[i + 3].Position, t);
+            return Bezier.GetFirstDerivative(_Points[i].Position, _Points[i + 1].Position, _Points[i + 2].Position, _Points[i + 3].Position, t);
         }
-
-        public Vector2 GetVelocity(float t)
+        private Vector2 GetDirectionIntern(float t)
         {
-            Vector2 Velocity = Vector2.Zero;
+            Vector2 direction = Vector2.Zero;
 
-            Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
-            Velocity.Normalize();
-            return Velocity;
-        }
-
-        public Vector2 GetVelocityWalker(float t)
-        {
-            int i;
-            if (t >= 1f)
-            {
-                t = 1f;
-                i = points.Length - 4;
-            }
-            else
-            {
-                t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
-                i = (int)t;
-                t -= i;
-                i *= 3;
-            }
-            return Bezier.GetFirstDerivative(points[i].Position, points[i + 1].Position, points[i + 2].Position, points[i + 3].Position, t);
+            direction = Bezier.GetFirstDerivative(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t);
+            direction.Normalize();
+            return direction;
         }
 
         public void AddCurveLeft()
         {
-            Transform point = points[points.Length - 1];
-            Array.Resize(ref points, points.Length + 3);
+            Transform point = _Points[_Points.Length - 1];
+            Array.Resize(ref _Points, _Points.Length + 3);
             
-            points[points.Length - 3] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 0f));            
-            points[points.Length - 2] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 80f));            
-            points[points.Length - 1] = new Transform(new Vector2(point.Position.X + 0f, point.Position.Y - 80f));
+            _Points[_Points.Length - 3] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 0f));            
+            _Points[_Points.Length - 2] = new Transform(new Vector2(point.Position.X + 40f, point.Position.Y - 80f));            
+            _Points[_Points.Length - 1] = new Transform(new Vector2(point.Position.X + 0f, point.Position.Y - 80f));
 
-            Array.Resize(ref modes, modes.Length + 1);
-            modes[modes.Length - 1] = modes[modes.Length - 2];
-            EnforceMode(points.Length - 4);
+            Array.Resize(ref _Modes, _Modes.Length + 1);
+            _Modes[_Modes.Length - 1] = _Modes[_Modes.Length - 2];
+            EnforceMode(_Points.Length - 4);
 
             if (_Loop)
             {
-                points[points.Length - 1] = points[0];
-                modes[modes.Length - 1] = modes[0];
+                _Points[_Points.Length - 1] = _Points[0];
+                _Modes[_Modes.Length - 1] = _Modes[0];
                 EnforceMode(0);
             }
         }
 
         public void AddCurveRight()
         {
-            Transform point = points[points.Length - 1];
-            Array.Resize(ref points, points.Length + 3);
+            Transform point = _Points[_Points.Length - 1];
+            Array.Resize(ref _Points, _Points.Length + 3);
 
-            points[points.Length - 3] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 0f));
-            points[points.Length - 2] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 80f));
-            points[points.Length - 1] = new Transform(new Vector2(point.Position.X - 0f, point.Position.Y - 80f));
+            _Points[_Points.Length - 3] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 0f));
+            _Points[_Points.Length - 2] = new Transform(new Vector2(point.Position.X - 40f, point.Position.Y - 80f));
+            _Points[_Points.Length - 1] = new Transform(new Vector2(point.Position.X - 0f, point.Position.Y - 80f));
 
-            Array.Resize(ref modes, modes.Length + 1);
-            modes[modes.Length - 1] = modes[modes.Length - 2];
-            EnforceMode(points.Length - 4);
+            Array.Resize(ref _Modes, _Modes.Length + 1);
+            _Modes[_Modes.Length - 1] = _Modes[_Modes.Length - 2];
+            EnforceMode(_Points.Length - 4);
 
             if (_Loop)
             {
-                points[points.Length - 1] = points[0];
-                modes[modes.Length - 1] = modes[0];
+                _Points[_Points.Length - 1] = _Points[0];
+                _Modes[_Modes.Length - 1] = _Modes[0];
                 EnforceMode(0);
             }
         }
@@ -283,42 +281,42 @@ namespace SplineSharp
                 throw new Exception("You need to initialize the SplineSharp library first by calling 'SplineSharp.Setup.Initialize();'");
             }
 
-            if (points.Length <= 1 || points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;
+            if (_Points.Length <= 1 || _Points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;
 
             float distance = 0, angle = 0;
-            for (int i = 0; i < points.Length; i++)
+            for (int i = 0; i < _Points.Length; i++)
             {
-                points[i].Index = i;
+                _Points[i].Index = i;
 
-                if (i + 1 > points.Length - 1)
+                if (i + 1 > _Points.Length - 1)
                 {
                     DrawPoint(spriteBatch, i, angle);
                     break;
                 }
 
-                distance = Vector2.Distance(points[i].Position, points[i + 1].Position);
-                angle = (float)Math.Atan2(points[i + 1].Position.Y - points[i].Position.Y, points[i + 1].Position.X - points[i].Position.X);
+                distance = Vector2.Distance(_Points[i].Position, _Points[i + 1].Position);
+                angle = (float)Math.Atan2(_Points[i + 1].Position.Y - _Points[i].Position.Y, _Points[i + 1].Position.X - _Points[i].Position.X);
 
-                DrawLine(spriteBatch, points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
+                DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
                 DrawPoint(spriteBatch, i, angle);
             }
 
-            Vector2 lineStart = GetPoint(0f, 0);
+            Vector2 lineStart = GetPointIntern(0f, 0);
             for (int j = 0; j < CurveCount; j++)
             {
                 for (int i = 1; i <= LineSteps; i++)
                 {
-                    Vector2 lineEnd = GetPoint(i / (float)LineSteps, j);
+                    Vector2 lineEnd = GetPointIntern(i / (float)LineSteps, j);
 
                     float distanceStep = Vector2.Distance(lineStart, lineEnd);
                     float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
 
                     DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
 
-                    if (Setup.ShowVelocityVectors)
+                    if (Setup.ShowDirectionVectors)
                     {
-                        DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)LineSteps), angleStep,
-                            Setup.VelocityLineLength, Setup.VelocityLineColor, Setup.VelocityLineThickness);
+                        DrawLine(spriteBatch, lineEnd + GetDirectionIntern(i / (float)LineSteps), angleStep,
+                            Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
                     }
 
                     lineStart = lineEnd;
@@ -342,9 +340,9 @@ namespace SplineSharp
         private void DrawPoint(SpriteBatch spriteBatch, int index, float angle)
         {
             spriteBatch.Draw(Setup.Pixel,
-                             points[index].Position,
+                             _Points[index].Position,
                              null,
-                             (index == 0 ? Setup.StartPointColor : modeColors[(int)GetControlPointMode(index)]),
+                             (index == 0 ? Setup.StartPointColor : _ModeColors[(int)GetControlPointMode(index)]),
                              angle,
                              new Vector2(0.5f),
                              Setup.PointThickness * (index == 0 ? Setup.StartPointThickness : 1f),
@@ -355,7 +353,7 @@ namespace SplineSharp
 
         public void Reset()
         {
-            points = new Transform[]
+            _Points = new Transform[]
             {
                 new Transform(new Vector2(50, 50)),
                 new Transform(new Vector2(300, 50)),
@@ -363,7 +361,7 @@ namespace SplineSharp
                 new Transform(new Vector2(300, 300))
             };
 
-            modes = new BezierControlPointMode[] {
+            _Modes = new BezierControlPointMode[] {
                 BezierControlPointMode.Free,
                 BezierControlPointMode.Free
             };

@@ -2,11 +2,11 @@
 
 namespace SplineSharp
 {
-    public static class Bezier
+    internal static class Bezier
     {
         #region Quadratic Bezier
 
-        public static Vector2 GetPoint(Vector2 p0, Vector2 p1, Vector2 p2, float t)
+        internal static Vector2 GetPoint(Vector2 p0, Vector2 p1, Vector2 p2, float t)
         {
             t = MathHelper.Clamp(t, 0f, 1f);
             float oneMinusT = 1f - t;
@@ -17,7 +17,7 @@ namespace SplineSharp
                 t * t * p2;
         }
 
-        public static Vector2 GetFirstDerivative(Vector2 p0, Vector2 p1, Vector2 p2, float t)
+        internal static Vector2 GetFirstDerivative(Vector2 p0, Vector2 p1, Vector2 p2, float t)
         {
             return
                 2f * (1f - t) * (p1 - p0) +
@@ -28,7 +28,7 @@ namespace SplineSharp
 
         #region Cubic Bezier
 
-        public static Vector2 GetPoint(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
+        internal static Vector2 GetPoint(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
         {
             t = MathHelper.Clamp(t, 0f, 1f);
             float oneMinusT = 1f - t;
@@ -39,7 +39,7 @@ namespace SplineSharp
                 t * t * t * p3;
         }
 
-        public static Vector2 GetFirstDerivative(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
+        internal static Vector2 GetFirstDerivative(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
         {
             t = MathHelper.Clamp(t, 0f, 1f);
             float oneMinusT = 1f - t;

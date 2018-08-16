@@ -12,7 +12,7 @@ namespace SplineSharp.Samples
 
         private void SplineEditorForm_Load(object sender, EventArgs e)
         {
-            comboBoxWalkerMode.SelectedIndex = 0;
+            comboBoxWalkerMode.SelectedIndex = 0;            
         }
 
         private void toolStripButtonAddPoint_CheckedChanged(object sender, EventArgs e)

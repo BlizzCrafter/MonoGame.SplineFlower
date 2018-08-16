@@ -40,7 +40,7 @@ namespace SplineSharp
             Duration = duration;
             Mode = SplineWalkerMode.Once;
 
-            SetPosition(spline.GetPointWalker(0));
+            SetPosition(spline.GetPoint(0));
 
             Initialized = true;
         }
@@ -84,12 +84,12 @@ namespace SplineSharp
             
             if (_LookForward)
             {
-                Direction = _Spline.GetVelocityWalker(_Progress);
+                Direction = _Spline.GetDirection(_Progress);
                 Direction.Normalize();
                 Rotation = (float)Math.Atan2(Direction.X, -Direction.Y);
             }
 
-            SetPosition(_Spline.GetPointWalker(_Progress));
+            SetPosition(_Spline.GetPoint(_Progress));
         }
 
         public void Draw(SpriteBatch spriteBatch)

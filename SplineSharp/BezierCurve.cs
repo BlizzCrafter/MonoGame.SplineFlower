@@ -7,7 +7,7 @@ namespace SplineSharp
 {
     public class BezierCurve
     {
-        public enum Type
+        internal enum Type
         {
             Quadratic,
             Cubic
@@ -16,11 +16,11 @@ namespace SplineSharp
 
         private const int LineSteps = 10;
 
-        public Transform[] points;
+        private Transform[] _Points;
 
         public Transform TryGetTransformFromPosition(Vector2 position)
         {
-            if (points.Any(x => x.TryGetPosition(position))) return points.First(x => x.TryGetPosition(position));
+            if (_Points.Any(x => x.TryGetPosition(position))) return _Points.First(x => x.TryGetPosition(position));
 
             return null;
         }
@@ -28,19 +28,19 @@ namespace SplineSharp
         public Vector2 GetPoint(float t)
         {
             return BezierType == Type.Cubic ?
-                Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t) :
-                Bezier.GetPoint(points[0].Position, points[1].Position, points[2].Position, t);
+                Bezier.GetPoint(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t) :
+                Bezier.GetPoint(_Points[0].Position, _Points[1].Position, _Points[2].Position, t);
         }
 
-        public Vector2 GetVelocity(float t)
+        public Vector2 GetDirection(float t)
         {
-            Vector2 Velocity = Vector2.Zero;
+            Vector2 direction = Vector2.Zero;
 
-            if (BezierType == Type.Cubic) Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, points[3].Position, t);
-            else Velocity = Bezier.GetFirstDerivative(points[0].Position, points[1].Position, points[2].Position, t);
+            if (BezierType == Type.Cubic) direction = Bezier.GetFirstDerivative(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t);
+            else direction = Bezier.GetFirstDerivative(_Points[0].Position, _Points[1].Position, _Points[2].Position, t);
 
-            Velocity.Normalize();
-            return Velocity;
+            direction.Normalize();
+            return direction;
         }
 
         public void DrawCurve(SpriteBatch spriteBatch)
@@ -50,22 +50,22 @@ namespace SplineSharp
                 throw new Exception("You need to initialize the SplineSharp library first by calling 'SplineSharp.Setup.Initialize();'");
             }
 
-            if (points.Length <= 1 || points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;
+            if (_Points.Length <= 1 || _Points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;
 
             float distance = 0, angle = 0;
-            for (int i = 0; i < points.Length; i++)
+            for (int i = 0; i < _Points.Length; i++)
             {
-                if (i + 1 > points.Length - 1)
+                if (i + 1 > _Points.Length - 1)
                 {
-                    DrawPoint(spriteBatch, points[i].Position, angle);
+                    DrawPoint(spriteBatch, _Points[i].Position, angle);
                     break;
                 }
 
-                distance = Vector2.Distance(points[i].Position, points[i + 1].Position);
-                angle = (float)Math.Atan2(points[i + 1].Position.Y - points[i].Position.Y, points[i + 1].Position.X - points[i].Position.X);
+                distance = Vector2.Distance(_Points[i].Position, _Points[i + 1].Position);
+                angle = (float)Math.Atan2(_Points[i + 1].Position.Y - _Points[i].Position.Y, _Points[i + 1].Position.X - _Points[i].Position.X);
 
-                DrawLine(spriteBatch, points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
-                DrawPoint(spriteBatch, points[i].Position, angle);
+                DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
+                DrawPoint(spriteBatch, _Points[i].Position, angle);
             }
 
             Vector2 lineStart = GetPoint(0f);
@@ -78,10 +78,10 @@ namespace SplineSharp
 
                 DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
 
-                if (Setup.ShowVelocityVectors)
+                if (Setup.ShowDirectionVectors)
                 {
-                    DrawLine(spriteBatch, lineEnd + GetVelocity(i / (float)LineSteps), angleStep,
-                        Setup.VelocityLineLength, Setup.VelocityLineColor, Setup.VelocityLineThickness);
+                    DrawLine(spriteBatch, lineEnd + GetDirection(i / (float)LineSteps), angleStep,
+                        Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
                 }
 
                 lineStart = lineEnd;
@@ -118,7 +118,7 @@ namespace SplineSharp
         {
             BezierType = Type.Quadratic;
 
-            points = new Transform[]
+            _Points = new Transform[]
             {
                 new Transform(new Vector2(100, 100)),
                 new Transform(new Vector2(300, 100)),
@@ -130,7 +130,7 @@ namespace SplineSharp
         {
             BezierType = Type.Cubic;
 
-            points = new Transform[]
+            _Points = new Transform[]
             {
                 new Transform(new Vector2(50, 50)),
                 new Transform(new Vector2(300, 50)),

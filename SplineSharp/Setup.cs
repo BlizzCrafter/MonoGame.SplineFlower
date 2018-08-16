@@ -11,10 +11,10 @@ namespace SplineSharp
         public static Color CurveLineColor { get; set; } = Color.Yellow;
         public static float CurveLineThickness { get; set; } = 1.5f;
 
-        public static Color VelocityLineColor { get; set; } = Color.LightGreen;
-        public static float VelocityLineThickness { get; set; } = 1f;
-        public static float VelocityLineLength { get; set; } = 50f;
-        public static bool ShowVelocityVectors { get; set; } = true;
+        public static Color DirectionLineColor { get; set; } = Color.LightGreen;
+        public static float DirectionLineThickness { get; set; } = 1f;
+        public static float DirectionLineLength { get; set; } = 50f;
+        public static bool ShowDirectionVectors { get; set; } = true;
 
         public static Color StartPointColor { get; set; } = Color.Magenta;
         public static float StartPointThickness { get; set; } = 1.3f;

@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Windows.Forms;
-
-namespace SplineSharp.Samples.EditorBase
+﻿namespace SplineSharp.Samples.EditorBase
 {
     public abstract class LineEditor : TransformControl
     {
@@ -16,6 +13,7 @@ namespace SplineSharp.Samples.EditorBase
 
             MyLine = new Line();
             TryGetTransformFromPosition = MyLine.TryGetTransformFromPosition;
+            GetAllPoints = MyLine.GetAllPoints;
             MyLine.Reset();
         }
 

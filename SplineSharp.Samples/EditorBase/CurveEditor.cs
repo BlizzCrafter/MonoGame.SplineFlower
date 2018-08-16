@@ -27,6 +27,7 @@ namespace SplineSharp.Samples.EditorBase
             else MyCurve.CreateQuadratic();
 
             TryGetTransformFromPosition = MyCurve.TryGetTransformFromPosition;
+            GetAllPoints = MyCurve.GetAllPoints;
         }
 
         protected override void Update(GameTime gameTime)

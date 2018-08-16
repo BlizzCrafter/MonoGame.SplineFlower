@@ -22,8 +22,13 @@ namespace SplineSharp
         };
 
         private const int LineSteps = 20;
-
+                
+        public Transform[] GetAllPoints()
+        {
+            return _Points;
+        }
         private Transform[] _Points;
+
 
         public bool Loop
         {

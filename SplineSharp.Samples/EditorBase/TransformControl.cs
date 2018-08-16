@@ -2,6 +2,7 @@
 using MonoGame.Forms.Controls;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SplineSharp.Samples.EditorBase
@@ -9,11 +10,15 @@ namespace SplineSharp.Samples.EditorBase
     public abstract class TransformControl : UpdateWindow
     {
         protected bool TranslatePointClick = false;
+        protected bool TranslateAllPointsClick = false;
         protected System.Drawing.Point TranslatePointFirstClick;
         protected Transform SelectedTransform;
 
         [Browsable(false)]
         public Func<Vector2, Transform> TryGetTransformFromPosition { get; set; }
+
+        [Browsable(false)]
+        public Func<Transform[]> GetAllPoints { get; set; }
 
         [Browsable(false)]
         public event Action<Vector2> MovePointDiff = delegate { };
@@ -23,6 +28,7 @@ namespace SplineSharp.Samples.EditorBase
             base.OnMouseUp(e);
 
             TranslatePointClick = false;
+            TranslateAllPointsClick = false;
             SelectedTransform = null;
         }
 
@@ -41,6 +47,11 @@ namespace SplineSharp.Samples.EditorBase
                         TranslatePointClick = true;
                     }
                 }
+                else if (e.Button == MouseButtons.Middle)
+                {
+                    TranslatePointFirstClick = e.Location;
+                    TranslateAllPointsClick = true;
+                }
             }
         }
 
@@ -48,13 +59,24 @@ namespace SplineSharp.Samples.EditorBase
         {
             base.OnMouseMove(e);
 
-            if (SelectedTransform != null && TranslatePointClick)
+            if (TranslatePointClick || TranslateAllPointsClick)
             {
                 int xDiff = TranslatePointFirstClick.X - e.Location.X;
                 int yDiff = TranslatePointFirstClick.Y - e.Location.Y;
 
-                SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
-                MovePointDiff.Invoke(new Vector2(-xDiff, -yDiff));
+                if (SelectedTransform != null && TranslatePointClick)
+                {
+                    SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
+                    MovePointDiff.Invoke(new Vector2(-xDiff, -yDiff));
+                }
+                else if (TranslateAllPointsClick)
+                {
+                    Transform[] allPoints = GetAllPoints().Distinct().ToArray();
+                    for (int i = 0; i < allPoints.Length; i++)
+                    {
+                        allPoints[i].Translate(new Vector2(-xDiff, -yDiff));
+                    }
+                }
 
                 TranslatePointFirstClick.X = e.Location.X;
                 TranslatePointFirstClick.Y = e.Location.Y;

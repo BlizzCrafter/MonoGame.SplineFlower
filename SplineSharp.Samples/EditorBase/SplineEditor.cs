@@ -16,6 +16,7 @@ namespace SplineSharp.Samples.EditorBase
             MySpline = new BezierSpline();
             MySpline.Reset();
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
+            GetAllPoints = MySpline.GetAllPoints;
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MySplineWalker = new SpriteMan();

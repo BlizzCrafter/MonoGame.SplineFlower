@@ -18,6 +18,11 @@ namespace SplineSharp
         }
         private Transform p0, p1;
 
+        public Transform[] GetAllPoints()
+        {
+            return new Transform[] { FirstPoint, SecondPoint };
+        }
+
         public Line()
         {
             FirstPoint = new Transform();

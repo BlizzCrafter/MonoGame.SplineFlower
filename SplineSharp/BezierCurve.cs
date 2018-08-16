@@ -16,6 +16,10 @@ namespace SplineSharp
 
         private const int LineSteps = 10;
 
+        public Transform[] GetAllPoints()
+        {
+            return _Points;
+        }
         private Transform[] _Points;
 
         public Transform TryGetTransformFromPosition(Vector2 position)

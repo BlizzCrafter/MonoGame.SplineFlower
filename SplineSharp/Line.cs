@@ -80,5 +80,11 @@ namespace SplineSharp
                              SpriteEffects.None,
                              0f);
         }
+
+        public void Reset()
+        {
+            FirstPoint.SetPosition(new Vector2(200, 200));
+            SecondPoint.SetPosition(new Vector2(400, 200));
+        }
     }
 }

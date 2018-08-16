@@ -16,6 +16,7 @@ namespace SplineSharp.Samples.EditorBase
 
             MyLine = new Line();
             TryGetTransformFromPosition = MyLine.TryGetTransformFromPosition;
+            MyLine.Reset();
         }
 
         protected override void Draw()
@@ -27,31 +28,6 @@ namespace SplineSharp.Samples.EditorBase
             if (MyLine != null) MyLine.DrawLine(Editor.spriteBatch);
 
             Editor.spriteBatch.End();
-        }
-
-        protected override void OnMouseClick(MouseEventArgs e)
-        {
-            base.OnMouseClick(e);
-
-            if (AddPointsMode)
-            {
-                if (Editor.IsMouseInsideControl)
-                {
-                    if (e.Button == MouseButtons.Left)
-                    {
-                        if (!FirstPointSet)
-                        {
-                            FirstPointSet = true;
-                            MyLine.FirstPoint.SetPosition(new Vector2(e.X, e.Y));
-                        }
-                        else if (!SecondPointSet)
-                        {
-                            SecondPointSet = true;
-                            MyLine.SecondPoint.SetPosition(new Vector2(e.X, e.Y));
-                        }
-                    }
-                }
-            }
         }
     }
 }

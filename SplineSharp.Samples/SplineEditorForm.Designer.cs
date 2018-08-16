@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineEditorForm));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonAddPoint = new System.Windows.Forms.ToolStripButton();
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageSimpleLine = new System.Windows.Forms.TabPage();
             this.splineEditorLine = new SplineSharp.Samples.SplineEditorLine();
@@ -45,37 +42,12 @@
             this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
             this.splineEditorBezierSpline = new SplineSharp.Samples.SplineEditorBezierSpline();
-            this.toolStrip1.SuspendLayout();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageSimpleLine.SuspendLayout();
             this.tabPageQuadraticBezier.SuspendLayout();
             this.tabPageCubicBezier.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonAddPoint});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(782, 27);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButtonAddPoint
-            // 
-            this.toolStripButtonAddPoint.Checked = true;
-            this.toolStripButtonAddPoint.CheckOnClick = true;
-            this.toolStripButtonAddPoint.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripButtonAddPoint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonAddPoint.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddPoint.Image")));
-            this.toolStripButtonAddPoint.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAddPoint.Name = "toolStripButtonAddPoint";
-            this.toolStripButtonAddPoint.Size = new System.Drawing.Size(78, 24);
-            this.toolStripButtonAddPoint.Text = "Add Point";
-            this.toolStripButtonAddPoint.CheckedChanged += new System.EventHandler(this.toolStripButtonAddPoint_CheckedChanged);
             // 
             // tabControlEditorTabs
             // 
@@ -84,10 +56,10 @@
             this.tabControlEditorTabs.Controls.Add(this.tabPageCubicBezier);
             this.tabControlEditorTabs.Controls.Add(this.tabPageBezierSpline);
             this.tabControlEditorTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlEditorTabs.Location = new System.Drawing.Point(0, 27);
+            this.tabControlEditorTabs.Location = new System.Drawing.Point(0, 0);
             this.tabControlEditorTabs.Name = "tabControlEditorTabs";
             this.tabControlEditorTabs.SelectedIndex = 0;
-            this.tabControlEditorTabs.Size = new System.Drawing.Size(782, 726);
+            this.tabControlEditorTabs.Size = new System.Drawing.Size(782, 753);
             this.tabControlEditorTabs.TabIndex = 2;
             // 
             // tabPageSimpleLine
@@ -96,14 +68,13 @@
             this.tabPageSimpleLine.Location = new System.Drawing.Point(4, 25);
             this.tabPageSimpleLine.Name = "tabPageSimpleLine";
             this.tabPageSimpleLine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSimpleLine.Size = new System.Drawing.Size(774, 697);
+            this.tabPageSimpleLine.Size = new System.Drawing.Size(774, 724);
             this.tabPageSimpleLine.TabIndex = 0;
             this.tabPageSimpleLine.Text = "Simple Line";
             this.tabPageSimpleLine.UseVisualStyleBackColor = true;
             // 
             // splineEditorLine
             // 
-            this.splineEditorLine.AddPointsMode = true;
             this.splineEditorLine.BackColor = System.Drawing.Color.Lavender;
             this.splineEditorLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineEditorLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,7 +82,7 @@
             this.splineEditorLine.Location = new System.Drawing.Point(3, 3);
             this.splineEditorLine.MyLine = null;
             this.splineEditorLine.Name = "splineEditorLine";
-            this.splineEditorLine.Size = new System.Drawing.Size(768, 691);
+            this.splineEditorLine.Size = new System.Drawing.Size(768, 718);
             this.splineEditorLine.TabIndex = 0;
             this.splineEditorLine.Text = "Simple Line Sample";
             this.splineEditorLine.TryGetTransformFromPosition = null;
@@ -129,7 +100,6 @@
             // 
             // splineEditorCurve
             // 
-            this.splineEditorCurve.AddPointsMode = true;
             this.splineEditorCurve.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.splineEditorCurve.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineEditorCurve.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -152,7 +122,6 @@
             // 
             // splineEditorCurveCubic
             // 
-            this.splineEditorCurveCubic.AddPointsMode = true;
             this.splineEditorCurveCubic.BackColor = System.Drawing.Color.MediumAquamarine;
             this.splineEditorCurveCubic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineEditorCurveCubic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -247,7 +216,6 @@
             // 
             // splineEditorBezierSpline
             // 
-            this.splineEditorBezierSpline.AddPointsMode = true;
             this.splineEditorBezierSpline.BackColor = System.Drawing.Color.GreenYellow;
             this.splineEditorBezierSpline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineEditorBezierSpline.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -264,28 +232,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(782, 753);
             this.Controls.Add(this.tabControlEditorTabs);
-            this.Controls.Add(this.toolStrip1);
             this.Name = "SplineEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Spline Editor";
             this.Load += new System.EventHandler(this.SplineEditorForm_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.tabControlEditorTabs.ResumeLayout(false);
             this.tabPageSimpleLine.ResumeLayout(false);
             this.tabPageQuadraticBezier.ResumeLayout(false);
             this.tabPageCubicBezier.ResumeLayout(false);
             this.tabPageBezierSpline.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private SplineEditorLine splineEditorLine;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonAddPoint;
         private System.Windows.Forms.TabControl tabControlEditorTabs;
         private System.Windows.Forms.TabPage tabPageSimpleLine;
         private System.Windows.Forms.TabPage tabPageQuadraticBezier;

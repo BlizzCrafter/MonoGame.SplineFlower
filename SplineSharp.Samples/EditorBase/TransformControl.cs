@@ -8,7 +8,6 @@ namespace SplineSharp.Samples.EditorBase
 {
     public abstract class TransformControl : UpdateWindow
     {
-        public bool AddPointsMode { get; set; } = true;
         protected bool TranslatePointClick = false;
         protected System.Drawing.Point TranslatePointFirstClick;
         protected Transform SelectedTransform;
@@ -31,7 +30,7 @@ namespace SplineSharp.Samples.EditorBase
         {
             base.OnMouseDown(e);
 
-            if (!AddPointsMode && Editor.IsMouseInsideControl)
+            if (Editor.IsMouseInsideControl)
             {
                 if (e.Button == MouseButtons.Left)
                 {

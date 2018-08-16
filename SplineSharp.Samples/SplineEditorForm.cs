@@ -44,5 +44,37 @@ namespace SplineSharp.Samples
                 splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
             }
         }
+
+        private void toolStripMenuItemCenterPoints_Click(object sender, EventArgs e)
+        {
+            if (lineControl.Visible) lineControl.MoveSplineToScreenCenter();
+            else if (curveControlQuadratic.Visible) curveControlQuadratic.MoveSplineToScreenCenter();
+            else if (curveControlCubic.Visible) curveControlCubic.MoveSplineToScreenCenter();
+            else if (splineControl.Visible) splineControl.MoveSplineToScreenCenter();
+        }
+
+        private void SplineEditorForm_ResizeEnd(object sender, EventArgs e)
+        {
+            UpdateControls();
+        }
+
+        private void SplineEditorForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized) UpdateControls();
+        }
+        private void UpdateControls()
+        {
+            lineControl.LineControl_RecalculateBezierCenter();
+            lineControl.MoveSplineToScreenCenter();
+
+            curveControlQuadratic.CurveControl_RecalculateBezierCenter();
+            curveControlQuadratic.MoveSplineToScreenCenter();
+
+            curveControlCubic.CurveControl_RecalculateBezierCenter();
+            curveControlCubic.MoveSplineToScreenCenter();
+
+            splineControl.SplineControl_RecalculateBezierCenter();
+            splineControl.MoveSplineToScreenCenter();
+        }
     }
 }

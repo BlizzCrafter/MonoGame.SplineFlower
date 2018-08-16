@@ -7,7 +7,7 @@ namespace SplineSharp
     {
         public Vector2 GetBezierCenter { get; private set; }
 
-        protected void CalculateBezierCenter(Transform[] allPoints)
+        public void CalculateBezierCenter(Transform[] allPoints)
         {
             float maxX = (float)allPoints.Sum(x => x.Position.X);
             float maxY = (float)allPoints.Sum(x => x.Position.Y);

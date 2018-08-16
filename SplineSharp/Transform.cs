@@ -6,20 +6,20 @@ namespace SplineSharp
     public class Transform : IComparable<Transform>
     {
         private Rectangle Size = Rectangle.Empty;
-        internal Vector2 Position { get; private set; } = Vector2.Zero;
+        public Vector2 Position { get; private set; } = Vector2.Zero;
         public int Index { get; internal set; } = -1;
 
-        internal Transform() { }
-        internal Transform(Vector2 position) : this()
+        public Transform() { }
+        public Transform(Vector2 position) : this()
         {
             SetPosition(position);
         }
-        internal Transform(ref Vector2 position) : this(position)
+        public Transform(ref Vector2 position) : this(position)
         {
             
         }
 
-        internal void SetPosition(Vector2 position)
+        public void SetPosition(Vector2 position)
         {
             Position = new Vector2(position.X, position.Y);
             Size = new Rectangle(

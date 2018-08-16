@@ -17,12 +17,23 @@ namespace SplineSharp.Samples.Controls
             MySpline.Reset();
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
             GetAllPoints = MySpline.GetAllPoints;
+            RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MySplineWalker = new SpriteMan();
             MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
 
-            TranslateAllPointsToScreenCenter(MySpline.GetBezierCenter);
+            MoveSplineToScreenCenter();
+        }
+
+        public void SplineControl_RecalculateBezierCenter()
+        {
+            if (MySpline != null) MySpline.CalculateBezierCenter(MySpline.GetAllPoints());
+        }
+
+        public void MoveSplineToScreenCenter()
+        {
+            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.GetBezierCenter);
         }
 
         private void SplineEditor_MovePointDiff(Vector2 obj)

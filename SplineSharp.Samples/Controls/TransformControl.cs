@@ -21,7 +21,13 @@ namespace SplineSharp.Samples.Controls
         public Func<Transform[]> GetAllPoints { get; set; }
 
         [Browsable(false)]
-        public event Action<Vector2> MovePointDiff = delegate { };
+        protected event Action RecalculateBezierCenter = delegate { };
+
+        [Browsable(false)]
+        protected event Action<Vector2> MovePointDiff = delegate { };
+
+        private Vector2 _BezierPosition;
+        private Vector2 _OldBezierDistance;
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
@@ -71,25 +77,32 @@ namespace SplineSharp.Samples.Controls
                 }
                 else if (TranslateAllPointsClick) TranslateAllPoints(new Vector2(-xDiff, -yDiff));
 
+                RecalculateBezierCenter.Invoke();
+
                 TranslatePointFirstClick.X = e.Location.X;
                 TranslatePointFirstClick.Y = e.Location.Y;
             }
         }
 
-        protected void TranslateAllPoints(Vector2 amount)
+        public void TranslateAllPoints(Vector2 amount)
         {
             Transform[] allPoints = GetAllPoints().Distinct().ToArray();
             for (int i = 0; i < allPoints.Length; i++)
             {
                 allPoints[i].Translate(new Vector2(amount.X, amount.Y));
             }
+
+            _BezierPosition += amount;
         }
 
         protected void TranslateAllPointsToScreenCenter(Vector2 bezierCenter)
         {
-            TranslateAllPoints(new Vector2(
-                (ClientSize.Width / 2) - bezierCenter.X,
-                (ClientSize.Height / 2) - bezierCenter.Y));
+            Vector2 centerScreen = new Vector2(ClientSize.Width / 2, ClientSize.Height / 2);
+            Vector2 distance = centerScreen - bezierCenter;
+
+            if (_OldBezierDistance != distance) TranslateAllPoints(distance);
+
+            _OldBezierDistance = distance;
         }
     }
 }

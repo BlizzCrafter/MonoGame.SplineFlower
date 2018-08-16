@@ -3,8 +3,6 @@
     public class LineControl : TransformControl
     {
         public Line MyLine { get; set; }
-        private bool FirstPointSet = false;
-        private bool SecondPointSet = false;
 
         protected override void Initialize()
         {

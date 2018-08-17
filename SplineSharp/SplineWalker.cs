@@ -17,7 +17,17 @@ namespace SplineSharp
         private BezierSpline _Spline;
 
         protected Vector2 Position { get; private set; }
-        protected Vector2 Direction { get; private set; }
+        protected Vector2 Direction
+        {
+            get
+            {
+                Vector2 normalized = _Direction;
+                normalized.Normalize();
+                return normalized;
+            }
+            private set { _Direction = value; }
+        }
+        private Vector2 _Direction;
         protected float Rotation { get; private set; }
         protected float Duration { get; set; }
         private Rectangle _Size = new Rectangle(0, 0, 10, 10);
@@ -34,7 +44,7 @@ namespace SplineSharp
         private bool _GoingForward = true;
         private bool _LookForward = true;
 
-        public void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
+        public virtual void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
         {
             _Spline = spline;
             Duration = duration;
@@ -47,10 +57,10 @@ namespace SplineSharp
 
         public void Reset()
         {
-            _Progress = 0;
+            _Progress = 0f;
         }
-
-        public void Update(GameTime gameTime)
+        
+        public virtual void Update(GameTime gameTime)
         {
             if (_GoingForward)
             {
@@ -84,15 +94,14 @@ namespace SplineSharp
             
             if (_LookForward)
             {
-                Direction = _Spline.GetDirection(_Progress);
-                Direction.Normalize();
-                Rotation = (float)Math.Atan2(Direction.X, -Direction.Y);
+                _Direction = _Spline.GetDirection(_Progress);
+                Rotation = (float)Math.Atan2(_Direction.X, -_Direction.Y);
             }
 
             SetPosition(_Spline.GetPoint(_Progress));
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Setup.Pixel,
                              _Size,

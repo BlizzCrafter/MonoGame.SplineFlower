@@ -6,7 +6,7 @@ namespace SplineSharp.Samples.Controls
     public class SplineControl : TransformControl
     {
         public BezierSpline MySpline;
-        public SpriteMan MySplineWalker;
+        public Car MySplineWalker;
 
         protected override void Initialize()
         {
@@ -20,8 +20,9 @@ namespace SplineSharp.Samples.Controls
             RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
             MovePointDiff += SplineEditor_MovePointDiff;
 
-            MySplineWalker = new SpriteMan();
+            MySplineWalker = new Car();
             MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
+            MySplineWalker.LoadContent(Editor.Content);
 
             MoveSplineToScreenCenter();
         }

@@ -76,5 +76,11 @@ namespace SplineSharp.Samples
             splineControl.SplineControl_RecalculateBezierCenter();
             splineControl.MoveSplineToScreenCenter();
         }
+
+        private void trackBarMarker_Scroll(object sender, EventArgs e)
+        {
+            float splineValue = (float)trackBarMarker.Value / 1000f;
+            splineControl.MySplineMarker.SetPosition(splineValue);
+        }
     }
 }

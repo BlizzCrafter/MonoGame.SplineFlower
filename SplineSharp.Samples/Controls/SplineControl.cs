@@ -7,6 +7,7 @@ namespace SplineSharp.Samples.Controls
     {
         public BezierSpline MySpline;
         public Car MySplineWalker;
+        public Marker MySplineMarker;
 
         protected override void Initialize()
         {
@@ -20,9 +21,13 @@ namespace SplineSharp.Samples.Controls
             RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
             MovePointDiff += SplineEditor_MovePointDiff;
 
-            MySplineWalker = new Car();
-            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
-            MySplineWalker.LoadContent(Editor.Content);
+            //MySplineWalker = new Car();
+            //MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
+            //MySplineWalker.LoadContent(Editor.Content);
+
+            MySplineMarker = new Marker();
+            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0f, false);
+            MySplineMarker.LoadContent(Editor.Content);
 
             MoveSplineToScreenCenter();
 
@@ -71,6 +76,7 @@ namespace SplineSharp.Samples.Controls
             base.Update(gameTime);
 
             if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Update(gameTime);
+            if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Update(gameTime);
         }
 
         protected override void Draw()
@@ -83,6 +89,7 @@ namespace SplineSharp.Samples.Controls
 
             if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
             if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
+            if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
 
             Editor.spriteBatch.End();
 

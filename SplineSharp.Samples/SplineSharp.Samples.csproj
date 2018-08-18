@@ -73,6 +73,7 @@
     <Compile Include="Controls\TransformControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Marker.cs" />
     <Compile Include="SplineEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +95,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Content\arrow.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\car.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

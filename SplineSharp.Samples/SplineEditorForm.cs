@@ -5,6 +5,8 @@ namespace SplineSharp.Samples
 {
     public partial class SplineEditorForm : Form
     {
+        private const float SplineMarkerResolution = 1000f;
+
         public SplineEditorForm()
         {
             InitializeComponent();
@@ -85,7 +87,7 @@ namespace SplineSharp.Samples
         }
         private float GetSplinePosition()
         {
-            return (float)trackBarMarker.Value / 1000f;
+            return (float)trackBarMarker.Value / SplineMarkerResolution;
         }
 
         private void buttonAddEvent_Click(object sender, EventArgs e)
@@ -104,7 +106,7 @@ namespace SplineSharp.Samples
 
                     string[] splitted = comboBoxSelectedTrigger.SelectedItem.ToString().Split('_');
                     splineControl.MySplineMarker.SelectedTrigger = splitted[1];
-                    trackBarMarker.Value = (int)(splineControl.MySplineMarker.GetTriggerPosition(splitted[1]) * 1000f);
+                    trackBarMarker.Value = (int)(splineControl.MySplineMarker.GetTriggerPosition(splitted[1]) * SplineMarkerResolution);
                 }
                 else splineControl.MySplineMarker.MarkerSelected = true;
 

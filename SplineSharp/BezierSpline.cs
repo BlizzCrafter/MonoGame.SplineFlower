@@ -390,10 +390,10 @@ namespace SplineSharp
             spriteBatch.Draw(Setup.Circle,
                              GetPoint(position),
                              null,
-                             Color.Magenta,
+                             Setup.TriggerEventColor,
                              0,
                              new Vector2(Setup.Circle.Width / 2, Setup.Circle.Height / 2),
-                             1f,
+                             Setup.TriggerEventThickness,
                              SpriteEffects.None,
                              0f);
         }

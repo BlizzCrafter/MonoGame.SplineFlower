@@ -38,10 +38,10 @@ namespace SplineSharp.Samples
             spriteBatch.Draw(_Arrow,
                              Position,
                              null,
-                             Setup.StartPointColor,
+                             Setup.TriggerEventColor,
                              Rotation,
                              new Vector2(_Arrow.Width / 2, _Arrow.Height / 2),
-                             1f,
+                             Setup.TriggerEventThickness,
                              SpriteEffects.None,
                              0f);
         }

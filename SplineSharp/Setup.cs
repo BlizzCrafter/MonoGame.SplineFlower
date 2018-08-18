@@ -19,6 +19,9 @@ namespace SplineSharp
         public static Color StartPointColor { get; set; } = Color.Magenta;
         public static float StartPointThickness { get; set; } = 1.3f;
 
+        public static Color TriggerEventColor { get; set; } = Color.Magenta;
+        public static float TriggerEventThickness { get; set; } = 1f;
+
         public static Color PointColor { get; set; } = Color.Red;
         public static int PointThickness { get; set; } = 10;
 

@@ -25,6 +25,8 @@ namespace SplineSharp.Samples.Controls
             MySplineWalker.LoadContent(Editor.Content);
 
             MoveSplineToScreenCenter();
+
+            SetMultiSampleCount(8);
         }
 
         public void SplineControl_RecalculateBezierCenter()
@@ -75,12 +77,16 @@ namespace SplineSharp.Samples.Controls
         {
             base.Draw();
 
+            Editor.BeginAntialising();
+
             Editor.spriteBatch.Begin();
 
             if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
             if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
 
             Editor.spriteBatch.End();
+
+            Editor.EndAntialising();
         }
     }
 }

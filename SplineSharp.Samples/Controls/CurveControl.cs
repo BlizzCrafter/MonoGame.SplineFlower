@@ -31,6 +31,8 @@ namespace SplineSharp.Samples.Controls
             RecalculateBezierCenter += CurveControl_RecalculateBezierCenter;
 
             MoveSplineToScreenCenter();
+
+            SetMultiSampleCount(8);
         }
 
         public void CurveControl_RecalculateBezierCenter()
@@ -52,11 +54,15 @@ namespace SplineSharp.Samples.Controls
         {
             base.Draw();
 
+            Editor.BeginAntialising();
+
             Editor.spriteBatch.Begin();
 
             if (MyCurve != null) MyCurve.DrawCurve(Editor.spriteBatch);
 
             Editor.spriteBatch.End();
+
+            Editor.EndAntialising();
         }
     }
 }

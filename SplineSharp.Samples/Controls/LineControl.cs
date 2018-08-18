@@ -16,6 +16,8 @@
             MyLine.Reset();
 
             MoveSplineToScreenCenter();
+
+            SetMultiSampleCount(8);
         }
 
         public void LineControl_RecalculateBezierCenter()
@@ -32,11 +34,15 @@
         {
             base.Draw();
 
+            Editor.BeginAntialising();
+
             Editor.spriteBatch.Begin();
 
             if (MyLine != null) MyLine.DrawLine(Editor.spriteBatch);
 
             Editor.spriteBatch.End();
+
+            Editor.EndAntialising();
         }
     }
 }

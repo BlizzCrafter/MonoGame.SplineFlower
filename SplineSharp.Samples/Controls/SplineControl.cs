@@ -21,12 +21,12 @@ namespace SplineSharp.Samples.Controls
             RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
             MovePointDiff += SplineEditor_MovePointDiff;
 
-            //MySplineWalker = new Car();
-            //MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
-            //MySplineWalker.LoadContent(Editor.Content);
+            MySplineWalker = new Car();
+            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
+            MySplineWalker.LoadContent(Editor.Content);
 
             MySplineMarker = new Marker();
-            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0f, false);
+            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0f, false, false);
             MySplineMarker.LoadContent(Editor.Content);
 
             MoveSplineToScreenCenter();
@@ -90,6 +90,9 @@ namespace SplineSharp.Samples.Controls
             if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
             if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
             if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
+
+            Editor.spriteBatch.DrawString(Editor.Font, MySplineMarker._Progress.ToString(), new Vector2(100, 100), Color.White);
+            Editor.spriteBatch.DrawString(Editor.Font, MySplineWalker._Progress.ToString(), new Vector2(100, 150), Color.White);
 
             Editor.spriteBatch.End();
 

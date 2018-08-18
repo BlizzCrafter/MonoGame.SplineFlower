@@ -12,7 +12,9 @@ namespace SplineSharp.Samples
 
         private void SplineEditorForm_Load(object sender, EventArgs e)
         {
-            comboBoxWalkerMode.SelectedIndex = 0;            
+            comboBoxWalkerMode.SelectedIndex = 0;
+            comboBoxEvents.SelectedIndex = 0;
+            comboBoxSelectedTrigger.SelectedIndex = 0;
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)
@@ -79,8 +81,35 @@ namespace SplineSharp.Samples
 
         private void trackBarMarker_Scroll(object sender, EventArgs e)
         {
-            float splineValue = (float)trackBarMarker.Value / 1000f;
-            splineControl.MySplineMarker.SetPosition(splineValue);
+            splineControl.MySplineMarker.SetPosition(GetSplinePosition());
+        }
+        private float GetSplinePosition()
+        {
+            return (float)trackBarMarker.Value / 1000f;
+        }
+
+        private void buttonAddEvent_Click(object sender, EventArgs e)
+        {
+            Guid triggerID = splineControl.MySplineWalker.AddTrigger(comboBoxEvents.SelectedItem.ToString(), GetSplinePosition());
+            comboBoxSelectedTrigger.Items.Add(comboBoxEvents.SelectedItem.ToString() + "_" + triggerID.ToString());
+        }
+
+        private void comboBoxSelectedTrigger_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (splineControl != null && splineControl.MySplineMarker != null)
+            {
+                if (comboBoxSelectedTrigger.SelectedItem.ToString() != "Marker")
+                {
+                    splineControl.MySplineMarker.MarkerSelected = false;
+
+                    string[] splitted = comboBoxSelectedTrigger.SelectedItem.ToString().Split('_');
+                    splineControl.MySplineMarker.SelectedTrigger = splitted[1];
+                    trackBarMarker.Value = (int)(splineControl.MySplineMarker.GetTriggerPosition(splitted[1]) * 1000f);
+                }
+                else splineControl.MySplineMarker.MarkerSelected = true;
+
+                splineControl.MySplineMarker.SetPosition(GetSplinePosition());
+            }
         }
     }
 }

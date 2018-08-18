@@ -33,6 +33,8 @@
             this.tabPageQuadraticBezier = new System.Windows.Forms.TabPage();
             this.tabPageCubicBezier = new System.Windows.Forms.TabPage();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
+            this.buttonAddEvent = new System.Windows.Forms.Button();
+            this.trackBarMarker = new System.Windows.Forms.TrackBar();
             this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
             this.buttonResetSplineWalker = new System.Windows.Forms.Button();
             this.buttonLoop = new System.Windows.Forms.Button();
@@ -41,7 +43,8 @@
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemDiagnostics = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCenterPoints = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackBarMarker = new System.Windows.Forms.TrackBar();
+            this.comboBoxEvents = new System.Windows.Forms.ComboBox();
+            this.comboBoxSelectedTrigger = new System.Windows.Forms.ComboBox();
             this.lineControl = new SplineSharp.Samples.Controls.LineControl();
             this.curveControlQuadratic = new SplineSharp.Samples.Controls.CurveControl();
             this.curveControlCubic = new SplineSharp.Samples.Controls.CurveControl();
@@ -51,8 +54,8 @@
             this.tabPageQuadraticBezier.SuspendLayout();
             this.tabPageCubicBezier.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
-            this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
+            this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlEditorTabs
@@ -102,6 +105,9 @@
             // 
             // tabPageBezierSpline
             // 
+            this.tabPageBezierSpline.Controls.Add(this.comboBoxSelectedTrigger);
+            this.tabPageBezierSpline.Controls.Add(this.comboBoxEvents);
+            this.tabPageBezierSpline.Controls.Add(this.buttonAddEvent);
             this.tabPageBezierSpline.Controls.Add(this.trackBarMarker);
             this.tabPageBezierSpline.Controls.Add(this.comboBoxWalkerMode);
             this.tabPageBezierSpline.Controls.Add(this.buttonResetSplineWalker);
@@ -115,6 +121,31 @@
             this.tabPageBezierSpline.TabIndex = 3;
             this.tabPageBezierSpline.Text = "Beziér Spline";
             this.tabPageBezierSpline.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddEvent
+            // 
+            this.buttonAddEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAddEvent.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddEvent.Location = new System.Drawing.Point(168, 594);
+            this.buttonAddEvent.Name = "buttonAddEvent";
+            this.buttonAddEvent.Size = new System.Drawing.Size(108, 37);
+            this.buttonAddEvent.TabIndex = 8;
+            this.buttonAddEvent.Text = "Add Event";
+            this.buttonAddEvent.UseVisualStyleBackColor = true;
+            this.buttonAddEvent.Click += new System.EventHandler(this.buttonAddEvent_Click);
+            // 
+            // trackBarMarker
+            // 
+            this.trackBarMarker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBarMarker.LargeChange = 10;
+            this.trackBarMarker.Location = new System.Drawing.Point(168, 637);
+            this.trackBarMarker.Maximum = 1000;
+            this.trackBarMarker.Name = "trackBarMarker";
+            this.trackBarMarker.Size = new System.Drawing.Size(417, 56);
+            this.trackBarMarker.TabIndex = 7;
+            this.trackBarMarker.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBarMarker.Scroll += new System.EventHandler(this.trackBarMarker_Scroll);
             // 
             // comboBoxWalkerMode
             // 
@@ -207,18 +238,36 @@
             this.toolStripMenuItemCenterPoints.Text = "Center Spline";
             this.toolStripMenuItemCenterPoints.Click += new System.EventHandler(this.toolStripMenuItemCenterPoints_Click);
             // 
-            // trackBarMarker
+            // comboBoxEvents
             // 
-            this.trackBarMarker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarMarker.LargeChange = 10;
-            this.trackBarMarker.Location = new System.Drawing.Point(168, 637);
-            this.trackBarMarker.Maximum = 1000;
-            this.trackBarMarker.Name = "trackBarMarker";
-            this.trackBarMarker.Size = new System.Drawing.Size(417, 56);
-            this.trackBarMarker.TabIndex = 7;
-            this.trackBarMarker.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trackBarMarker.Scroll += new System.EventHandler(this.trackBarMarker_Scroll);
+            this.comboBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEvents.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxEvents.FormattingEnabled = true;
+            this.comboBoxEvents.Items.AddRange(new object[] {
+            "Horn",
+            "Brakes"});
+            this.comboBoxEvents.Location = new System.Drawing.Point(282, 605);
+            this.comboBoxEvents.MaxDropDownItems = 3;
+            this.comboBoxEvents.Name = "comboBoxEvents";
+            this.comboBoxEvents.Size = new System.Drawing.Size(107, 26);
+            this.comboBoxEvents.TabIndex = 9;
+            // 
+            // comboBoxSelectedTrigger
+            // 
+            this.comboBoxSelectedTrigger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSelectedTrigger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSelectedTrigger.DropDownWidth = 300;
+            this.comboBoxSelectedTrigger.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSelectedTrigger.FormattingEnabled = true;
+            this.comboBoxSelectedTrigger.Items.AddRange(new object[] {
+            "Marker"});
+            this.comboBoxSelectedTrigger.Location = new System.Drawing.Point(478, 605);
+            this.comboBoxSelectedTrigger.MaxDropDownItems = 3;
+            this.comboBoxSelectedTrigger.Name = "comboBoxSelectedTrigger";
+            this.comboBoxSelectedTrigger.Size = new System.Drawing.Size(107, 26);
+            this.comboBoxSelectedTrigger.TabIndex = 10;
+            this.comboBoxSelectedTrigger.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectedTrigger_SelectedIndexChanged);
             // 
             // lineControl
             // 
@@ -296,9 +345,9 @@
             this.tabPageCubicBezier.ResumeLayout(false);
             this.tabPageBezierSpline.ResumeLayout(false);
             this.tabPageBezierSpline.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).EndInit();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,6 +372,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDiagnostics;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCenterPoints;
         private System.Windows.Forms.TrackBar trackBarMarker;
+        private System.Windows.Forms.Button buttonAddEvent;
+        private System.Windows.Forms.ComboBox comboBoxEvents;
+        private System.Windows.Forms.ComboBox comboBoxSelectedTrigger;
     }
 }
 

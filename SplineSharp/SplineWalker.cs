@@ -14,7 +14,7 @@ namespace SplineSharp
         }
         public SplineWalkerMode Mode { get; set; }
 
-        private BezierSpline _Spline;
+        protected BezierSpline _Spline;
 
         protected Vector2 Position { get; private set; }
         protected Vector2 Direction
@@ -39,31 +39,59 @@ namespace SplineSharp
         }
 
         public bool Initialized { get; private set; } = false;
+        public bool CanTriggerEvents { get; set; } = true;
 
-        private float _Progress;
+        public float _Progress;
         private bool _GoingForward = true;
         private bool _LookForward = true;
         private bool _AutoStart = true;
+        private int _CurrentTriggerIndex = 0;
 
         public virtual void CreateSplineWalker(
             BezierSpline spline, 
             SplineWalkerMode mode, 
             float duration,
+            bool canTriggerEvents = true,
             bool autoStart = true)
         {
             _Spline = spline;
             _AutoStart = autoStart;
+            CanTriggerEvents = canTriggerEvents;
             Duration = duration;
             Mode = SplineWalkerMode.Once;
 
             SetPosition(spline.GetPoint(0));
+            _Spline.EventTriggered += _Spline_EventTriggered;
 
             Initialized = true;
         }
 
-        public void SetPosition(float progress)
+        public Guid AddTrigger(string name, float progress)
+        {
+            return _Spline.AddTrigger(name, progress);
+        }
+        private void _Spline_EventTriggered(string obj)
+        {
+            if (CanTriggerEvents)
+            {
+                _CurrentTriggerIndex++;
+                if (_CurrentTriggerIndex >= _Spline.GetAllTrigger().Count) _CurrentTriggerIndex = 0;
+            }
+        }
+
+        public virtual void SetPosition(float progress)
         {
             _Progress = progress;
+        }
+
+        public void SetTriggerPosition(string triggerID, float progress)
+        {
+            _Spline.GetAllTrigger().Find(x => x.ID.ToString() == triggerID).Progress = progress;
+        }
+
+        public float GetTriggerPosition(string triggerID)
+        {
+            return _Spline.GetAllTrigger().Find(x => x.ID.ToString() == triggerID).Progress;
         }
 
         public void Reset()
@@ -113,6 +141,8 @@ namespace SplineSharp
             }
 
             SetPosition(_Spline.GetPoint(_Progress));
+
+            if (CanTriggerEvents && _Spline.GetAllTrigger().Count > 0) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(_Progress);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

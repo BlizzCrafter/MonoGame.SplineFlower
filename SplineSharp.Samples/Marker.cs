@@ -6,6 +6,9 @@ namespace SplineSharp.Samples
 {
     public class Marker : SplineWalker
     {
+        public string SelectedTrigger { get; set; }
+        public bool MarkerSelected { get; set; } = true;
+
         private Texture2D _Arrow;
 
         public void LoadContent(ContentManager Content)
@@ -13,9 +16,16 @@ namespace SplineSharp.Samples
             _Arrow = Content.Load<Texture2D>(@"arrow");
         }
 
-        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration, bool autoStart = true)
+        public override void SetPosition(float progress)
         {
-            base.CreateSplineWalker(spline, mode, duration, autoStart);
+            base.SetPosition(progress);
+
+            if (!MarkerSelected) SetTriggerPosition(SelectedTrigger, progress);
+        }
+
+        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration, bool canTriggerEvents = true, bool autoStart = true)
+        {
+            base.CreateSplineWalker(spline, mode, duration, canTriggerEvents, autoStart);
         }
 
         public override void Update(GameTime gameTime)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SplineSharp
@@ -29,6 +30,26 @@ namespace SplineSharp
         }
         private Transform[] _Points;
 
+        internal List<Trigger> GetAllTrigger()
+        {
+            return _Trigger;
+        }
+        private List<Trigger> _Trigger = new List<Trigger>();
+
+        public event Action<string> EventTriggered = delegate { };
+
+        public Guid AddTrigger(string name, float progress)
+        {
+            _Trigger.Add(new Trigger(name, progress));
+            _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
+            _Trigger.OrderBy(x => x.Progress);
+
+            return _Trigger.Last().ID;
+        }
+        private void BezierSpline_TriggerEvent(string obj)
+        {
+            EventTriggered?.Invoke(obj);
+        }
 
         public bool Loop
         {
@@ -331,6 +352,11 @@ namespace SplineSharp
                     lineStart = lineEnd;
                 }
             }
+
+            for (int i = 0; i < _Trigger.Count; i++)
+            {
+                DrawCircle(spriteBatch, _Trigger[i].Progress);
+            }
         }
 
         private void DrawLine(SpriteBatch spriteBatch, Vector2 position, float angle, float distance, Color color, float thickness)
@@ -355,6 +381,19 @@ namespace SplineSharp
                              angle,
                              new Vector2(0.5f),
                              Setup.PointThickness * (index == 0 ? Setup.StartPointThickness : 1f),
+                             SpriteEffects.None,
+                             0f);
+        }
+
+        private void DrawCircle(SpriteBatch spriteBatch, float position)
+        {
+            spriteBatch.Draw(Setup.Circle,
+                             GetPoint(position),
+                             null,
+                             Color.Magenta,
+                             0,
+                             new Vector2(Setup.Circle.Width / 2, Setup.Circle.Height / 2),
+                             1f,
                              SpriteEffects.None,
                              0f);
         }

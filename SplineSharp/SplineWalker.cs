@@ -43,16 +43,27 @@ namespace SplineSharp
         private float _Progress;
         private bool _GoingForward = true;
         private bool _LookForward = true;
+        private bool _AutoStart = true;
 
-        public virtual void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
+        public virtual void CreateSplineWalker(
+            BezierSpline spline, 
+            SplineWalkerMode mode, 
+            float duration,
+            bool autoStart = true)
         {
             _Spline = spline;
+            _AutoStart = autoStart;
             Duration = duration;
             Mode = SplineWalkerMode.Once;
 
             SetPosition(spline.GetPoint(0));
 
             Initialized = true;
+        }
+
+        public void SetPosition(float progress)
+        {
+            _Progress = progress;
         }
 
         public void Reset()
@@ -62,33 +73,36 @@ namespace SplineSharp
         
         public virtual void Update(GameTime gameTime)
         {
-            if (_GoingForward)
+            if (_AutoStart)
             {
-                _Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
-                if (_Progress > 1f)
+                if (_GoingForward)
                 {
-                    if (Mode == SplineWalkerMode.Once)
+                    _Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+                    if (_Progress > 1f)
                     {
-                        _Progress = 1f;
-                    }
-                    else if (Mode == SplineWalkerMode.Loop)
-                    {
-                        _Progress -= 1f;
-                    }
-                    else
-                    {
-                        _Progress = 2f - _Progress;
-                        _GoingForward = false;
+                        if (Mode == SplineWalkerMode.Once)
+                        {
+                            _Progress = 1f;
+                        }
+                        else if (Mode == SplineWalkerMode.Loop)
+                        {
+                            _Progress -= 1f;
+                        }
+                        else
+                        {
+                            _Progress = 2f - _Progress;
+                            _GoingForward = false;
+                        }
                     }
                 }
-            }
-            else
-            {
-                _Progress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
-                if (_Progress < 0f)
+                else
                 {
-                    _Progress = -_Progress;
-                    _GoingForward = true;
+                    _Progress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+                    if (_Progress < 0f)
+                    {
+                        _Progress = -_Progress;
+                        _GoingForward = true;
+                    }
                 }
             }
             

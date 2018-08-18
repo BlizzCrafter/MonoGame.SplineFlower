@@ -13,9 +13,9 @@ namespace SplineSharp.Samples
             _Car = Content.Load<Texture2D>(@"Car");
         }
 
-        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration)
+        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration, bool autoStart = true)
         {
-            base.CreateSplineWalker(spline, mode, duration);
+            base.CreateSplineWalker(spline, mode, duration, autoStart);
         }
 
         public override void Update(GameTime gameTime)

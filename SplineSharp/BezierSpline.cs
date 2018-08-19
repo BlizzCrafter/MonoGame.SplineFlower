@@ -41,15 +41,29 @@ namespace SplineSharp
         public Guid AddTrigger(string name, float progress, int triggerDistance)
         {
             _Trigger.Add(new Trigger(name, progress, triggerDistance));
+            ReorderTriggerList();
+
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
-            List<Trigger> ordered = _Trigger.OrderBy(x => x.Progress).ToList();
-            _Trigger = ordered;
 
             return _Trigger.Last().ID;
         }
         private void BezierSpline_TriggerEvent(Trigger obj)
         {
             EventTriggered?.Invoke(obj);
+        }
+        public void ReorderTriggerList()
+        {
+            List<Trigger> ordered = _Trigger.OrderBy(x => x.Progress).ToList();
+            _Trigger = ordered;
+
+            // Sometimes losing Events on ordering the list.
+            // I think this is a bug !?
+            _Trigger.ForEach(
+                x =>
+                {
+                   x.TriggerEvent -= BezierSpline_TriggerEvent;
+                   x.TriggerEvent += BezierSpline_TriggerEvent;
+                });
         }
 
         public bool Loop

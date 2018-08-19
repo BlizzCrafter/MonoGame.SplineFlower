@@ -11,6 +11,11 @@ namespace SplineSharp.Samples
 
         private Texture2D _Arrow;
 
+        public override Trigger GetTrigger(string triggerID = "SelectedTrigger")
+        {
+            return base.GetTrigger(SelectedTrigger);
+        }
+
         public void LoadContent(ContentManager Content)
         {
             _Arrow = Content.Load<Texture2D>(@"arrow");

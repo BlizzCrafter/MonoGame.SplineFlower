@@ -59,6 +59,9 @@ namespace SplineSharp
 
             // Sometimes losing Events on ordering the list.
             // I think this is a bug !?
+            //
+            // Seems that Commit #3e859ab6 has fixed this bug.
+            //
             //_Trigger.ForEach(
             //    x =>
             //    {

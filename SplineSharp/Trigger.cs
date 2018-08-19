@@ -3,27 +3,34 @@ using System;
 
 namespace SplineSharp
 {
-    internal class Trigger
+    public class Trigger
     {
+        public string Name { get; private set; } = "";
         public Guid ID { get; private set; }
         public float Progress { get; set; } = -999;
-        private string _Name = "";
+        public float TriggerDistance
+        {
+            get { return _TriggerDistance / Setup.SplineMarkerResolution; }
+            set { _TriggerDistance = value; }
+        }
+        private float _TriggerDistance = 5f;
 
         internal event Action<string> TriggerEvent = delegate { };
 
-        public Trigger(string name, float progress)
+        public Trigger(string name, float progress, int triggerDistance)
         {
-            _Name = name;
+            Name = name;
             Progress = progress;
+            TriggerDistance = triggerDistance;
             ID = Guid.NewGuid();
         }
 
         public bool CheckIfTriggered(float progress)
         {
             float distance = MathHelper.Distance(Progress, progress);
-            if (distance <= 0.010)
+            if (distance <= TriggerDistance)
             {
-                TriggerEvent.Invoke(_Name);
+                TriggerEvent.Invoke(Name);
                 return true;
             }
             else return false;

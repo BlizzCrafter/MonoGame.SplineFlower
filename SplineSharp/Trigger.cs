@@ -18,12 +18,12 @@ namespace SplineSharp
 
         internal event Action<Trigger> TriggerEvent = delegate { };
 
-        public Trigger(string name, float progress, int triggerDistance)
+        public Trigger(string name, float progress, int triggerDistance, out Guid id)
         {
             Name = name;
             Progress = progress;
             TriggerDistance = triggerDistance;
-            ID = Guid.NewGuid();
+            ID = id = Guid.NewGuid();
         }
 
         public bool CheckIfTriggered(float progress)

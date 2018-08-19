@@ -7,14 +7,20 @@ namespace SplineSharp.Samples
 {
     public class Car : SplineWalker
     {
+        public bool Stop { get; set; }
+
         private Texture2D _Car;
         private SoundEffect _Horn, _HandBrake, _CarDrive;
 
         private bool _HandBrakeTriggered = false;
         private int _HandBrakeTimeout = 60, _HandBrakeTimeoutMax = 60;
 
-        public void LoadContent(ContentManager Content)
+        private SpriteFont Font;
+
+        public void LoadContent(ContentManager Content, SpriteFont font)
         {
+            Font = font;
+
             _Car = Content.Load<Texture2D>(@"car");
 
             _Horn = Content.Load<SoundEffect>(@"Audio/horn");
@@ -37,6 +43,11 @@ namespace SplineSharp.Samples
                     _HandBrakeTriggered = true;
                     _HandBrake.CreateInstance().Play();
                 }
+                else if (obj.Name == "Counter")
+                {
+                    if (!(obj.Custom is int)) obj.Custom = new int();
+                    obj.Custom = ((int)obj.Custom) + 1;
+                }
             }
 
             // Calling the base action afterwards. 
@@ -57,7 +68,7 @@ namespace SplineSharp.Samples
                     _HandBrakeTimeout = _HandBrakeTimeoutMax;
                 }
             }
-            else base.Update(gameTime);
+            else if (!Stop) base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -73,6 +84,11 @@ namespace SplineSharp.Samples
                              0.1f,
                              SpriteEffects.None,
                              0f);
+
+            foreach (Trigger trigger in GetTriggers("Counter"))
+            {
+                if (trigger.Custom != null) spriteBatch.DrawString(Font, trigger.Custom.ToString(), GetPositionOnCurve(trigger.Progress), Color.White);
+            }
         }
     }
 }

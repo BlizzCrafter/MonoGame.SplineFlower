@@ -40,12 +40,13 @@ namespace SplineSharp
 
         public Guid AddTrigger(string name, float progress, int triggerDistance)
         {
-            _Trigger.Add(new Trigger(name, progress, triggerDistance));
-            ReorderTriggerList();
-
+            Guid triggerID = new Guid();
+            _Trigger.Add(new Trigger(name, progress, triggerDistance, out triggerID));
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
 
-            return _Trigger.Last().ID;
+            ReorderTriggerList();
+
+            return triggerID;
         }
         private void BezierSpline_TriggerEvent(Trigger obj)
         {

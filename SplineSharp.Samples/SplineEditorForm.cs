@@ -130,5 +130,30 @@ namespace SplineSharp.Samples
                 }
             }
         }
+
+
+        private void trackBarMarker_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (splineControl != null &&
+                splineControl.MySplineMarker != null &&
+                splineControl.MySplineMarker.Initialized)
+            {
+                if (!splineControl.MySplineMarker.MarkerSelected) splineControl.MySplineWalker.Stop = true;
+            }
+        }
+
+        private void trackBarMarker_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (splineControl != null &&
+                splineControl.MySplineMarker != null &&
+                splineControl.MySplineMarker.Initialized)
+            {
+                if (!splineControl.MySplineMarker.MarkerSelected)
+                {
+                    splineControl.ReorderTriggerList();
+                    splineControl.MySplineWalker.Stop = false;
+                }
+            }
+        }
     }
 }

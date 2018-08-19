@@ -38,11 +38,12 @@ namespace SplineSharp
 
         public event Action<string> EventTriggered = delegate { };
 
-        public Guid AddTrigger(string name, float progress)
+        public Guid AddTrigger(string name, float progress, int triggerDistance)
         {
-            _Trigger.Add(new Trigger(name, progress));
+            _Trigger.Add(new Trigger(name, progress, triggerDistance));
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
-            _Trigger.OrderBy(x => x.Progress);
+            List<Trigger> ordered = _Trigger.OrderBy(x => x.Progress).ToList();
+            _Trigger = ordered;
 
             return _Trigger.Last().ID;
         }
@@ -306,56 +307,80 @@ namespace SplineSharp
 
         public void DrawSpline(SpriteBatch spriteBatch)
         {
-            if (Setup.Pixel == null)
+            if (Setup.ShowBezierSpline)
             {
-                throw new Exception("You need to initialize the SplineSharp library first by calling 'SplineSharp.Setup.Initialize();'");
-            }
-
-            if (_Points.Length <= 1 || _Points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;
-
-            float distance = 0, angle = 0;
-            for (int i = 0; i < _Points.Length; i++)
-            {
-                _Points[i].Index = i;
-
-                if (i + 1 > _Points.Length - 1)
+                if (Setup.Pixel == null)
                 {
-                    DrawPoint(spriteBatch, i, angle);
-                    break;
+                    throw new Exception("You need to initialize the SplineSharp library first by calling 'SplineSharp.Setup.Initialize();'");
                 }
 
-                distance = Vector2.Distance(_Points[i].Position, _Points[i + 1].Position);
-                angle = (float)Math.Atan2(_Points[i + 1].Position.Y - _Points[i].Position.Y, _Points[i + 1].Position.X - _Points[i].Position.X);
+                if (_Points.Length <= 1 || _Points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;
 
-                DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
-                DrawPoint(spriteBatch, i, angle);
-            }
-
-            Vector2 lineStart = GetPointIntern(0f, 0);
-            for (int j = 0; j < CurveCount; j++)
-            {
-                for (int i = 1; i <= LineSteps; i++)
+                if (Setup.ShowBaseLine)
                 {
-                    Vector2 lineEnd = GetPointIntern(i / (float)LineSteps, j);
-
-                    float distanceStep = Vector2.Distance(lineStart, lineEnd);
-                    float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
-
-                    DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
-
-                    if (Setup.ShowDirectionVectors)
+                    float distance = 0, angle = 0;
+                    for (int i = 0; i < _Points.Length; i++)
                     {
-                        DrawLine(spriteBatch, lineEnd + GetDirectionIntern(i / (float)LineSteps), angleStep,
-                            Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
+                        _Points[i].Index = i;
+
+                        if (i + 1 > _Points.Length - 1)
+                        {
+                            DrawPoint(spriteBatch, i, angle);
+                            break;
+                        }
+
+                        distance = Vector2.Distance(_Points[i].Position, _Points[i + 1].Position);
+                        angle = (float)Math.Atan2(_Points[i + 1].Position.Y - _Points[i].Position.Y, _Points[i + 1].Position.X - _Points[i].Position.X);
+
+                        DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
+                        DrawPoint(spriteBatch, i, angle);
                     }
-
-                    lineStart = lineEnd;
                 }
-            }
 
-            for (int i = 0; i < _Trigger.Count; i++)
-            {
-                DrawCircle(spriteBatch, _Trigger[i].Progress);
+                if (Setup.ShowCurves)
+                {
+                    Vector2 lineStart = GetPointIntern(0f, 0);
+                    for (int j = 0; j < CurveCount; j++)
+                    {
+                        for (int i = 1; i <= LineSteps; i++)
+                        {
+                            Vector2 lineEnd = GetPointIntern(i / (float)LineSteps, j);
+
+                            float distanceStep = Vector2.Distance(lineStart, lineEnd);
+                            float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
+
+                            DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+
+                            if (Setup.ShowDirectionVectors)
+                            {
+                                DrawLine(spriteBatch, lineEnd + GetDirectionIntern(i / (float)LineSteps), angleStep,
+                                    Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
+                            }
+
+                            lineStart = lineEnd;
+                        }
+                    }
+                }
+
+                if (Setup.ShowTriggers)
+                {
+                    for (int i = 0; i < _Trigger.Count; i++)
+                    {
+                        float drawDistanceBack = _Trigger[i].Progress - _Trigger[i].TriggerDistance;
+                        for (float x = drawDistanceBack; x < _Trigger[i].Progress; x += 1 / Setup.SplineMarkerResolution)
+                        {
+                            DrawPointOnCurve(spriteBatch, x);
+                        }
+
+                        float drawDistanceForth = _Trigger[i].Progress + _Trigger[i].TriggerDistance;
+                        for (float x = drawDistanceForth; x > _Trigger[i].Progress; x -= 1 / Setup.SplineMarkerResolution)
+                        {
+                            DrawPointOnCurve(spriteBatch, x);
+                        }
+
+                        DrawCircle(spriteBatch, _Trigger[i].Progress);
+                    }
+                }
             }
         }
 
@@ -372,7 +397,7 @@ namespace SplineSharp
                              0);
         }
 
-        private void DrawPoint(SpriteBatch spriteBatch, int index, float angle)
+        private void DrawPoint(SpriteBatch spriteBatch, int index, float angle, float thickness = -1f)
         {
             spriteBatch.Draw(Setup.Pixel,
                              _Points[index].Position,
@@ -380,7 +405,20 @@ namespace SplineSharp
                              (index == 0 ? Setup.StartPointColor : _ModeColors[(int)GetControlPointMode(index)]),
                              angle,
                              new Vector2(0.5f),
-                             Setup.PointThickness * (index == 0 ? Setup.StartPointThickness : 1f),
+                             thickness > 0f ? thickness : Setup.PointThickness * (index == 0 ? Setup.StartPointThickness : 1f),
+                             SpriteEffects.None,
+                             0f);
+        }
+
+        private void DrawPointOnCurve(SpriteBatch spriteBatch, float position)
+        {
+            spriteBatch.Draw(Setup.Pixel,
+                             GetPoint(position),
+                             null,
+                             Setup.TriggerEventColor,
+                             0f,
+                             new Vector2(0.5f),
+                             1f,
                              SpriteEffects.None,
                              0f);
         }

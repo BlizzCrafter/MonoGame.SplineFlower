@@ -23,7 +23,7 @@ namespace SplineSharp.Samples.Controls
 
             MySplineWalker = new Car();
             MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
-            MySplineWalker.LoadContent(Editor.Content);
+            MySplineWalker.LoadContent(Editor.Content, Editor.Font);
 
             MySplineMarker = new Marker();
             MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0f, false, false);
@@ -32,6 +32,11 @@ namespace SplineSharp.Samples.Controls
             MoveSplineToScreenCenter();
 
             SetMultiSampleCount(8);
+        }
+
+        public void ReorderTriggerList()
+        {
+            if (MySpline != null) MySpline.ReorderTriggerList();
         }
 
         public void SplineControl_RecalculateBezierCenter()

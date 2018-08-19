@@ -13,9 +13,13 @@ namespace SplineSharp.Samples.Controls
         protected bool TranslateAllPointsClick = false;
         protected System.Drawing.Point TranslatePointFirstClick;
         protected Transform SelectedTransform;
+        public Trigger SelectedTrigger { get; set; }
 
         [Browsable(false)]
         public Func<Vector2, Transform> TryGetTransformFromPosition { get; set; }
+
+        [Browsable(false)]
+        public Func<Vector2, Trigger> TryGetTriggerFromPosition { get; set; }
 
         [Browsable(false)]
         public Func<Transform[]> GetAllPoints { get; set; }
@@ -54,6 +58,7 @@ namespace SplineSharp.Samples.Controls
                         TranslatePointFirstClick = e.Location;
                         TranslatePointClick = true;
                     }
+                    else SelectedTrigger = TryGetTriggerFromPosition(new Vector2(e.X, e.Y));
                 }
                 else if (e.Button == MouseButtons.Middle)
                 {

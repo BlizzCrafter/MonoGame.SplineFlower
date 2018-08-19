@@ -95,7 +95,11 @@ namespace SplineSharp.Samples
                 GetSplinePosition(), 
                 (int)numericUpDownTriggerRange.Value);
 
-            comboBoxSelectedTrigger.Items.Add(comboBoxEvents.SelectedItem.ToString() + "_" + triggerID.ToString());
+            comboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(comboBoxEvents.SelectedItem.ToString(), triggerID.ToString()));
+        }
+        private string GetSelectedTriggerString(string itemName, string itemID)
+        {
+            return itemName + "_" + itemID;
         }
 
         private void comboBoxSelectedTrigger_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,15 +112,17 @@ namespace SplineSharp.Samples
 
                     string[] splitted = comboBoxSelectedTrigger.SelectedItem.ToString().Split('_');
                     splineControl.MySplineMarker.SelectedTrigger = splitted[1];
-
-                    Trigger trigger = splineControl.MySplineWalker.GetTrigger(splitted[1]);
-                    trackBarMarker.Value = (int)(trigger.Progress * Setup.SplineMarkerResolution);
-                    numericUpDownTriggerRange.Value = (int)(trigger.TriggerDistance * Setup.SplineMarkerResolution);
+                    UpdateTriggerInterface(splineControl.MySplineWalker.GetTrigger(splitted[1]));
                 }
                 else splineControl.MySplineMarker.MarkerSelected = true;
 
                 splineControl.MySplineMarker.SetPosition(GetSplinePosition());
             }
+        }
+        private void UpdateTriggerInterface(Trigger trigger)
+        {
+            trackBarMarker.Value = (int)(trigger.Progress * Setup.SplineMarkerResolution);
+            numericUpDownTriggerRange.Value = (int)(trigger.TriggerDistance * Setup.SplineMarkerResolution);
         }
 
         private void numericUpDownTriggerRange_ValueChanged(object sender, EventArgs e)
@@ -130,7 +136,6 @@ namespace SplineSharp.Samples
                 }
             }
         }
-
 
         private void trackBarMarker_MouseDown(object sender, MouseEventArgs e)
         {
@@ -153,6 +158,23 @@ namespace SplineSharp.Samples
                     splineControl.ReorderTriggerList();
                     splineControl.MySplineWalker.Stop = false;
                 }
+            }
+        }
+
+        private void splineControl_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (splineControl != null && splineControl.SelectedTrigger != null)
+            {
+                if (splineControl.MySplineMarker != null && splineControl.MySplineMarker.Initialized)
+                {
+                    splineControl.MySplineMarker.SelectedTrigger = splineControl.SelectedTrigger.ID.ToString();
+                    comboBoxSelectedTrigger.SelectedItem = GetSelectedTriggerString(
+                        splineControl.SelectedTrigger.Name,
+                        splineControl.SelectedTrigger.ID.ToString());
+                }
+
+                UpdateTriggerInterface(splineControl.SelectedTrigger);
+                splineControl.SelectedTrigger = null;
             }
         }
     }

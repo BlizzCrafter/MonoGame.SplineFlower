@@ -17,6 +17,7 @@ namespace SplineSharp.Samples.Controls
             MySpline = new BezierSpline();
             MySpline.Reset();
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
+            TryGetTriggerFromPosition = MySpline.TryGetTriggerFromPosition;
             GetAllPoints = MySpline.GetAllPoints;
             RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
             MovePointDiff += SplineEditor_MovePointDiff;

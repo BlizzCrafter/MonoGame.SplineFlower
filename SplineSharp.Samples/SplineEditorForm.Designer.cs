@@ -30,8 +30,11 @@
         {
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageSimpleLine = new System.Windows.Forms.TabPage();
+            this.lineControl = new SplineSharp.Samples.Controls.LineControl();
             this.tabPageQuadraticBezier = new System.Windows.Forms.TabPage();
+            this.curveControlQuadratic = new SplineSharp.Samples.Controls.CurveControl();
             this.tabPageCubicBezier = new System.Windows.Forms.TabPage();
+            this.curveControlCubic = new SplineSharp.Samples.Controls.CurveControl();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
             this.numericUpDownTriggerRange = new System.Windows.Forms.NumericUpDown();
             this.comboBoxSelectedTrigger = new System.Windows.Forms.ComboBox();
@@ -43,13 +46,10 @@
             this.buttonLoop = new System.Windows.Forms.Button();
             this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
+            this.splineControl = new SplineSharp.Samples.Controls.SplineControl();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemDiagnostics = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCenterPoints = new System.Windows.Forms.ToolStripMenuItem();
-            this.lineControl = new SplineSharp.Samples.Controls.LineControl();
-            this.curveControlQuadratic = new SplineSharp.Samples.Controls.CurveControl();
-            this.curveControlCubic = new SplineSharp.Samples.Controls.CurveControl();
-            this.splineControl = new SplineSharp.Samples.Controls.SplineControl();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageSimpleLine.SuspendLayout();
             this.tabPageQuadraticBezier.SuspendLayout();
@@ -84,6 +84,22 @@
             this.tabPageSimpleLine.Text = "Simple Line";
             this.tabPageSimpleLine.UseVisualStyleBackColor = true;
             // 
+            // lineControl
+            // 
+            this.lineControl.BackColor = System.Drawing.Color.Lavender;
+            this.lineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lineControl.ForeColor = System.Drawing.Color.CadetBlue;
+            this.lineControl.GetAllPoints = null;
+            this.lineControl.Location = new System.Drawing.Point(3, 3);
+            this.lineControl.MyLine = null;
+            this.lineControl.Name = "lineControl";
+            this.lineControl.Size = new System.Drawing.Size(768, 690);
+            this.lineControl.TabIndex = 0;
+            this.lineControl.Text = "Simple Line Sample";
+            this.lineControl.TryGetTransformFromPosition = null;
+            this.lineControl.TryGetTriggerFromPosition = null;
+            // 
             // tabPageQuadraticBezier
             // 
             this.tabPageQuadraticBezier.Controls.Add(this.curveControlQuadratic);
@@ -95,6 +111,20 @@
             this.tabPageQuadraticBezier.Text = "Quadratic Beziér Curve";
             this.tabPageQuadraticBezier.UseVisualStyleBackColor = true;
             // 
+            // curveControlQuadratic
+            // 
+            this.curveControlQuadratic.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.curveControlQuadratic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.curveControlQuadratic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.curveControlQuadratic.GetAllPoints = null;
+            this.curveControlQuadratic.Location = new System.Drawing.Point(3, 3);
+            this.curveControlQuadratic.Name = "curveControlQuadratic";
+            this.curveControlQuadratic.Size = new System.Drawing.Size(768, 690);
+            this.curveControlQuadratic.TabIndex = 0;
+            this.curveControlQuadratic.Text = "Quadratic Beziér Sample";
+            this.curveControlQuadratic.TryGetTransformFromPosition = null;
+            this.curveControlQuadratic.TryGetTriggerFromPosition = null;
+            // 
             // tabPageCubicBezier
             // 
             this.tabPageCubicBezier.Controls.Add(this.curveControlCubic);
@@ -104,6 +134,22 @@
             this.tabPageCubicBezier.TabIndex = 2;
             this.tabPageCubicBezier.Text = "Cubic Beziér Curve";
             this.tabPageCubicBezier.UseVisualStyleBackColor = true;
+            // 
+            // curveControlCubic
+            // 
+            this.curveControlCubic.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.curveControlCubic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.curveControlCubic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.curveControlCubic.ForeColor = System.Drawing.Color.PaleVioletRed;
+            this.curveControlCubic.GetAllPoints = null;
+            this.curveControlCubic.GetBezierType = SplineSharp.Samples.Controls.CurveControl.BezierType.Cubic;
+            this.curveControlCubic.Location = new System.Drawing.Point(0, 0);
+            this.curveControlCubic.Name = "curveControlCubic";
+            this.curveControlCubic.Size = new System.Drawing.Size(774, 696);
+            this.curveControlCubic.TabIndex = 0;
+            this.curveControlCubic.Text = "Cubic Beziér Sample";
+            this.curveControlCubic.TryGetTransformFromPosition = null;
+            this.curveControlCubic.TryGetTriggerFromPosition = null;
             // 
             // tabPageBezierSpline
             // 
@@ -272,6 +318,22 @@
             this.buttonAddCurveLeft.UseVisualStyleBackColor = true;
             this.buttonAddCurveLeft.Click += new System.EventHandler(this.buttonAddCurve_Click);
             // 
+            // splineControl
+            // 
+            this.splineControl.BackColor = System.Drawing.Color.GreenYellow;
+            this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
+            this.splineControl.GetAllPoints = null;
+            this.splineControl.Location = new System.Drawing.Point(0, 0);
+            this.splineControl.Name = "splineControl";
+            this.splineControl.Size = new System.Drawing.Size(774, 696);
+            this.splineControl.TabIndex = 6;
+            this.splineControl.Text = "Beziér Spline Sample";
+            this.splineControl.TryGetTransformFromPosition = null;
+            this.splineControl.TryGetTriggerFromPosition = null;
+            this.splineControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.splineControl_MouseUp);
+            // 
             // menuStripMain
             // 
             this.menuStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -297,63 +359,6 @@
             this.toolStripMenuItemCenterPoints.Size = new System.Drawing.Size(172, 26);
             this.toolStripMenuItemCenterPoints.Text = "Center Spline";
             this.toolStripMenuItemCenterPoints.Click += new System.EventHandler(this.toolStripMenuItemCenterPoints_Click);
-            // 
-            // lineControl
-            // 
-            this.lineControl.BackColor = System.Drawing.Color.Lavender;
-            this.lineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lineControl.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lineControl.GetAllPoints = null;
-            this.lineControl.Location = new System.Drawing.Point(3, 3);
-            this.lineControl.MyLine = null;
-            this.lineControl.Name = "lineControl";
-            this.lineControl.Size = new System.Drawing.Size(768, 690);
-            this.lineControl.TabIndex = 0;
-            this.lineControl.Text = "Simple Line Sample";
-            this.lineControl.TryGetTransformFromPosition = null;
-            // 
-            // curveControlQuadratic
-            // 
-            this.curveControlQuadratic.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.curveControlQuadratic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.curveControlQuadratic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curveControlQuadratic.GetAllPoints = null;
-            this.curveControlQuadratic.Location = new System.Drawing.Point(3, 3);
-            this.curveControlQuadratic.Name = "curveControlQuadratic";
-            this.curveControlQuadratic.Size = new System.Drawing.Size(768, 690);
-            this.curveControlQuadratic.TabIndex = 0;
-            this.curveControlQuadratic.Text = "Quadratic Beziér Sample";
-            this.curveControlQuadratic.TryGetTransformFromPosition = null;
-            // 
-            // curveControlCubic
-            // 
-            this.curveControlCubic.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.curveControlCubic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.curveControlCubic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curveControlCubic.ForeColor = System.Drawing.Color.PaleVioletRed;
-            this.curveControlCubic.GetAllPoints = null;
-            this.curveControlCubic.GetBezierType = SplineSharp.Samples.Controls.CurveControl.BezierType.Cubic;
-            this.curveControlCubic.Location = new System.Drawing.Point(0, 0);
-            this.curveControlCubic.Name = "curveControlCubic";
-            this.curveControlCubic.Size = new System.Drawing.Size(774, 696);
-            this.curveControlCubic.TabIndex = 0;
-            this.curveControlCubic.Text = "Cubic Beziér Sample";
-            this.curveControlCubic.TryGetTransformFromPosition = null;
-            // 
-            // splineControl
-            // 
-            this.splineControl.BackColor = System.Drawing.Color.GreenYellow;
-            this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
-            this.splineControl.GetAllPoints = null;
-            this.splineControl.Location = new System.Drawing.Point(0, 0);
-            this.splineControl.Name = "splineControl";
-            this.splineControl.Size = new System.Drawing.Size(774, 696);
-            this.splineControl.TabIndex = 6;
-            this.splineControl.Text = "Beziér Spline Sample";
-            this.splineControl.TryGetTransformFromPosition = null;
             // 
             // SplineEditorForm
             // 

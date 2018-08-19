@@ -223,7 +223,15 @@ namespace SplineSharp
             if (_Points.Any(x => x.TryGetPosition(position))) return _Points.First(x => x.TryGetPosition(position));
 
             return null;
-        }        
+        }
+
+        public Trigger TryGetTriggerFromPosition(Vector2 position)
+        {
+            Rectangle size = new Rectangle((int)position.X - 5, (int)position.Y - 5, 10, 10);
+            if (_Trigger.Any(x => size.Contains(GetPoint(x.Progress)))) return _Trigger.First(x => size.Contains(GetPoint(x.Progress)));
+
+            return null;
+        }
 
         public Vector2 GetPoint(float t)
         {

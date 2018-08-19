@@ -40,6 +40,7 @@ namespace SplineSharp
 
         public bool Initialized { get; private set; } = false;
         public bool CanTriggerEvents { get; set; } = true;
+        public Guid LastTriggerID { get; private set; }
 
         public float _Progress;
         private bool _GoingForward = true;
@@ -61,7 +62,7 @@ namespace SplineSharp
             Mode = SplineWalkerMode.Once;
 
             SetPosition(spline.GetPoint(0));
-            _Spline.EventTriggered += _Spline_EventTriggered;
+            _Spline.EventTriggered += EventTriggered;
 
             Initialized = true;
         }
@@ -72,13 +73,22 @@ namespace SplineSharp
             if (_CurrentTriggerIndex != 0) _CurrentTriggerIndex++;
             return id;
         }
-        private void _Spline_EventTriggered(string obj)
+        protected virtual void EventTriggered(Trigger obj)
         {
             if (CanTriggerEvents)
             {
-                _CurrentTriggerIndex++;
-                if (_CurrentTriggerIndex >= _Spline.GetAllTrigger().Count) _CurrentTriggerIndex = 0;
+                if (!AlreadyTriggered(obj))
+                {
+                    _CurrentTriggerIndex++;
+                    if (_CurrentTriggerIndex >= _Spline.GetAllTrigger().Count) _CurrentTriggerIndex = 0;
+                }
+                LastTriggerID = obj.ID;
             }
+        }
+        protected bool AlreadyTriggered(Trigger trigger)
+        {
+            if (LastTriggerID == trigger.ID) return true;
+            else return false;
         }
 
         public virtual void SetPosition(float progress)
@@ -98,6 +108,7 @@ namespace SplineSharp
 
         public void Reset()
         {
+            LastTriggerID = new Guid();
             _Progress = 0f;
         }
         
@@ -110,6 +121,8 @@ namespace SplineSharp
                     _Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
                     if (_Progress > 1f)
                     {
+                        LastTriggerID = new Guid();
+
                         if (Mode == SplineWalkerMode.Once)
                         {
                             _Progress = 1f;

@@ -66,9 +66,11 @@ namespace SplineSharp
             Initialized = true;
         }
 
-        public Guid AddTrigger(string name, float progress)
+        public Guid AddTrigger(string name, float progress, int triggerDistance)
         {
-            return _Spline.AddTrigger(name, progress);
+            Guid id = _Spline.AddTrigger(name, progress, triggerDistance);
+            if (_CurrentTriggerIndex != 0) _CurrentTriggerIndex++;
+            return id;
         }
         private void _Spline_EventTriggered(string obj)
         {
@@ -89,9 +91,9 @@ namespace SplineSharp
             _Spline.GetAllTrigger().Find(x => x.ID.ToString() == triggerID).Progress = progress;
         }
 
-        public float GetTriggerPosition(string triggerID)
+        public virtual Trigger GetTrigger(string triggerID = "SelectedTrigger")
         {
-            return _Spline.GetAllTrigger().Find(x => x.ID.ToString() == triggerID).Progress;
+            return _Spline.GetAllTrigger().Find(x => x.ID.ToString() == triggerID);
         }
 
         public void Reset()

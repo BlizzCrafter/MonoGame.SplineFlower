@@ -59,12 +59,12 @@ namespace SplineSharp
 
             // Sometimes losing Events on ordering the list.
             // I think this is a bug !?
-            _Trigger.ForEach(
-                x =>
-                {
-                   x.TriggerEvent -= BezierSpline_TriggerEvent;
-                   x.TriggerEvent += BezierSpline_TriggerEvent;
-                });
+            //_Trigger.ForEach(
+            //    x =>
+            //    {
+            //       x.TriggerEvent -= BezierSpline_TriggerEvent;
+            //       x.TriggerEvent += BezierSpline_TriggerEvent;
+            //    });
         }
 
         public bool Loop

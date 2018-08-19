@@ -5,11 +5,16 @@ namespace SplineSharp
 {
     public static class Setup
     {
+        public static bool ShowBezierSpline { get; set; } = true;
+        public static float SplineMarkerResolution = 1000f;
+
         public static Color BaseLineColor { get; set; } = Color.White;
         public static float BaseLineThickness { get; set; } = 1f;
+        public static bool ShowBaseLine { get; set; } = true;
 
         public static Color CurveLineColor { get; set; } = Color.Yellow;
         public static float CurveLineThickness { get; set; } = 1.5f;
+        public static bool ShowCurves { get; set; } = true;
 
         public static Color DirectionLineColor { get; set; } = Color.LightGreen;
         public static float DirectionLineThickness { get; set; } = 1f;
@@ -21,6 +26,7 @@ namespace SplineSharp
 
         public static Color TriggerEventColor { get; set; } = Color.Magenta;
         public static float TriggerEventThickness { get; set; } = 1f;
+        public static bool ShowTriggers { get; set; } = true;
 
         public static Color PointColor { get; set; } = Color.Red;
         public static int PointThickness { get; set; } = 10;
@@ -40,7 +46,7 @@ namespace SplineSharp
 
             if (Circle == null)
             {
-                Circle = CreateCircleTexture(graphicsDevice, 10);
+                Circle = CreateCircleTexture(graphicsDevice, 8);
             }
         }
         private static Texture2D CreateCircleTexture(GraphicsDevice device, int radius)

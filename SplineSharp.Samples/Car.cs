@@ -25,17 +25,24 @@ namespace SplineSharp.Samples
         public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, float duration, bool canTriggerEvents = true, bool autoStart = true)
         {
             base.CreateSplineWalker(spline, mode, duration, canTriggerEvents, autoStart);
-
-            _Spline.EventTriggered += _Spline_EventTriggered;
         }
-        private void _Spline_EventTriggered(string obj)
+
+        protected override void EventTriggered(Trigger obj)
         {
-            if (obj == "Horn") _Horn.CreateInstance().Play();
-            else if (obj == "Brakes")
+            if (!AlreadyTriggered(obj))
             {
-                _HandBrakeTriggered = true;
-                _HandBrake.CreateInstance().Play();
+                if (obj.Name == "Horn") _Horn.CreateInstance().Play();
+                else if (obj.Name == "Brakes")
+                {
+                    _HandBrakeTriggered = true;
+                    _HandBrake.CreateInstance().Play();
+                }
             }
+
+            // Calling the base action afterwards. 
+            // Otherwise the EventTrigger action here won't work or would be called mutliple times
+            // if there is only one TriggerEvent on the Spline.
+            base.EventTriggered(obj);
         }
 
         public override void Update(GameTime gameTime)

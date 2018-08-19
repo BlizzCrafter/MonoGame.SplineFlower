@@ -36,7 +36,7 @@ namespace SplineSharp
         }
         private List<Trigger> _Trigger = new List<Trigger>();
 
-        public event Action<string> EventTriggered = delegate { };
+        internal event Action<Trigger> EventTriggered = delegate { };
 
         public Guid AddTrigger(string name, float progress, int triggerDistance)
         {
@@ -47,7 +47,7 @@ namespace SplineSharp
 
             return _Trigger.Last().ID;
         }
-        private void BezierSpline_TriggerEvent(string obj)
+        private void BezierSpline_TriggerEvent(Trigger obj)
         {
             EventTriggered?.Invoke(obj);
         }

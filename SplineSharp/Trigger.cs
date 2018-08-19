@@ -15,7 +15,7 @@ namespace SplineSharp
         }
         private float _TriggerDistance = 5f;
 
-        internal event Action<string> TriggerEvent = delegate { };
+        internal event Action<Trigger> TriggerEvent = delegate { };
 
         public Trigger(string name, float progress, int triggerDistance)
         {
@@ -30,7 +30,7 @@ namespace SplineSharp
             float distance = MathHelper.Distance(Progress, progress);
             if (distance <= TriggerDistance)
             {
-                TriggerEvent.Invoke(Name);
+                TriggerEvent.Invoke(this);
                 return true;
             }
             else return false;

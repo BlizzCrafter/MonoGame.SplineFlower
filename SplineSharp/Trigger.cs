@@ -8,6 +8,7 @@ namespace SplineSharp
         public string Name { get; private set; } = "";
         public Guid ID { get; private set; }
         public float Progress { get; set; } = -999;
+        public object Custom { get; set; }
         public float TriggerDistance
         {
             get { return _TriggerDistance / Setup.SplineMarkerResolution; }

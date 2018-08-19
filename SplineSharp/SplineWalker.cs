@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace SplineSharp
 {
@@ -36,6 +37,10 @@ namespace SplineSharp
             Position = position;
             _Size.X = (int)position.X;
             _Size.Y = (int)position.Y;
+        }
+        public Vector2 GetPositionOnCurve(float position)
+        {
+            return _Spline.GetPoint(position);
         }
 
         public bool Initialized { get; private set; } = false;
@@ -104,6 +109,12 @@ namespace SplineSharp
         public virtual Trigger GetTrigger(string triggerID = "SelectedTrigger")
         {
             return _Spline.GetAllTrigger().Find(x => x.ID.ToString() == triggerID);
+        }
+
+        public List<Trigger> GetTriggers(string name = "")
+        {
+            if (string.IsNullOrEmpty(name)) return _Spline.GetAllTrigger();
+            else return _Spline.GetAllTrigger().FindAll(x => x.Name == name);
         }
 
         public void Reset()

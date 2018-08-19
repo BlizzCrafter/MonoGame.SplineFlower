@@ -33,6 +33,9 @@
             this.tabPageQuadraticBezier = new System.Windows.Forms.TabPage();
             this.tabPageCubicBezier = new System.Windows.Forms.TabPage();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
+            this.numericUpDownTriggerRange = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxSelectedTrigger = new System.Windows.Forms.ComboBox();
+            this.comboBoxEvents = new System.Windows.Forms.ComboBox();
             this.buttonAddEvent = new System.Windows.Forms.Button();
             this.trackBarMarker = new System.Windows.Forms.TrackBar();
             this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
@@ -43,8 +46,6 @@
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemDiagnostics = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCenterPoints = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBoxEvents = new System.Windows.Forms.ComboBox();
-            this.comboBoxSelectedTrigger = new System.Windows.Forms.ComboBox();
             this.lineControl = new SplineSharp.Samples.Controls.LineControl();
             this.curveControlQuadratic = new SplineSharp.Samples.Controls.CurveControl();
             this.curveControlCubic = new SplineSharp.Samples.Controls.CurveControl();
@@ -54,6 +55,7 @@
             this.tabPageQuadraticBezier.SuspendLayout();
             this.tabPageCubicBezier.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTriggerRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +107,7 @@
             // 
             // tabPageBezierSpline
             // 
+            this.tabPageBezierSpline.Controls.Add(this.numericUpDownTriggerRange);
             this.tabPageBezierSpline.Controls.Add(this.comboBoxSelectedTrigger);
             this.tabPageBezierSpline.Controls.Add(this.comboBoxEvents);
             this.tabPageBezierSpline.Controls.Add(this.buttonAddEvent);
@@ -121,6 +124,60 @@
             this.tabPageBezierSpline.TabIndex = 3;
             this.tabPageBezierSpline.Text = "Beziér Spline";
             this.tabPageBezierSpline.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownTriggerRange
+            // 
+            this.numericUpDownTriggerRange.Location = new System.Drawing.Point(523, 609);
+            this.numericUpDownTriggerRange.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numericUpDownTriggerRange.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDownTriggerRange.Name = "numericUpDownTriggerRange";
+            this.numericUpDownTriggerRange.Size = new System.Drawing.Size(62, 22);
+            this.numericUpDownTriggerRange.TabIndex = 11;
+            this.numericUpDownTriggerRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDownTriggerRange.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDownTriggerRange.ValueChanged += new System.EventHandler(this.numericUpDownTriggerRange_ValueChanged);
+            // 
+            // comboBoxSelectedTrigger
+            // 
+            this.comboBoxSelectedTrigger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSelectedTrigger.DropDownWidth = 300;
+            this.comboBoxSelectedTrigger.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSelectedTrigger.FormattingEnabled = true;
+            this.comboBoxSelectedTrigger.Items.AddRange(new object[] {
+            "Marker"});
+            this.comboBoxSelectedTrigger.Location = new System.Drawing.Point(8, 3);
+            this.comboBoxSelectedTrigger.MaxDropDownItems = 3;
+            this.comboBoxSelectedTrigger.Name = "comboBoxSelectedTrigger";
+            this.comboBoxSelectedTrigger.Size = new System.Drawing.Size(107, 26);
+            this.comboBoxSelectedTrigger.TabIndex = 10;
+            this.comboBoxSelectedTrigger.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectedTrigger_SelectedIndexChanged);
+            // 
+            // comboBoxEvents
+            // 
+            this.comboBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEvents.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxEvents.FormattingEnabled = true;
+            this.comboBoxEvents.Items.AddRange(new object[] {
+            "Horn",
+            "Brakes"});
+            this.comboBoxEvents.Location = new System.Drawing.Point(282, 605);
+            this.comboBoxEvents.MaxDropDownItems = 3;
+            this.comboBoxEvents.Name = "comboBoxEvents";
+            this.comboBoxEvents.Size = new System.Drawing.Size(107, 26);
+            this.comboBoxEvents.TabIndex = 9;
             // 
             // buttonAddEvent
             // 
@@ -238,37 +295,6 @@
             this.toolStripMenuItemCenterPoints.Text = "Center Spline";
             this.toolStripMenuItemCenterPoints.Click += new System.EventHandler(this.toolStripMenuItemCenterPoints_Click);
             // 
-            // comboBoxEvents
-            // 
-            this.comboBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEvents.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEvents.FormattingEnabled = true;
-            this.comboBoxEvents.Items.AddRange(new object[] {
-            "Horn",
-            "Brakes"});
-            this.comboBoxEvents.Location = new System.Drawing.Point(282, 605);
-            this.comboBoxEvents.MaxDropDownItems = 3;
-            this.comboBoxEvents.Name = "comboBoxEvents";
-            this.comboBoxEvents.Size = new System.Drawing.Size(107, 26);
-            this.comboBoxEvents.TabIndex = 9;
-            // 
-            // comboBoxSelectedTrigger
-            // 
-            this.comboBoxSelectedTrigger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxSelectedTrigger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSelectedTrigger.DropDownWidth = 300;
-            this.comboBoxSelectedTrigger.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxSelectedTrigger.FormattingEnabled = true;
-            this.comboBoxSelectedTrigger.Items.AddRange(new object[] {
-            "Marker"});
-            this.comboBoxSelectedTrigger.Location = new System.Drawing.Point(478, 605);
-            this.comboBoxSelectedTrigger.MaxDropDownItems = 3;
-            this.comboBoxSelectedTrigger.Name = "comboBoxSelectedTrigger";
-            this.comboBoxSelectedTrigger.Size = new System.Drawing.Size(107, 26);
-            this.comboBoxSelectedTrigger.TabIndex = 10;
-            this.comboBoxSelectedTrigger.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectedTrigger_SelectedIndexChanged);
-            // 
             // lineControl
             // 
             this.lineControl.BackColor = System.Drawing.Color.Lavender;
@@ -345,6 +371,7 @@
             this.tabPageCubicBezier.ResumeLayout(false);
             this.tabPageBezierSpline.ResumeLayout(false);
             this.tabPageBezierSpline.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTriggerRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).EndInit();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
@@ -375,6 +402,7 @@
         private System.Windows.Forms.Button buttonAddEvent;
         private System.Windows.Forms.ComboBox comboBoxEvents;
         private System.Windows.Forms.ComboBox comboBoxSelectedTrigger;
+        private System.Windows.Forms.NumericUpDown numericUpDownTriggerRange;
     }
 }
 

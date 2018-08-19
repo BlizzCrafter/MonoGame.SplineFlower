@@ -5,8 +5,6 @@ namespace SplineSharp.Samples
 {
     public partial class SplineEditorForm : Form
     {
-        private const float SplineMarkerResolution = 1000f;
-
         public SplineEditorForm()
         {
             InitializeComponent();
@@ -87,12 +85,16 @@ namespace SplineSharp.Samples
         }
         private float GetSplinePosition()
         {
-            return (float)trackBarMarker.Value / SplineMarkerResolution;
+            return (float)trackBarMarker.Value / Setup.SplineMarkerResolution;
         }
 
         private void buttonAddEvent_Click(object sender, EventArgs e)
         {
-            Guid triggerID = splineControl.MySplineWalker.AddTrigger(comboBoxEvents.SelectedItem.ToString(), GetSplinePosition());
+            Guid triggerID = splineControl.MySplineWalker.AddTrigger(
+                comboBoxEvents.SelectedItem.ToString(), 
+                GetSplinePosition(), 
+                (int)numericUpDownTriggerRange.Value);
+
             comboBoxSelectedTrigger.Items.Add(comboBoxEvents.SelectedItem.ToString() + "_" + triggerID.ToString());
         }
 
@@ -106,11 +108,26 @@ namespace SplineSharp.Samples
 
                     string[] splitted = comboBoxSelectedTrigger.SelectedItem.ToString().Split('_');
                     splineControl.MySplineMarker.SelectedTrigger = splitted[1];
-                    trackBarMarker.Value = (int)(splineControl.MySplineMarker.GetTriggerPosition(splitted[1]) * SplineMarkerResolution);
+
+                    Trigger trigger = splineControl.MySplineWalker.GetTrigger(splitted[1]);
+                    trackBarMarker.Value = (int)(trigger.Progress * Setup.SplineMarkerResolution);
+                    numericUpDownTriggerRange.Value = (int)(trigger.TriggerDistance * Setup.SplineMarkerResolution);
                 }
                 else splineControl.MySplineMarker.MarkerSelected = true;
 
                 splineControl.MySplineMarker.SetPosition(GetSplinePosition());
+            }
+        }
+
+        private void numericUpDownTriggerRange_ValueChanged(object sender, EventArgs e)
+        {
+            if (splineControl != null && splineControl.MySplineMarker != null)
+            {
+                if (!splineControl.MySplineMarker.MarkerSelected)
+                {
+                    Trigger trigger = splineControl.MySplineMarker.GetTrigger();
+                    trigger.TriggerDistance = (int)numericUpDownTriggerRange.Value;
+                }
             }
         }
     }

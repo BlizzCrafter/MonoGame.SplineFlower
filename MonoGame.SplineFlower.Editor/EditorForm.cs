@@ -96,7 +96,6 @@ namespace MonoGame.SplineFlower.Editor
 
         #region Spline Walker
         
-
         private void toolStripButtonResetSplineWalker_Click(object sender, EventArgs e)
         {
             splineControl.MySplineWalker.Reset();
@@ -267,6 +266,8 @@ namespace MonoGame.SplineFlower.Editor
                     File.ReadAllText(@Path.Combine(Application.StartupPath, "Spline.json")), JsonSerializerSetup);
 
             Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
+            splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
+            toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
 
             Trigger[] loadedTrigger;
             splineControl.MySpline.LoadJsonBezierSplineData(
@@ -274,9 +275,6 @@ namespace MonoGame.SplineFlower.Editor
                 LoadJsonPointModeData(),
                 LoadJsonTriggerData(),
                 out loadedTrigger);
-
-            splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
-            toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
 
             toolStripComboBoxSelectedTrigger.Items.Clear();
             toolStripComboBoxSelectedTrigger.Items.Add("Marker");

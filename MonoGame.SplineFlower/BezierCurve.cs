@@ -14,8 +14,6 @@ namespace MonoGame.SplineFlower
         }
         private Type BezierType = Type.Quadratic;
 
-        private const int LineSteps = 10;
-
         public Transform[] GetAllPoints()
         {
             return _Points;
@@ -73,9 +71,9 @@ namespace MonoGame.SplineFlower
             }
 
             Vector2 lineStart = GetPoint(0f);
-            for (int i = 1; i <= LineSteps; i++)
+            for (int i = 1; i <= Setup.LineSteps; i++)
             {
-                Vector2 lineEnd = GetPoint(i / (float)LineSteps);
+                Vector2 lineEnd = GetPoint(i / (float)Setup.LineSteps);
 
                 float distanceStep = Vector2.Distance(lineStart, lineEnd);
                 float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
@@ -84,7 +82,7 @@ namespace MonoGame.SplineFlower
 
                 if (Setup.ShowDirectionVectors)
                 {
-                    DrawLine(spriteBatch, lineEnd + GetDirection(i / (float)LineSteps), angleStep,
+                    DrawLine(spriteBatch, lineEnd + GetDirection(i / (float)Setup.LineSteps), angleStep,
                         Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
                 }
 

@@ -21,8 +21,6 @@ namespace MonoGame.SplineFlower
             Color.Yellow,
             Color.Cyan
         };
-
-        private const int LineSteps = 20;
                 
         public Transform[] GetAllPoints()
         {
@@ -368,9 +366,9 @@ namespace MonoGame.SplineFlower
                     Vector2 lineStart = GetPointIntern(0f, 0);
                     for (int j = 0; j < CurveCount; j++)
                     {
-                        for (int i = 1; i <= LineSteps; i++)
+                        for (int i = 1; i <= Setup.LineSteps; i++)
                         {
-                            Vector2 lineEnd = GetPointIntern(i / (float)LineSteps, j);
+                            Vector2 lineEnd = GetPointIntern(i / (float)Setup.LineSteps, j);
 
                             float distanceStep = Vector2.Distance(lineStart, lineEnd);
                             float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
@@ -379,7 +377,7 @@ namespace MonoGame.SplineFlower
 
                             if (Setup.ShowDirectionVectors)
                             {
-                                DrawLine(spriteBatch, lineEnd + GetDirectionIntern(i / (float)LineSteps), angleStep,
+                                DrawLine(spriteBatch, lineEnd + GetDirectionIntern(i / (float)Setup.LineSteps), angleStep,
                                     Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
                             }
 

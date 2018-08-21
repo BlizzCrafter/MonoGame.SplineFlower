@@ -378,12 +378,12 @@ namespace MonoGame.SplineFlower.Editor
 
         private void FormEditor_Resize(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Maximized) UpdateControls();
+            if (WindowState == FormWindowState.Maximized) MoveSplineToCenterOfScreen();
         }
 
         private void FormEditor_ResizeEnd(object sender, EventArgs e)
         {
-            UpdateControls();
+            MoveSplineToCenterOfScreen();
         }
 
         private void splineControl_MouseUp(object sender, MouseEventArgs e)
@@ -403,7 +403,7 @@ namespace MonoGame.SplineFlower.Editor
             }
         }
 
-        private void UpdateControls()
+        private void MoveSplineToCenterOfScreen()
         {
             splineControl.SplineControl_RecalculateBezierCenter();
             splineControl.MoveSplineToScreenCenter();

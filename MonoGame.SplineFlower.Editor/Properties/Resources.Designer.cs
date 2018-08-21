@@ -123,6 +123,16 @@ namespace MonoGame.SplineFlower.Editor.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _070 {
+            get {
+                object obj = ResourceManager.GetObject("070", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _090 {
             get {
                 object obj = ResourceManager.GetObject("090", resourceCulture);

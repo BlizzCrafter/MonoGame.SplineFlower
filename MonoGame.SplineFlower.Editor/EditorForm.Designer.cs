@@ -28,74 +28,195 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBoxSelectedTrigger = new System.Windows.Forms.ComboBox();
-            this.numericUpDownTriggerRange = new System.Windows.Forms.NumericUpDown();
             this.trackBarMarker = new System.Windows.Forms.TrackBar();
+            this.toolStripToolBar = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonAddCurveLeft = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonAddCurveRight = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonTrackLoop = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonResetSplineWalker = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxWalkerMode = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripComboBoxSelectedTrigger = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonAddEvent = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxEvents = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripNumericUpDownTriggerRange = new MonoGame.SplineFlower.Editor.Controls.ToolStrip.ToolStripNumericUpDown();
             this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
-            this.comboBoxEvents = new System.Windows.Forms.ComboBox();
-            this.buttonAddEvent = new System.Windows.Forms.Button();
-            this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
-            this.buttonResetSplineWalker = new System.Windows.Forms.Button();
-            this.buttonLoop = new System.Windows.Forms.Button();
-            this.buttonAddCurveRight = new System.Windows.Forms.Button();
-            this.buttonAddCurveLeft = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTriggerRange)).BeginInit();
+            this.menuStripMainMenu = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItemDiagnostics = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCenterSpline = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemDrawSpline = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemDrawBaseLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDrawCurves = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDrawDirections = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDrawTrigger = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
+            this.toolStripToolBar.SuspendLayout();
+            this.menuStripMainMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // comboBoxSelectedTrigger
-            // 
-            this.comboBoxSelectedTrigger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSelectedTrigger.DropDownWidth = 400;
-            this.comboBoxSelectedTrigger.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxSelectedTrigger.FormattingEnabled = true;
-            this.comboBoxSelectedTrigger.Items.AddRange(new object[] {
-            "Marker"});
-            this.comboBoxSelectedTrigger.Location = new System.Drawing.Point(12, 12);
-            this.comboBoxSelectedTrigger.MaxDropDownItems = 3;
-            this.comboBoxSelectedTrigger.Name = "comboBoxSelectedTrigger";
-            this.comboBoxSelectedTrigger.Size = new System.Drawing.Size(107, 26);
-            this.comboBoxSelectedTrigger.TabIndex = 11;
-            this.comboBoxSelectedTrigger.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectedTrigger_SelectedIndexChanged);
-            // 
-            // numericUpDownTriggerRange
-            // 
-            this.numericUpDownTriggerRange.Location = new System.Drawing.Point(522, 457);
-            this.numericUpDownTriggerRange.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.numericUpDownTriggerRange.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.numericUpDownTriggerRange.Name = "numericUpDownTriggerRange";
-            this.numericUpDownTriggerRange.Size = new System.Drawing.Size(62, 22);
-            this.numericUpDownTriggerRange.TabIndex = 13;
-            this.numericUpDownTriggerRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDownTriggerRange.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.numericUpDownTriggerRange.ValueChanged += new System.EventHandler(this.numericUpDownTriggerRange_ValueChanged);
             // 
             // trackBarMarker
             // 
-            this.trackBarMarker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBarMarker.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.trackBarMarker.LargeChange = 10;
-            this.trackBarMarker.Location = new System.Drawing.Point(167, 485);
+            this.trackBarMarker.Location = new System.Drawing.Point(0, 497);
             this.trackBarMarker.Maximum = 1000;
             this.trackBarMarker.Name = "trackBarMarker";
-            this.trackBarMarker.Size = new System.Drawing.Size(417, 56);
+            this.trackBarMarker.Size = new System.Drawing.Size(782, 56);
             this.trackBarMarker.TabIndex = 12;
             this.trackBarMarker.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarMarker.Scroll += new System.EventHandler(this.trackBarMarker_Scroll);
             this.trackBarMarker.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trackBarMarker_MouseDown);
             this.trackBarMarker.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBarMarker_MouseUp);
+            // 
+            // toolStripToolBar
+            // 
+            this.toolStripToolBar.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonAddCurveLeft,
+            this.toolStripButtonAddCurveRight,
+            this.toolStripButtonTrackLoop,
+            this.toolStripSeparator1,
+            this.toolStripButtonResetSplineWalker,
+            this.toolStripComboBoxWalkerMode,
+            this.toolStripSeparator2,
+            this.toolStripComboBoxSelectedTrigger,
+            this.toolStripButtonAddEvent,
+            this.toolStripComboBoxEvents,
+            this.toolStripNumericUpDownTriggerRange});
+            this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStripToolBar.Location = new System.Drawing.Point(0, 28);
+            this.toolStripToolBar.Name = "toolStripToolBar";
+            this.toolStripToolBar.Size = new System.Drawing.Size(782, 28);
+            this.toolStripToolBar.Stretch = true;
+            this.toolStripToolBar.TabIndex = 21;
+            this.toolStripToolBar.Text = "Tool Bar";
+            // 
+            // toolStripButtonAddCurveLeft
+            // 
+            this.toolStripButtonAddCurveLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddCurveLeft.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._011;
+            this.toolStripButtonAddCurveLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddCurveLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddCurveLeft.Name = "toolStripButtonAddCurveLeft";
+            this.toolStripButtonAddCurveLeft.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonAddCurveLeft.Text = "Add Curve Left";
+            this.toolStripButtonAddCurveLeft.Click += new System.EventHandler(this.toolStripButtonAddCurveLeft_Click);
+            // 
+            // toolStripButtonAddCurveRight
+            // 
+            this.toolStripButtonAddCurveRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddCurveRight.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._013;
+            this.toolStripButtonAddCurveRight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddCurveRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddCurveRight.Name = "toolStripButtonAddCurveRight";
+            this.toolStripButtonAddCurveRight.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonAddCurveRight.Text = "Add Curve Right";
+            this.toolStripButtonAddCurveRight.Click += new System.EventHandler(this.toolStripButtonAddCurveRight_Click);
+            // 
+            // toolStripButtonTrackLoop
+            // 
+            this.toolStripButtonTrackLoop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonTrackLoop.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._051;
+            this.toolStripButtonTrackLoop.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonTrackLoop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTrackLoop.Name = "toolStripButtonTrackLoop";
+            this.toolStripButtonTrackLoop.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonTrackLoop.Text = "Track Loop";
+            this.toolStripButtonTrackLoop.Click += new System.EventHandler(this.toolStripButtonTrackLoop_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonResetSplineWalker
+            // 
+            this.toolStripButtonResetSplineWalker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonResetSplineWalker.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._029;
+            this.toolStripButtonResetSplineWalker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonResetSplineWalker.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonResetSplineWalker.Name = "toolStripButtonResetSplineWalker";
+            this.toolStripButtonResetSplineWalker.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonResetSplineWalker.Text = "Reset Spline Walker";
+            this.toolStripButtonResetSplineWalker.Click += new System.EventHandler(this.toolStripButtonResetSplineWalker_Click);
+            // 
+            // toolStripComboBoxWalkerMode
+            // 
+            this.toolStripComboBoxWalkerMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxWalkerMode.Items.AddRange(new object[] {
+            "Once",
+            "Loop",
+            "PingPong"});
+            this.toolStripComboBoxWalkerMode.MaxDropDownItems = 3;
+            this.toolStripComboBoxWalkerMode.Name = "toolStripComboBoxWalkerMode";
+            this.toolStripComboBoxWalkerMode.Size = new System.Drawing.Size(121, 28);
+            this.toolStripComboBoxWalkerMode.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxWalkerMode_SelectedIndexChanged);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripComboBoxSelectedTrigger
+            // 
+            this.toolStripComboBoxSelectedTrigger.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripComboBoxSelectedTrigger.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxSelectedTrigger.DropDownWidth = 400;
+            this.toolStripComboBoxSelectedTrigger.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripComboBoxSelectedTrigger.Items.AddRange(new object[] {
+            "Marker"});
+            this.toolStripComboBoxSelectedTrigger.MaxDropDownItems = 3;
+            this.toolStripComboBoxSelectedTrigger.Name = "toolStripComboBoxSelectedTrigger";
+            this.toolStripComboBoxSelectedTrigger.Size = new System.Drawing.Size(200, 28);
+            this.toolStripComboBoxSelectedTrigger.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxSelectedTrigger_SelectedIndexChanged);
+            // 
+            // toolStripButtonAddEvent
+            // 
+            this.toolStripButtonAddEvent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddEvent.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._067;
+            this.toolStripButtonAddEvent.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddEvent.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddEvent.Name = "toolStripButtonAddEvent";
+            this.toolStripButtonAddEvent.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonAddEvent.Text = "Add Event";
+            this.toolStripButtonAddEvent.Click += new System.EventHandler(this.toolStripButtonAddEvent_Click);
+            // 
+            // toolStripComboBoxEvents
+            // 
+            this.toolStripComboBoxEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxEvents.Items.AddRange(new object[] {
+            "Horn",
+            "Brakes",
+            "Counter"});
+            this.toolStripComboBoxEvents.MaxDropDownItems = 3;
+            this.toolStripComboBoxEvents.Name = "toolStripComboBoxEvents";
+            this.toolStripComboBoxEvents.Size = new System.Drawing.Size(121, 28);
+            // 
+            // toolStripNumericUpDownTriggerRange
+            // 
+            this.toolStripNumericUpDownTriggerRange.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripNumericUpDownTriggerRange.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.toolStripNumericUpDownTriggerRange.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.toolStripNumericUpDownTriggerRange.Name = "toolStripNumericUpDownTriggerRange";
+            this.toolStripNumericUpDownTriggerRange.Size = new System.Drawing.Size(52, 25);
+            this.toolStripNumericUpDownTriggerRange.Text = "3";
+            this.toolStripNumericUpDownTriggerRange.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.toolStripNumericUpDownTriggerRange.ValueChanged += new System.EventHandler(this.toolStripNumericUpDownTriggerRange_ValueChanged);
             // 
             // splineControl
             // 
@@ -103,130 +224,132 @@
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.GetAllPoints = null;
-            this.splineControl.Location = new System.Drawing.Point(0, 0);
+            this.splineControl.Location = new System.Drawing.Point(0, 56);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
-            this.splineControl.Size = new System.Drawing.Size(782, 553);
+            this.splineControl.Size = new System.Drawing.Size(782, 441);
             this.splineControl.TabIndex = 0;
             this.splineControl.Text = "Bézier Spline Editor";
             this.splineControl.TryGetTransformFromPosition = null;
             this.splineControl.TryGetTriggerFromPosition = null;
             this.splineControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.splineControl_MouseUp);
             // 
-            // comboBoxEvents
+            // menuStripMainMenu
             // 
-            this.comboBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEvents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEvents.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEvents.FormattingEnabled = true;
-            this.comboBoxEvents.Items.AddRange(new object[] {
-            "Horn",
-            "Brakes",
-            "Counter"});
-            this.comboBoxEvents.Location = new System.Drawing.Point(281, 453);
-            this.comboBoxEvents.MaxDropDownItems = 3;
-            this.comboBoxEvents.Name = "comboBoxEvents";
-            this.comboBoxEvents.Size = new System.Drawing.Size(107, 26);
-            this.comboBoxEvents.TabIndex = 15;
+            this.menuStripMainMenu.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStripMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStripMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemDiagnostics});
+            this.menuStripMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.menuStripMainMenu.Name = "menuStripMainMenu";
+            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 28);
+            this.menuStripMainMenu.TabIndex = 22;
+            this.menuStripMainMenu.Text = "Main Menu";
             // 
-            // buttonAddEvent
+            // toolStripMenuItemDiagnostics
             // 
-            this.buttonAddEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddEvent.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddEvent.Location = new System.Drawing.Point(167, 442);
-            this.buttonAddEvent.Name = "buttonAddEvent";
-            this.buttonAddEvent.Size = new System.Drawing.Size(108, 37);
-            this.buttonAddEvent.TabIndex = 14;
-            this.buttonAddEvent.Text = "Add Event";
-            this.buttonAddEvent.UseVisualStyleBackColor = true;
-            this.buttonAddEvent.Click += new System.EventHandler(this.buttonAddEvent_Click);
+            this.toolStripMenuItemDiagnostics.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemCenterSpline,
+            this.toolStripSeparator3,
+            this.toolStripMenuItemDrawSpline,
+            this.toolStripSeparator4,
+            this.toolStripMenuItemDrawBaseLine,
+            this.toolStripMenuItemDrawCurves,
+            this.toolStripMenuItemDrawDirections,
+            this.toolStripMenuItemDrawTrigger});
+            this.toolStripMenuItemDiagnostics.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._026;
+            this.toolStripMenuItemDiagnostics.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItemDiagnostics.Name = "toolStripMenuItemDiagnostics";
+            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 24);
+            this.toolStripMenuItemDiagnostics.Text = "Diagnostics";
             // 
-            // comboBoxWalkerMode
+            // toolStripMenuItemCenterSpline
             // 
-            this.comboBoxWalkerMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxWalkerMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxWalkerMode.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxWalkerMode.FormattingEnabled = true;
-            this.comboBoxWalkerMode.Items.AddRange(new object[] {
-            "Once",
-            "Loop",
-            "PingPong"});
-            this.comboBoxWalkerMode.Location = new System.Drawing.Point(590, 472);
-            this.comboBoxWalkerMode.MaxDropDownItems = 3;
-            this.comboBoxWalkerMode.Name = "comboBoxWalkerMode";
-            this.comboBoxWalkerMode.Size = new System.Drawing.Size(107, 26);
-            this.comboBoxWalkerMode.TabIndex = 18;
-            this.comboBoxWalkerMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxWalkerMode_SelectedIndexChanged);
+            this.toolStripMenuItemCenterSpline.Name = "toolStripMenuItemCenterSpline";
+            this.toolStripMenuItemCenterSpline.Size = new System.Drawing.Size(202, 26);
+            this.toolStripMenuItemCenterSpline.Text = "Center Spline";
+            this.toolStripMenuItemCenterSpline.Click += new System.EventHandler(this.toolStripMenuItemCenterSpline_Click);
             // 
-            // buttonResetSplineWalker
+            // toolStripSeparator3
             // 
-            this.buttonResetSplineWalker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonResetSplineWalker.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonResetSplineWalker.Location = new System.Drawing.Point(590, 504);
-            this.buttonResetSplineWalker.Name = "buttonResetSplineWalker";
-            this.buttonResetSplineWalker.Size = new System.Drawing.Size(180, 37);
-            this.buttonResetSplineWalker.TabIndex = 17;
-            this.buttonResetSplineWalker.Text = "Reset SplineWalker";
-            this.buttonResetSplineWalker.UseVisualStyleBackColor = true;
-            this.buttonResetSplineWalker.Click += new System.EventHandler(this.buttonResetSplineWalker_Click);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(199, 6);
             // 
-            // buttonLoop
+            // toolStripMenuItemDrawSpline
             // 
-            this.buttonLoop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLoop.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoop.Location = new System.Drawing.Point(703, 461);
-            this.buttonLoop.Name = "buttonLoop";
-            this.buttonLoop.Size = new System.Drawing.Size(67, 37);
-            this.buttonLoop.TabIndex = 16;
-            this.buttonLoop.Text = "Loop";
-            this.buttonLoop.UseVisualStyleBackColor = true;
-            this.buttonLoop.Click += new System.EventHandler(this.buttonLoop_Click);
+            this.toolStripMenuItemDrawSpline.Checked = true;
+            this.toolStripMenuItemDrawSpline.CheckOnClick = true;
+            this.toolStripMenuItemDrawSpline.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItemDrawSpline.Name = "toolStripMenuItemDrawSpline";
+            this.toolStripMenuItemDrawSpline.Size = new System.Drawing.Size(202, 26);
+            this.toolStripMenuItemDrawSpline.Text = "Draw Spline";
+            this.toolStripMenuItemDrawSpline.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawSpline_CheckedChanged);
             // 
-            // buttonAddCurveRight
+            // toolStripSeparator4
             // 
-            this.buttonAddCurveRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddCurveRight.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddCurveRight.Location = new System.Drawing.Point(2, 504);
-            this.buttonAddCurveRight.Name = "buttonAddCurveRight";
-            this.buttonAddCurveRight.Size = new System.Drawing.Size(159, 37);
-            this.buttonAddCurveRight.TabIndex = 20;
-            this.buttonAddCurveRight.Text = "Add Curve Right";
-            this.buttonAddCurveRight.UseVisualStyleBackColor = true;
-            this.buttonAddCurveRight.Click += new System.EventHandler(this.buttonAddCurveRight_Click);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
             // 
-            // buttonAddCurveLeft
+            // toolStripMenuItemDrawBaseLine
             // 
-            this.buttonAddCurveLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddCurveLeft.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddCurveLeft.Location = new System.Drawing.Point(2, 461);
-            this.buttonAddCurveLeft.Name = "buttonAddCurveLeft";
-            this.buttonAddCurveLeft.Size = new System.Drawing.Size(159, 37);
-            this.buttonAddCurveLeft.TabIndex = 19;
-            this.buttonAddCurveLeft.Text = "Add Curve Left";
-            this.buttonAddCurveLeft.UseVisualStyleBackColor = true;
-            this.buttonAddCurveLeft.Click += new System.EventHandler(this.buttonAddCurveLeft_Click);
+            this.toolStripMenuItemDrawBaseLine.Checked = true;
+            this.toolStripMenuItemDrawBaseLine.CheckOnClick = true;
+            this.toolStripMenuItemDrawBaseLine.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItemDrawBaseLine.Name = "toolStripMenuItemDrawBaseLine";
+            this.toolStripMenuItemDrawBaseLine.Size = new System.Drawing.Size(202, 26);
+            this.toolStripMenuItemDrawBaseLine.Text = "Draw Base Line";
+            this.toolStripMenuItemDrawBaseLine.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawBaseLine_CheckedChanged);
+            // 
+            // toolStripMenuItemDrawCurves
+            // 
+            this.toolStripMenuItemDrawCurves.Checked = true;
+            this.toolStripMenuItemDrawCurves.CheckOnClick = true;
+            this.toolStripMenuItemDrawCurves.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItemDrawCurves.Name = "toolStripMenuItemDrawCurves";
+            this.toolStripMenuItemDrawCurves.Size = new System.Drawing.Size(202, 26);
+            this.toolStripMenuItemDrawCurves.Text = "Draw Curves";
+            this.toolStripMenuItemDrawCurves.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawCurves_CheckedChanged);
+            // 
+            // toolStripMenuItemDrawDirections
+            // 
+            this.toolStripMenuItemDrawDirections.Checked = true;
+            this.toolStripMenuItemDrawDirections.CheckOnClick = true;
+            this.toolStripMenuItemDrawDirections.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItemDrawDirections.Name = "toolStripMenuItemDrawDirections";
+            this.toolStripMenuItemDrawDirections.Size = new System.Drawing.Size(202, 26);
+            this.toolStripMenuItemDrawDirections.Text = "Draw Directions";
+            this.toolStripMenuItemDrawDirections.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawDirections_CheckedChanged);
+            // 
+            // toolStripMenuItemDrawTrigger
+            // 
+            this.toolStripMenuItemDrawTrigger.Checked = true;
+            this.toolStripMenuItemDrawTrigger.CheckOnClick = true;
+            this.toolStripMenuItemDrawTrigger.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItemDrawTrigger.Name = "toolStripMenuItemDrawTrigger";
+            this.toolStripMenuItemDrawTrigger.Size = new System.Drawing.Size(202, 26);
+            this.toolStripMenuItemDrawTrigger.Text = "Draw Trigger";
+            this.toolStripMenuItemDrawTrigger.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawTrigger_CheckedChanged);
             // 
             // FormEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(782, 553);
-            this.Controls.Add(this.buttonAddCurveRight);
-            this.Controls.Add(this.buttonAddCurveLeft);
-            this.Controls.Add(this.comboBoxWalkerMode);
-            this.Controls.Add(this.buttonResetSplineWalker);
-            this.Controls.Add(this.buttonLoop);
-            this.Controls.Add(this.comboBoxEvents);
-            this.Controls.Add(this.buttonAddEvent);
-            this.Controls.Add(this.numericUpDownTriggerRange);
-            this.Controls.Add(this.trackBarMarker);
-            this.Controls.Add(this.comboBoxSelectedTrigger);
             this.Controls.Add(this.splineControl);
+            this.Controls.Add(this.trackBarMarker);
+            this.Controls.Add(this.toolStripToolBar);
+            this.Controls.Add(this.menuStripMainMenu);
+            this.MainMenuStrip = this.menuStripMainMenu;
             this.Name = "FormEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MonoGame.SplineFlower.Editor";
             this.Load += new System.EventHandler(this.FormEditor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTriggerRange)).EndInit();
+            this.ResizeEnd += new System.EventHandler(this.FormEditor_ResizeEnd);
+            this.Resize += new System.EventHandler(this.FormEditor_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).EndInit();
+            this.toolStripToolBar.ResumeLayout(false);
+            this.toolStripToolBar.PerformLayout();
+            this.menuStripMainMenu.ResumeLayout(false);
+            this.menuStripMainMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,16 +358,29 @@
         #endregion
 
         private Samples.Controls.SplineControl splineControl;
-        private System.Windows.Forms.ComboBox comboBoxSelectedTrigger;
-        private System.Windows.Forms.NumericUpDown numericUpDownTriggerRange;
         private System.Windows.Forms.TrackBar trackBarMarker;
-        private System.Windows.Forms.ComboBox comboBoxEvents;
-        private System.Windows.Forms.Button buttonAddEvent;
-        private System.Windows.Forms.ComboBox comboBoxWalkerMode;
-        private System.Windows.Forms.Button buttonResetSplineWalker;
-        private System.Windows.Forms.Button buttonLoop;
-        private System.Windows.Forms.Button buttonAddCurveRight;
-        private System.Windows.Forms.Button buttonAddCurveLeft;
+        private System.Windows.Forms.ToolStrip toolStripToolBar;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAddCurveLeft;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAddCurveRight;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonResetSplineWalker;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTrackLoop;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxWalkerMode;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxSelectedTrigger;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAddEvent;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxEvents;
+        private Controls.ToolStrip.ToolStripNumericUpDown toolStripNumericUpDownTriggerRange;
+        private System.Windows.Forms.MenuStrip menuStripMainMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDiagnostics;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCenterSpline;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDrawBaseLine;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDrawCurves;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDrawDirections;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDrawSpline;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDrawTrigger;
     }
 }
 

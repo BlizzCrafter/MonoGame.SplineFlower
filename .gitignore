@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Shared/Icons CommercialFree/Thumbs.db
+/Shared/Icons CommercialFree/Bonus/PNG/Thumbs.db
+/Shared/Icons CommercialFree/Basic/PNG/Thumbs.db
+/Shared/Icons CommercialFree/Basic/BMP/Thumbs.db

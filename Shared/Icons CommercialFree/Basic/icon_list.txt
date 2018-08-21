@@ -1,0 +1,141 @@
+Approximate (facultative) name of icon:
+
+001.	add
+002.	attention / warning
+003.	access denied
+004.	remove
+005.	write / edit
+006.	checked
+007.	remove 2
+008.	address book
+009.	arrow down
+010.	arrow left up
+011.	arrow left
+012.	arrow right up
+013.	arrow right
+014.	arrow up
+015.	bomb
+016.	bug
+017.	calculator
+018.	calendar
+019.	shopping cart full
+020.	shopping cart
+021.	case
+022.	cd
+023.	comment
+024.	clean traces
+025.	clean
+026.	clipboard
+027.	time / date
+028.	money / coins
+029.	player 1
+030.	player 2
+031.	player 3
+032.	player 4
+033.	player 5
+034.	player 6
+035.	player 7
+036.	player 8
+037.	cut / scissors
+038.	database
+039.	save / diskette
+040.	erase
+041.	file
+042.	files
+043.	filter full
+044.	filter
+045.	medical aid
+046.	blue flag
+047.	green flag
+048.	red flag
+049.	yellow flag
+050.	folder
+051.	globe refresh
+052.	globe
+053.	hand / choose
+054.	hand / grab
+055.	hand / share
+056.	network / sharing
+057.    hd / hard disk
+058.	music / headphones
+059.	heart / favorites
+060.	help / support
+061.	home
+062.	information
+063.	key
+064.	keys
+065.	lamp off
+066.	lamp on
+067.	lightning
+068.	unlock
+069.	lock
+070.	magnet
+071.	postcard
+072.	open mail
+073.	opened mail
+074.	mail with files
+075.	receive mail
+076.	refresh mail
+077.	forward mail
+078.	send mail
+079.	mail
+080.	sitemap
+081.	blue marker
+082.	green marker
+083.	red marker
+084.	yellow marker
+085.	megaphone
+086.	radio / microphone
+087.	monitor off
+088.	monitor on
+089.	radioactive
+090.	options
+091.	blue orb
+092.    green orb
+093.	red orb
+094.	yellow orb
+095.	edit
+096.	phone / fax
+097.	photocamera
+098.	image / picture
+099.	electricity / power
+100.	print
+101.	blue module
+102.	green module
+103.	red module
+104.	yellow module
+105.	faq / question
+106.	scan
+107.	refresh 1
+108.	refresh 2
+109.	medal / guarantee
+110.	tag
+111.	zoom in
+112.	zoom out
+113.	search
+114.	blue shield
+115.	green shield
+116.	red shield
+117.	yellow shield
+118.	blue softbox
+119.	green softbox
+120.	red softbox
+121.	yellow softbox
+122.	star / rating
+123.	graphic
+124.	diagramm
+125.	tool / edit
+126.	recycled bin full
+127.	recycled bin
+128.	tv off
+129.	tv on
+130.	blue user
+131.	green user
+132.	red user
+133.	yellow user
+134.	girl
+135.	worker
+136.	users
+137.	profile
+138.	application
+139.	magic tool / wizard

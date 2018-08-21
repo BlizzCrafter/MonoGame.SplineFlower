@@ -89,20 +89,23 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Draw();
 
-            Editor.BeginAntialising();
+            if (Editor != null)
+            {
+                Editor.BeginAntialising();
 
-            Editor.spriteBatch.Begin();
+                Editor.spriteBatch.Begin();
 
-            if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
-            if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
-            if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
+                if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
+                if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
 
-            Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker._Progress.ToString(), new Vector2(10, 50), Color.White);
-            Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker._Progress.ToString(), new Vector2(10, 70), Color.White);
+                Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker._Progress.ToString(), new Vector2(10, 50), Color.White);
+                Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker._Progress.ToString(), new Vector2(10, 70), Color.White);
 
-            Editor.spriteBatch.End();
+                Editor.spriteBatch.End();
 
-            Editor.EndAntialising();
+                Editor.EndAntialising();
+            }
         }
     }
 }

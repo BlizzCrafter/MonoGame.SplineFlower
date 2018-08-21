@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MonoGame.SplineFlower.Editor
@@ -19,9 +12,9 @@ namespace MonoGame.SplineFlower.Editor
 
         private void FormEditor_Load(object sender, EventArgs e)
         {
-            comboBoxWalkerMode.SelectedIndex = 0;
-            comboBoxEvents.SelectedIndex = 0;
-            comboBoxSelectedTrigger.SelectedIndex = 0;
+            toolStripComboBoxEvents.SelectedIndex = 0;
+            toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
+            toolStripComboBoxWalkerMode.SelectedIndex = 0;
         }
 
         private void splineControl_MouseUp(object sender, MouseEventArgs e)
@@ -31,7 +24,7 @@ namespace MonoGame.SplineFlower.Editor
                 if (splineControl.MySplineMarker != null && splineControl.MySplineMarker.Initialized)
                 {
                     splineControl.MySplineMarker.SelectedTrigger = splineControl.SelectedTrigger.ID.ToString();
-                    comboBoxSelectedTrigger.SelectedItem = GetSelectedTriggerString(
+                    toolStripComboBoxSelectedTrigger.SelectedItem = GetSelectedTriggerString(
                         splineControl.SelectedTrigger.Name,
                         splineControl.SelectedTrigger.ID.ToString());
                 }
@@ -43,7 +36,7 @@ namespace MonoGame.SplineFlower.Editor
         private void UpdateTriggerInterface(Trigger trigger)
         {
             trackBarMarker.Value = (int)(trigger.Progress * Setup.SplineMarkerResolution);
-            numericUpDownTriggerRange.Value = (int)(trigger.TriggerDistance * Setup.SplineMarkerResolution);
+            toolStripNumericUpDownTriggerRange.Value = (int)(trigger.TriggerDistance * Setup.SplineMarkerResolution);
         }
         private string GetSelectedTriggerString(string itemName, string itemID)
         {
@@ -57,7 +50,7 @@ namespace MonoGame.SplineFlower.Editor
                 if (!splineControl.MySplineMarker.MarkerSelected)
                 {
                     Trigger trigger = splineControl.MySplineMarker.GetTrigger();
-                    trigger.TriggerDistance = (int)numericUpDownTriggerRange.Value;
+                    trigger.TriggerDistance = (int)toolStripNumericUpDownTriggerRange.Value;
                 }
             }
         }
@@ -98,52 +91,48 @@ namespace MonoGame.SplineFlower.Editor
         private void buttonAddEvent_Click(object sender, EventArgs e)
         {
             Guid triggerID = splineControl.MySplineWalker.AddTrigger(
-                comboBoxEvents.SelectedItem.ToString(),
+                toolStripComboBoxEvents.SelectedItem.ToString(),
                 GetSplinePosition(),
-                (int)numericUpDownTriggerRange.Value);
+                (int)toolStripNumericUpDownTriggerRange.Value);
 
-            comboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(comboBoxEvents.SelectedItem.ToString(), triggerID.ToString()));
+            toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(toolStripComboBoxEvents.SelectedItem.ToString(), triggerID.ToString()));
         }
 
-        private void comboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (splineControl.MySplineWalker != null &&
-                splineControl.MySplineWalker.Initialized)
-            {
-                splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
-            }
-        }
-
-        private void buttonLoop_Click(object sender, EventArgs e)
-        {
-            splineControl.MySpline.Loop = true;
-            buttonLoop.Enabled = false;
-        }
-
-        private void buttonResetSplineWalker_Click(object sender, EventArgs e)
-        {
-            splineControl.MySplineWalker.Reset();
-        }
-
-        private void buttonAddCurveLeft_Click(object sender, EventArgs e)
+        private void toolStripButtonAddCurveLeft_Click(object sender, EventArgs e)
         {
             splineControl.MySpline.AddCurveLeft();
         }
 
-        private void buttonAddCurveRight_Click(object sender, EventArgs e)
+        private void toolStripButtonAddCurveRight_Click(object sender, EventArgs e)
         {
             splineControl.MySpline.AddCurveRight();
         }
 
-        private void comboBoxSelectedTrigger_SelectedIndexChanged(object sender, EventArgs e)
+        private void toolStripButtonResetSplineWalker_Click(object sender, EventArgs e)
+        {
+            splineControl.MySplineWalker.Reset();
+        }
+
+        private void toolStripButtonTrackLoop_Click(object sender, EventArgs e)
+        {
+            splineControl.MySpline.Loop = true;
+            toolStripButtonTrackLoop.Enabled = false;
+        }
+
+        private void toolStripComboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)toolStripComboBoxWalkerMode.SelectedIndex;
+        }
+
+        private void toolStripComboBoxSelectedTrigger_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (splineControl != null && splineControl.MySplineMarker != null)
             {
-                if (comboBoxSelectedTrigger.SelectedItem.ToString() != "Marker")
+                if (toolStripComboBoxSelectedTrigger.SelectedItem.ToString() != "Marker")
                 {
                     splineControl.MySplineMarker.MarkerSelected = false;
 
-                    string[] splitted = comboBoxSelectedTrigger.SelectedItem.ToString().Split('_');
+                    string[] splitted = toolStripComboBoxSelectedTrigger.SelectedItem.ToString().Split('_');
                     splineControl.MySplineMarker.SelectedTrigger = splitted[1];
                     UpdateTriggerInterface(splineControl.MySplineWalker.GetTrigger(splitted[1]));
                 }
@@ -151,6 +140,74 @@ namespace MonoGame.SplineFlower.Editor
 
                 splineControl.MySplineMarker.SetPosition(GetSplinePosition());
             }
+        }
+
+        private void toolStripButtonAddEvent_Click(object sender, EventArgs e)
+        {
+            Guid triggerID = splineControl.MySplineWalker.AddTrigger(
+                toolStripComboBoxEvents.SelectedItem.ToString(),
+                GetSplinePosition(),
+                (int)toolStripNumericUpDownTriggerRange.Value);
+
+            toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(toolStripComboBoxEvents.SelectedItem.ToString(), triggerID.ToString()));
+        }
+
+        private void toolStripNumericUpDownTriggerRange_ValueChanged(object sender, EventArgs e)
+        {
+            if (splineControl != null && splineControl.MySplineMarker != null)
+            {
+                if (!splineControl.MySplineMarker.MarkerSelected)
+                {
+                    Trigger trigger = splineControl.MySplineMarker.GetTrigger();
+                    trigger.TriggerDistance = (int)toolStripNumericUpDownTriggerRange.Value;
+                }
+            }
+        }
+
+        private void FormEditor_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized) UpdateControls();
+        }
+
+        private void FormEditor_ResizeEnd(object sender, EventArgs e)
+        {
+            UpdateControls();
+        }
+
+        private void UpdateControls()
+        {
+            splineControl.SplineControl_RecalculateBezierCenter();
+            splineControl.MoveSplineToScreenCenter();
+        }
+
+        private void toolStripMenuItemCenterSpline_Click(object sender, EventArgs e)
+        {
+            splineControl.MoveSplineToScreenCenter();
+        }
+
+        private void toolStripMenuItemDrawSpline_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowBezierSpline = toolStripMenuItemDrawSpline.Checked;
+        }
+
+        private void toolStripMenuItemDrawBaseLine_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowBaseLine = toolStripMenuItemDrawBaseLine.Checked;
+        }
+
+        private void toolStripMenuItemDrawCurves_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowCurves = toolStripMenuItemDrawCurves.Checked;
+        }
+
+        private void toolStripMenuItemDrawDirections_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowDirectionVectors = toolStripMenuItemDrawDirections.Checked;
+        }
+
+        private void toolStripMenuItemDrawTrigger_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowTriggers = toolStripMenuItemDrawTrigger.Checked;
         }
     }
 }

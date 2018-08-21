@@ -97,7 +97,7 @@
             this.lineControl.SelectedTrigger = null;
             this.lineControl.Size = new System.Drawing.Size(768, 690);
             this.lineControl.TabIndex = 0;
-            this.lineControl.Text = "Simple Line Sample";
+            this.lineControl.Text = "Simple Line";
             this.lineControl.TryGetTransformFromPosition = null;
             this.lineControl.TryGetTriggerFromPosition = null;
             // 
@@ -123,7 +123,7 @@
             this.curveControlQuadratic.SelectedTrigger = null;
             this.curveControlQuadratic.Size = new System.Drawing.Size(768, 690);
             this.curveControlQuadratic.TabIndex = 0;
-            this.curveControlQuadratic.Text = "Quadratic Beziér Sample";
+            this.curveControlQuadratic.Text = "Quadratic Bézier Curve";
             this.curveControlQuadratic.TryGetTransformFromPosition = null;
             this.curveControlQuadratic.TryGetTriggerFromPosition = null;
             // 
@@ -144,13 +144,12 @@
             this.curveControlCubic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curveControlCubic.ForeColor = System.Drawing.Color.PaleVioletRed;
             this.curveControlCubic.GetAllPoints = null;
-            this.curveControlCubic.GetBezierType = MonoGame.SplineFlower.Samples.Controls.CurveControl.BezierType.Cubic;
             this.curveControlCubic.Location = new System.Drawing.Point(0, 0);
             this.curveControlCubic.Name = "curveControlCubic";
             this.curveControlCubic.SelectedTrigger = null;
             this.curveControlCubic.Size = new System.Drawing.Size(774, 696);
             this.curveControlCubic.TabIndex = 0;
-            this.curveControlCubic.Text = "Cubic Beziér Sample";
+            this.curveControlCubic.Text = "Cubic Bézier Curve";
             this.curveControlCubic.TryGetTransformFromPosition = null;
             this.curveControlCubic.TryGetTriggerFromPosition = null;
             // 
@@ -332,8 +331,8 @@
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
             this.splineControl.Size = new System.Drawing.Size(774, 696);
-            this.splineControl.TabIndex = 6;
-            this.splineControl.Text = "Beziér Spline Sample";
+            this.splineControl.TabIndex = 12;
+            this.splineControl.Text = "Bézier Spline";
             this.splineControl.TryGetTransformFromPosition = null;
             this.splineControl.TryGetTriggerFromPosition = null;
             this.splineControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.splineControl_MouseUp);
@@ -403,10 +402,6 @@
         private System.Windows.Forms.Button buttonLoop;
         private System.Windows.Forms.Button buttonResetSplineWalker;
         private System.Windows.Forms.ComboBox comboBoxWalkerMode;
-        private Controls.LineControl lineControl;
-        private Controls.CurveControl curveControlQuadratic;
-        private Controls.CurveControl curveControlCubic;
-        private Controls.SplineControl splineControl;
         private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDiagnostics;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCenterPoints;
@@ -415,6 +410,10 @@
         private System.Windows.Forms.ComboBox comboBoxEvents;
         private System.Windows.Forms.ComboBox comboBoxSelectedTrigger;
         private System.Windows.Forms.NumericUpDown numericUpDownTriggerRange;
+        private Controls.LineControl lineControl;
+        private Controls.CurveControl curveControlQuadratic;
+        private Controls.CurveControl curveControlCubic;
+        private Controls.SplineControl splineControl;
     }
 }
 

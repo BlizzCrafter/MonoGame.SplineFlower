@@ -40,7 +40,7 @@ namespace MonoGame.SplineFlower.Samples
 
         private void comboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (splineControl.MySplineWalker != null && 
+            if (splineControl.MySplineWalker != null &&
                 splineControl.MySplineWalker.Initialized)
             {
                 splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
@@ -91,8 +91,8 @@ namespace MonoGame.SplineFlower.Samples
         private void buttonAddEvent_Click(object sender, EventArgs e)
         {
             Guid triggerID = splineControl.MySplineWalker.AddTrigger(
-                comboBoxEvents.SelectedItem.ToString(), 
-                GetSplinePosition(), 
+                comboBoxEvents.SelectedItem.ToString(),
+                GetSplinePosition(),
                 (int)numericUpDownTriggerRange.Value);
 
             comboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(comboBoxEvents.SelectedItem.ToString(), triggerID.ToString()));

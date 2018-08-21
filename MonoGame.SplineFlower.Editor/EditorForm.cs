@@ -346,6 +346,11 @@ namespace MonoGame.SplineFlower.Editor
             toolStripComboBoxWalkerMode.SelectedIndex = 0;
         }
 
+        private void toolStripMenuItemExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void FormEditor_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized) UpdateControls();

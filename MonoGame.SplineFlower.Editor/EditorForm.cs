@@ -355,7 +355,7 @@ namespace MonoGame.SplineFlower.Editor
                 UpdateTriggerInterface(splineControl.SelectedTrigger);
                 splineControl.SelectedTrigger = null;
             }
-        }        
+        }
 
         private void UpdateControls()
         {

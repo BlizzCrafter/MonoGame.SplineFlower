@@ -7,6 +7,8 @@ namespace MonoGame.SplineFlower.Samples
 {
     public class Car : SplineWalker
     {
+        public static bool ShowCar { get; set; } = true;
+
         public bool Stop { get; set; }
 
         private Texture2D _Car;
@@ -75,15 +77,18 @@ namespace MonoGame.SplineFlower.Samples
         {
             base.Draw(spriteBatch);
 
-            spriteBatch.Draw(_Car,
-                             Position,
-                             null,
-                             Color.White,
-                             Rotation,
-                             new Vector2(_Car.Width / 2, _Car.Height / 2),
-                             0.1f,
-                             SpriteEffects.None,
-                             0f);
+            if (ShowCar)
+            {
+                spriteBatch.Draw(_Car,
+                                 Position,
+                                 null,
+                                 Color.White,
+                                 Rotation,
+                                 new Vector2(_Car.Width / 2, _Car.Height / 2),
+                                 0.1f,
+                                 SpriteEffects.None,
+                                 0f);
+            }
 
             foreach (Trigger trigger in GetTriggers("Counter"))
             {

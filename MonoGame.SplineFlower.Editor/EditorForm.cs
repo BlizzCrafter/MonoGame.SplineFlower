@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonoGame.SplineFlower.Samples;
+using System;
 using System.Windows.Forms;
 
 namespace MonoGame.SplineFlower.Editor
@@ -208,6 +209,21 @@ namespace MonoGame.SplineFlower.Editor
         private void toolStripMenuItemDrawTrigger_CheckedChanged(object sender, EventArgs e)
         {
             Setup.ShowTriggers = toolStripMenuItemDrawTrigger.Checked;
+        }
+
+        private void toolStripMenuItemDrawSplineWalker_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowSplineWalker = toolStripMenuItemDrawSplineWalker.Checked;
+        }
+
+        private void toolStripMenuItemDrawMarker_Click(object sender, EventArgs e)
+        {
+            Marker.ShowSplineMarker = toolStripMenuItemDrawMarker.Checked;
+        }
+
+        private void toolStripMenuItemDrawCar_CheckedChanged(object sender, EventArgs e)
+        {
+            Car.ShowCar = toolStripMenuItemDrawCar.Checked;
         }
     }
 }

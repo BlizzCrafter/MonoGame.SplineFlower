@@ -173,14 +173,17 @@ namespace MonoGame.SplineFlower
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Setup.Pixel,
-                             _Size,
-                             null,
-                             Color.White,
-                             Rotation,
-                             new Vector2(0.5f),
-                             SpriteEffects.None,
-                             0f);
+            if (Setup.ShowBezierSpline && Setup.ShowSplineWalker)
+            {
+                spriteBatch.Draw(Setup.Pixel,
+                                 _Size,
+                                 null,
+                                 Color.White,
+                                 Rotation,
+                                 new Vector2(0.5f),
+                                 SpriteEffects.None,
+                                 0f);
+            }
         }
     }
 }

@@ -6,6 +6,8 @@ namespace MonoGame.SplineFlower.Samples
 {
     public class Marker : SplineWalker
     {
+        public static bool ShowSplineMarker { get; set; } = true;
+
         public string SelectedTrigger { get; set; }
         public bool MarkerSelected { get; set; } = true;
 
@@ -40,15 +42,18 @@ namespace MonoGame.SplineFlower.Samples
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_Arrow,
-                             Position,
-                             null,
-                             Setup.TriggerEventColor,
-                             Rotation,
-                             new Vector2(_Arrow.Width / 2, _Arrow.Height / 2),
-                             Setup.TriggerEventThickness,
-                             SpriteEffects.None,
-                             0f);
+            if (Setup.ShowBezierSpline && ShowSplineMarker)
+            {
+                spriteBatch.Draw(_Arrow,
+                                 Position,
+                                 null,
+                                 Setup.TriggerEventColor,
+                                 Rotation,
+                                 new Vector2(_Arrow.Width / 2, _Arrow.Height / 2),
+                                 Setup.TriggerEventThickness,
+                                 SpriteEffects.None,
+                                 0f);
+            }
         }
     }
 }

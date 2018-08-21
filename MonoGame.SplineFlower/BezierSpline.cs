@@ -479,13 +479,15 @@ namespace MonoGame.SplineFlower
                 new Transform(new Vector2(0, 250)),
                 new Transform(new Vector2(250, 250))
             };
-
+            
             CalculateBezierCenter(_Points);
 
             _Modes = new BezierControlPointMode[] {
                 BezierControlPointMode.Free,
                 BezierControlPointMode.Free
             };
+
+            _Trigger = new List<Trigger>();
         }
 
         public void LoadJsonBezierSplineData(Transform[] points, BezierControlPointMode[] modes, Trigger[] trigger, out Trigger[] loadedTrigger)

@@ -58,7 +58,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                         TranslatePointFirstClick = e.Location;
                         TranslatePointClick = true;
                     }
-                    else SelectedTrigger = TryGetTriggerFromPosition(new Vector2(e.X, e.Y));
+                    else if(TryGetTriggerFromPosition != null) SelectedTrigger = TryGetTriggerFromPosition(new Vector2(e.X, e.Y));
                 }
                 else if (e.Button == MouseButtons.Middle)
                 {

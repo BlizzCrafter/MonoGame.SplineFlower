@@ -268,6 +268,8 @@ namespace MonoGame.SplineFlower.Editor
                 LoadJsonPointData(),
                 LoadJsonPointModeData(),
                 LoadJsonTriggerData());
+
+            splineControl.MySplineWalker.Reset();
         }
         private Transform[] LoadJsonPointData()
         {

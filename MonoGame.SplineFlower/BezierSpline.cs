@@ -488,7 +488,7 @@ namespace MonoGame.SplineFlower
             };
         }
 
-        public void LoadJsonBezierSplineData(Transform[] points, BezierControlPointMode[] modes, Trigger[] trigger)
+        public void LoadJsonBezierSplineData(Transform[] points, BezierControlPointMode[] modes, Trigger[] trigger, out Trigger[] loadedTrigger)
         {
             _Points = null;
             Array.Resize(ref _Points, points.Length);
@@ -504,6 +504,7 @@ namespace MonoGame.SplineFlower
             {
                 AddTrigger(trigger[i].Name, trigger[i].Progress, trigger[i].TriggerRange * Setup.SplineMarkerResolution, trigger[i].ID.ToString());
             }
+            loadedTrigger = _Trigger.ToArray();
         }
     }
 }

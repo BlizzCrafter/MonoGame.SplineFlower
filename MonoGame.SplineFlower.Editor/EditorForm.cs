@@ -206,6 +206,7 @@ namespace MonoGame.SplineFlower.Editor
         private void toolStripMenuItemExportJson_Click(object sender, EventArgs e)
         {
             GetJsonHandling.GetBezierSplineData.SplineMarkerResolution = Setup.SplineMarkerResolution;
+            GetJsonHandling.GetBezierSplineData.Loop = splineControl.MySpline.Loop;
 
             CreateJsonReadyPointData();
             CreateJsonReadyPointModeData();
@@ -264,10 +265,23 @@ namespace MonoGame.SplineFlower.Editor
 
             Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
 
+            Trigger[] loadedTrigger;
             splineControl.MySpline.LoadJsonBezierSplineData(
                 LoadJsonPointData(),
                 LoadJsonPointModeData(),
-                LoadJsonTriggerData());
+                LoadJsonTriggerData(),
+                out loadedTrigger);
+
+            splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
+            toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
+
+            toolStripComboBoxSelectedTrigger.Items.Clear();
+            toolStripComboBoxSelectedTrigger.Items.Add("Marker");
+            foreach (Trigger trigger in loadedTrigger)
+            {
+                toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(trigger.Name, trigger.ID.ToString()));
+            }
+            toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
 
             splineControl.MySplineWalker.Reset();
         }

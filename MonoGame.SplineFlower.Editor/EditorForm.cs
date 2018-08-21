@@ -1,4 +1,5 @@
-﻿using MonoGame.SplineFlower.Samples;
+﻿using Microsoft.Xna.Framework;
+using MonoGame.SplineFlower.Samples;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -330,6 +331,35 @@ namespace MonoGame.SplineFlower.Editor
 
         #endregion
 
+        #region File Menu
+
+        // New BezierSpline
+        private void toolStripMenuItemNew_Click(object sender, EventArgs e)
+        {
+            // Reset the BezierSpline (which creates a new one).
+            splineControl.MySpline.Reset();
+
+            // Adding a small value to refresh the point positions.
+            splineControl.MySpline.GetAllPoints()[0].Translate(Vector2.One);
+
+            // Recalculating the new BezierCenter.
+            splineControl.SplineControl_RecalculateBezierCenter();
+
+            // Revert the translation.
+            splineControl.MySpline.GetAllPoints()[0].Translate(-Vector2.One);
+
+            // Move the BezierSpline to the center of the screen.
+            splineControl.MoveSplineToScreenCenter();
+        }
+
+        // Close Application
+        private void toolStripMenuItemExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
         public FormEditor()
         {
             InitializeComponent();
@@ -344,11 +374,6 @@ namespace MonoGame.SplineFlower.Editor
             toolStripComboBoxEvents.SelectedIndex = 0;
             toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
             toolStripComboBoxWalkerMode.SelectedIndex = 0;
-        }
-
-        private void toolStripMenuItemExit_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void FormEditor_Resize(object sender, EventArgs e)

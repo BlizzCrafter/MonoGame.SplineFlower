@@ -7,6 +7,7 @@ namespace MonoGame.SplineFlower.Editor
         public class BezierSplineData
         {
             public float SplineMarkerResolution;
+            public bool Loop;
 
             public TransformDummy[] PointData;
             public BezierControlPointModeDummy[] PointModeData;

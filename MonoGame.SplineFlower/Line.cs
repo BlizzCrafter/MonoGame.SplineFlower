@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     public class Line : PointBase
     {

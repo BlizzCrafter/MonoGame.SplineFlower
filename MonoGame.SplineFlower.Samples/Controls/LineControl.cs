@@ -1,4 +1,4 @@
-﻿namespace SplineSharp.Samples.Controls
+﻿namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class LineControl : TransformControl
     {

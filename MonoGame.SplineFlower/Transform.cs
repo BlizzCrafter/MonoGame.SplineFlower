@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     public class Transform : IComparable<Transform>
     {

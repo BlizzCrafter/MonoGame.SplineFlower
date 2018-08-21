@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     internal static class Bezier
     {

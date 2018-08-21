@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("SplineSharp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MonoGame.SplineFlower.Samples")]
+[assembly: AssemblyDescription("Testing the MonoGame.SplineFlower PCL")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SplineSharp")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCompany("Marcel 'sqrMin1' Härtel")]
+[assembly: AssemblyProduct("MonoGame.SplineFlower.Samples")]
+[assembly: AssemblyCopyright("Copyright © 2018 Marcel 'sqrMin1' Härtel")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("a80b8857-995d-48e0-aaff-e425588e756d")]
+[assembly: Guid("2f41ce9a-c6ba-4041-9113-91ca097fc1e8")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //

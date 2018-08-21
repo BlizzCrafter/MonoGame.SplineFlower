@@ -7,8 +7,8 @@
     <ProjectGuid>{2F41CE9A-C6BA-4041-9113-91CA097FC1E8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SplineSharp.Samples</RootNamespace>
-    <AssemblyName>SplineSharp.Samples</AssemblyName>
+    <RootNamespace>MonoGame.SplineFlower.Samples</RootNamespace>
+    <AssemblyName>MonoGame.SplineFlower.Samples</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -94,6 +94,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Content\arrow.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -125,9 +126,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SplineSharp\SplineSharp.csproj">
+    <ProjectReference Include="..\MonoGame.SplineFlower\MonoGame.SplineFlower.csproj">
       <Project>{a80b8857-995d-48e0-aaff-e425588e756d}</Project>
-      <Name>SplineSharp</Name>
+      <Name>MonoGame.SplineFlower</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

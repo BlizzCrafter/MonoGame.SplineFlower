@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MonoGame.SplineFlower.Samples;
+using System;
 using System.Windows.Forms;
 
-namespace SplineSharp.Samples
+namespace MonoGame.SplineFlower.Samples
 {
     static class Program
     {

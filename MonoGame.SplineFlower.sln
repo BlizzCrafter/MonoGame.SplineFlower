@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplineSharp", "SplineSharp\SplineSharp.csproj", "{A80B8857-995D-48E0-AAFF-E425588E756D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower", "MonoGame.SplineFlower\MonoGame.SplineFlower.csproj", "{A80B8857-995D-48E0-AAFF-E425588E756D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplineSharp.Samples", "SplineSharp.Samples\SplineSharp.Samples.csproj", "{2F41CE9A-C6BA-4041-9113-91CA097FC1E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Samples", "MonoGame.SplineFlower.Samples\MonoGame.SplineFlower.Samples.csproj", "{2F41CE9A-C6BA-4041-9113-91CA097FC1E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

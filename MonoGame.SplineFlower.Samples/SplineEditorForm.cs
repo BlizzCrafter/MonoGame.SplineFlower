@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SplineSharp.Samples
+namespace MonoGame.SplineFlower.Samples
 {
     public partial class SplineEditorForm : Form
     {

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     public class BezierCurve : PointBase
     {

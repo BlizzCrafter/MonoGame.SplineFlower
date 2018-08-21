@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     public static class Setup
     {

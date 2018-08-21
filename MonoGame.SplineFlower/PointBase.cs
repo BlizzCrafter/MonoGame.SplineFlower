@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     public abstract class PointBase
     {

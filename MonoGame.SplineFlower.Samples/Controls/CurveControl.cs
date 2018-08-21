@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.ComponentModel;
 
-namespace SplineSharp.Samples.Controls
+namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class CurveControl : TransformControl
     {

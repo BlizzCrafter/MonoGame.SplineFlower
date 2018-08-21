@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     public static class Extensions
     {

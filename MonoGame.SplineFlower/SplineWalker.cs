@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace SplineSharp
+namespace MonoGame.SplineFlower
 {
     public abstract class SplineWalker
     {

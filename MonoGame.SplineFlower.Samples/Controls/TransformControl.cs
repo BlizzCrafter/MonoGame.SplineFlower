@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace SplineSharp.Samples.Controls
+namespace MonoGame.SplineFlower.Samples.Controls
 {
     public abstract class TransformControl : UpdateWindow
     {

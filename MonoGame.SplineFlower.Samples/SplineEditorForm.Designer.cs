@@ -1,4 +1,4 @@
-﻿namespace SplineSharp.Samples
+﻿namespace MonoGame.SplineFlower.Samples
 {
     partial class SplineEditorForm
     {
@@ -30,11 +30,11 @@
         {
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageSimpleLine = new System.Windows.Forms.TabPage();
-            this.lineControl = new SplineSharp.Samples.Controls.LineControl();
+            this.lineControl = new MonoGame.SplineFlower.Samples.Controls.LineControl();
             this.tabPageQuadraticBezier = new System.Windows.Forms.TabPage();
-            this.curveControlQuadratic = new SplineSharp.Samples.Controls.CurveControl();
+            this.curveControlQuadratic = new MonoGame.SplineFlower.Samples.Controls.CurveControl();
             this.tabPageCubicBezier = new System.Windows.Forms.TabPage();
-            this.curveControlCubic = new SplineSharp.Samples.Controls.CurveControl();
+            this.curveControlCubic = new MonoGame.SplineFlower.Samples.Controls.CurveControl();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
             this.numericUpDownTriggerRange = new System.Windows.Forms.NumericUpDown();
             this.comboBoxSelectedTrigger = new System.Windows.Forms.ComboBox();
@@ -46,7 +46,7 @@
             this.buttonLoop = new System.Windows.Forms.Button();
             this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
-            this.splineControl = new SplineSharp.Samples.Controls.SplineControl();
+            this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemDiagnostics = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCenterPoints = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +94,7 @@
             this.lineControl.Location = new System.Drawing.Point(3, 3);
             this.lineControl.MyLine = null;
             this.lineControl.Name = "lineControl";
+            this.lineControl.SelectedTrigger = null;
             this.lineControl.Size = new System.Drawing.Size(768, 690);
             this.lineControl.TabIndex = 0;
             this.lineControl.Text = "Simple Line Sample";
@@ -119,6 +120,7 @@
             this.curveControlQuadratic.GetAllPoints = null;
             this.curveControlQuadratic.Location = new System.Drawing.Point(3, 3);
             this.curveControlQuadratic.Name = "curveControlQuadratic";
+            this.curveControlQuadratic.SelectedTrigger = null;
             this.curveControlQuadratic.Size = new System.Drawing.Size(768, 690);
             this.curveControlQuadratic.TabIndex = 0;
             this.curveControlQuadratic.Text = "Quadratic Beziér Sample";
@@ -142,9 +144,10 @@
             this.curveControlCubic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curveControlCubic.ForeColor = System.Drawing.Color.PaleVioletRed;
             this.curveControlCubic.GetAllPoints = null;
-            this.curveControlCubic.GetBezierType = SplineSharp.Samples.Controls.CurveControl.BezierType.Cubic;
+            this.curveControlCubic.GetBezierType = MonoGame.SplineFlower.Samples.Controls.CurveControl.BezierType.Cubic;
             this.curveControlCubic.Location = new System.Drawing.Point(0, 0);
             this.curveControlCubic.Name = "curveControlCubic";
+            this.curveControlCubic.SelectedTrigger = null;
             this.curveControlCubic.Size = new System.Drawing.Size(774, 696);
             this.curveControlCubic.TabIndex = 0;
             this.curveControlCubic.Text = "Cubic Beziér Sample";
@@ -327,6 +330,7 @@
             this.splineControl.GetAllPoints = null;
             this.splineControl.Location = new System.Drawing.Point(0, 0);
             this.splineControl.Name = "splineControl";
+            this.splineControl.SelectedTrigger = null;
             this.splineControl.Size = new System.Drawing.Size(774, 696);
             this.splineControl.TabIndex = 6;
             this.splineControl.Text = "Beziér Spline Sample";
@@ -369,7 +373,7 @@
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "SplineEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Spline Editor";
+            this.Text = "MonoGame.SplineFlower";
             this.Load += new System.EventHandler(this.SplineEditorForm_Load);
             this.ResizeEnd += new System.EventHandler(this.SplineEditorForm_ResizeEnd);
             this.Resize += new System.EventHandler(this.SplineEditorForm_Resize);

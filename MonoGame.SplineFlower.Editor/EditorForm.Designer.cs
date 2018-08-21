@@ -33,7 +33,7 @@
             // FormEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(571, 350);
+            this.ClientSize = new System.Drawing.Size(782, 553);
             this.Name = "FormEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MonoGame.SplineFlower.Editor";

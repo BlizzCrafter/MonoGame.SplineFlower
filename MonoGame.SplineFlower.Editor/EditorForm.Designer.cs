@@ -30,20 +30,20 @@
         {
             this.trackBarMarker = new System.Windows.Forms.TrackBar();
             this.toolStripToolBar = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonAddCurveLeft = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonAddCurveRight = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonTrackLoop = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonResetSplineWalker = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxWalkerMode = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripComboBoxSelectedTrigger = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButtonAddEvent = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxEvents = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripNumericUpDownTriggerRange = new MonoGame.SplineFlower.Editor.Controls.ToolStrip.ToolStripNumericUpDown();
-            this.toolStripLabelSelected = new System.Windows.Forms.ToolStripLabel();
             this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
             this.menuStripMainMenu = new System.Windows.Forms.MenuStrip();
+            this.toolStripButtonAddCurveLeft = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonAddCurveRight = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonTrackLoop = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonResetSplineWalker = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonAddEvent = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelSelected = new System.Windows.Forms.ToolStripLabel();
             this.toolStripMenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemNew = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -64,6 +64,8 @@
             this.toolStripMenuItemDrawMarker = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDrawSplineWalker = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDrawCar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemTriggerEditor = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
             this.toolStripToolBar.SuspendLayout();
             this.menuStripMainMenu.SuspendLayout();
@@ -100,61 +102,17 @@
             this.toolStripNumericUpDownTriggerRange,
             this.toolStripLabelSelected});
             this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripToolBar.Location = new System.Drawing.Point(0, 26);
+            this.toolStripToolBar.Location = new System.Drawing.Point(0, 28);
             this.toolStripToolBar.Name = "toolStripToolBar";
             this.toolStripToolBar.Size = new System.Drawing.Size(782, 28);
             this.toolStripToolBar.Stretch = true;
             this.toolStripToolBar.TabIndex = 21;
             this.toolStripToolBar.Text = "Tool Bar";
             // 
-            // toolStripButtonAddCurveLeft
-            // 
-            this.toolStripButtonAddCurveLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonAddCurveLeft.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._011;
-            this.toolStripButtonAddCurveLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonAddCurveLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAddCurveLeft.Name = "toolStripButtonAddCurveLeft";
-            this.toolStripButtonAddCurveLeft.Size = new System.Drawing.Size(23, 25);
-            this.toolStripButtonAddCurveLeft.Text = "Add Curve Left";
-            this.toolStripButtonAddCurveLeft.Click += new System.EventHandler(this.toolStripButtonAddCurveLeft_Click);
-            // 
-            // toolStripButtonAddCurveRight
-            // 
-            this.toolStripButtonAddCurveRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonAddCurveRight.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._013;
-            this.toolStripButtonAddCurveRight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonAddCurveRight.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAddCurveRight.Name = "toolStripButtonAddCurveRight";
-            this.toolStripButtonAddCurveRight.Size = new System.Drawing.Size(23, 25);
-            this.toolStripButtonAddCurveRight.Text = "Add Curve Right";
-            this.toolStripButtonAddCurveRight.Click += new System.EventHandler(this.toolStripButtonAddCurveRight_Click);
-            // 
-            // toolStripButtonTrackLoop
-            // 
-            this.toolStripButtonTrackLoop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonTrackLoop.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._051;
-            this.toolStripButtonTrackLoop.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonTrackLoop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonTrackLoop.Name = "toolStripButtonTrackLoop";
-            this.toolStripButtonTrackLoop.Size = new System.Drawing.Size(23, 25);
-            this.toolStripButtonTrackLoop.Text = "Track Loop";
-            this.toolStripButtonTrackLoop.Click += new System.EventHandler(this.toolStripButtonTrackLoop_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripButtonResetSplineWalker
-            // 
-            this.toolStripButtonResetSplineWalker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonResetSplineWalker.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._029;
-            this.toolStripButtonResetSplineWalker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonResetSplineWalker.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonResetSplineWalker.Name = "toolStripButtonResetSplineWalker";
-            this.toolStripButtonResetSplineWalker.Size = new System.Drawing.Size(23, 25);
-            this.toolStripButtonResetSplineWalker.Text = "Reset Spline Walker";
-            this.toolStripButtonResetSplineWalker.Click += new System.EventHandler(this.toolStripButtonResetSplineWalker_Click);
             // 
             // toolStripComboBoxWalkerMode
             // 
@@ -185,17 +143,6 @@
             this.toolStripComboBoxSelectedTrigger.Name = "toolStripComboBoxSelectedTrigger";
             this.toolStripComboBoxSelectedTrigger.Size = new System.Drawing.Size(200, 28);
             this.toolStripComboBoxSelectedTrigger.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxSelectedTrigger_SelectedIndexChanged);
-            // 
-            // toolStripButtonAddEvent
-            // 
-            this.toolStripButtonAddEvent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonAddEvent.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._067;
-            this.toolStripButtonAddEvent.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonAddEvent.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAddEvent.Name = "toolStripButtonAddEvent";
-            this.toolStripButtonAddEvent.Size = new System.Drawing.Size(23, 25);
-            this.toolStripButtonAddEvent.Text = "Add Trigger";
-            this.toolStripButtonAddEvent.Click += new System.EventHandler(this.toolStripButtonAddEvent_Click);
             // 
             // toolStripComboBoxEvents
             // 
@@ -231,24 +178,16 @@
             0});
             this.toolStripNumericUpDownTriggerRange.ValueChanged += new System.EventHandler(this.toolStripNumericUpDownTriggerRange_ValueChanged);
             // 
-            // toolStripLabelSelected
-            // 
-            this.toolStripLabelSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabelSelected.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._070;
-            this.toolStripLabelSelected.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabelSelected.Name = "toolStripLabelSelected";
-            this.toolStripLabelSelected.Size = new System.Drawing.Size(16, 25);
-            // 
             // splineControl
             // 
             this.splineControl.BackColor = System.Drawing.Color.Yellow;
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.GetAllPoints = null;
-            this.splineControl.Location = new System.Drawing.Point(0, 54);
+            this.splineControl.Location = new System.Drawing.Point(0, 56);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
-            this.splineControl.Size = new System.Drawing.Size(782, 443);
+            this.splineControl.Size = new System.Drawing.Size(782, 441);
             this.splineControl.TabIndex = 0;
             this.splineControl.Text = "Bézier Spline Editor";
             this.splineControl.TryGetTransformFromPosition = null;
@@ -261,12 +200,76 @@
             this.menuStripMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemFile,
-            this.toolStripMenuItemDiagnostics});
+            this.toolStripMenuItemDiagnostics,
+            this.toolStripMenuItemTools});
             this.menuStripMainMenu.Location = new System.Drawing.Point(0, 0);
             this.menuStripMainMenu.Name = "menuStripMainMenu";
-            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 26);
+            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 28);
             this.menuStripMainMenu.TabIndex = 22;
             this.menuStripMainMenu.Text = "Main Menu";
+            // 
+            // toolStripButtonAddCurveLeft
+            // 
+            this.toolStripButtonAddCurveLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddCurveLeft.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._011;
+            this.toolStripButtonAddCurveLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddCurveLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddCurveLeft.Name = "toolStripButtonAddCurveLeft";
+            this.toolStripButtonAddCurveLeft.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonAddCurveLeft.Text = "Add Curve Left";
+            this.toolStripButtonAddCurveLeft.Click += new System.EventHandler(this.toolStripButtonAddCurveLeft_Click);
+            // 
+            // toolStripButtonAddCurveRight
+            // 
+            this.toolStripButtonAddCurveRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddCurveRight.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._013;
+            this.toolStripButtonAddCurveRight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddCurveRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddCurveRight.Name = "toolStripButtonAddCurveRight";
+            this.toolStripButtonAddCurveRight.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonAddCurveRight.Text = "Add Curve Right";
+            this.toolStripButtonAddCurveRight.Click += new System.EventHandler(this.toolStripButtonAddCurveRight_Click);
+            // 
+            // toolStripButtonTrackLoop
+            // 
+            this.toolStripButtonTrackLoop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonTrackLoop.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._051;
+            this.toolStripButtonTrackLoop.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonTrackLoop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTrackLoop.Name = "toolStripButtonTrackLoop";
+            this.toolStripButtonTrackLoop.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonTrackLoop.Text = "Track Loop";
+            this.toolStripButtonTrackLoop.Click += new System.EventHandler(this.toolStripButtonTrackLoop_Click);
+            // 
+            // toolStripButtonResetSplineWalker
+            // 
+            this.toolStripButtonResetSplineWalker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonResetSplineWalker.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._029;
+            this.toolStripButtonResetSplineWalker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonResetSplineWalker.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonResetSplineWalker.Name = "toolStripButtonResetSplineWalker";
+            this.toolStripButtonResetSplineWalker.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonResetSplineWalker.Text = "Reset Spline Walker";
+            this.toolStripButtonResetSplineWalker.Click += new System.EventHandler(this.toolStripButtonResetSplineWalker_Click);
+            // 
+            // toolStripButtonAddEvent
+            // 
+            this.toolStripButtonAddEvent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddEvent.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._067;
+            this.toolStripButtonAddEvent.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonAddEvent.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddEvent.Name = "toolStripButtonAddEvent";
+            this.toolStripButtonAddEvent.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonAddEvent.Text = "Add Trigger";
+            this.toolStripButtonAddEvent.Click += new System.EventHandler(this.toolStripButtonAddEvent_Click);
+            // 
+            // toolStripLabelSelected
+            // 
+            this.toolStripLabelSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelSelected.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._070;
+            this.toolStripLabelSelected.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripLabelSelected.Name = "toolStripLabelSelected";
+            this.toolStripLabelSelected.Size = new System.Drawing.Size(16, 25);
             // 
             // toolStripMenuItemFile
             // 
@@ -280,7 +283,7 @@
             this.toolStripMenuItemFile.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._088;
             this.toolStripMenuItemFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemFile.Name = "toolStripMenuItemFile";
-            this.toolStripMenuItemFile.Size = new System.Drawing.Size(68, 22);
+            this.toolStripMenuItemFile.Size = new System.Drawing.Size(68, 24);
             this.toolStripMenuItemFile.Text = "File";
             // 
             // toolStripMenuItemNew
@@ -347,7 +350,7 @@
             this.toolStripMenuItemDiagnostics.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._026;
             this.toolStripMenuItemDiagnostics.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemDiagnostics.Name = "toolStripMenuItemDiagnostics";
-            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 24);
             this.toolStripMenuItemDiagnostics.Text = "Diagnostics";
             // 
             // toolStripMenuItemCenterSpline
@@ -452,6 +455,25 @@
             this.toolStripMenuItemDrawCar.Text = "Draw Car";
             this.toolStripMenuItemDrawCar.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawCar_CheckedChanged);
             // 
+            // toolStripMenuItemTools
+            // 
+            this.toolStripMenuItemTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemTriggerEditor});
+            this.toolStripMenuItemTools.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._095;
+            this.toolStripMenuItemTools.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItemTools.Name = "toolStripMenuItemTools";
+            this.toolStripMenuItemTools.Size = new System.Drawing.Size(76, 24);
+            this.toolStripMenuItemTools.Text = "Tools";
+            // 
+            // toolStripMenuItemTriggerEditor
+            // 
+            this.toolStripMenuItemTriggerEditor.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._089;
+            this.toolStripMenuItemTriggerEditor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItemTriggerEditor.Name = "toolStripMenuItemTriggerEditor";
+            this.toolStripMenuItemTriggerEditor.Size = new System.Drawing.Size(194, 26);
+            this.toolStripMenuItemTriggerEditor.Text = "Trigger Editor";
+            this.toolStripMenuItemTriggerEditor.Click += new System.EventHandler(this.toolStripMenuItemTriggerEditor_Click);
+            // 
             // FormEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -515,6 +537,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemNew;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTools;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTriggerEditor;
     }
 }
 

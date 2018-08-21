@@ -6,6 +6,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MonoGame.SplineFlower.Editor
 {
@@ -356,6 +358,27 @@ namespace MonoGame.SplineFlower.Editor
         private void toolStripMenuItemExit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        #endregion
+
+        #region Tools Menu
+        
+        // Trigger Editor
+        private void toolStripMenuItemTriggerEditor_Click(object sender, EventArgs e)
+        {
+            List<string> trigger = new List<string>();
+            foreach (var item in toolStripComboBoxEvents.Items) trigger.Add(item.ToString());
+
+            TriggerEditor triggerEditor = new TriggerEditor(trigger);
+            triggerEditor.UpdateTriggerNames += TriggerEditor_UpdateTriggerNames;
+            triggerEditor.Show();
+        }
+        private void TriggerEditor_UpdateTriggerNames(List<string> obj)
+        {
+            toolStripComboBoxEvents.Items.Clear();
+            for (int i = 0; i < obj.Count; i++) toolStripComboBoxEvents.Items.Add(obj[i].ToString());
+            toolStripComboBoxEvents.SelectedIndex = 0;
         }
 
         #endregion

@@ -99,8 +99,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
                 if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
 
-                Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker._Progress.ToString(), new Vector2(10, 50), Color.White);
-                Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker._Progress.ToString(), new Vector2(10, 70), Color.White);
+                Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker._Progress.ToString(), new Vector2(10, 10), Color.White);
+                Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker._Progress.ToString(), new Vector2(10, 30), Color.White);
 
                 Editor.spriteBatch.End();
 

@@ -74,17 +74,17 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Marker.cs" />
-    <Compile Include="SplineEditorForm.cs">
+    <Compile Include="SplineForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SplineEditorForm.Designer.cs">
-      <DependentUpon>SplineEditorForm.cs</DependentUpon>
+    <Compile Include="SplineForm.Designer.cs">
+      <DependentUpon>SplineForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Car.cs" />
-    <EmbeddedResource Include="SplineEditorForm.resx">
-      <DependentUpon>SplineEditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="SplineForm.resx">
+      <DependentUpon>SplineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

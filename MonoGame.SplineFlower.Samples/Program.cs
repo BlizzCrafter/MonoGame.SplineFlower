@@ -14,7 +14,7 @@ namespace MonoGame.SplineFlower.Samples
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SplineEditorForm());
+            Application.Run(new SplineForm());
         }
     }
 }

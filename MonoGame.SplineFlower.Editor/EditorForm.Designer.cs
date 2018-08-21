@@ -44,6 +44,7 @@
             this.toolStripButtonResetSplineWalker = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAddEvent = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabelSelected = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripMenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDiagnostics = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCenterSpline = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,6 +58,8 @@
             this.toolStripMenuItemDrawMarker = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDrawSplineWalker = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDrawCar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemExportJson = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemImportJson = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
             this.toolStripToolBar.SuspendLayout();
             this.menuStripMainMenu.SuspendLayout();
@@ -93,7 +96,7 @@
             this.toolStripNumericUpDownTriggerRange,
             this.toolStripLabelSelected});
             this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripToolBar.Location = new System.Drawing.Point(0, 26);
+            this.toolStripToolBar.Location = new System.Drawing.Point(0, 28);
             this.toolStripToolBar.Name = "toolStripToolBar";
             this.toolStripToolBar.Size = new System.Drawing.Size(782, 28);
             this.toolStripToolBar.Stretch = true;
@@ -175,10 +178,10 @@
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.GetAllPoints = null;
-            this.splineControl.Location = new System.Drawing.Point(0, 54);
+            this.splineControl.Location = new System.Drawing.Point(0, 56);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
-            this.splineControl.Size = new System.Drawing.Size(782, 443);
+            this.splineControl.Size = new System.Drawing.Size(782, 441);
             this.splineControl.TabIndex = 0;
             this.splineControl.Text = "Bézier Spline Editor";
             this.splineControl.TryGetTransformFromPosition = null;
@@ -190,10 +193,11 @@
             this.menuStripMainMenu.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStripMainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemFile,
             this.toolStripMenuItemDiagnostics});
             this.menuStripMainMenu.Location = new System.Drawing.Point(0, 0);
             this.menuStripMainMenu.Name = "menuStripMainMenu";
-            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 26);
+            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 28);
             this.menuStripMainMenu.TabIndex = 22;
             this.menuStripMainMenu.Text = "Main Menu";
             // 
@@ -260,6 +264,17 @@
             this.toolStripLabelSelected.Name = "toolStripLabelSelected";
             this.toolStripLabelSelected.Size = new System.Drawing.Size(16, 25);
             // 
+            // toolStripMenuItemFile
+            // 
+            this.toolStripMenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemImportJson,
+            this.toolStripMenuItemExportJson});
+            this.toolStripMenuItemFile.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._088;
+            this.toolStripMenuItemFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItemFile.Name = "toolStripMenuItemFile";
+            this.toolStripMenuItemFile.Size = new System.Drawing.Size(68, 24);
+            this.toolStripMenuItemFile.Text = "File";
+            // 
             // toolStripMenuItemDiagnostics
             // 
             this.toolStripMenuItemDiagnostics.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -278,7 +293,7 @@
             this.toolStripMenuItemDiagnostics.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._026;
             this.toolStripMenuItemDiagnostics.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemDiagnostics.Name = "toolStripMenuItemDiagnostics";
-            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 24);
             this.toolStripMenuItemDiagnostics.Text = "Diagnostics";
             // 
             // toolStripMenuItemCenterSpline
@@ -383,6 +398,20 @@
             this.toolStripMenuItemDrawCar.Text = "Draw Car";
             this.toolStripMenuItemDrawCar.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawCar_CheckedChanged);
             // 
+            // toolStripMenuItemExportJson
+            // 
+            this.toolStripMenuItemExportJson.Name = "toolStripMenuItemExportJson";
+            this.toolStripMenuItemExportJson.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItemExportJson.Text = "Export JSON";
+            this.toolStripMenuItemExportJson.Click += new System.EventHandler(this.toolStripMenuItemExportJson_Click);
+            // 
+            // toolStripMenuItemImportJson
+            // 
+            this.toolStripMenuItemImportJson.Name = "toolStripMenuItemImportJson";
+            this.toolStripMenuItemImportJson.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItemImportJson.Text = "Import JSON";
+            this.toolStripMenuItemImportJson.Click += new System.EventHandler(this.toolStripMenuItemImportJson_Click);
+            // 
             // FormEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -439,6 +468,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDrawMarker;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDrawCar;
         private System.Windows.Forms.ToolStripLabel toolStripLabelSelected;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExportJson;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemImportJson;
     }
 }
 

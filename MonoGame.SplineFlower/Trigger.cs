@@ -9,27 +9,34 @@ namespace MonoGame.SplineFlower
         public Guid ID { get; private set; }
         public float Progress { get; set; } = -999;
         public object Custom { get; set; }
-        public float TriggerDistance
+        public float TriggerRange
         {
-            get { return _TriggerDistance / Setup.SplineMarkerResolution; }
-            set { _TriggerDistance = value; }
+            get { return _TriggerRange / Setup.SplineMarkerResolution; }
+            set { _TriggerRange = value; }
         }
-        private float _TriggerDistance = 5f;
+        private float _TriggerRange = 3f;
 
         internal event Action<Trigger> TriggerEvent = delegate { };
 
-        public Trigger(string name, float progress, int triggerDistance, out Guid id)
+        public Trigger(string name, float progress, float triggerRange, out Guid id)
         {
             Name = name;
             Progress = progress;
-            TriggerDistance = triggerDistance;
+            TriggerRange = triggerRange;
             ID = id = Guid.NewGuid();
+        }
+        public Trigger(string name, float progress, float triggerRange, string id)
+        {
+            Name = name;
+            Progress = progress;
+            TriggerRange = triggerRange;
+            ID = Guid.Parse(id);
         }
 
         public bool CheckIfTriggered(float progress)
         {
-            float distance = MathHelper.Distance(Progress, progress);
-            if (distance <= TriggerDistance)
+            float range = MathHelper.Distance(Progress, progress);
+            if (range <= TriggerRange)
             {
                 TriggerEvent.Invoke(this);
                 return true;

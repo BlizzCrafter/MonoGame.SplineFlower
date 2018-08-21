@@ -15,6 +15,10 @@ namespace MonoGame.SplineFlower
             Mirrored
         }
         private BezierControlPointMode[] _Modes;
+        public BezierControlPointMode[] GetAllPointModes()
+        {
+            return _Modes;
+        }
 
         private static Color[] _ModeColors = {
             Setup.PointColor,
@@ -28,7 +32,7 @@ namespace MonoGame.SplineFlower
         }
         private Transform[] _Points;
 
-        internal List<Trigger> GetAllTrigger()
+        public List<Trigger> GetAllTrigger()
         {
             return _Trigger;
         }
@@ -36,15 +40,20 @@ namespace MonoGame.SplineFlower
 
         internal event Action<Trigger> EventTriggered = delegate { };
 
-        public Guid AddTrigger(string name, float progress, int triggerDistance)
+        public Guid AddTrigger(string name, float progress, float triggerRange)
         {
             Guid triggerID = new Guid();
-            _Trigger.Add(new Trigger(name, progress, triggerDistance, out triggerID));
+            _Trigger.Add(new Trigger(name, progress, triggerRange, out triggerID));
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
 
             ReorderTriggerList();
 
             return triggerID;
+        }
+        private void AddTrigger(string name, float progress, float triggerRange, string triggerID)
+        {
+            _Trigger.Add(new Trigger(name, progress, triggerRange, triggerID));
+            _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
         }
         private void BezierSpline_TriggerEvent(Trigger obj)
         {
@@ -390,13 +399,13 @@ namespace MonoGame.SplineFlower
                 {
                     for (int i = 0; i < _Trigger.Count; i++)
                     {
-                        float drawDistanceBack = _Trigger[i].Progress - _Trigger[i].TriggerDistance;
+                        float drawDistanceBack = _Trigger[i].Progress - _Trigger[i].TriggerRange;
                         for (float x = drawDistanceBack; x < _Trigger[i].Progress; x += 1 / Setup.SplineMarkerResolution)
                         {
                             DrawPointOnCurve(spriteBatch, x);
                         }
 
-                        float drawDistanceForth = _Trigger[i].Progress + _Trigger[i].TriggerDistance;
+                        float drawDistanceForth = _Trigger[i].Progress + _Trigger[i].TriggerRange;
                         for (float x = drawDistanceForth; x > _Trigger[i].Progress; x -= 1 / Setup.SplineMarkerResolution)
                         {
                             DrawPointOnCurve(spriteBatch, x);
@@ -477,6 +486,24 @@ namespace MonoGame.SplineFlower
                 BezierControlPointMode.Free,
                 BezierControlPointMode.Free
             };
+        }
+
+        public void LoadJsonBezierSplineData(Transform[] points, BezierControlPointMode[] modes, Trigger[] trigger)
+        {
+            _Points = null;
+            Array.Resize(ref _Points, points.Length);
+            points.CopyTo(_Points, 0);
+
+            _Modes = null;
+            Array.Resize(ref _Modes, modes.Length);
+            modes.CopyTo(_Modes, 0);
+
+            _Trigger = null;
+            _Trigger = new List<Trigger>();
+            for (int i = 0; i < trigger.Length; i++)
+            {
+                AddTrigger(trigger[i].Name, trigger[i].Progress, trigger[i].TriggerRange * Setup.SplineMarkerResolution, trigger[i].ID.ToString());
+            }
         }
     }
 }

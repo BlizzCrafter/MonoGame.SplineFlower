@@ -5,7 +5,7 @@ namespace MonoGame.SplineFlower
 {
     public static class Setup
     {
-        public static float SplineMarkerResolution = 1000f;
+        public static float SplineMarkerResolution { get; set; } = 1000f;
         public static int LineSteps { get; set; } = 20;
 
         public static bool ShowBezierSpline { get; set; } = true;

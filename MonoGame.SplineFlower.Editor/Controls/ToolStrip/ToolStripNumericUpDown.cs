@@ -32,6 +32,24 @@ namespace MonoGame.SplineFlower.Editor.Controls.ToolStrip
             set { NumericUpDown.Maximum = value; }
         }
 
+        public decimal Increment
+        {
+            get { return NumericUpDown.Increment; }
+            set { NumericUpDown.Increment = value; }
+        }
+
+        public int DecimalPlaces
+        {
+            get { return NumericUpDown.DecimalPlaces; }
+            set { NumericUpDown.DecimalPlaces = value; }
+        }
+
+        public bool ThousandsSeparator
+        {
+            get { return NumericUpDown.ThousandsSeparator; }
+            set { NumericUpDown.ThousandsSeparator = value; }
+        }
+
         public ToolStripNumericUpDown() : base(new NumericUpDown())
         {
             InitializeComponent();

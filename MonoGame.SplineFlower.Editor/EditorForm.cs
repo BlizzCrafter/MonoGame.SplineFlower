@@ -442,5 +442,10 @@ namespace MonoGame.SplineFlower.Editor
             splineControl.SplineControl_RecalculateBezierCenter();
             splineControl.MoveSplineToScreenCenter();
         }
+
+        private void toolStripNumericUpDownDuration_ValueChanged(object sender, EventArgs e)
+        {
+            splineControl.MySplineWalker.Duration = (float)toolStripNumericUpDownDuration.Value;
+        }
     }
 }

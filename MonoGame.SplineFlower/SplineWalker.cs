@@ -30,7 +30,7 @@ namespace MonoGame.SplineFlower
         }
         private Vector2 _Direction;
         protected float Rotation { get; private set; }
-        protected float Duration { get; set; }
+        public float Duration { get; set; }
         private Rectangle _Size = new Rectangle(0, 0, 10, 10);
         private void SetPosition(Vector2 position)
         {

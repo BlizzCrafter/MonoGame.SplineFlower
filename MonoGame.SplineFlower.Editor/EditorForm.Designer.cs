@@ -42,6 +42,8 @@
             this.toolStripComboBoxEvents = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripNumericUpDownTriggerRange = new MonoGame.SplineFlower.Editor.Controls.ToolStrip.ToolStripNumericUpDown();
             this.toolStripLabelSelected = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripNumericUpDownDuration = new MonoGame.SplineFlower.Editor.Controls.ToolStrip.ToolStripNumericUpDown();
+            this.toolStripLabelDuration = new System.Windows.Forms.ToolStripLabel();
             this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
             this.menuStripMainMenu = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +102,9 @@
             this.toolStripButtonAddEvent,
             this.toolStripComboBoxEvents,
             this.toolStripNumericUpDownTriggerRange,
-            this.toolStripLabelSelected});
+            this.toolStripLabelSelected,
+            this.toolStripNumericUpDownDuration,
+            this.toolStripLabelDuration});
             this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripToolBar.Location = new System.Drawing.Point(0, 26);
             this.toolStripToolBar.Name = "toolStripToolBar";
@@ -167,7 +171,7 @@
             "PingPong"});
             this.toolStripComboBoxWalkerMode.MaxDropDownItems = 3;
             this.toolStripComboBoxWalkerMode.Name = "toolStripComboBoxWalkerMode";
-            this.toolStripComboBoxWalkerMode.Size = new System.Drawing.Size(121, 28);
+            this.toolStripComboBoxWalkerMode.Size = new System.Drawing.Size(80, 28);
             this.toolStripComboBoxWalkerMode.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxWalkerMode_SelectedIndexChanged);
             // 
             // toolStripSeparator2
@@ -212,7 +216,13 @@
             // 
             // toolStripNumericUpDownTriggerRange
             // 
+            this.toolStripNumericUpDownTriggerRange.DecimalPlaces = 0;
             this.toolStripNumericUpDownTriggerRange.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripNumericUpDownTriggerRange.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.toolStripNumericUpDownTriggerRange.Maximum = new decimal(new int[] {
             200,
             0,
@@ -226,6 +236,7 @@
             this.toolStripNumericUpDownTriggerRange.Name = "toolStripNumericUpDownTriggerRange";
             this.toolStripNumericUpDownTriggerRange.Size = new System.Drawing.Size(52, 25);
             this.toolStripNumericUpDownTriggerRange.Text = "3";
+            this.toolStripNumericUpDownTriggerRange.ThousandsSeparator = false;
             this.toolStripNumericUpDownTriggerRange.Value = new decimal(new int[] {
             3,
             0,
@@ -240,6 +251,45 @@
             this.toolStripLabelSelected.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripLabelSelected.Name = "toolStripLabelSelected";
             this.toolStripLabelSelected.Size = new System.Drawing.Size(16, 25);
+            // 
+            // toolStripNumericUpDownDuration
+            // 
+            this.toolStripNumericUpDownDuration.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripNumericUpDownDuration.AutoSize = false;
+            this.toolStripNumericUpDownDuration.DecimalPlaces = 0;
+            this.toolStripNumericUpDownDuration.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripNumericUpDownDuration.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.toolStripNumericUpDownDuration.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.toolStripNumericUpDownDuration.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.toolStripNumericUpDownDuration.Name = "toolStripNumericUpDownDuration";
+            this.toolStripNumericUpDownDuration.Size = new System.Drawing.Size(75, 25);
+            this.toolStripNumericUpDownDuration.Text = "7";
+            this.toolStripNumericUpDownDuration.ThousandsSeparator = true;
+            this.toolStripNumericUpDownDuration.Value = new decimal(new int[] {
+            70,
+            0,
+            0,
+            65536});
+            this.toolStripNumericUpDownDuration.ValueChanged += new System.EventHandler(this.toolStripNumericUpDownDuration_ValueChanged);
+            // 
+            // toolStripLabelDuration
+            // 
+            this.toolStripLabelDuration.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelDuration.Name = "toolStripLabelDuration";
+            this.toolStripLabelDuration.Size = new System.Drawing.Size(67, 25);
+            this.toolStripLabelDuration.Text = "Duration";
             // 
             // splineControl
             // 
@@ -539,6 +589,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTools;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTriggerEditor;
+        private Controls.ToolStrip.ToolStripNumericUpDown toolStripNumericUpDownDuration;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelDuration;
     }
 }
 

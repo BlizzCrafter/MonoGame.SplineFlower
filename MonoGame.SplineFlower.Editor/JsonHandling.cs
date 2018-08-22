@@ -12,6 +12,7 @@ namespace MonoGame.SplineFlower.Editor
             public TransformDummy[] PointData;
             public BezierControlPointModeDummy[] PointModeData;
             public TriggerDummy[] TriggerData;
+            public string[] TriggerNames;
         }
 
         public class TransformDummy

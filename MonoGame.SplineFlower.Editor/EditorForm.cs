@@ -214,6 +214,12 @@ namespace MonoGame.SplineFlower.Editor
             CreateJsonReadyPointModeData();
             CreateJsonReadyTriggerData();
 
+            Array.Resize(ref GetJsonHandling.GetBezierSplineData.TriggerNames, toolStripComboBoxEvents.Items.Count);
+            for (int i = 0; i < toolStripComboBoxEvents.Items.Count; i++)
+            {
+                GetJsonHandling.GetBezierSplineData.TriggerNames[i] = toolStripComboBoxEvents.Items[i].ToString();
+            }
+
             string json = JsonConvert.SerializeObject(GetJsonHandling.GetBezierSplineData, JsonSerializerSetup);
             File.WriteAllText(@Path.Combine(Application.StartupPath, "Spline.json"), json, Encoding.UTF8);
         }
@@ -275,6 +281,13 @@ namespace MonoGame.SplineFlower.Editor
                 LoadJsonPointModeData(),
                 LoadJsonTriggerData(),
                 out loadedTrigger);
+
+            toolStripComboBoxEvents.Items.Clear();
+            for (int i = 0; i < GetJsonHandling.GetBezierSplineData.TriggerNames.Length; i++)
+            {
+                toolStripComboBoxEvents.Items.Add(GetJsonHandling.GetBezierSplineData.TriggerNames[i]);
+            }
+            toolStripComboBoxEvents.SelectedIndex = 0;
 
             toolStripComboBoxSelectedTrigger.Items.Clear();
             toolStripComboBoxSelectedTrigger.Items.Add("Marker");

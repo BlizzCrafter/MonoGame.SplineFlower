@@ -30,7 +30,7 @@ namespace MonoGame.SplineFlower
         }
         private Vector2 _Direction;
         protected float Rotation { get; private set; }
-        public float Duration { get; set; }
+        public int Duration { get; set; }
         private Rectangle _Size = new Rectangle(0, 0, 10, 10);
         private void SetPosition(Vector2 position)
         {
@@ -56,7 +56,7 @@ namespace MonoGame.SplineFlower
         public virtual void CreateSplineWalker(
             BezierSpline spline, 
             SplineWalkerMode mode, 
-            float duration,
+            int duration,
             bool canTriggerEvents = true,
             bool autoStart = true)
         {

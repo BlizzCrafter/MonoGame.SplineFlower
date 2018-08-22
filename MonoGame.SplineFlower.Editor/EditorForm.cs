@@ -106,6 +106,11 @@ namespace MonoGame.SplineFlower.Editor
             splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)toolStripComboBoxWalkerMode.SelectedIndex;
         }
 
+        private void toolStripNumericUpDownDuration_ValueChanged(object sender, EventArgs e)
+        {
+            splineControl.MySplineWalker.Duration = (int)toolStripNumericUpDownDuration.Value;
+        }
+
         #endregion
 
         #region TriggerEvents
@@ -208,6 +213,7 @@ namespace MonoGame.SplineFlower.Editor
         private void toolStripMenuItemExportJson_Click(object sender, EventArgs e)
         {
             GetJsonHandling.GetBezierSplineData.SplineMarkerResolution = Setup.SplineMarkerResolution;
+            GetJsonHandling.GetBezierSplineData.SplineWalkerDuration = splineControl.MySplineWalker.Duration;
             GetJsonHandling.GetBezierSplineData.Loop = splineControl.MySpline.Loop;
 
             CreateJsonReadyPointData();
@@ -272,6 +278,8 @@ namespace MonoGame.SplineFlower.Editor
                     File.ReadAllText(@Path.Combine(Application.StartupPath, "Spline.json")), JsonSerializerSetup);
 
             Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
+            splineControl.MySplineWalker.Duration = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
+            toolStripNumericUpDownDuration.Value = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
             splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
             toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
 
@@ -441,11 +449,6 @@ namespace MonoGame.SplineFlower.Editor
         {
             splineControl.SplineControl_RecalculateBezierCenter();
             splineControl.MoveSplineToScreenCenter();
-        }
-
-        private void toolStripNumericUpDownDuration_ValueChanged(object sender, EventArgs e)
-        {
-            splineControl.MySplineWalker.Duration = (float)toolStripNumericUpDownDuration.Value;
         }
     }
 }

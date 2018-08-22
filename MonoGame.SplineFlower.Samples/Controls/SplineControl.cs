@@ -23,11 +23,11 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MySplineWalker = new Car();
-            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7f);
+            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7);
             MySplineWalker.LoadContent(Editor.Content, Editor.Font);
 
             MySplineMarker = new Marker();
-            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0f, false, false);
+            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0, false, false);
             MySplineMarker.LoadContent(Editor.Content);
 
             MoveSplineToScreenCenter();

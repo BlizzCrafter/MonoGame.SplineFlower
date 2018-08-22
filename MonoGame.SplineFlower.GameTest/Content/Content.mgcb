@@ -1,0 +1,21 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:..\..\MonoGame.SplineFlower.ContentPipeline\bin\Release\MonoGame.SplineFlower.ContentPipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Spline.json
+/importer:BezierSplineImporter
+/processor:BezierSplineProcessor
+/build:Spline.json
+

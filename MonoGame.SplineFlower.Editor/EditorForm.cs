@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Linq;
 using System.Collections.Generic;
+using MonoGame.SplineFlower.ContentPipeline;
 
 namespace MonoGame.SplineFlower.Editor
 {
@@ -237,7 +238,7 @@ namespace MonoGame.SplineFlower.Editor
             for (int i = 0; i < pointsToExport.Length; i++)
             {
                 GetJsonHandling.GetBezierSplineData.PointData[i] =
-                    new JsonHandling.TransformDummy(pointsToExport[i].Index, pointsToExport[i].Position);
+                    new TransformDummy(pointsToExport[i].Index, pointsToExport[i].Position);
             }
         }
         private void CreateJsonReadyPointModeData()
@@ -248,7 +249,7 @@ namespace MonoGame.SplineFlower.Editor
             for (int i = 0; i < modePointsToExport.Length; i++)
             {
                 GetJsonHandling.GetBezierSplineData.PointModeData[i] =
-                    new JsonHandling.BezierControlPointModeDummy(modePointsToExport[i].ToString());
+                    new BezierControlPointModeDummy(modePointsToExport[i].ToString());
             }
         }
         private void CreateJsonReadyTriggerData()
@@ -259,7 +260,7 @@ namespace MonoGame.SplineFlower.Editor
             for (int i = 0; i < triggerToExport.Length; i++)
             {
                 GetJsonHandling.GetBezierSplineData.TriggerData[i] =
-                    new JsonHandling.TriggerDummy(
+                    new TriggerDummy(
                         triggerToExport[i].Name,
                         triggerToExport[i].ID.ToString(),
                         triggerToExport[i].Progress,
@@ -274,7 +275,7 @@ namespace MonoGame.SplineFlower.Editor
         private void toolStripMenuItemImportJson_Click(object sender, EventArgs e)
         {
             GetJsonHandling.GetBezierSplineData =
-                JsonConvert.DeserializeObject<JsonHandling.BezierSplineData>(
+                JsonConvert.DeserializeObject<BezierSplineData>(
                     File.ReadAllText(@Path.Combine(Application.StartupPath, "Spline.json")), JsonSerializerSetup);
 
             Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
@@ -408,7 +409,7 @@ namespace MonoGame.SplineFlower.Editor
             InitializeJsonSerializer();
 
             GetJsonHandling = new JsonHandling();
-            GetJsonHandling.GetBezierSplineData = new JsonHandling.BezierSplineData();
+            GetJsonHandling.GetBezierSplineData = new BezierSplineData();
         }
 
         private void FormEditor_Load(object sender, EventArgs e)

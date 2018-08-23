@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A80B8857-995D-48E0-AAFF-E425588E756D}</ProjectGuid>
+    <ProjectGuid>{47ED5EF0-837F-4938-9892-7A920426C5A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonoGame.SplineFlower</RootNamespace>
-    <AssemblyName>MonoGame.SplineFlower</AssemblyName>
+    <RootNamespace>MonoGame.SplineFlower.Content</RootNamespace>
+    <AssemblyName>MonoGame.SplineFlower.Content</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,29 +32,19 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MonoGame.Forms.DX.2.0.0\lib\net451\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Forms.DX.2.1.0\lib\net451\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bezier.cs" />
-    <Compile Include="BezierCurve.cs" />
-    <Compile Include="BezierSpline.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="PointBase.cs" />
+    <Compile Include="BezierControlPointModeDummy.cs" />
+    <Compile Include="BezierSplineData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SplineWalker.cs" />
-    <Compile Include="Transform.cs" />
-    <Compile Include="Trigger.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MonoGame.SplineFlower.Content\MonoGame.SplineFlower.Content.csproj">
-      <Project>{47ed5ef0-837f-4938-9892-7a920426c5a9}</Project>
-      <Name>MonoGame.SplineFlower.Content</Name>
-    </ProjectReference>
+    <Compile Include="Setup.cs" />
+    <Compile Include="TransformDummy.cs" />
+    <Compile Include="TriggerDummy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

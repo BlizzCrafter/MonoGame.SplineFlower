@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.SplineFlower.ContentPipeline;
+using MonoGame.SplineFlower.Content;
 
 namespace MonoGame.SplineFlower.GameTest
 {
@@ -9,8 +9,8 @@ namespace MonoGame.SplineFlower.GameTest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        BezierSplineData GetBezierSplineData;
-        
+        BezierSpline GetBezierSpline;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -20,13 +20,15 @@ namespace MonoGame.SplineFlower.GameTest
         protected override void Initialize()
         {
             base.Initialize();
+
+            Setup.Initialize(graphics.GraphicsDevice);
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            GetBezierSplineData = Content.Load<BezierSplineData>(@"Spline");
+            GetBezierSpline = Content.Load<BezierSpline>(@"Spline");
         }
 
         protected override void Update(GameTime gameTime)
@@ -37,6 +39,12 @@ namespace MonoGame.SplineFlower.GameTest
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+
+            GetBezierSpline.DrawSpline(spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

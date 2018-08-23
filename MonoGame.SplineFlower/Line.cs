@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.SplineFlower.Content;
 using System;
 
 namespace MonoGame.SplineFlower
@@ -39,7 +40,7 @@ namespace MonoGame.SplineFlower
 
         public void DrawLine(SpriteBatch spriteBatch)
         {
-            if (Setup.Pixel == null)
+            if (!Setup.Initialized)
             {
                 throw new Exception("You need to initialize the SplineSharp library first by calling 'SplineSharp.Setup.Initialize();'");
             }

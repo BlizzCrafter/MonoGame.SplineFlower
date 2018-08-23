@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.SplineFlower.Content;
 using System;
 using System.Linq;
 
@@ -47,7 +48,7 @@ namespace MonoGame.SplineFlower
 
         public void DrawCurve(SpriteBatch spriteBatch)
         {
-            if (Setup.Pixel == null)
+            if (!Setup.Initialized)
             {
                 throw new Exception("You need to initialize the SplineSharp library first by calling 'SplineSharp.Setup.Initialize();'");
             }

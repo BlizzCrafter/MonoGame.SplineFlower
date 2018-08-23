@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{30590B28-442F-4674-B387-AB5E6F0AF328}</ProjectGuid>
+    <ProjectGuid>{74CE87E4-A8B4-4CAD-82E7-CD8DCA1602B7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MonoGame.SplineFlower.GameTest</RootNamespace>
@@ -48,8 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -106,11 +107,16 @@
     </None>
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoGame.SplineFlower.ContentPipeline\MonoGame.SplineFlower.ContentPipeline.csproj">
       <Project>{e5cdb18e-9f83-4ae3-8ace-32a425e3ba02}</Project>
       <Name>MonoGame.SplineFlower.ContentPipeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame.SplineFlower.Content\MonoGame.SplineFlower.Content.csproj">
+      <Project>{47ed5ef0-837f-4938-9892-7a920426c5a9}</Project>
+      <Name>MonoGame.SplineFlower.Content</Name>
     </ProjectReference>
     <ProjectReference Include="..\MonoGame.SplineFlower\MonoGame.SplineFlower.csproj">
       <Project>{a80b8857-995d-48e0-aaff-e425588e756d}</Project>

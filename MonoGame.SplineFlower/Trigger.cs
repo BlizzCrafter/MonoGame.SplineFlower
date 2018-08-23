@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.SplineFlower.Content;
 using System;
 
 namespace MonoGame.SplineFlower
@@ -18,6 +19,7 @@ namespace MonoGame.SplineFlower
 
         internal event Action<Trigger> TriggerEvent = delegate { };
 
+        public Trigger() { }
         public Trigger(string name, float progress, float triggerRange, out Guid id)
         {
             Name = name;

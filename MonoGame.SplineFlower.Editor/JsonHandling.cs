@@ -1,4 +1,4 @@
-﻿using MonoGame.SplineFlower.ContentPipeline;
+﻿using MonoGame.SplineFlower.Content;
 
 namespace MonoGame.SplineFlower.Editor
 {

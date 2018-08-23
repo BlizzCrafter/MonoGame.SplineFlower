@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Microsoft.Xna.Framework;
+using MonoGame.SplineFlower.Content;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {

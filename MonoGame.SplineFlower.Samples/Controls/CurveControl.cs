@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.SplineFlower.Content;
 using System.ComponentModel;
 
 namespace MonoGame.SplineFlower.Samples.Controls

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoGame.SplineFlower
+namespace MonoGame.SplineFlower.Content
 {
     public static class Setup
     {
@@ -36,8 +36,10 @@ namespace MonoGame.SplineFlower
 
         public static bool MovePointAxis { get; set; } = true;
 
-        internal static Texture2D Pixel { get; set; }
-        internal static Texture2D Circle { get; set; }
+        public static Texture2D Pixel { get; set; }
+        public static Texture2D Circle { get; set; }
+
+        public static bool Initialized { get; private set; } = false;
 
         public static void Initialize(GraphicsDevice graphicsDevice)
         {
@@ -51,6 +53,8 @@ namespace MonoGame.SplineFlower
             {
                 Circle = CreateCircleTexture(graphicsDevice, 8);
             }
+
+            Initialized = true;
         }
         private static Texture2D CreateCircleTexture(GraphicsDevice device, int radius)
         {

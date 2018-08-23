@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Collections.Generic;
 using MonoGame.SplineFlower.ContentPipeline;
+using MonoGame.SplineFlower.Content;
 
 namespace MonoGame.SplineFlower.Editor
 {
@@ -276,7 +277,7 @@ namespace MonoGame.SplineFlower.Editor
         {
             GetJsonHandling.GetBezierSplineData =
                 JsonConvert.DeserializeObject<BezierSplineData>(
-                    File.ReadAllText(@Path.Combine(Application.StartupPath, "Spline.json")), JsonSerializerSetup);
+                    File.ReadAllText(Path.Combine(Application.StartupPath, "Spline.json")), JsonSerializerSetup);
 
             Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
             splineControl.MySplineWalker.Duration = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
@@ -286,9 +287,9 @@ namespace MonoGame.SplineFlower.Editor
 
             Trigger[] loadedTrigger;
             splineControl.MySpline.LoadJsonBezierSplineData(
-                LoadJsonPointData(),
-                LoadJsonPointModeData(),
-                LoadJsonTriggerData(),
+                GetJsonHandling.GetBezierSplineData.PointData,
+                GetJsonHandling.GetBezierSplineData.PointModeData,
+                GetJsonHandling.GetBezierSplineData.TriggerData,
                 out loadedTrigger);
 
             toolStripComboBoxEvents.Items.Clear();
@@ -307,46 +308,6 @@ namespace MonoGame.SplineFlower.Editor
             toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
 
             splineControl.MySplineWalker.Reset();
-        }
-        private Transform[] LoadJsonPointData()
-        {
-            Transform[] bezierPoints = new Transform[GetJsonHandling.GetBezierSplineData.PointData.Length];
-
-            for (int i = 0; i < GetJsonHandling.GetBezierSplineData.PointData.Length; i++)
-            {
-                bezierPoints[i] = new Transform(GetJsonHandling.GetBezierSplineData.PointData[i].Position);
-            }
-
-            return bezierPoints;
-        }
-        private BezierSpline.BezierControlPointMode[] LoadJsonPointModeData()
-        {
-            BezierSpline.BezierControlPointMode[] bezierModePoints = new BezierSpline.BezierControlPointMode[GetJsonHandling.GetBezierSplineData.PointModeData.Length];
-
-            for (int i = 0; i < GetJsonHandling.GetBezierSplineData.PointModeData.Length; i++)
-            {
-                bezierModePoints[i] =
-                    (BezierSpline.BezierControlPointMode)Enum.Parse(
-                        typeof(BezierSpline.BezierControlPointMode),
-                        GetJsonHandling.GetBezierSplineData.PointModeData[i].Mode);
-            }
-
-            return bezierModePoints;
-        }
-        private Trigger[] LoadJsonTriggerData()
-        {
-            Trigger[] trigger = new Trigger[GetJsonHandling.GetBezierSplineData.TriggerData.Length];
-
-            for (int i = 0; i < GetJsonHandling.GetBezierSplineData.TriggerData.Length; i++)
-            {
-                trigger[i] = new Trigger(
-                    GetJsonHandling.GetBezierSplineData.TriggerData[i].Name,
-                    GetJsonHandling.GetBezierSplineData.TriggerData[i].Progress,
-                    GetJsonHandling.GetBezierSplineData.TriggerData[i].TriggerRange,
-                    GetJsonHandling.GetBezierSplineData.TriggerData[i].ID);
-            }
-
-            return trigger;
         }
 
         #endregion

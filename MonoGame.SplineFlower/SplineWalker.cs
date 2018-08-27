@@ -30,6 +30,7 @@ namespace MonoGame.SplineFlower
             private set { _Direction = value; }
         }
         private Vector2 _Direction;
+        public float Progress { get; private set; }
         protected float Rotation { get; private set; }
         public int Duration { get; set; }
         private Rectangle _Size = new Rectangle(0, 0, 10, 10);
@@ -48,7 +49,6 @@ namespace MonoGame.SplineFlower
         public bool CanTriggerEvents { get; set; } = true;
         public Guid LastTriggerID { get; private set; }
 
-        public float _Progress;
         private bool _GoingForward = true;
         private bool _LookForward = true;
         private bool _AutoStart = true;
@@ -99,7 +99,7 @@ namespace MonoGame.SplineFlower
 
         public virtual void SetPosition(float progress)
         {
-            _Progress = progress;
+            Progress = progress;
         }
 
         public void SetTriggerPosition(string triggerID, float progress)
@@ -118,10 +118,10 @@ namespace MonoGame.SplineFlower
             else return _Spline.GetAllTrigger().FindAll(x => x.Name == name);
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             LastTriggerID = new Guid();
-            _Progress = 0f;
+            Progress = 0f;
         }
         
         public virtual void Update(GameTime gameTime)
@@ -130,32 +130,32 @@ namespace MonoGame.SplineFlower
             {
                 if (_GoingForward)
                 {
-                    _Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
-                    if (_Progress > 1f)
+                    Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+                    if (Progress > 1f)
                     {
                         LastTriggerID = new Guid();
 
                         if (Mode == SplineWalkerMode.Once)
                         {
-                            _Progress = 1f;
+                            Progress = 1f;
                         }
                         else if (Mode == SplineWalkerMode.Loop)
                         {
-                            _Progress -= 1f;
+                            Progress -= 1f;
                         }
                         else
                         {
-                            _Progress = 2f - _Progress;
+                            Progress = 2f - Progress;
                             _GoingForward = false;
                         }
                     }
                 }
                 else
                 {
-                    _Progress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
-                    if (_Progress < 0f)
+                    Progress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+                    if (Progress < 0f)
                     {
-                        _Progress = -_Progress;
+                        Progress = -Progress;
                         _GoingForward = true;
                     }
                 }
@@ -163,13 +163,13 @@ namespace MonoGame.SplineFlower
             
             if (_LookForward)
             {
-                _Direction = _Spline.GetDirection(_Progress);
+                _Direction = _Spline.GetDirection(Progress);
                 Rotation = (float)Math.Atan2(_Direction.X, -_Direction.Y);
             }
 
-            SetPosition(_Spline.GetPoint(_Progress));
+            SetPosition(_Spline.GetPoint(Progress));
 
-            if (CanTriggerEvents && _Spline.GetAllTrigger().Count > 0) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(_Progress);
+            if (CanTriggerEvents && _Spline.GetAllTrigger().Count > 0) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(Progress);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

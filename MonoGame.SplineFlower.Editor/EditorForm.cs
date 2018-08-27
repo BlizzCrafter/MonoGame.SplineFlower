@@ -302,13 +302,11 @@ namespace MonoGame.SplineFlower.Editor
                 }
                 toolStripComboBoxEvents.SelectedIndex = 0;
 
-                toolStripComboBoxSelectedTrigger.Items.Clear();
-                toolStripComboBoxSelectedTrigger.Items.Add("Marker");
+                ResetComboBoxSelectedTrigger();
                 foreach (Trigger trigger in loadedTrigger)
                 {
                     toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(trigger.Name, trigger.ID.ToString()));
                 }
-                toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
 
                 splineControl.MySplineWalker.Reset();
             }
@@ -323,6 +321,9 @@ namespace MonoGame.SplineFlower.Editor
         // New BezierSpline
         private void toolStripMenuItemNew_Click(object sender, EventArgs e)
         {
+            //Reset TrackBar first to make sure the actual Marker position is up to date.
+            trackBarMarker.Value = 0;
+
             // Reset the BezierSpline (which creates a new one).
             splineControl.MySpline.Reset();
 
@@ -337,6 +338,27 @@ namespace MonoGame.SplineFlower.Editor
 
             // Move the BezierSpline to the center of the screen.
             splineControl.MoveSplineToScreenCenter();
+
+            // Reset the SelectedTrigger of the SplineMarker.
+            ResetSplineMarkerSelectedTrigger();
+
+            // Reset the SelectedTrigger of the ComboBox.
+            ResetComboBoxSelectedTrigger();
+
+            // Reset the SplineMarker.
+            splineControl.MySplineMarker.Reset();
+        }
+        private void ResetSplineMarkerSelectedTrigger()
+        {
+            splineControl.MySplineMarker.SelectedTrigger = "";
+            splineControl.MySplineMarker.MarkerSelected = true;
+        }
+
+        private void ResetComboBoxSelectedTrigger()
+        {
+            toolStripComboBoxSelectedTrigger.Items.Clear();
+            toolStripComboBoxSelectedTrigger.Items.Add("Marker");
+            toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
         }
 
         // Close Application

@@ -214,22 +214,25 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripMenuItemExportJson_Click(object sender, EventArgs e)
         {
-            GetJsonHandling.GetBezierSplineData.SplineMarkerResolution = Setup.SplineMarkerResolution;
-            GetJsonHandling.GetBezierSplineData.SplineWalkerDuration = splineControl.MySplineWalker.Duration;
-            GetJsonHandling.GetBezierSplineData.Loop = splineControl.MySpline.Loop;
-
-            CreateJsonReadyPointData();
-            CreateJsonReadyPointModeData();
-            CreateJsonReadyTriggerData();
-
-            Array.Resize(ref GetJsonHandling.GetBezierSplineData.TriggerNames, toolStripComboBoxEvents.Items.Count);
-            for (int i = 0; i < toolStripComboBoxEvents.Items.Count; i++)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                GetJsonHandling.GetBezierSplineData.TriggerNames[i] = toolStripComboBoxEvents.Items[i].ToString();
-            }
+                GetJsonHandling.GetBezierSplineData.SplineMarkerResolution = Setup.SplineMarkerResolution;
+                GetJsonHandling.GetBezierSplineData.SplineWalkerDuration = splineControl.MySplineWalker.Duration;
+                GetJsonHandling.GetBezierSplineData.Loop = splineControl.MySpline.Loop;
 
-            string json = JsonConvert.SerializeObject(GetJsonHandling.GetBezierSplineData, JsonSerializerSetup);
-            File.WriteAllText(@Path.Combine(Application.StartupPath, "Spline.json"), json, Encoding.UTF8);
+                CreateJsonReadyPointData();
+                CreateJsonReadyPointModeData();
+                CreateJsonReadyTriggerData();
+
+                Array.Resize(ref GetJsonHandling.GetBezierSplineData.TriggerNames, toolStripComboBoxEvents.Items.Count);
+                for (int i = 0; i < toolStripComboBoxEvents.Items.Count; i++)
+                {
+                    GetJsonHandling.GetBezierSplineData.TriggerNames[i] = toolStripComboBoxEvents.Items[i].ToString();
+                }
+
+                string json = JsonConvert.SerializeObject(GetJsonHandling.GetBezierSplineData, JsonSerializerSetup);
+                File.WriteAllText(@Path.Combine(saveFileDialog.FileName), json, Encoding.UTF8);
+            }
         }
         private void CreateJsonReadyPointData()
         {
@@ -275,39 +278,42 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripMenuItemImportJson_Click(object sender, EventArgs e)
         {
-            GetJsonHandling.GetBezierSplineData =
-                JsonConvert.DeserializeObject<BezierSplineData>(
-                    File.ReadAllText(Path.Combine(Application.StartupPath, "Spline.json")), JsonSerializerSetup);
-
-            Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
-            splineControl.MySplineWalker.Duration = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
-            toolStripNumericUpDownDuration.Value = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
-            splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
-            toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
-
-            Trigger[] loadedTrigger;
-            splineControl.MySpline.LoadJsonBezierSplineData(
-                GetJsonHandling.GetBezierSplineData.PointData,
-                GetJsonHandling.GetBezierSplineData.PointModeData,
-                GetJsonHandling.GetBezierSplineData.TriggerData,
-                out loadedTrigger);
-
-            toolStripComboBoxEvents.Items.Clear();
-            for (int i = 0; i < GetJsonHandling.GetBezierSplineData.TriggerNames.Length; i++)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                toolStripComboBoxEvents.Items.Add(GetJsonHandling.GetBezierSplineData.TriggerNames[i]);
-            }
-            toolStripComboBoxEvents.SelectedIndex = 0;
+                GetJsonHandling.GetBezierSplineData =
+                    JsonConvert.DeserializeObject<BezierSplineData>(
+                        File.ReadAllText(openFileDialog.FileName), JsonSerializerSetup);
 
-            toolStripComboBoxSelectedTrigger.Items.Clear();
-            toolStripComboBoxSelectedTrigger.Items.Add("Marker");
-            foreach (Trigger trigger in loadedTrigger)
-            {
-                toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(trigger.Name, trigger.ID.ToString()));
-            }
-            toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
+                Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
+                splineControl.MySplineWalker.Duration = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
+                toolStripNumericUpDownDuration.Value = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
+                splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
+                toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
 
-            splineControl.MySplineWalker.Reset();
+                Trigger[] loadedTrigger;
+                splineControl.MySpline.LoadJsonBezierSplineData(
+                    GetJsonHandling.GetBezierSplineData.PointData,
+                    GetJsonHandling.GetBezierSplineData.PointModeData,
+                    GetJsonHandling.GetBezierSplineData.TriggerData,
+                    out loadedTrigger);
+
+                toolStripComboBoxEvents.Items.Clear();
+                for (int i = 0; i < GetJsonHandling.GetBezierSplineData.TriggerNames.Length; i++)
+                {
+                    toolStripComboBoxEvents.Items.Add(GetJsonHandling.GetBezierSplineData.TriggerNames[i]);
+                }
+                toolStripComboBoxEvents.SelectedIndex = 0;
+
+                toolStripComboBoxSelectedTrigger.Items.Clear();
+                toolStripComboBoxSelectedTrigger.Items.Add("Marker");
+                foreach (Trigger trigger in loadedTrigger)
+                {
+                    toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(trigger.Name, trigger.ID.ToString()));
+                }
+                toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
+
+                splineControl.MySplineWalker.Reset();
+            }
         }
 
         #endregion
@@ -371,6 +377,9 @@ namespace MonoGame.SplineFlower.Editor
 
             GetJsonHandling = new JsonHandling();
             GetJsonHandling.GetBezierSplineData = new BezierSplineData();
+
+            saveFileDialog.InitialDirectory = @Path.Combine(Application.StartupPath, "Content", "Splines");
+            openFileDialog.InitialDirectory = saveFileDialog.InitialDirectory;
         }
 
         private void FormEditor_Load(object sender, EventArgs e)

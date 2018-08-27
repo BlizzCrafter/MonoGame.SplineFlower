@@ -68,6 +68,8 @@
             this.toolStripMenuItemDrawCar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemTools = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemTriggerEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
             this.toolStripToolBar.SuspendLayout();
             this.menuStripMainMenu.SuspendLayout();
@@ -278,10 +280,10 @@
             this.toolStripNumericUpDownDuration.Text = "7";
             this.toolStripNumericUpDownDuration.ThousandsSeparator = true;
             this.toolStripNumericUpDownDuration.Value = new decimal(new int[] {
-            70,
+            7,
             0,
             0,
-            65536});
+            0});
             this.toolStripNumericUpDownDuration.ValueChanged += new System.EventHandler(this.toolStripNumericUpDownDuration_ValueChanged);
             // 
             // toolStripLabelDuration
@@ -524,6 +526,19 @@
             this.toolStripMenuItemTriggerEditor.Text = "Trigger Editor";
             this.toolStripMenuItemTriggerEditor.Click += new System.EventHandler(this.toolStripMenuItemTriggerEditor_Click);
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.CheckFileExists = true;
+            this.saveFileDialog.DefaultExt = "json";
+            this.saveFileDialog.Filter = "Json Files|*.json";
+            this.saveFileDialog.RestoreDirectory = true;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.DefaultExt = "json";
+            this.openFileDialog.Filter = "Json Files|*.json";
+            this.openFileDialog.RestoreDirectory = true;
+            // 
             // FormEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -591,6 +606,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTriggerEditor;
         private Controls.ToolStrip.ToolStripNumericUpDown toolStripNumericUpDownDuration;
         private System.Windows.Forms.ToolStripLabel toolStripLabelDuration;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 

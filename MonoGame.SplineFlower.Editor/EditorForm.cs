@@ -278,6 +278,8 @@ namespace MonoGame.SplineFlower.Editor
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                ResetTrackBarMarker();
+
                 GetJsonHandling.GetBezierSplineData =
                     JsonConvert.DeserializeObject<BezierSplineData>(
                         File.ReadAllText(openFileDialog.FileName), JsonSerializerSetup);
@@ -321,8 +323,8 @@ namespace MonoGame.SplineFlower.Editor
         // New BezierSpline
         private void toolStripMenuItemNew_Click(object sender, EventArgs e)
         {
-            //Reset TrackBar first to make sure the actual Marker position is up to date.
-            trackBarMarker.Value = 0;
+            //Reset the TrackBarMarker first to make sure the actual Marker position is up to date.
+            ResetTrackBarMarker();
 
             // Reset the BezierSpline (which creates a new one).
             splineControl.MySpline.Reset();
@@ -344,8 +346,10 @@ namespace MonoGame.SplineFlower.Editor
 
             // Reset the SelectedTrigger of the ComboBox.
             ResetComboBoxSelectedTrigger();
-
-            // Reset the SplineMarker.
+        }
+        private void ResetTrackBarMarker()
+        {
+            trackBarMarker.Value = 0;
             splineControl.MySplineMarker.Reset();
         }
         private void ResetSplineMarkerSelectedTrigger()
@@ -353,7 +357,6 @@ namespace MonoGame.SplineFlower.Editor
             splineControl.MySplineMarker.SelectedTrigger = "";
             splineControl.MySplineMarker.MarkerSelected = true;
         }
-
         private void ResetComboBoxSelectedTrigger()
         {
             toolStripComboBoxSelectedTrigger.Items.Clear();

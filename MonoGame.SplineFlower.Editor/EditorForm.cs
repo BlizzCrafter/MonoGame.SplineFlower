@@ -6,9 +6,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.Linq;
 using System.Collections.Generic;
-using MonoGame.SplineFlower.ContentPipeline;
 using MonoGame.SplineFlower.Content;
 
 namespace MonoGame.SplineFlower.Editor

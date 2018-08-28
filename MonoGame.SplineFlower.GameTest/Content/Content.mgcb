@@ -14,8 +14,32 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Spline.json
+#begin SplineFlower.json
 /importer:BezierSplineImporter
 /processor:BezierSplineProcessor
-/build:Spline.json
+/build:SplineFlower.json
+
+#begin SplineTrack.json
+/importer:BezierSplineImporter
+/processor:BezierSplineProcessor
+/build:SplineTrack.json
+
+#begin GameFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:GameFont.spritefont
+
+#begin Audio/cardrive.xnb
+/copy:Audio/cardrive.xnb
+
+#begin Audio/handbrake.xnb
+/copy:Audio/handbrake.xnb
+
+#begin Audio/horn.xnb
+/copy:Audio/horn.xnb
+
+#begin car.xnb
+/copy:car.xnb
 

@@ -49,3 +49,40 @@ Creating BézierSplines is very easy with the:
 ![Editor](doc/Editor.png)
 
 It is also possible to create **looped** or **multiple looped** BézierSplines as you can see!
+
+Did you noticed the nice little car on the last picture? This is a **[SplineWalker](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/MonoGame.SplineFlower/SplineWalker.cs)**.
+
+A SplineWalker can, well... walk on splines :) or drive on it like in the case of a car, hehe.
+
+You have the abillity to create your own SplineWalkers by inheritting from the SplineWalker class mentioned above.
+
+This could look like this:
+
+```c#
+public class Car : SplineWalker
+{
+    public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, bool    autoStart = true)
+    {
+        base.CreateSplineWalker(spline, mode, duration, canTriggerEvents, autoStart);
+    }
+    
+    protected override void EventTriggered(Trigger obj)
+    {
+        base.EventTriggered(obj);
+    }
+    
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+    }
+    
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+        base.Draw(spriteBatch);
+    }
+}
+```
+
+Click **[here](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/MonoGame.SplineFlower.Samples/Car.cs)** to see a full integration example.
+
+A nice thing about a SplineWalker is, that he can trigger custom events on a BézierSpline while he walks along the spline.

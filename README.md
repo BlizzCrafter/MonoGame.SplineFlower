@@ -4,6 +4,10 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/sqrMin1)
 [![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
 
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower)
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content)
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content.Pipeline)
+
 Create wonderful smooth **BézierSplines** with **TriggerEvents** for your **MonoGame** project.
 
 ### Building
@@ -28,6 +32,9 @@ The **Visual Studio 2015** solution contains the following projects:
 to the **static class Setup**, because you need to call **Setup.Initialize(graphics.GraphicsDevice);** for this purpose
 > Note: You don't need this reference if you don't want to draw your BézierSplines. **You don't need to draw BézierSpline at all.**
 This is just a **Debug** feature to make your life as a game developer easier ;)
+
+For an easy installation you should make use of the nuget package manager:
+![Nuget](doc/Nuget.png)
 
 ### Capabilities
 
@@ -102,5 +109,9 @@ You can do pretty much anything with BézierSplines. The limit is really just yo
 ### Now Have Fun with MonoGame.SplineFlower!
 [![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/sqrMin1)
 [![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
+
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower)
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content)
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content.Pipeline)
 
 ![Logo](Logos/Logo_Shadow_256.png)

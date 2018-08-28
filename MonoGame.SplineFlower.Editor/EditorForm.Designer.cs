@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEditor));
             this.trackBarMarker = new System.Windows.Forms.TrackBar();
             this.toolStripToolBar = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAddCurveLeft = new System.Windows.Forms.ToolStripButton();
@@ -111,7 +112,7 @@
             this.toolStripNumericUpDownDuration,
             this.toolStripLabelDuration});
             this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripToolBar.Location = new System.Drawing.Point(0, 28);
+            this.toolStripToolBar.Location = new System.Drawing.Point(0, 26);
             this.toolStripToolBar.Name = "toolStripToolBar";
             this.toolStripToolBar.Size = new System.Drawing.Size(782, 28);
             this.toolStripToolBar.Stretch = true;
@@ -302,10 +303,10 @@
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.GetAllPoints = null;
-            this.splineControl.Location = new System.Drawing.Point(0, 56);
+            this.splineControl.Location = new System.Drawing.Point(0, 54);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
-            this.splineControl.Size = new System.Drawing.Size(782, 441);
+            this.splineControl.Size = new System.Drawing.Size(782, 443);
             this.splineControl.TabIndex = 0;
             this.splineControl.Text = "Bézier Spline Editor";
             this.splineControl.TryGetTransformFromPosition = null;
@@ -322,7 +323,7 @@
             this.toolStripMenuItemTools});
             this.menuStripMainMenu.Location = new System.Drawing.Point(0, 0);
             this.menuStripMainMenu.Name = "menuStripMainMenu";
-            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 28);
+            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 26);
             this.menuStripMainMenu.TabIndex = 22;
             this.menuStripMainMenu.Text = "Main Menu";
             // 
@@ -338,7 +339,7 @@
             this.toolStripMenuItemFile.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._088;
             this.toolStripMenuItemFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemFile.Name = "toolStripMenuItemFile";
-            this.toolStripMenuItemFile.Size = new System.Drawing.Size(68, 24);
+            this.toolStripMenuItemFile.Size = new System.Drawing.Size(68, 22);
             this.toolStripMenuItemFile.Text = "File";
             // 
             // toolStripMenuItemNew
@@ -408,7 +409,7 @@
             this.toolStripMenuItemDiagnostics.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._026;
             this.toolStripMenuItemDiagnostics.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemDiagnostics.Name = "toolStripMenuItemDiagnostics";
-            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 24);
+            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItemDiagnostics.Text = "Diagnostics";
             // 
             // toolStripMenuItemCenterSpline
@@ -541,7 +542,7 @@
             this.toolStripMenuItemTools.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._095;
             this.toolStripMenuItemTools.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemTools.Name = "toolStripMenuItemTools";
-            this.toolStripMenuItemTools.Size = new System.Drawing.Size(76, 24);
+            this.toolStripMenuItemTools.Size = new System.Drawing.Size(76, 22);
             this.toolStripMenuItemTools.Text = "Tools";
             // 
             // toolStripMenuItemTriggerEditor
@@ -574,6 +575,7 @@
             this.Controls.Add(this.trackBarMarker);
             this.Controls.Add(this.toolStripToolBar);
             this.Controls.Add(this.menuStripMainMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMainMenu;
             this.Name = "FormEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

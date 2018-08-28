@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineForm));
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageSimpleLine = new System.Windows.Forms.TabPage();
             this.lineControl = new MonoGame.SplineFlower.Samples.Controls.LineControl();
@@ -68,7 +69,7 @@
             this.tabPageSimpleLine.Location = new System.Drawing.Point(4, 25);
             this.tabPageSimpleLine.Name = "tabPageSimpleLine";
             this.tabPageSimpleLine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSimpleLine.Size = new System.Drawing.Size(774, 724);
+            this.tabPageSimpleLine.Size = new System.Drawing.Size(574, 524);
             this.tabPageSimpleLine.TabIndex = 0;
             this.tabPageSimpleLine.Text = "Simple Line";
             this.tabPageSimpleLine.UseVisualStyleBackColor = true;
@@ -84,7 +85,7 @@
             this.lineControl.MyLine = null;
             this.lineControl.Name = "lineControl";
             this.lineControl.SelectedTrigger = null;
-            this.lineControl.Size = new System.Drawing.Size(768, 718);
+            this.lineControl.Size = new System.Drawing.Size(568, 518);
             this.lineControl.TabIndex = 0;
             this.lineControl.Text = "Simple Line";
             this.lineControl.TryGetTransformFromPosition = null;
@@ -96,7 +97,7 @@
             this.tabPageQuadraticBezier.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuadraticBezier.Name = "tabPageQuadraticBezier";
             this.tabPageQuadraticBezier.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageQuadraticBezier.Size = new System.Drawing.Size(774, 724);
+            this.tabPageQuadraticBezier.Size = new System.Drawing.Size(574, 524);
             this.tabPageQuadraticBezier.TabIndex = 1;
             this.tabPageQuadraticBezier.Text = "Quadratic Beziér Curve";
             this.tabPageQuadraticBezier.UseVisualStyleBackColor = true;
@@ -110,7 +111,7 @@
             this.curveControlQuadratic.Location = new System.Drawing.Point(3, 3);
             this.curveControlQuadratic.Name = "curveControlQuadratic";
             this.curveControlQuadratic.SelectedTrigger = null;
-            this.curveControlQuadratic.Size = new System.Drawing.Size(768, 718);
+            this.curveControlQuadratic.Size = new System.Drawing.Size(568, 518);
             this.curveControlQuadratic.TabIndex = 0;
             this.curveControlQuadratic.Text = "Quadratic Bézier Curve";
             this.curveControlQuadratic.TryGetTransformFromPosition = null;
@@ -121,7 +122,7 @@
             this.tabPageCubicBezier.Controls.Add(this.curveControlCubic);
             this.tabPageCubicBezier.Location = new System.Drawing.Point(4, 25);
             this.tabPageCubicBezier.Name = "tabPageCubicBezier";
-            this.tabPageCubicBezier.Size = new System.Drawing.Size(774, 724);
+            this.tabPageCubicBezier.Size = new System.Drawing.Size(574, 524);
             this.tabPageCubicBezier.TabIndex = 2;
             this.tabPageCubicBezier.Text = "Cubic Beziér Curve";
             this.tabPageCubicBezier.UseVisualStyleBackColor = true;
@@ -137,7 +138,7 @@
             this.curveControlCubic.Location = new System.Drawing.Point(0, 0);
             this.curveControlCubic.Name = "curveControlCubic";
             this.curveControlCubic.SelectedTrigger = null;
-            this.curveControlCubic.Size = new System.Drawing.Size(774, 724);
+            this.curveControlCubic.Size = new System.Drawing.Size(574, 524);
             this.curveControlCubic.TabIndex = 0;
             this.curveControlCubic.Text = "Cubic Bézier Curve";
             this.curveControlCubic.TryGetTransformFromPosition = null;
@@ -244,6 +245,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(582, 553);
             this.Controls.Add(this.tabControlEditorTabs);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SplineForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MonoGame.SplineFlower";

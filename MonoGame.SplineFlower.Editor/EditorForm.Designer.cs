@@ -70,6 +70,9 @@
             this.toolStripMenuItemTriggerEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemShowFPS = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowCursorPosition = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
             this.toolStripToolBar.SuspendLayout();
             this.menuStripMainMenu.SuspendLayout();
@@ -398,7 +401,10 @@
             this.toolStripSeparator5,
             this.toolStripMenuItemDrawMarker,
             this.toolStripMenuItemDrawSplineWalker,
-            this.toolStripMenuItemDrawCar});
+            this.toolStripMenuItemDrawCar,
+            this.toolStripSeparator8,
+            this.toolStripMenuItemShowFPS,
+            this.toolStripMenuItemShowCursorPosition});
             this.toolStripMenuItemDiagnostics.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._026;
             this.toolStripMenuItemDiagnostics.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemDiagnostics.Name = "toolStripMenuItemDiagnostics";
@@ -408,14 +414,14 @@
             // toolStripMenuItemCenterSpline
             // 
             this.toolStripMenuItemCenterSpline.Name = "toolStripMenuItemCenterSpline";
-            this.toolStripMenuItemCenterSpline.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemCenterSpline.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemCenterSpline.Text = "Center Spline";
             this.toolStripMenuItemCenterSpline.Click += new System.EventHandler(this.toolStripMenuItemCenterSpline_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(223, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(239, 6);
             // 
             // toolStripMenuItemDrawSpline
             // 
@@ -423,14 +429,14 @@
             this.toolStripMenuItemDrawSpline.CheckOnClick = true;
             this.toolStripMenuItemDrawSpline.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawSpline.Name = "toolStripMenuItemDrawSpline";
-            this.toolStripMenuItemDrawSpline.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawSpline.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawSpline.Text = "Draw Spline";
             this.toolStripMenuItemDrawSpline.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawSpline_CheckedChanged);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(223, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(239, 6);
             // 
             // toolStripMenuItemDrawBaseLine
             // 
@@ -438,7 +444,7 @@
             this.toolStripMenuItemDrawBaseLine.CheckOnClick = true;
             this.toolStripMenuItemDrawBaseLine.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawBaseLine.Name = "toolStripMenuItemDrawBaseLine";
-            this.toolStripMenuItemDrawBaseLine.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawBaseLine.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawBaseLine.Text = "Draw Base Line";
             this.toolStripMenuItemDrawBaseLine.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawBaseLine_CheckedChanged);
             // 
@@ -448,7 +454,7 @@
             this.toolStripMenuItemDrawCurves.CheckOnClick = true;
             this.toolStripMenuItemDrawCurves.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawCurves.Name = "toolStripMenuItemDrawCurves";
-            this.toolStripMenuItemDrawCurves.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawCurves.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawCurves.Text = "Draw Curves";
             this.toolStripMenuItemDrawCurves.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawCurves_CheckedChanged);
             // 
@@ -458,7 +464,7 @@
             this.toolStripMenuItemDrawDirections.CheckOnClick = true;
             this.toolStripMenuItemDrawDirections.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawDirections.Name = "toolStripMenuItemDrawDirections";
-            this.toolStripMenuItemDrawDirections.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawDirections.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawDirections.Text = "Draw Directions";
             this.toolStripMenuItemDrawDirections.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawDirections_CheckedChanged);
             // 
@@ -468,14 +474,14 @@
             this.toolStripMenuItemDrawTrigger.CheckOnClick = true;
             this.toolStripMenuItemDrawTrigger.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawTrigger.Name = "toolStripMenuItemDrawTrigger";
-            this.toolStripMenuItemDrawTrigger.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawTrigger.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawTrigger.Text = "Draw Trigger";
             this.toolStripMenuItemDrawTrigger.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawTrigger_CheckedChanged);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(223, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(239, 6);
             // 
             // toolStripMenuItemDrawMarker
             // 
@@ -483,7 +489,7 @@
             this.toolStripMenuItemDrawMarker.CheckOnClick = true;
             this.toolStripMenuItemDrawMarker.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawMarker.Name = "toolStripMenuItemDrawMarker";
-            this.toolStripMenuItemDrawMarker.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawMarker.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawMarker.Text = "Draw Spline Marker";
             this.toolStripMenuItemDrawMarker.Click += new System.EventHandler(this.toolStripMenuItemDrawMarker_Click);
             // 
@@ -493,7 +499,7 @@
             this.toolStripMenuItemDrawSplineWalker.CheckOnClick = true;
             this.toolStripMenuItemDrawSplineWalker.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawSplineWalker.Name = "toolStripMenuItemDrawSplineWalker";
-            this.toolStripMenuItemDrawSplineWalker.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawSplineWalker.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawSplineWalker.Text = "Draw Spline Walker";
             this.toolStripMenuItemDrawSplineWalker.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawSplineWalker_CheckedChanged);
             // 
@@ -503,7 +509,7 @@
             this.toolStripMenuItemDrawCar.CheckOnClick = true;
             this.toolStripMenuItemDrawCar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemDrawCar.Name = "toolStripMenuItemDrawCar";
-            this.toolStripMenuItemDrawCar.Size = new System.Drawing.Size(226, 26);
+            this.toolStripMenuItemDrawCar.Size = new System.Drawing.Size(242, 26);
             this.toolStripMenuItemDrawCar.Text = "Draw Car";
             this.toolStripMenuItemDrawCar.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawCar_CheckedChanged);
             // 
@@ -538,6 +544,27 @@
             this.openFileDialog.DefaultExt = "json";
             this.openFileDialog.Filter = "Json Files|*.json";
             this.openFileDialog.RestoreDirectory = true;
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(239, 6);
+            // 
+            // toolStripMenuItemShowFPS
+            // 
+            this.toolStripMenuItemShowFPS.CheckOnClick = true;
+            this.toolStripMenuItemShowFPS.Name = "toolStripMenuItemShowFPS";
+            this.toolStripMenuItemShowFPS.Size = new System.Drawing.Size(242, 26);
+            this.toolStripMenuItemShowFPS.Text = "Show FPS";
+            this.toolStripMenuItemShowFPS.CheckedChanged += new System.EventHandler(this.toolStripMenuItemShowFPS_CheckedChanged);
+            // 
+            // toolStripMenuItemShowCursorPosition
+            // 
+            this.toolStripMenuItemShowCursorPosition.CheckOnClick = true;
+            this.toolStripMenuItemShowCursorPosition.Name = "toolStripMenuItemShowCursorPosition";
+            this.toolStripMenuItemShowCursorPosition.Size = new System.Drawing.Size(242, 26);
+            this.toolStripMenuItemShowCursorPosition.Text = "Show Cursor Position";
+            this.toolStripMenuItemShowCursorPosition.CheckedChanged += new System.EventHandler(this.toolStripMenuItemShowCursorPosition_CheckedChanged);
             // 
             // FormEditor
             // 
@@ -608,6 +635,9 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabelDuration;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowFPS;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowCursorPosition;
     }
 }
 

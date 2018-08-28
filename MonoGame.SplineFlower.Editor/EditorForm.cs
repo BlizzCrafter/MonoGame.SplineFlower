@@ -72,8 +72,18 @@ namespace MonoGame.SplineFlower.Editor
             Car.ShowCar = toolStripMenuItemDrawCar.Checked;
         }
 
+        private void toolStripMenuItemShowFPS_CheckedChanged(object sender, EventArgs e)
+        {
+            splineControl.Editor.ShowFPS = toolStripMenuItemShowFPS.Checked;
+        }
+
+        private void toolStripMenuItemShowCursorPosition_CheckedChanged(object sender, EventArgs e)
+        {
+            splineControl.Editor.ShowCursorPosition = toolStripMenuItemShowCursorPosition.Checked;
+        }
+
         #endregion
-        
+
         #region Spline Actions
 
         private void toolStripButtonAddCurveLeft_Click(object sender, EventArgs e)

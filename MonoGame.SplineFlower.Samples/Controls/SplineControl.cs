@@ -36,6 +36,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
             SetMultiSampleCount(8);
 
             Editor.SetDisplayStyle = Forms.Services.GFXService.DisplayStyle.TopRight;
+            Editor.ShowCursorPosition = false;
+            Editor.ShowFPS = false;
         }
 
         public void ReorderTriggerList()

@@ -36,7 +36,11 @@ namespace MonoGame.SplineFlower.GameTest
             MySplineWalker.CreateSplineWalker(MyBezierSpline, SplineWalker.SplineWalkerMode.Once, 7);
             MySplineWalker.LoadContent(Content, Content.Load<SpriteFont>(@"GameFont"));
 
-            
+            // Uncomment the following line to directly set the position of the BezierSpline (Bezier Center).
+            //MyBezierSpline.Position(new Vector2(200, 150));
+
+            // Uncomment the following line to translate all control points of the BezierSpline from where the BezierSpline spawned.
+            //MyBezierSpline.Translate(new Vector2(200, 150));
         }
 
         protected override void Update(GameTime gameTime)

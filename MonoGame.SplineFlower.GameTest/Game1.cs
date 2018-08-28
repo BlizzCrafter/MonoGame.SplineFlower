@@ -35,6 +35,8 @@ namespace MonoGame.SplineFlower.GameTest
             MySplineWalker = new Car();
             MySplineWalker.CreateSplineWalker(MyBezierSpline, SplineWalker.SplineWalkerMode.Once, 7);
             MySplineWalker.LoadContent(Content, Content.Load<SpriteFont>(@"GameFont"));
+
+            
         }
 
         protected override void Update(GameTime gameTime)

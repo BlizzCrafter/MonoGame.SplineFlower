@@ -66,18 +66,6 @@ namespace MonoGame.SplineFlower
         {
             List<Trigger> ordered = _Trigger.OrderBy(x => x.Progress).ToList();
             _Trigger = ordered;
-
-            // Sometimes losing Events on ordering the list.
-            // I think this is a bug !?
-            //
-            // Seems that Commit #3e859ab6 has fixed this bug.
-            //
-            //_Trigger.ForEach(
-            //    x =>
-            //    {
-            //       x.TriggerEvent -= BezierSpline_TriggerEvent;
-            //       x.TriggerEvent += BezierSpline_TriggerEvent;
-            //    });
         }
 
         public bool Loop

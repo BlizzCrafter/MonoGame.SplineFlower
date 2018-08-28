@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
-using MonoGame.SplineFlower.Content;
 
-namespace MonoGame.SplineFlower.ContentPipeline
+namespace MonoGame.SplineFlower.Content.Pipeline
 {
     [ContentTypeWriter]
     public class BezierSplineWriter : ContentTypeWriter<BezierSpline>

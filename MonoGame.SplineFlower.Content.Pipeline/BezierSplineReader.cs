@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
-using MonoGame.SplineFlower.Content;
 using System;
 
-namespace MonoGame.SplineFlower.ContentPipeline
+namespace MonoGame.SplineFlower.Content.Pipeline
 {
     public class BezierSplineReader : ContentTypeReader<BezierSpline>
     {

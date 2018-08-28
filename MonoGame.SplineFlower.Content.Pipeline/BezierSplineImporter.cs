@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
-using MonoGame.SplineFlower.Content;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.IO;
 
-namespace MonoGame.SplineFlower.ContentPipeline
+namespace MonoGame.SplineFlower.Content.Pipeline
 {
     [ContentImporter(".json", DisplayName = "Bezier Spline Importer - MonoGame.SplineFlower", DefaultProcessor = "BezierSplineProcessor")]
     public class BezierSplineImporter : ContentImporter<BezierSplineData>

@@ -30,10 +30,10 @@ namespace MonoGame.SplineFlower.GameTest
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            MyBezierSpline = Content.Load<BezierSpline>(@"SplineFlower");
+            MyBezierSpline = Content.Load<BezierSpline>(@"SplineTrack");
 
             MySplineWalker = new Car();
-            MySplineWalker.CreateSplineWalker(MyBezierSpline, SplineWalker.SplineWalkerMode.Once, 7);
+            MySplineWalker.CreateSplineWalker(MyBezierSpline, SplineWalker.SplineWalkerMode.Loop, 7);
             MySplineWalker.LoadContent(Content, Content.Load<SpriteFont>(@"GameFont"));
 
             // Uncomment the following line to directly set the position of the BezierSpline (Bezier Center).

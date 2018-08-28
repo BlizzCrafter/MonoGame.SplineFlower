@@ -113,9 +113,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonoGame.SplineFlower.ContentPipeline\MonoGame.SplineFlower.ContentPipeline.csproj">
+    <ProjectReference Include="..\MonoGame.SplineFlower.Content.Pipeline\MonoGame.SplineFlower.Content.Pipeline.csproj">
       <Project>{e5cdb18e-9f83-4ae3-8ace-32a425e3ba02}</Project>
-      <Name>MonoGame.SplineFlower.ContentPipeline</Name>
+      <Name>MonoGame.SplineFlower.Content.Pipeline</Name>
     </ProjectReference>
     <ProjectReference Include="..\MonoGame.SplineFlower.Content\MonoGame.SplineFlower.Content.csproj">
       <Project>{47ed5ef0-837f-4938-9892-7a920426c5a9}</Project>

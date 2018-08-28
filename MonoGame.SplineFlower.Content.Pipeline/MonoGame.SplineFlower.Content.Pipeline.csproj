@@ -8,8 +8,8 @@
     <ProjectGuid>{E5CDB18E-9F83-4AE3-8ACE-32A425E3BA02}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonoGame.SplineFlower.ContentPipeline</RootNamespace>
-    <AssemblyName>MonoGame.SplineFlower.ContentPipeline</AssemblyName>
+    <RootNamespace>MonoGame.SplineFlower.Content.Pipeline</RootNamespace>
+    <AssemblyName>MonoGame.SplineFlower.Content.Pipeline</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -10,19 +10,9 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\MonoGame.SplineFlower.ContentPipeline\bin\Release\MonoGame.SplineFlower.ContentPipeline.dll
+/reference:..\..\MonoGame.SplineFlower.Content.Pipeline\bin\Release\MonoGame.SplineFlower.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
-
-#begin SplineFlower.json
-/importer:BezierSplineImporter
-/processor:BezierSplineProcessor
-/build:SplineFlower.json
-
-#begin SplineTrack.json
-/importer:BezierSplineImporter
-/processor:BezierSplineProcessor
-/build:SplineTrack.json
 
 #begin GameFont.spritefont
 /importer:FontDescriptionImporter
@@ -42,4 +32,14 @@
 
 #begin car.xnb
 /copy:car.xnb
+
+#begin SplineFlower.json
+/importer:BezierSplineImporter
+/processor:BezierSplineProcessor
+/build:SplineFlower.json
+
+#begin SplineTrack.json
+/importer:BezierSplineImporter
+/processor:BezierSplineProcessor
+/build:SplineTrack.json
 

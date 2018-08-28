@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
-using MonoGame.SplineFlower.Content;
 
-namespace MonoGame.SplineFlower.ContentPipeline
+namespace MonoGame.SplineFlower.Content.Pipeline
 {
     [ContentProcessor(DisplayName = "Bezier Spline Processor - MonoGame.SplineFlower")]
     public class BezierSplineProcessor : ContentProcessor<BezierSplineData, BezierSpline>

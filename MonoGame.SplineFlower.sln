@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Editor", "MonoGame.SplineFlower.Editor\MonoGame.SplineFlower.Editor.csproj", "{EA4CA280-957F-4191-93F2-E2E8CA3B08C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.ContentPipeline", "MonoGame.SplineFlower.ContentPipeline\MonoGame.SplineFlower.ContentPipeline.csproj", "{E5CDB18E-9F83-4AE3-8ACE-32A425E3BA02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Content.Pipeline", "MonoGame.SplineFlower.Content.Pipeline\MonoGame.SplineFlower.Content.Pipeline.csproj", "{E5CDB18E-9F83-4AE3-8ACE-32A425E3BA02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Content", "MonoGame.SplineFlower.Content\MonoGame.SplineFlower.Content.csproj", "{47ED5EF0-837F-4938-9892-7A920426C5A9}"
 EndProject

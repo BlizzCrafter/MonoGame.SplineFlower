@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MonoGame.SplineFlower.ContentPipeline")]
-[assembly: AssemblyProduct("MonoGame.SplineFlower.ContentPipeline")]
+[assembly: AssemblyTitle("MonoGame.SplineFlower.Content.Pipeline")]
+[assembly: AssemblyProduct("MonoGame.SplineFlower.Content.Pipeline")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]

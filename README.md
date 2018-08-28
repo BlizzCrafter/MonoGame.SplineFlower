@@ -92,3 +92,13 @@ You can define your own Trigger with the TriggerEditor:
 ![TriggerEditor](doc/TriggerEditor.png)
 
 It is reachable from the main editor through the **Tools** button.
+
+---
+
+You can do pretty much anything with BézierSplines. The limit is really just your imagination.
+*Play around with the samples and learn from it.*
+
+### Now Have Fun with MonoGame.SplineFlower!
+[![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/sqrMin1)
+
+![Logo](Logos/Logo_Shadow_256.png)

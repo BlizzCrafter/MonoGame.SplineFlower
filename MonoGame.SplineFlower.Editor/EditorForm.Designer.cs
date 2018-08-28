@@ -66,13 +66,13 @@
             this.toolStripMenuItemDrawMarker = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDrawSplineWalker = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDrawCar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemShowFPS = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowCursorPosition = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemTools = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemTriggerEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItemShowFPS = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowCursorPosition = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMarker)).BeginInit();
             this.toolStripToolBar.SuspendLayout();
             this.menuStripMainMenu.SuspendLayout();
@@ -513,6 +513,27 @@
             this.toolStripMenuItemDrawCar.Text = "Draw Car";
             this.toolStripMenuItemDrawCar.CheckedChanged += new System.EventHandler(this.toolStripMenuItemDrawCar_CheckedChanged);
             // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(239, 6);
+            // 
+            // toolStripMenuItemShowFPS
+            // 
+            this.toolStripMenuItemShowFPS.CheckOnClick = true;
+            this.toolStripMenuItemShowFPS.Name = "toolStripMenuItemShowFPS";
+            this.toolStripMenuItemShowFPS.Size = new System.Drawing.Size(242, 26);
+            this.toolStripMenuItemShowFPS.Text = "Show FPS";
+            this.toolStripMenuItemShowFPS.CheckedChanged += new System.EventHandler(this.toolStripMenuItemShowFPS_CheckedChanged);
+            // 
+            // toolStripMenuItemShowCursorPosition
+            // 
+            this.toolStripMenuItemShowCursorPosition.CheckOnClick = true;
+            this.toolStripMenuItemShowCursorPosition.Name = "toolStripMenuItemShowCursorPosition";
+            this.toolStripMenuItemShowCursorPosition.Size = new System.Drawing.Size(242, 26);
+            this.toolStripMenuItemShowCursorPosition.Text = "Show Cursor Position";
+            this.toolStripMenuItemShowCursorPosition.CheckedChanged += new System.EventHandler(this.toolStripMenuItemShowCursorPosition_CheckedChanged);
+            // 
             // toolStripMenuItemTools
             // 
             this.toolStripMenuItemTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -544,27 +565,6 @@
             this.openFileDialog.DefaultExt = "json";
             this.openFileDialog.Filter = "Json Files|*.json";
             this.openFileDialog.RestoreDirectory = true;
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(239, 6);
-            // 
-            // toolStripMenuItemShowFPS
-            // 
-            this.toolStripMenuItemShowFPS.CheckOnClick = true;
-            this.toolStripMenuItemShowFPS.Name = "toolStripMenuItemShowFPS";
-            this.toolStripMenuItemShowFPS.Size = new System.Drawing.Size(242, 26);
-            this.toolStripMenuItemShowFPS.Text = "Show FPS";
-            this.toolStripMenuItemShowFPS.CheckedChanged += new System.EventHandler(this.toolStripMenuItemShowFPS_CheckedChanged);
-            // 
-            // toolStripMenuItemShowCursorPosition
-            // 
-            this.toolStripMenuItemShowCursorPosition.CheckOnClick = true;
-            this.toolStripMenuItemShowCursorPosition.Name = "toolStripMenuItemShowCursorPosition";
-            this.toolStripMenuItemShowCursorPosition.Size = new System.Drawing.Size(242, 26);
-            this.toolStripMenuItemShowCursorPosition.Text = "Show Cursor Position";
-            this.toolStripMenuItemShowCursorPosition.CheckedChanged += new System.EventHandler(this.toolStripMenuItemShowCursorPosition_CheckedChanged);
             // 
             // FormEditor
             // 

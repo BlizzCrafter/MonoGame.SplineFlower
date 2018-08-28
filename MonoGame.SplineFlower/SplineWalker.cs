@@ -16,6 +16,12 @@ namespace MonoGame.SplineFlower
         }
         public SplineWalkerMode Mode { get; set; }
 
+        public enum ResetLocation
+        {
+            Start,
+            End
+        }
+
         protected BezierSpline _Spline;
 
         protected Vector2 Position { get; private set; }
@@ -118,10 +124,11 @@ namespace MonoGame.SplineFlower
             else return _Spline.GetAllTrigger().FindAll(x => x.Name == name);
         }
 
-        public virtual void Reset()
+        public virtual void Reset(ResetLocation resetLocation = ResetLocation.Start)
         {
             LastTriggerID = new Guid();
-            Progress = 0f;
+            Progress = resetLocation == ResetLocation.Start ? 0f : 1f;
+            _CurrentTriggerIndex = 0;
         }
         
         public virtual void Update(GameTime gameTime)

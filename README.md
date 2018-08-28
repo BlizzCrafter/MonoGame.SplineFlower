@@ -43,4 +43,9 @@ Despite drawing simple lines, it can also generate:
 #### Complex BézierSplines
 ![BezierSpline](doc/BezierSpline.png)
 
-Creating BézierSplines is very easy with the **MonoGame.SplineFlower.Editor** project:
+Creating BézierSplines is very easy with the: 
+
+#### MonoGame.SplineFlower.Editor
+![Editor](doc/Editor.png)
+
+It is also possible to create **looped** or **multiple looped** BézierSplines as you can see!

@@ -43,11 +43,18 @@
             this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
             this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
+            this.tabPageInfo = new System.Windows.Forms.TabPage();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
+            this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageSimpleLine.SuspendLayout();
             this.tabPageQuadraticBezier.SuspendLayout();
             this.tabPageCubicBezier.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
+            this.tabPageInfo.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlEditorTabs
@@ -56,6 +63,7 @@
             this.tabControlEditorTabs.Controls.Add(this.tabPageQuadraticBezier);
             this.tabControlEditorTabs.Controls.Add(this.tabPageCubicBezier);
             this.tabControlEditorTabs.Controls.Add(this.tabPageBezierSpline);
+            this.tabControlEditorTabs.Controls.Add(this.tabPageInfo);
             this.tabControlEditorTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlEditorTabs.Location = new System.Drawing.Point(0, 0);
             this.tabControlEditorTabs.Name = "tabControlEditorTabs";
@@ -240,6 +248,61 @@
             this.splineControl.TryGetTransformFromPosition = null;
             this.splineControl.TryGetTriggerFromPosition = null;
             // 
+            // tabPageInfo
+            // 
+            this.tabPageInfo.Controls.Add(this.statusStrip);
+            this.tabPageInfo.Controls.Add(this.richTextBoxLicense);
+            this.tabPageInfo.Location = new System.Drawing.Point(4, 25);
+            this.tabPageInfo.Name = "tabPageInfo";
+            this.tabPageInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageInfo.Size = new System.Drawing.Size(574, 524);
+            this.tabPageInfo.TabIndex = 4;
+            this.tabPageInfo.Text = "Info";
+            this.tabPageInfo.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButtonGitHub,
+            this.toolStripDropDownButtonTwitter});
+            this.statusStrip.Location = new System.Drawing.Point(3, 483);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(568, 38);
+            this.statusStrip.SizingGrip = false;
+            this.statusStrip.TabIndex = 3;
+            // 
+            // toolStripDropDownButtonGitHub
+            // 
+            this.toolStripDropDownButtonGitHub.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripDropDownButtonGitHub.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonGitHub.Image")));
+            this.toolStripDropDownButtonGitHub.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonGitHub.Name = "toolStripDropDownButtonGitHub";
+            this.toolStripDropDownButtonGitHub.Size = new System.Drawing.Size(335, 36);
+            this.toolStripDropDownButtonGitHub.Text = "MonoGame.SplineFlower";
+            this.toolStripDropDownButtonGitHub.Click += new System.EventHandler(this.toolStripDropDownButtonGitHub_Click);
+            // 
+            // toolStripDropDownButtonTwitter
+            // 
+            this.toolStripDropDownButtonTwitter.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripDropDownButtonTwitter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonTwitter.Image")));
+            this.toolStripDropDownButtonTwitter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonTwitter.Name = "toolStripDropDownButtonTwitter";
+            this.toolStripDropDownButtonTwitter.Size = new System.Drawing.Size(158, 36);
+            this.toolStripDropDownButtonTwitter.Text = "#sqrMin1";
+            this.toolStripDropDownButtonTwitter.Click += new System.EventHandler(this.toolStripDropDownButtonTwitter_Click);
+            // 
+            // richTextBoxLicense
+            // 
+            this.richTextBoxLicense.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxLicense.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxLicense.Location = new System.Drawing.Point(3, 3);
+            this.richTextBoxLicense.Name = "richTextBoxLicense";
+            this.richTextBoxLicense.Size = new System.Drawing.Size(568, 518);
+            this.richTextBoxLicense.TabIndex = 2;
+            this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
+            this.richTextBoxLicense.ZoomFactor = 1.5F;
+            // 
             // SplineForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -257,6 +320,10 @@
             this.tabPageQuadraticBezier.ResumeLayout(false);
             this.tabPageCubicBezier.ResumeLayout(false);
             this.tabPageBezierSpline.ResumeLayout(false);
+            this.tabPageInfo.ResumeLayout(false);
+            this.tabPageInfo.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -276,6 +343,11 @@
         private Controls.CurveControl curveControlQuadratic;
         private Controls.CurveControl curveControlCubic;
         private Controls.SplineControl splineControl;
+        private System.Windows.Forms.TabPage tabPageInfo;
+        private System.Windows.Forms.RichTextBox richTextBoxLicense;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonGitHub;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonTwitter;
     }
 }
 

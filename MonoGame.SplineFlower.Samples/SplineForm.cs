@@ -1,10 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace MonoGame.SplineFlower.Samples
 {
     public partial class SplineForm : Form
     {
+        private void toolStripDropDownButtonTwitter_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://twitter.com/sqrMin1");
+        }
+
+        private void toolStripDropDownButtonGitHub_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public SplineForm()
         {
             InitializeComponent();
@@ -67,11 +78,6 @@ namespace MonoGame.SplineFlower.Samples
         private void SplineEditorForm_ResizeEnd(object sender, EventArgs e)
         {
             UpdateControls();
-        }
-
-        private void splineControl_MouseUp(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }

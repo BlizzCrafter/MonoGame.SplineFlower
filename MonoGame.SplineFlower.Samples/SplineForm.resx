@@ -117,7 +117,116 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripDropDownButtonGitHub.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        gg==
+</value>
+  </data>
+  <data name="toolStripDropDownButtonTwitter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        KAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="richTextBoxLicense.Text" xml:space="preserve">
+    <value>MIT License
+
+Copyright (c) 2018 Marcel "sqrMin1" Härtel
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAgAAAAAAAEAIAAcSgAAhgAAAICAAAABACAAKAgBAKJKAABgYAAAAQAgAKiUAADKUgEAQEAAAAEA

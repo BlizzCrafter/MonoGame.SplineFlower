@@ -2,6 +2,7 @@
 
 # Welcome to MonoGame.SplineFlower!
 [![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/sqrMin1)
+[![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
 
 Create wonderful smooth **BézierSplines** with **TriggerEvents** for your **MonoGame** project.
 
@@ -100,5 +101,6 @@ You can do pretty much anything with BézierSplines. The limit is really just yo
 
 ### Now Have Fun with MonoGame.SplineFlower!
 [![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/sqrMin1)
+[![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
 
 ![Logo](Logos/Logo_Shadow_256.png)

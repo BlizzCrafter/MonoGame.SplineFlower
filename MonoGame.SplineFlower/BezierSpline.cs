@@ -127,6 +127,20 @@ namespace MonoGame.SplineFlower
             EnforceMode(index);
         }
 
+        public void Translate(Vector2 amount)
+        {
+            // When the BezierSpline is a loop, we need to make sure
+            // that we don't translate the Start and the End point (which are the same then) twice.
+            // We do that by using the 'Distinct()' command.
+            _Points.Distinct().ToList().ForEach(x => x.Translate(amount));
+        }
+
+        public void Position(Vector2 position)
+        {
+            Vector2 diff = GetBezierCenter - position;
+            Translate(-diff);
+        }
+
         public void MoveAxis(int index, Vector2 diff)
         {
             if (Setup.MovePointAxis)
@@ -516,6 +530,8 @@ namespace MonoGame.SplineFlower
             {
                 AddTrigger(trigger[i].Name, trigger[i].Progress, trigger[i].TriggerRange * Setup.SplineMarkerResolution, trigger[i].ID.ToString());
             }
+
+            CalculateBezierCenter(_Points);
         }
         private Transform[] LoadJsonPointData(TransformDummy[] pointData)
         {

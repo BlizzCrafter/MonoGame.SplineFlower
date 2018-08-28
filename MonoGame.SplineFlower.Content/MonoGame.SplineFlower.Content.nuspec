@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MonoGame.SplineFlower.Content</id>
+    <version>$version$</version>
+    <title>MonoGame.SplineFlower.Content</title>
+    <authors>Marcel 'sqrMin1' Härtel</authors>
+    <owners>Marcel Härtel</owners>
+    <licenseUrl>https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/sqrMin1/MonoGame.SplineFlower</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/sqrMin1/MonoGame.SplineFlower/master/Logos/Logo_Square_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Debug your BézierSplines with this package. Call Setup.Initialize(graphics.GraphicsDevice); to do that.</description>
+    <copyright>Copyright (c) 2018 Marcel 'sqrMin1' Härtel</copyright>
+    <tags>MonoGame WindowsForms</tags>
+	<references>
+		<group targetFramework="net452">
+		<reference file="MonoGame.SplineFlower.Content.dll" />
+		</group>
+	</references>
+  </metadata>
+</package>

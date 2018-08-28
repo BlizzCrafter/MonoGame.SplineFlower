@@ -71,7 +71,7 @@ namespace MonoGame.SplineFlower
             _AutoStart = autoStart;
             CanTriggerEvents = canTriggerEvents;
             Duration = duration;
-            Mode = SplineWalkerMode.Once;
+            Mode = mode;
 
             SetPosition(spline.GetPoint(0));
             _Spline.EventTriggered += EventTriggered;

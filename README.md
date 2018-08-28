@@ -28,4 +28,19 @@ to the **static class Setup**, because you need to call **Setup.Initialize(graph
 > Note: You don't need this reference if you don't want to draw your BézierSplines. **You don't need to draw BézierSpline at all.**
 This is just a **Debug** feature to make your life as a game developer easier ;)
 
-### Impressions
+### Capabilities
+
+So what can this library actually do for you?
+
+Despite drawing simple lines, it can also generate:
+
+#### Quadratic BézierCurves
+![BezierCurve_Quadratic](doc/BezierCurve_Quadratic.png)
+
+#### Cubic BézierCurves
+![BezierCurve_Cubic](doc/BezierCurve_Cubic.png)
+
+#### Complex BézierSplines
+![BezierSpline](doc/BezierSpline.png)
+
+Creating BézierSplines is very easy with the **MonoGame.SplineFlower.Editor** project:

@@ -360,6 +360,9 @@ namespace MonoGame.SplineFlower.Editor
 
             // Reset the SelectedTrigger of the ComboBox.
             ResetComboBoxSelectedTrigger();
+
+            // Reset the Looped status of the BezierSpline.
+            ResetLoop();
         }
         private void ResetTrackBarMarker()
         {
@@ -380,6 +383,11 @@ namespace MonoGame.SplineFlower.Editor
         private void ResetSplineWalkerMode()
         {
             toolStripComboBoxWalkerMode.SelectedIndex = 0;
+        }
+        private void ResetLoop()
+        {
+            toolStripButtonTrackLoop.Enabled = true;
+            splineControl.MySpline.Loop = false;
         }
 
         // Close Application

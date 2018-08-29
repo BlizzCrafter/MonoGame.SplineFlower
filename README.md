@@ -116,9 +116,9 @@ It is reachable from the main editor through the **Tools** button.
 
 A SplineWalker also has 3 different built-in movement modes:
 
-- **Once** travels the BézierSpline just one time and will stop at the starting point.
+- **Once** travels the BézierSpline just one time and will stop at the last control point.
 - **Looped** travels the BézierSpline infinitely (smoothly starts again at the starting point).
-- **PingPong** travels the BézierSpline forward and then backward when he reaches the starting point (infinitely).
+- **PingPong** travels the BézierSpline forward and then backward when he reaches the last control point / starting point (infinitely).
 
 ---
 

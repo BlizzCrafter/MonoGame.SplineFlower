@@ -54,12 +54,22 @@ This makes it possible to generate:
 #### Complex BézierSplines
 ![BezierSpline](doc/BezierSpline.png)
 
-Creating BézierSplines is very easy with the: 
+Did you notice the different colors of the control points?
+You can set them in 3 different modes:
+
+![BezierSpline](doc/ControlModes.png)
+
+- **Free** allows you to freely place the control point, but often resulting in sharp corners.
+- **Aligned** will enforce such corners and allow you to have connected control points asymmetrical.
+- **Mirrored** behave like the aligned one, but allow you to have the connected control points symmetrical.
+
+You can change control modes simply by clicking on them with the **Right Mouse Button** in the:
 
 #### MonoGame.SplineFlower.Editor
 ![Editor](doc/Editor.png)
 
 It is also possible to create **looped** or **multiple looped** BézierSplines as you can see!
+With the **Middle Mouse Button** you can drag the whole BézierSpline to keep the overview.
 
 Did you noticed the nice little car on the picture? This is a **[SplineWalker](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/MonoGame.SplineFlower/SplineWalker.cs)**.
 

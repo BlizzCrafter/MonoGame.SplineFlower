@@ -68,7 +68,7 @@ You can change control modes simply by clicking on them with the **Right Mouse B
 #### MonoGame.SplineFlower.Editor
 ![Editor](doc/Editor.png)
 
-It is also possible to create **looped** or **multiple looped** BézierSplines as you can see!
+It is also possible to create **looped** BézierSplines as you can see!
 With the **Middle Mouse Button** you can drag the whole BézierSpline to keep the overview.
 
 Did you noticed the nice little car on the picture? This is a **[SplineWalker](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/MonoGame.SplineFlower/SplineWalker.cs)**.

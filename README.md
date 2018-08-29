@@ -40,7 +40,10 @@ For an easy installation you should make use of the nuget package manager:
 
 So what can this library actually do for you?
 
-Despite drawing simple lines, it can also generate:
+Despite drawing simple lines, it generates very smooth BézierCurves and BézierSplines pretty fast,
+because it uses **polynomial math formulas** behind the scenes.
+
+This makes it possible to generate:
 
 #### Quadratic BézierCurves
 ![BezierCurve_Quadratic](doc/BezierCurve_Quadratic.png)

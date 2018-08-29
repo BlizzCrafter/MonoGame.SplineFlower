@@ -114,6 +114,12 @@ You can define your own Trigger with the TriggerEditor:
 
 It is reachable from the main editor through the **Tools** button.
 
+A SplineWalker has 3 different built-in movement modes:
+
+- **Once** travels the BézierSpline just one time and will stop at the starting point.
+- **Looped** travels the BézierSpline infinitely (smoothly starts again at the starting point).
+- **PingPong** travels the BézierSpline forward and then backward when he reaches the starting point (infinitely).
+
 ---
 
 You can do pretty much anything with BézierSplines. The limit is really just your imagination.

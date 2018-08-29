@@ -38,7 +38,7 @@ For an easy installation you should make use of the nuget package manager:
 
 ### Capabilities
 
-So what can this library actually do for you?
+So what can this library actually do for you? **[[Watch the Video!](https://youtu.be/0Wez5AryxwI)]**
 
 Despite drawing simple lines, it generates very smooth BézierCurves and BézierSplines pretty fast,
 because it uses **polynomial math formulas** behind the scenes.

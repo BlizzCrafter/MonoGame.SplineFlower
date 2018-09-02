@@ -128,6 +128,11 @@ namespace MonoGame.SplineFlower
             _ForwardButton = forwardButton;
             _BackwardButton = backwardButton;
         }
+        public void ResetInput()
+        {
+            InputMode = SplineWalkerInput.None;
+            _AutoStart = true;
+        }
 
         public Guid AddTrigger(string name, float progress, int triggerDistance)
         {

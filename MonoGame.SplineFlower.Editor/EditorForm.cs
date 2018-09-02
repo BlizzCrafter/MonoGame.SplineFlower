@@ -113,7 +113,7 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripComboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)toolStripComboBoxWalkerMode.SelectedIndex;
+            splineControl.MySplineWalker.WalkerMode = (SplineWalker.SplineWalkerMode)toolStripComboBoxWalkerMode.SelectedIndex;
         }
 
         private void toolStripNumericUpDownDuration_ValueChanged(object sender, EventArgs e)

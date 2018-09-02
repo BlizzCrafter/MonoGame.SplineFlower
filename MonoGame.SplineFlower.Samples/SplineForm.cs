@@ -52,7 +52,7 @@ namespace MonoGame.SplineFlower.Samples
             if (splineControl.MySplineWalker != null &&
                 splineControl.MySplineWalker.Initialized)
             {
-                splineControl.MySplineWalker.Mode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
+                splineControl.MySplineWalker.WalkerMode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
             }
         }
 

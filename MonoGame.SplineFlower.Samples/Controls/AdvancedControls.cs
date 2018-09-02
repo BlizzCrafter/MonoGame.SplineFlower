@@ -20,7 +20,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
             TryGetTriggerFromPosition = MySpline.TryGetTriggerFromPosition;
             GetAllPoints = MySpline.GetAllPoints;
-            RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
+            RecalculateBezierCenter += SplineControl_RecalculateBezierCenter;
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MySplineWalker = new Car();

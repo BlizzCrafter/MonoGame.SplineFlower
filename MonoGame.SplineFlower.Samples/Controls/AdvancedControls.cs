@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.SplineFlower.Content;
 using System.Windows.Forms;
 
@@ -31,7 +32,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
             MySplineWalker.LoadContent(Editor.Content, Editor.Font);
             MySplineWalker.TurnWhenWalkingBackwards = true;
-            MySplineWalker.SetInput(Microsoft.Xna.Framework.Input.Keys.W, Microsoft.Xna.Framework.Input.Keys.S);
+            MySplineWalker.SetInput(Buttons.DPadUp, Buttons.DPadDown);
 
             MoveSplineToScreenCenter();
 

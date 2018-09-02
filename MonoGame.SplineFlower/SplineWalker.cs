@@ -87,6 +87,7 @@ namespace MonoGame.SplineFlower
         public int _CurrentTriggerIndex = 0;
 
         private Keys _ForwardKey, _BackwardKey;
+        private Buttons _ForwardButton, _BackwardButton;
 
         public virtual void CreateSplineWalker(
             BezierSpline spline, 
@@ -118,6 +119,14 @@ namespace MonoGame.SplineFlower
 
             _ForwardKey = forwardKey;
             _BackwardKey = backwardKey;
+        }
+        public void SetInput(Buttons forwardButton, Buttons backwardButton)
+        {
+            InputMode = SplineWalkerInput.GamePad;
+            _AutoStart = false;
+
+            _ForwardButton = forwardButton;
+            _BackwardButton = backwardButton;
         }
 
         public Guid AddTrigger(string name, float progress, int triggerDistance)
@@ -267,8 +276,13 @@ namespace MonoGame.SplineFlower
             {
                 if (Keyboard.GetState().IsKeyDown(_ForwardKey)) UpdateForwardMovement(gameTime);
                 else if (Keyboard.GetState().IsKeyDown(_BackwardKey)) UpdateBackwardMovement(gameTime);
-            }            
-            
+            }
+            else if (InputMode == SplineWalkerInput.GamePad)
+            {
+                if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_ForwardButton)) UpdateForwardMovement(gameTime);
+                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_BackwardButton)) UpdateBackwardMovement(gameTime);
+            }
+
             if (_LookForward)
             {
                 _Direction = _Spline.GetDirection(GetProgress);

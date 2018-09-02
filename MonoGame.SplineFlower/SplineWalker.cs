@@ -265,41 +265,8 @@ namespace MonoGame.SplineFlower
             }
             else if (InputMode == SplineWalkerInput.Keyboard)
             {
-                if (Keyboard.GetState().IsKeyDown(_ForwardKey))
-                {
-                    if (GetProgress >= 1f)
-                    {
-                        if (WalkerMode == SplineWalkerMode.Once) GetProgress = 1f;
-                        else GetProgress = 0f;
-
-                        ResetTriggerIndex();
-
-                    }
-                    else
-                    {
-                        GetProgress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
-
-                        if (_GoingForward == false) InputDirectionChanged(false);
-                        _GoingForward = true;
-                    }
-                }
-                else if (Keyboard.GetState().IsKeyDown(_BackwardKey))
-                {
-                    if (GetProgress <= 0f)
-                    {
-                        if (WalkerMode == SplineWalkerMode.Once) GetProgress = 0f;
-                        else GetProgress = 1f;
-
-                        ResetTriggerIndex();
-                    }
-                    else
-                    {
-                        GetProgress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
-
-                        if (_GoingForward == true) InputDirectionChanged(true);
-                        _GoingForward = false;
-                    }
-                }
+                if (Keyboard.GetState().IsKeyDown(_ForwardKey)) UpdateForwardMovement(gameTime);
+                else if (Keyboard.GetState().IsKeyDown(_BackwardKey)) UpdateBackwardMovement(gameTime);
             }            
             
             if (_LookForward)
@@ -313,6 +280,41 @@ namespace MonoGame.SplineFlower
             if (CanTriggerEvents &&
                 _Spline.GetAllTrigger().Count > 0 &&
                 _CurrentTriggerIndex != -1) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(GetProgress);
+        }
+        private void UpdateForwardMovement(GameTime gameTime)
+        {
+            if (GetProgress >= 1f)
+            {
+                if (WalkerMode == SplineWalkerMode.Once) GetProgress = 1f;
+                else GetProgress = 0f;
+
+                ResetTriggerIndex();
+
+            }
+            else
+            {
+                GetProgress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+
+                if (_GoingForward == false) InputDirectionChanged(false);
+                _GoingForward = true;
+            }
+        }
+        private void UpdateBackwardMovement(GameTime gameTime)
+        {
+            if (GetProgress <= 0f)
+            {
+                if (WalkerMode == SplineWalkerMode.Once) GetProgress = 0f;
+                else GetProgress = 1f;
+
+                ResetTriggerIndex();
+            }
+            else
+            {
+                GetProgress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
+
+                if (_GoingForward == true) InputDirectionChanged(true);
+                _GoingForward = false;
+            }
         }
         private void InputDirectionChanged(bool forwardToBackward)
         {

@@ -43,3 +43,8 @@
 /processor:BezierSplineProcessor
 /build:SplineTrack.json
 
+#begin TankTrack.json
+/importer:BezierSplineImporter
+/processor:BezierSplineProcessor
+/build:TankTrack.json
+

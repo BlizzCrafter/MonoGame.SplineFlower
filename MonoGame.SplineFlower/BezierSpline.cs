@@ -48,6 +48,8 @@ namespace MonoGame.SplineFlower
             Guid triggerID = new Guid();
             _Trigger.Add(new Trigger(name, progress, triggerRange, out triggerID));
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
+            _Trigger.Last().GetDirectionOnSpline = GetDirection;
+            _Trigger.Last().UpdateTriggerRotation();
 
             ReorderTriggerList();
 
@@ -57,6 +59,8 @@ namespace MonoGame.SplineFlower
         {
             _Trigger.Add(new Trigger(name, progress, triggerRange, triggerID));
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
+            _Trigger.Last().GetDirectionOnSpline = GetDirection;
+            _Trigger.Last().UpdateTriggerRotation();
         }
         private void BezierSpline_TriggerEvent(Trigger obj)
         {

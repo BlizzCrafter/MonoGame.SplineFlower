@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Forms.Controls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,6 +24,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         [Browsable(false)]
         public Func<Transform[]> GetAllPoints { get; set; }
+
+        [Browsable(false)]
+        public Func<List<Trigger>> GetAllTrigger { get; set; }
 
         [Browsable(false)]
         protected event Action RecalculateBezierCenter = delegate { };
@@ -81,6 +85,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 {
                     SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
                     MovePointDiff.Invoke(new Vector2(-xDiff, -yDiff));
+                    if (GetAllTrigger != null) GetAllTrigger().ForEach(x => x.UpdateTriggerRotation());
                 }
                 else if (TranslateAllPointsClick) TranslateAllPoints(new Vector2(-xDiff, -yDiff));
 

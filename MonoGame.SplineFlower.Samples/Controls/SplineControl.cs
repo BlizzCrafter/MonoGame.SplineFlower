@@ -20,6 +20,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
             TryGetTriggerFromPosition = MySpline.TryGetTriggerFromPosition;
             GetAllPoints = MySpline.GetAllPoints;
+            GetAllTrigger = MySpline.GetAllTrigger;
             RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
             MovePointDiff += SplineEditor_MovePointDiff;
 

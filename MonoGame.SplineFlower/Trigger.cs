@@ -9,6 +9,7 @@ namespace MonoGame.SplineFlower
         public string Name { get; private set; } = "";
         public Guid ID { get; private set; }
         public float Progress { get; set; } = -999;
+        public float Rotation { get; internal set; }
         public object Custom { get; set; }
         public float TriggerRange
         {
@@ -18,6 +19,8 @@ namespace MonoGame.SplineFlower
         private float _TriggerRange = 3f;
 
         internal event Action<Trigger> TriggerEvent = delegate { };
+
+        internal Func<float, Vector2> GetDirectionOnSpline { get; set; }
 
         public Trigger() { }
         public Trigger(string name, float progress, float triggerRange, out Guid id)
@@ -33,6 +36,12 @@ namespace MonoGame.SplineFlower
             Progress = progress;
             TriggerRange = triggerRange;
             ID = Guid.Parse(id);
+        }
+
+        public void UpdateTriggerRotation()
+        {
+            Vector2 direction = GetDirectionOnSpline(Progress);
+            Rotation = (float)Math.Atan2(direction.X, -direction.Y);
         }
 
         public bool CheckIfTriggered(float progress)

@@ -8,7 +8,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
     public class AdvancedControls : TransformControl
     {
         public BezierSpline MySpline;
-        public Car MySplineWalker;
+        public Tank MySplineWalker;
 
         protected override void Initialize()
         {
@@ -16,21 +16,22 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Setup.Initialize(Editor.graphics);
 
             MySpline = new BezierSpline();
-            MySpline = Editor.Content.Load<BezierSpline>(@"SplineTrack");
+            MySpline = Editor.Content.Load<BezierSpline>(@"TankTrack");
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
             TryGetTriggerFromPosition = MySpline.TryGetTriggerFromPosition;
             GetAllPoints = MySpline.GetAllPoints;
+            GetAllTrigger = MySpline.GetAllTrigger;
             RecalculateBezierCenter += SplineControl_RecalculateBezierCenter;
             MovePointDiff += SplineEditor_MovePointDiff;
 
-            MySplineWalker = new Car();
+            MySplineWalker = new Tank();
             MySplineWalker.CreateSplineWalker(
                 MySpline, 
                 SplineWalker.SplineWalkerMode.Loop, 
                 7, 
                 autoStart: true, 
                 triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
-            MySplineWalker.LoadContent(Editor.Content, Editor.Font);
+            MySplineWalker.LoadContent(Editor.Content);
             MySplineWalker.TurnWhenWalkingBackwards = true;
             MySplineWalker.SetInput(Microsoft.Xna.Framework.Input.Keys.W, Microsoft.Xna.Framework.Input.Keys.S);
             //MySplineWalker.SetInput(Buttons.DPadUp, Buttons.DPadDown);

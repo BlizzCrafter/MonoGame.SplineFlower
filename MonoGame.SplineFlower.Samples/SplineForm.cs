@@ -79,5 +79,10 @@ namespace MonoGame.SplineFlower.Samples
         {
             UpdateControls();
         }
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Top down vehicle © Copyright by irmirx @ opengameart.org CC-BY 3.0", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

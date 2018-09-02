@@ -10,6 +10,7 @@ namespace MonoGame.SplineFlower
         public Guid ID { get; private set; }
         public float Progress { get; set; } = -999;
         public float Rotation { get; internal set; }
+        public bool Triggered { get; internal set; } = false;
         public object Custom { get; set; }
         public float TriggerRange
         {
@@ -49,6 +50,7 @@ namespace MonoGame.SplineFlower
             float range = MathHelper.Distance(Progress, progress);
             if (range <= TriggerRange)
             {
+                Triggered = true;
                 TriggerEvent.Invoke(this);
                 return true;
             }

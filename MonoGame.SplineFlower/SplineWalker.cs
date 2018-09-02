@@ -179,6 +179,8 @@ namespace MonoGame.SplineFlower
             }
             else if (WalkerMode == SplineWalkerMode.PingPong || InputMode != SplineWalkerInput.None) SetTriggerIndex();
             else if (GetProgress >= 1 && InputMode == SplineWalkerInput.None) _CurrentTriggerIndex = 0;
+
+            if (_ReachedEndOfSpline) GetTriggers().ForEach(x => x.Triggered = false);
         }
         private void SetTriggerIndex()
         {
@@ -303,7 +305,6 @@ namespace MonoGame.SplineFlower
                 else GetProgress = 0f;
 
                 ResetTriggerIndex();
-
             }
             else
             {
@@ -340,14 +341,30 @@ namespace MonoGame.SplineFlower
 
                     if (forwardToBackward)
                     {
-                        _CurrentTriggerIndex--;
-                        Trigger lastTrigger = _Spline.GetAllTrigger().Last();
-                        if (GetProgress > lastTrigger.Progress) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                        if (_CurrentTriggerIndex > -1f)
+                        {
+                            _CurrentTriggerIndex--;
+                            Trigger lastTrigger = _Spline.GetAllTrigger().Last();
+                            if (GetProgress > lastTrigger.Progress) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                        }
                     }
                     else _CurrentTriggerIndex++;
 
-                    if (_CurrentTriggerIndex > _Spline.GetAllTrigger().Count - 1) _CurrentTriggerIndex = -1;
-                }
+                    if (_CurrentTriggerIndex > _Spline.GetAllTrigger().Count - 1)
+                    {
+                        if (GetTriggers().TrueForAll(x => x.Triggered))
+                        {
+                            Trigger firstTrigger = _Spline.GetAllTrigger().First();
+                            if (GetProgress < firstTrigger.Progress) _CurrentTriggerIndex = 0;
+                            else
+                            {
+                                _CurrentTriggerIndex = -1;
+                                GetTriggers().ForEach(x => x.Triggered = false);
+                            }
+                        }
+                        else _CurrentTriggerIndex--;
+                    }
+                } 
             }
         }
 

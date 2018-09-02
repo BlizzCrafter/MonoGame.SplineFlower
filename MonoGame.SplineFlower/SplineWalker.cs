@@ -105,7 +105,7 @@ namespace MonoGame.SplineFlower
             WalkerMode = mode;
 
             SetPosition(spline.GetPoint(0));
-            ResetTriggerIndex();
+            ResetTriggerIndex(false);
 
             _Spline.EventTriggered += EventTriggered;
 
@@ -144,12 +144,12 @@ namespace MonoGame.SplineFlower
                     if (_GoingForward)
                     {
                         _CurrentTriggerIndex++;
-                        if (_CurrentTriggerIndex > _Spline.GetAllTrigger().Count - 1) ResetTriggerIndex();
+                        if (_CurrentTriggerIndex > _Spline.GetAllTrigger().Count - 1) ResetTriggerIndex(false);
                     }
                     else
                     {
                         _CurrentTriggerIndex--;
-                        if (_CurrentTriggerIndex < 0) ResetTriggerIndex();
+                        if (_CurrentTriggerIndex < 0) ResetTriggerIndex(false);
                     }
                 }
                 LastTriggerID = obj.ID;
@@ -161,11 +161,11 @@ namespace MonoGame.SplineFlower
             else return false;
         }
 
-        private void ResetTriggerIndex()
+        private void ResetTriggerIndex(bool revolution)
         {
             LastTriggerID = new Guid();
 
-            if (!_ReachedEndOfSpline)
+            if (!_ReachedEndOfSpline && !revolution)
             {
                 if (_GoingForward &&
                     (TriggerDirection == SplineWalkerTriggerDirection.Forward || TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward))
@@ -243,7 +243,7 @@ namespace MonoGame.SplineFlower
                     GetProgress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
                     if (GetProgress > 1f)
                     {
-                        ResetTriggerIndex();
+                        ResetTriggerIndex(true);
 
                         if (WalkerMode == SplineWalkerMode.Once)
                         {
@@ -266,7 +266,7 @@ namespace MonoGame.SplineFlower
                     GetProgress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
                     if (GetProgress < 0f)
                     {
-                        ResetTriggerIndex();
+                        ResetTriggerIndex(true);
 
                         GetProgress = -GetProgress;
                         _GoingForward = true;
@@ -304,7 +304,7 @@ namespace MonoGame.SplineFlower
                 if (WalkerMode == SplineWalkerMode.Once) GetProgress = 1f;
                 else GetProgress = 0f;
 
-                ResetTriggerIndex();
+                ResetTriggerIndex(true);
             }
             else
             {
@@ -321,7 +321,7 @@ namespace MonoGame.SplineFlower
                 if (WalkerMode == SplineWalkerMode.Once) GetProgress = 0f;
                 else GetProgress = 1f;
 
-                ResetTriggerIndex();
+                ResetTriggerIndex(true);
             }
             else
             {

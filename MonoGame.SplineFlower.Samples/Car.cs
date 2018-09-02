@@ -30,9 +30,9 @@ namespace MonoGame.SplineFlower.Samples
             _CarDrive = Content.Load<SoundEffect>(@"Audio/cardrive");
         }
 
-        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, bool autoStart = true)
+        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, SplineWalkerTriggerDirection triggerDirection = SplineWalkerTriggerDirection.Forward, bool autoStart = true)
         {
-            base.CreateSplineWalker(spline, mode, duration, canTriggerEvents, autoStart);
+            base.CreateSplineWalker(spline, mode, duration, canTriggerEvents, triggerDirection, autoStart);
         }
 
         protected override void EventTriggered(Trigger obj)

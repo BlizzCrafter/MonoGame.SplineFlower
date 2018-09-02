@@ -23,7 +23,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MySplineWalker = new Car();
-            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.PingPong, 7, autoStart: true);
+            MySplineWalker.CreateSplineWalker(
+                MySpline, 
+                SplineWalker.SplineWalkerMode.Loop, 
+                7, 
+                autoStart: true, 
+                triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
             MySplineWalker.LoadContent(Editor.Content, Editor.Font);
             MySplineWalker.TurnWhenWalkingBackwards = true;
 
@@ -90,6 +95,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
                 
                 Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.Progress.ToString(), new Vector2(10, 30), Color.White);
+
+                Editor.spriteBatch.DrawString(Editor.Font, "TriggerIndex: " + MySplineWalker._CurrentTriggerIndex.ToString(), new Vector2(10, 60), Color.White);
 
                 Editor.spriteBatch.End();
 

@@ -28,7 +28,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySplineWalker.LoadContent(Editor.Content, Editor.Font);
 
             MySplineMarker = new Marker();
-            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0, false, false);
+            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0, false, autoStart: false);
             MySplineMarker.LoadContent(Editor.Content);
 
             MoveSplineToScreenCenter();

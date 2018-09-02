@@ -16,6 +16,14 @@ namespace MonoGame.SplineFlower
         }
         public SplineWalkerMode Mode { get; set; }
 
+        public enum SplineWalkerTriggerDirection
+        {
+            Forward,
+            Backward,
+            ForwardAndBackward
+        }
+        private SplineWalkerTriggerDirection TriggerDirection { get; set; } = SplineWalkerTriggerDirection.Forward;
+
         public enum ResetLocation
         {
             Start,
@@ -57,32 +65,33 @@ namespace MonoGame.SplineFlower
         public bool TurnWhenWalkingBackwards
         {
             get { return _TurnWhenWalkingBackwards; }
-            set
-            {
-                _CheckIfWalkingBackwards = value;
-            }
+            set { _CheckIfWalkingBackwards = value; }
         }
         private bool _TurnWhenWalkingBackwards = false, _CheckIfWalkingBackwards = false;
 
         private bool _GoingForward = true;
         private bool _LookForward = true;
         private bool _AutoStart = true;
-        private int _CurrentTriggerIndex = 0;
+        public int _CurrentTriggerIndex = 0;
 
         public virtual void CreateSplineWalker(
             BezierSpline spline, 
-            SplineWalkerMode mode, 
+            SplineWalkerMode mode,
             int duration,
             bool canTriggerEvents = true,
+            SplineWalkerTriggerDirection triggerDirection = SplineWalkerTriggerDirection.Forward,
             bool autoStart = true)
         {
             _Spline = spline;
             _AutoStart = autoStart;
             CanTriggerEvents = canTriggerEvents;
+            TriggerDirection = triggerDirection;
             Duration = duration;
             Mode = mode;
 
             SetPosition(spline.GetPoint(0));
+            ResetTriggerIndex(true);
+
             _Spline.EventTriggered += EventTriggered;
 
             Initialized = true;
@@ -100,8 +109,16 @@ namespace MonoGame.SplineFlower
             {
                 if (!AlreadyTriggered(obj))
                 {
-                    _CurrentTriggerIndex++;
-                    if (_CurrentTriggerIndex >= _Spline.GetAllTrigger().Count) _CurrentTriggerIndex = 0;
+                    if (_GoingForward)
+                    {
+                        _CurrentTriggerIndex++;
+                        if (_CurrentTriggerIndex > _Spline.GetAllTrigger().Count - 1) ResetTriggerIndex(false);
+                    }
+                    else
+                    {
+                        _CurrentTriggerIndex--;
+                        if (_CurrentTriggerIndex < 0) ResetTriggerIndex(false);
+                    }
                 }
                 LastTriggerID = obj.ID;
             }
@@ -110,6 +127,34 @@ namespace MonoGame.SplineFlower
         {
             if (LastTriggerID == trigger.ID) return true;
             else return false;
+        }
+
+        private void ResetTriggerIndex(bool reachedEndOfSpline)
+        {
+            LastTriggerID = new Guid();
+
+            if (!reachedEndOfSpline)
+            {
+                if (_GoingForward &&
+                    (TriggerDirection == SplineWalkerTriggerDirection.Forward || TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward))
+                {
+                    _CurrentTriggerIndex = 0;
+                }
+                else if (TriggerDirection == SplineWalkerTriggerDirection.Backward || TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward)
+                {
+                    _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                }
+            }
+            else if (Mode == SplineWalkerMode.PingPong)
+            {
+                if (Progress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.Forward) _CurrentTriggerIndex = -1;
+                if (Progress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.Backward) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                if (Progress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                if (Progress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.Forward) _CurrentTriggerIndex = 0;
+                if (Progress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.Backward) _CurrentTriggerIndex = -1;
+                if (Progress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward) _CurrentTriggerIndex = 0;
+            }
+            else if (Progress >= 1) _CurrentTriggerIndex = 0;
         }
 
         public virtual void SetPosition(float progress)
@@ -149,7 +194,7 @@ namespace MonoGame.SplineFlower
                     Progress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
                     if (Progress > 1f)
                     {
-                        LastTriggerID = new Guid();
+                        ResetTriggerIndex(true);
 
                         if (Mode == SplineWalkerMode.Once)
                         {
@@ -172,6 +217,8 @@ namespace MonoGame.SplineFlower
                     Progress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
                     if (Progress < 0f)
                     {
+                        ResetTriggerIndex(true);
+
                         Progress = -Progress;
                         _GoingForward = true;
                         if (_CheckIfWalkingBackwards) _TurnWhenWalkingBackwards = false;
@@ -187,7 +234,9 @@ namespace MonoGame.SplineFlower
 
             SetPosition(_Spline.GetPoint(Progress));
 
-            if (CanTriggerEvents && _Spline.GetAllTrigger().Count > 0) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(Progress);
+            if (CanTriggerEvents &&
+                _Spline.GetAllTrigger().Count > 0 &&
+                _CurrentTriggerIndex != -1) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(Progress);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

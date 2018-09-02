@@ -23,8 +23,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MySplineWalker = new Car();
-            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7, autoStart: false);
+            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.PingPong, 7, autoStart: true);
             MySplineWalker.LoadContent(Editor.Content, Editor.Font);
+            MySplineWalker.TurnWhenWalkingBackwards = true;
 
             MoveSplineToScreenCenter();
 

@@ -52,8 +52,17 @@ namespace MonoGame.SplineFlower
         }
 
         public bool Initialized { get; private set; } = false;
-        public bool CanTriggerEvents { get; set; } = true;
         public Guid LastTriggerID { get; private set; }
+        public bool CanTriggerEvents { get; set; } = true;
+        public bool TurnWhenWalkingBackwards
+        {
+            get { return _TurnWhenWalkingBackwards; }
+            set
+            {
+                _CheckIfWalkingBackwards = value;
+            }
+        }
+        private bool _TurnWhenWalkingBackwards = false, _CheckIfWalkingBackwards = false;
 
         private bool _GoingForward = true;
         private bool _LookForward = true;
@@ -154,6 +163,7 @@ namespace MonoGame.SplineFlower
                         {
                             Progress = 2f - Progress;
                             _GoingForward = false;
+                            if (_CheckIfWalkingBackwards) _TurnWhenWalkingBackwards = true;
                         }
                     }
                 }
@@ -164,6 +174,7 @@ namespace MonoGame.SplineFlower
                     {
                         Progress = -Progress;
                         _GoingForward = true;
+                        if (_CheckIfWalkingBackwards) _TurnWhenWalkingBackwards = false;
                     }
                 }
             }
@@ -171,7 +182,7 @@ namespace MonoGame.SplineFlower
             if (_LookForward)
             {
                 _Direction = _Spline.GetDirection(Progress);
-                Rotation = (float)Math.Atan2(_Direction.X, -_Direction.Y);
+                Rotation = (float)Math.Atan2(_Direction.X, -_Direction.Y) - (_TurnWhenWalkingBackwards ? MathHelper.ToRadians(180) : 0);
             }
 
             SetPosition(_Spline.GetPoint(Progress));

@@ -31,10 +31,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
             MySplineWalker.LoadContent(Editor.Content, Editor.Font);
             MySplineWalker.TurnWhenWalkingBackwards = true;
+            MySplineWalker.SetInput(Microsoft.Xna.Framework.Input.Keys.W, Microsoft.Xna.Framework.Input.Keys.S);
 
             MoveSplineToScreenCenter();
 
             SetMultiSampleCount(8);
+
+            AlwaysEnableKeyboardInput = true;
         }
 
         public void SplineControl_RecalculateBezierCenter()
@@ -94,7 +97,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
                 if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
                 
-                Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.Progress.ToString(), new Vector2(10, 30), Color.White);
+                Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.GetProgress.ToString(), new Vector2(10, 30), Color.White);
 
                 Editor.spriteBatch.DrawString(Editor.Font, "TriggerIndex: " + MySplineWalker._CurrentTriggerIndex.ToString(), new Vector2(10, 60), Color.White);
 

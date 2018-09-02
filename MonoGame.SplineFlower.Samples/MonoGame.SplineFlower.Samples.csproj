@@ -61,6 +61,9 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AdvancedControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\CurveControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -111,6 +114,9 @@
     <None Include="Content\car.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\SplineTrack.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,6 +132,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonoGame.SplineFlower.Content.Pipeline\MonoGame.SplineFlower.Content.Pipeline.csproj">
+      <Project>{e5cdb18e-9f83-4ae3-8ace-32a425e3ba02}</Project>
+      <Name>MonoGame.SplineFlower.Content.Pipeline</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonoGame.SplineFlower.Content\MonoGame.SplineFlower.Content.csproj">
       <Project>{47ED5EF0-837F-4938-9892-7A920426C5A9}</Project>
       <Name>MonoGame.SplineFlower.Content</Name>

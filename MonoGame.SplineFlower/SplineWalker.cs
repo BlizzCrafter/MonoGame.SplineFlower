@@ -300,7 +300,7 @@ namespace MonoGame.SplineFlower
 
             if (CanTriggerEvents &&
                 _Spline.GetAllTrigger().Count > 0 &&
-                _CurrentTriggerIndex != -1) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(GetProgress);
+                _CurrentTriggerIndex > -1) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(GetProgress);
         }
         private void UpdateForwardMovement(GameTime gameTime)
         {

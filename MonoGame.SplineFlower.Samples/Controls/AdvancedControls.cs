@@ -28,7 +28,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySplineWalker.CreateSplineWalker(
                 MySpline, 
                 SplineWalker.SplineWalkerMode.PingPong, 
-                7, 
+                9, 
                 autoStart: true, 
                 triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
             MySplineWalker.LoadContent(Editor.Content);

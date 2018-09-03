@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineForm));
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageAdvancedControls = new System.Windows.Forms.TabPage();
+            this.buttonHelp = new System.Windows.Forms.Button();
             this.advancedControls = new MonoGame.SplineFlower.Samples.Controls.AdvancedControls();
             this.tabPageSimpleLine = new System.Windows.Forms.TabPage();
             this.lineControl = new MonoGame.SplineFlower.Samples.Controls.LineControl();
@@ -50,7 +51,6 @@
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
-            this.buttonHelp = new System.Windows.Forms.Button();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageAdvancedControls.SuspendLayout();
             this.tabPageSimpleLine.SuspendLayout();
@@ -73,7 +73,7 @@
             this.tabControlEditorTabs.Location = new System.Drawing.Point(0, 0);
             this.tabControlEditorTabs.Name = "tabControlEditorTabs";
             this.tabControlEditorTabs.SelectedIndex = 0;
-            this.tabControlEditorTabs.Size = new System.Drawing.Size(582, 553);
+            this.tabControlEditorTabs.Size = new System.Drawing.Size(782, 553);
             this.tabControlEditorTabs.TabIndex = 2;
             // 
             // tabPageAdvancedControls
@@ -83,10 +83,22 @@
             this.tabPageAdvancedControls.Location = new System.Drawing.Point(4, 25);
             this.tabPageAdvancedControls.Name = "tabPageAdvancedControls";
             this.tabPageAdvancedControls.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAdvancedControls.Size = new System.Drawing.Size(574, 524);
+            this.tabPageAdvancedControls.Size = new System.Drawing.Size(774, 524);
             this.tabPageAdvancedControls.TabIndex = 5;
             this.tabPageAdvancedControls.Text = "AdvancedControls";
             this.tabPageAdvancedControls.UseVisualStyleBackColor = true;
+            // 
+            // buttonHelp
+            // 
+            this.buttonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHelp.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHelp.Location = new System.Drawing.Point(735, 6);
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(31, 32);
+            this.buttonHelp.TabIndex = 1;
+            this.buttonHelp.Text = "?";
+            this.buttonHelp.UseVisualStyleBackColor = true;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
             // 
             // advancedControls
             // 
@@ -95,10 +107,11 @@
             this.advancedControls.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.advancedControls.ForeColor = System.Drawing.Color.GhostWhite;
             this.advancedControls.GetAllPoints = null;
+            this.advancedControls.GetAllTrigger = null;
             this.advancedControls.Location = new System.Drawing.Point(3, 3);
             this.advancedControls.Name = "advancedControls";
             this.advancedControls.SelectedTrigger = null;
-            this.advancedControls.Size = new System.Drawing.Size(568, 518);
+            this.advancedControls.Size = new System.Drawing.Size(768, 518);
             this.advancedControls.TabIndex = 0;
             this.advancedControls.Text = "Advanced Controls";
             this.advancedControls.TryGetTransformFromPosition = null;
@@ -122,6 +135,7 @@
             this.lineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lineControl.ForeColor = System.Drawing.Color.CadetBlue;
             this.lineControl.GetAllPoints = null;
+            this.lineControl.GetAllTrigger = null;
             this.lineControl.Location = new System.Drawing.Point(3, 3);
             this.lineControl.MyLine = null;
             this.lineControl.Name = "lineControl";
@@ -149,6 +163,7 @@
             this.curveControlQuadratic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.curveControlQuadratic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curveControlQuadratic.GetAllPoints = null;
+            this.curveControlQuadratic.GetAllTrigger = null;
             this.curveControlQuadratic.Location = new System.Drawing.Point(3, 3);
             this.curveControlQuadratic.Name = "curveControlQuadratic";
             this.curveControlQuadratic.SelectedTrigger = null;
@@ -175,6 +190,7 @@
             this.curveControlCubic.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.curveControlCubic.ForeColor = System.Drawing.Color.PaleVioletRed;
             this.curveControlCubic.GetAllPoints = null;
+            this.curveControlCubic.GetAllTrigger = null;
             this.curveControlCubic.GetBezierType = MonoGame.SplineFlower.Samples.Controls.CurveControl.BezierType.Cubic;
             this.curveControlCubic.Location = new System.Drawing.Point(0, 0);
             this.curveControlCubic.Name = "curveControlCubic";
@@ -272,6 +288,7 @@
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
             this.splineControl.GetAllPoints = null;
+            this.splineControl.GetAllTrigger = null;
             this.splineControl.Location = new System.Drawing.Point(0, 0);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
@@ -336,22 +353,10 @@
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;
             // 
-            // buttonHelp
-            // 
-            this.buttonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonHelp.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHelp.Location = new System.Drawing.Point(535, 6);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(31, 32);
-            this.buttonHelp.TabIndex = 1;
-            this.buttonHelp.Text = "?";
-            this.buttonHelp.UseVisualStyleBackColor = true;
-            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
-            // 
             // SplineForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(582, 553);
+            this.ClientSize = new System.Drawing.Size(782, 553);
             this.Controls.Add(this.tabControlEditorTabs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SplineForm";

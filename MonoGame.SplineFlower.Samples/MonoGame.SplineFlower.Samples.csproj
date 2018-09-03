@@ -125,7 +125,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\TankTrack.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\Tank_Bottom.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

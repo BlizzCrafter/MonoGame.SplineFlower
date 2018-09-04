@@ -26,6 +26,13 @@ namespace MonoGame.SplineFlower
         }
         private SplineWalkerTriggerDirection TriggerDirection { get; set; }
 
+        public enum SplineWalkerTriggerMode
+        {
+            Dynamic,
+            TriggerByTrigger
+        }
+        private SplineWalkerTriggerMode TriggerMode { get; set; }
+
         public enum SplineWalkerInput
         {
             None,
@@ -84,10 +91,16 @@ namespace MonoGame.SplineFlower
         private bool _AutoStart = true;
         private bool _ReachedEndOfSpline = false;
         private bool _SplineDirectionChanged = false;
+        private bool _ApproachingNextTrigger = false;
+        private bool _ApproachingPreviousTrigger = false;
+        private bool _RevolutionApproachForward = false;
+        private bool _RevolutionApproachBackward = false;
         public int _CurrentTriggerIndex = 0;
 
         private Keys _ForwardKey, _BackwardKey;
         private Buttons _ForwardButton, _BackwardButton;
+        private KeyboardState _oldKeyboardState;
+        private GamePadState _oldGamePadState;
 
         public virtual void CreateSplineWalker(
             BezierSpline spline, 
@@ -104,34 +117,54 @@ namespace MonoGame.SplineFlower
             Duration = duration;
             WalkerMode = mode;
 
-            SetPosition(spline.GetPoint(0));
+            SetPosition(0);
+            GetProgress = 0;
             ResetTriggerIndex(false);
 
             _Spline.EventTriggered += EventTriggered;
 
+            _oldKeyboardState = Keyboard.GetState();
+            _oldGamePadState = GamePad.GetState(PlayerIndex.One);
+
             Initialized = true;
         }
 
-        public void SetInput(Keys forwardKey, Keys backwardKey)
+        public void SetInput(Keys forwardKey, Keys backwardKey, SplineWalkerTriggerMode triggerMode)
         {
             InputMode = SplineWalkerInput.Keyboard;
             _AutoStart = false;
 
             _ForwardKey = forwardKey;
             _BackwardKey = backwardKey;
+
+            SetTriggerMode(triggerMode);
         }
-        public void SetInput(Buttons forwardButton, Buttons backwardButton)
+        public void SetInput(Buttons forwardButton, Buttons backwardButton, SplineWalkerTriggerMode triggerMode)
         {
             InputMode = SplineWalkerInput.GamePad;
             _AutoStart = false;
 
             _ForwardButton = forwardButton;
             _BackwardButton = backwardButton;
+
+            SetTriggerMode(triggerMode);
         }
         public void ResetInput()
         {
             InputMode = SplineWalkerInput.None;
             _AutoStart = true;
+            TriggerMode = SplineWalkerTriggerMode.Dynamic;
+        }
+        private void SetTriggerMode(SplineWalkerTriggerMode triggerMode)
+        {
+            TriggerMode = triggerMode;
+
+            Trigger firstTrigger = GetTriggers().First();
+            if (TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger && firstTrigger != null)
+            {
+                SetPosition(_Spline.GetPoint(firstTrigger.Progress));
+                GetProgress = firstTrigger.Progress;
+            }
         }
 
         public Guid AddTrigger(string name, float progress, int triggerDistance)
@@ -144,26 +177,28 @@ namespace MonoGame.SplineFlower
         {
             if (CanTriggerEvents)
             {
-                if (!AlreadyTriggered(obj))
+                if (CanTrigger(obj))
                 {
                     if (_GoingForward)
                     {
-                        _CurrentTriggerIndex++;
+                        if (TriggerMode == SplineWalkerTriggerMode.Dynamic) _CurrentTriggerIndex++;
                         if (_CurrentTriggerIndex > _Spline.GetAllTrigger().Count - 1) ResetTriggerIndex(false);
                     }
                     else
                     {
-                        _CurrentTriggerIndex--;
+                        if (TriggerMode == SplineWalkerTriggerMode.Dynamic) _CurrentTriggerIndex--;
                         if (_CurrentTriggerIndex < 0) ResetTriggerIndex(false);
                     }
                 }
                 LastTriggerID = obj.ID;
             }
         }
-        protected bool AlreadyTriggered(Trigger trigger)
+        protected bool CanTrigger(Trigger trigger)
         {
-            if (LastTriggerID == trigger.ID) return true;
-            else return false;
+            if (LastTriggerID == trigger.ID ||
+                (!_GoingForward && TriggerDirection == SplineWalkerTriggerDirection.Forward) ||
+                (_GoingForward && TriggerDirection == SplineWalkerTriggerDirection.Backward)) return false;
+            else return true;
         }
 
         private void ResetTriggerIndex(bool revolution)
@@ -172,15 +207,19 @@ namespace MonoGame.SplineFlower
 
             if (!_ReachedEndOfSpline && !revolution)
             {
-                if (_GoingForward &&
-                    (TriggerDirection == SplineWalkerTriggerDirection.Forward || TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward))
+                if (TriggerMode == SplineWalkerTriggerMode.Dynamic)
                 {
-                    _CurrentTriggerIndex = 0;
+                    if (_GoingForward &&
+                        (TriggerDirection == SplineWalkerTriggerDirection.Forward || TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward))
+                    {
+                        _CurrentTriggerIndex = 0;
+                    }
+                    else if (TriggerDirection == SplineWalkerTriggerDirection.Backward || TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward)
+                    {
+                        _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                    }
                 }
-                else if (TriggerDirection == SplineWalkerTriggerDirection.Backward || TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward)
-                {
-                    _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
-                }
+                else _CurrentTriggerIndex = 0;
             }
             else if (WalkerMode == SplineWalkerMode.PingPong || InputMode != SplineWalkerInput.None) SetTriggerIndex();
             else if (GetProgress >= 1 && InputMode == SplineWalkerInput.None) _CurrentTriggerIndex = 0;
@@ -189,12 +228,58 @@ namespace MonoGame.SplineFlower
         }
         private void SetTriggerIndex()
         {
-            if (GetProgress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.Forward) _CurrentTriggerIndex = -1;
-            if (GetProgress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.Backward) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
-            if (GetProgress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
-            if (GetProgress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.Forward) _CurrentTriggerIndex = 0;
-            if (GetProgress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.Backward) _CurrentTriggerIndex = -1;
-            if (GetProgress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward) _CurrentTriggerIndex = 0;
+            if (TriggerMode == SplineWalkerTriggerMode.Dynamic)
+            {
+                if (GetProgress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.Forward) _CurrentTriggerIndex = -1;
+                if (GetProgress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.Backward) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                if (GetProgress >= 1 && TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
+                if (GetProgress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.Forward) _CurrentTriggerIndex = 0;
+                if (GetProgress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.Backward) _CurrentTriggerIndex = -1;
+                if (GetProgress <= 0 && TriggerDirection == SplineWalkerTriggerDirection.ForwardAndBackward) _CurrentTriggerIndex = 0;
+            }
+            else if (TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+            {
+                if (WalkerMode != SplineWalkerMode.Once)
+                {
+                    if (!_RevolutionApproachBackward)
+                    {
+                        if (GetProgress >= GetTrigger(GetTriggers().Count - 1).Progress)
+                        {
+                            _CurrentTriggerIndex = 0;
+                            _RevolutionApproachForward = true;
+                            _ApproachingNextTrigger = true;
+
+                            return;
+                        }
+                        else
+                        {
+                            if (_RevolutionApproachForward)
+                            {
+                                _RevolutionApproachForward = false;
+                                return;
+                            }
+                            if (_RevolutionApproachBackward) return;
+                        }
+                    }
+
+                    if (!_RevolutionApproachForward)
+                    {
+                        if (GetProgress <= GetTrigger(GetTriggers().Count - 1).Progress)
+                        {
+                            _CurrentTriggerIndex = GetTriggers().Count - 1;
+                            _RevolutionApproachBackward = true;
+                            _ApproachingPreviousTrigger = true;
+
+                            return;
+                        }
+                        else
+                        {
+                            _RevolutionApproachBackward = false;
+                            if (_RevolutionApproachForward) return;
+                        }
+                    }
+                }
+            }
         }
 
         public virtual void SetPosition(float progress)
@@ -214,7 +299,7 @@ namespace MonoGame.SplineFlower
 
         public virtual Trigger GetTrigger(int index)
         {
-            if (index > -1 && index < _Spline.GetAllTrigger().Count - 1)
+            if (index > -1 && index <= _Spline.GetAllTrigger().Count - 1)
             {
                 Trigger[] sortedTrigger = _Spline.GetAllTrigger().OrderBy(x => x.Progress).ToArray();
 
@@ -281,8 +366,50 @@ namespace MonoGame.SplineFlower
             }
             else if (InputMode == SplineWalkerInput.Keyboard)
             {
-                if (Keyboard.GetState().IsKeyDown(_ForwardKey)) UpdateForwardMovement(gameTime);
-                else if (Keyboard.GetState().IsKeyDown(_BackwardKey)) UpdateBackwardMovement(gameTime);
+                if (Keyboard.GetState().IsKeyDown(_ForwardKey) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                {
+                    UpdateForwardMovement(gameTime);
+                }
+                else if (Keyboard.GetState().IsKeyDown(_BackwardKey) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                {
+                    UpdateBackwardMovement(gameTime);
+                }
+                else if (Keyboard.GetState().IsKeyDown(_ForwardKey) && _oldKeyboardState.IsKeyUp(_ForwardKey) &&
+                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                {
+                    if (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once) return;
+
+                    Trigger trigger = GetTrigger(GetNextHigherTriggerIndex());
+                    if (GetProgress < trigger.Progress - trigger.TriggerRange)
+                    {
+                        _ApproachingNextTrigger = true;
+                        _ApproachingPreviousTrigger = false;
+                    }
+
+                    if (GetProgress >= GetTrigger(_CurrentTriggerIndex).Progress)
+                    {
+                        if (_CurrentTriggerIndex + 1 <= GetTriggers().Count - 1) _CurrentTriggerIndex++;
+                        else ResetTriggerIndex(true);
+                    }
+                }
+                else if (Keyboard.GetState().IsKeyDown(_BackwardKey) && _oldKeyboardState.IsKeyUp(_BackwardKey) &&
+                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                {
+                    if (_CurrentTriggerIndex == 0 && WalkerMode == SplineWalkerMode.Once) return;
+
+                    Trigger trigger = GetTrigger(GetNextLowerTriggerIndex());
+                    if (GetProgress >= trigger.Progress + trigger.TriggerRange)
+                    {
+                        _ApproachingPreviousTrigger = true;
+                        _ApproachingNextTrigger = false;
+                    }
+
+                    if (_CurrentTriggerIndex - 1 > -1)
+                    {
+                        if (GetProgress >= GetTrigger(_CurrentTriggerIndex - 1).Progress) _CurrentTriggerIndex--;
+                    }
+                    else ResetTriggerIndex(true);
+                }
             }
             else if (InputMode == SplineWalkerInput.GamePad)
             {
@@ -290,7 +417,20 @@ namespace MonoGame.SplineFlower
                 else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_BackwardButton)) UpdateBackwardMovement(gameTime);
             }
 
-            if (_LookForward)
+            if (_ApproachingNextTrigger)
+            {
+                if (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once ? -0.003f : + 0.003f) ||
+                    (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachForward)) UpdateForwardMovement(gameTime, true);
+                else _ApproachingNextTrigger = false;
+            }
+            else if (_ApproachingPreviousTrigger)
+            {
+                if (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f ||
+                    (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachBackward)) UpdateBackwardMovement(gameTime, true);
+                else _ApproachingPreviousTrigger = false;
+            }
+
+           if (_LookForward)
             {
                 _Direction = _Spline.GetDirection(GetProgress);
                 Rotation = (float)Math.Atan2(_Direction.X, -_Direction.Y) - (_TurnWhenWalkingBackwards ? MathHelper.ToRadians(180) : 0);
@@ -301,8 +441,11 @@ namespace MonoGame.SplineFlower
             if (CanTriggerEvents &&
                 _Spline.GetAllTrigger().Count > 0 &&
                 _CurrentTriggerIndex > -1) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(GetProgress);
+
+            _oldGamePadState = GamePad.GetState(PlayerIndex.One);
+            _oldKeyboardState = Keyboard.GetState();
         }
-        private void UpdateForwardMovement(GameTime gameTime)
+        private void UpdateForwardMovement(GameTime gameTime, bool lockTriggerIndex = false)
         {
             if (GetProgress >= 1f)
             {
@@ -315,11 +458,11 @@ namespace MonoGame.SplineFlower
             {
                 GetProgress += (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
 
-                if (_GoingForward == false) InputDirectionChanged(false);
+                if (_GoingForward == false) InputDirectionChanged(false, lockTriggerIndex);
                 _GoingForward = true;
             }
         }
-        private void UpdateBackwardMovement(GameTime gameTime)
+        private void UpdateBackwardMovement(GameTime gameTime, bool lockTriggerIndex = false)
         {
             if (GetProgress <= 0f)
             {
@@ -332,11 +475,11 @@ namespace MonoGame.SplineFlower
             {
                 GetProgress -= (float)gameTime.ElapsedGameTime.TotalSeconds / Duration;
 
-                if (_GoingForward == true) InputDirectionChanged(true);
+                if (_GoingForward == true) InputDirectionChanged(true, lockTriggerIndex);
                 _GoingForward = false;
             }
         }
-        private void InputDirectionChanged(bool forwardToBackward)
+        private void InputDirectionChanged(bool forwardToBackward, bool lockTriggerIndex = false)
         {
             if (!_ReachedEndOfSpline)
             {
@@ -348,12 +491,12 @@ namespace MonoGame.SplineFlower
                     {
                         if (_CurrentTriggerIndex > -1f)
                         {
-                            _CurrentTriggerIndex--;
+                            if (!lockTriggerIndex) _CurrentTriggerIndex--;
                             Trigger lastTrigger = _Spline.GetAllTrigger().Last();
                             if (GetProgress > lastTrigger.Progress) _CurrentTriggerIndex = _Spline.GetAllTrigger().Count - 1;
                         }
                     }
-                    else _CurrentTriggerIndex++;
+                    else if (!lockTriggerIndex) _CurrentTriggerIndex++;
 
                     if (_CurrentTriggerIndex > _Spline.GetAllTrigger().Count - 1)
                     {
@@ -363,14 +506,28 @@ namespace MonoGame.SplineFlower
                             if (GetProgress < firstTrigger.Progress) _CurrentTriggerIndex = 0;
                             else
                             {
-                                _CurrentTriggerIndex = -1;
+                                if (!lockTriggerIndex) _CurrentTriggerIndex = -1;
                                 GetTriggers().ForEach(x => x.Triggered = false);
                             }
                         }
-                        else _CurrentTriggerIndex--;
+                        else if (!lockTriggerIndex) _CurrentTriggerIndex--;
                     }
                 } 
             }
+        }
+        private int GetNextLowerTriggerIndex()
+        {
+            int triggerIndex = 0;
+            if (_CurrentTriggerIndex - 1 > -1) triggerIndex = _CurrentTriggerIndex - 1;
+
+            return triggerIndex;
+        }
+        private int GetNextHigherTriggerIndex()
+        {
+            int triggerIndex = GetTriggers().Count - 1;
+            if (_CurrentTriggerIndex + 1 < triggerIndex) triggerIndex = _CurrentTriggerIndex + 1;
+
+            return triggerIndex;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

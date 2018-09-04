@@ -27,13 +27,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySplineWalker = new Tank();
             MySplineWalker.CreateSplineWalker(
                 MySpline, 
-                SplineWalker.SplineWalkerMode.PingPong, 
+                SplineWalker.SplineWalkerMode.Loop, 
                 9,
                 triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
             MySplineWalker.LoadContent(Editor.Content);
             MySplineWalker.TurnWhenWalkingBackwards = true;
-            MySplineWalker.SetInput(Microsoft.Xna.Framework.Input.Keys.W, Microsoft.Xna.Framework.Input.Keys.S);
-            //MySplineWalker.SetInput(Buttons.DPadUp, Buttons.DPadDown);
+            MySplineWalker.SetInput(Microsoft.Xna.Framework.Input.Keys.W, Microsoft.Xna.Framework.Input.Keys.S, SplineWalker.SplineWalkerTriggerMode.TriggerByTrigger);
+            //MySplineWalker.SetInput(Buttons.DPadUp, Buttons.DPadDown, SplineWalker.SplineWalkerTriggerMode.TriggerByTrigger);
 
             MoveSplineToScreenCenter();
 

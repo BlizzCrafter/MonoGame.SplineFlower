@@ -368,66 +368,47 @@ namespace MonoGame.SplineFlower
             {
                 if (Keyboard.GetState().IsKeyDown(_ForwardKey) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
                 {
-                    UpdateForwardMovement(gameTime);
+                    UpdateDynamicForwardMovement(gameTime);
                 }
                 else if (Keyboard.GetState().IsKeyDown(_BackwardKey) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
                 {
-                    UpdateBackwardMovement(gameTime);
+                    UpdateDynamicBackwardMovement(gameTime);
                 }
                 else if (Keyboard.GetState().IsKeyDown(_ForwardKey) && _oldKeyboardState.IsKeyUp(_ForwardKey) &&
                         TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
                 {
-                    if (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once) return;
-
-                    Trigger trigger = GetTrigger(GetNextHigherTriggerIndex());
-                    if (GetProgress < trigger.Progress - trigger.TriggerRange)
-                    {
-                        _ApproachingNextTrigger = true;
-                        _ApproachingPreviousTrigger = false;
-                    }
-
-                    if (GetProgress >= GetTrigger(_CurrentTriggerIndex).Progress)
-                    {
-                        if (_CurrentTriggerIndex + 1 <= GetTriggers().Count - 1) _CurrentTriggerIndex++;
-                        else ResetTriggerIndex(true);
-                    }
+                    UpdateTriggeredForwardMovement();
                 }
                 else if (Keyboard.GetState().IsKeyDown(_BackwardKey) && _oldKeyboardState.IsKeyUp(_BackwardKey) &&
                         TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
                 {
-                    if (_CurrentTriggerIndex == 0 && WalkerMode == SplineWalkerMode.Once) return;
-
-                    Trigger trigger = GetTrigger(GetNextLowerTriggerIndex());
-                    if (GetProgress >= trigger.Progress + trigger.TriggerRange)
-                    {
-                        _ApproachingPreviousTrigger = true;
-                        _ApproachingNextTrigger = false;
-                    }
-
-                    if (_CurrentTriggerIndex - 1 > -1)
-                    {
-                        if (GetProgress >= GetTrigger(_CurrentTriggerIndex - 1).Progress) _CurrentTriggerIndex--;
-                    }
-                    else ResetTriggerIndex(true);
+                    UpdateTriggeredBackwardMovement();
                 }
+
+                UpdateApproachingTrigger(gameTime);
             }
             else if (InputMode == SplineWalkerInput.GamePad)
             {
-                if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_ForwardButton)) UpdateForwardMovement(gameTime);
-                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_BackwardButton)) UpdateBackwardMovement(gameTime);
-            }
+                if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_ForwardButton) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                {
+                    UpdateDynamicForwardMovement(gameTime);
+                }
+                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_BackwardButton) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                {
+                    UpdateDynamicBackwardMovement(gameTime);
+                }
+                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_ForwardButton) && _oldGamePadState.IsButtonUp(_ForwardButton) &&
+                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                {
+                    UpdateTriggeredForwardMovement();
+                }
+                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_BackwardButton) && _oldGamePadState.IsButtonUp(_BackwardButton) &&
+                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                {
+                    UpdateTriggeredBackwardMovement();
+                }
 
-            if (_ApproachingNextTrigger)
-            {
-                if (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once ? -0.003f : + 0.003f) ||
-                    (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachForward)) UpdateForwardMovement(gameTime, true);
-                else _ApproachingNextTrigger = false;
-            }
-            else if (_ApproachingPreviousTrigger)
-            {
-                if (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f ||
-                    (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachBackward)) UpdateBackwardMovement(gameTime, true);
-                else _ApproachingPreviousTrigger = false;
+                UpdateApproachingTrigger(gameTime);
             }
 
            if (_LookForward)
@@ -445,7 +426,41 @@ namespace MonoGame.SplineFlower
             _oldGamePadState = GamePad.GetState(PlayerIndex.One);
             _oldKeyboardState = Keyboard.GetState();
         }
-        private void UpdateForwardMovement(GameTime gameTime, bool lockTriggerIndex = false)
+        private void UpdateTriggeredForwardMovement()
+        {
+            if (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once) return;
+
+            Trigger trigger = GetTrigger(GetNextHigherTriggerIndex());
+            if (GetProgress < trigger.Progress - trigger.TriggerRange)
+            {
+                _ApproachingNextTrigger = true;
+                _ApproachingPreviousTrigger = false;
+            }
+
+            if (GetProgress >= GetTrigger(_CurrentTriggerIndex).Progress)
+            {
+                if (_CurrentTriggerIndex + 1 <= GetTriggers().Count - 1) _CurrentTriggerIndex++;
+                else ResetTriggerIndex(true);
+            }
+        }
+        private void UpdateTriggeredBackwardMovement()
+        {
+            if (_CurrentTriggerIndex == 0 && WalkerMode == SplineWalkerMode.Once) return;
+
+            Trigger trigger = GetTrigger(GetNextLowerTriggerIndex());
+            if (GetProgress >= trigger.Progress + trigger.TriggerRange)
+            {
+                _ApproachingPreviousTrigger = true;
+                _ApproachingNextTrigger = false;
+            }
+
+            if (_CurrentTriggerIndex - 1 > -1)
+            {
+                if (GetProgress >= GetTrigger(_CurrentTriggerIndex - 1).Progress) _CurrentTriggerIndex--;
+            }
+            else ResetTriggerIndex(true);
+        }
+        private void UpdateDynamicForwardMovement(GameTime gameTime, bool lockTriggerIndex = false)
         {
             if (GetProgress >= 1f)
             {
@@ -462,7 +477,7 @@ namespace MonoGame.SplineFlower
                 _GoingForward = true;
             }
         }
-        private void UpdateBackwardMovement(GameTime gameTime, bool lockTriggerIndex = false)
+        private void UpdateDynamicBackwardMovement(GameTime gameTime, bool lockTriggerIndex = false)
         {
             if (GetProgress <= 0f)
             {
@@ -477,6 +492,21 @@ namespace MonoGame.SplineFlower
 
                 if (_GoingForward == true) InputDirectionChanged(true, lockTriggerIndex);
                 _GoingForward = false;
+            }
+        }
+        private void UpdateApproachingTrigger(GameTime gameTime)
+        {
+            if (_ApproachingNextTrigger)
+            {
+                if (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once ? -0.003f : +0.003f) ||
+                    (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachForward)) UpdateDynamicForwardMovement(gameTime, true);
+                else _ApproachingNextTrigger = false;
+            }
+            else if (_ApproachingPreviousTrigger)
+            {
+                if (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f ||
+                    (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachBackward)) UpdateDynamicBackwardMovement(gameTime, true);
+                else _ApproachingPreviousTrigger = false;
             }
         }
         private void InputDirectionChanged(bool forwardToBackward, bool lockTriggerIndex = false)

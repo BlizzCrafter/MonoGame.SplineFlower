@@ -63,11 +63,11 @@
             // 
             // tabControlEditorTabs
             // 
-            this.tabControlEditorTabs.Controls.Add(this.tabPageAdvancedControls);
             this.tabControlEditorTabs.Controls.Add(this.tabPageSimpleLine);
             this.tabControlEditorTabs.Controls.Add(this.tabPageQuadraticBezier);
             this.tabControlEditorTabs.Controls.Add(this.tabPageCubicBezier);
             this.tabControlEditorTabs.Controls.Add(this.tabPageBezierSpline);
+            this.tabControlEditorTabs.Controls.Add(this.tabPageAdvancedControls);
             this.tabControlEditorTabs.Controls.Add(this.tabPageInfo);
             this.tabControlEditorTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlEditorTabs.Location = new System.Drawing.Point(0, 0);
@@ -123,7 +123,7 @@
             this.tabPageSimpleLine.Location = new System.Drawing.Point(4, 25);
             this.tabPageSimpleLine.Name = "tabPageSimpleLine";
             this.tabPageSimpleLine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSimpleLine.Size = new System.Drawing.Size(574, 524);
+            this.tabPageSimpleLine.Size = new System.Drawing.Size(774, 524);
             this.tabPageSimpleLine.TabIndex = 0;
             this.tabPageSimpleLine.Text = "Simple Line";
             this.tabPageSimpleLine.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             this.lineControl.MyLine = null;
             this.lineControl.Name = "lineControl";
             this.lineControl.SelectedTrigger = null;
-            this.lineControl.Size = new System.Drawing.Size(568, 518);
+            this.lineControl.Size = new System.Drawing.Size(768, 518);
             this.lineControl.TabIndex = 0;
             this.lineControl.Text = "Simple Line";
             this.lineControl.TryGetTransformFromPosition = null;
@@ -152,7 +152,7 @@
             this.tabPageQuadraticBezier.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuadraticBezier.Name = "tabPageQuadraticBezier";
             this.tabPageQuadraticBezier.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageQuadraticBezier.Size = new System.Drawing.Size(574, 524);
+            this.tabPageQuadraticBezier.Size = new System.Drawing.Size(774, 524);
             this.tabPageQuadraticBezier.TabIndex = 1;
             this.tabPageQuadraticBezier.Text = "Quadratic Beziér Curve";
             this.tabPageQuadraticBezier.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@
             this.curveControlQuadratic.Location = new System.Drawing.Point(3, 3);
             this.curveControlQuadratic.Name = "curveControlQuadratic";
             this.curveControlQuadratic.SelectedTrigger = null;
-            this.curveControlQuadratic.Size = new System.Drawing.Size(568, 518);
+            this.curveControlQuadratic.Size = new System.Drawing.Size(768, 518);
             this.curveControlQuadratic.TabIndex = 0;
             this.curveControlQuadratic.Text = "Quadratic Bézier Curve";
             this.curveControlQuadratic.TryGetTransformFromPosition = null;
@@ -178,7 +178,7 @@
             this.tabPageCubicBezier.Controls.Add(this.curveControlCubic);
             this.tabPageCubicBezier.Location = new System.Drawing.Point(4, 25);
             this.tabPageCubicBezier.Name = "tabPageCubicBezier";
-            this.tabPageCubicBezier.Size = new System.Drawing.Size(574, 524);
+            this.tabPageCubicBezier.Size = new System.Drawing.Size(774, 524);
             this.tabPageCubicBezier.TabIndex = 2;
             this.tabPageCubicBezier.Text = "Cubic Beziér Curve";
             this.tabPageCubicBezier.UseVisualStyleBackColor = true;
@@ -195,7 +195,7 @@
             this.curveControlCubic.Location = new System.Drawing.Point(0, 0);
             this.curveControlCubic.Name = "curveControlCubic";
             this.curveControlCubic.SelectedTrigger = null;
-            this.curveControlCubic.Size = new System.Drawing.Size(574, 524);
+            this.curveControlCubic.Size = new System.Drawing.Size(774, 524);
             this.curveControlCubic.TabIndex = 0;
             this.curveControlCubic.Text = "Cubic Bézier Curve";
             this.curveControlCubic.TryGetTransformFromPosition = null;
@@ -211,7 +211,7 @@
             this.tabPageBezierSpline.Controls.Add(this.splineControl);
             this.tabPageBezierSpline.Location = new System.Drawing.Point(4, 25);
             this.tabPageBezierSpline.Name = "tabPageBezierSpline";
-            this.tabPageBezierSpline.Size = new System.Drawing.Size(574, 524);
+            this.tabPageBezierSpline.Size = new System.Drawing.Size(774, 524);
             this.tabPageBezierSpline.TabIndex = 3;
             this.tabPageBezierSpline.Text = "Beziér Spline";
             this.tabPageBezierSpline.UseVisualStyleBackColor = true;
@@ -226,7 +226,7 @@
             "Once",
             "Loop",
             "PingPong"});
-            this.comboBoxWalkerMode.Location = new System.Drawing.Point(391, 452);
+            this.comboBoxWalkerMode.Location = new System.Drawing.Point(591, 452);
             this.comboBoxWalkerMode.MaxDropDownItems = 3;
             this.comboBoxWalkerMode.Name = "comboBoxWalkerMode";
             this.comboBoxWalkerMode.Size = new System.Drawing.Size(107, 26);
@@ -237,7 +237,7 @@
             // 
             this.buttonResetSplineWalker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonResetSplineWalker.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonResetSplineWalker.Location = new System.Drawing.Point(391, 484);
+            this.buttonResetSplineWalker.Location = new System.Drawing.Point(591, 484);
             this.buttonResetSplineWalker.Name = "buttonResetSplineWalker";
             this.buttonResetSplineWalker.Size = new System.Drawing.Size(180, 37);
             this.buttonResetSplineWalker.TabIndex = 4;
@@ -249,7 +249,7 @@
             // 
             this.buttonLoop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLoop.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoop.Location = new System.Drawing.Point(504, 441);
+            this.buttonLoop.Location = new System.Drawing.Point(704, 441);
             this.buttonLoop.Name = "buttonLoop";
             this.buttonLoop.Size = new System.Drawing.Size(67, 37);
             this.buttonLoop.TabIndex = 3;
@@ -292,7 +292,7 @@
             this.splineControl.Location = new System.Drawing.Point(0, 0);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
-            this.splineControl.Size = new System.Drawing.Size(574, 524);
+            this.splineControl.Size = new System.Drawing.Size(774, 524);
             this.splineControl.TabIndex = 12;
             this.splineControl.Text = "Bézier Spline";
             this.splineControl.TryGetTransformFromPosition = null;
@@ -305,7 +305,7 @@
             this.tabPageInfo.Location = new System.Drawing.Point(4, 25);
             this.tabPageInfo.Name = "tabPageInfo";
             this.tabPageInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageInfo.Size = new System.Drawing.Size(574, 524);
+            this.tabPageInfo.Size = new System.Drawing.Size(774, 524);
             this.tabPageInfo.TabIndex = 4;
             this.tabPageInfo.Text = "Info";
             this.tabPageInfo.UseVisualStyleBackColor = true;
@@ -318,7 +318,7 @@
             this.toolStripDropDownButtonTwitter});
             this.statusStrip.Location = new System.Drawing.Point(3, 483);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(568, 38);
+            this.statusStrip.Size = new System.Drawing.Size(768, 38);
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 3;
             // 
@@ -348,7 +348,7 @@
             this.richTextBoxLicense.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxLicense.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxLicense.Name = "richTextBoxLicense";
-            this.richTextBoxLicense.Size = new System.Drawing.Size(568, 518);
+            this.richTextBoxLicense.Size = new System.Drawing.Size(768, 518);
             this.richTextBoxLicense.TabIndex = 2;
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;

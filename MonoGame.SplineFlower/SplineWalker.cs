@@ -36,8 +36,7 @@ namespace MonoGame.SplineFlower
         public enum SplineWalkerInput
         {
             None,
-            GamePad,
-            Keyboard
+            Device
         }
         private SplineWalkerInput InputMode { get; set; }
 
@@ -95,6 +94,8 @@ namespace MonoGame.SplineFlower
         private bool _ApproachingPreviousTrigger = false;
         private bool _RevolutionApproachForward = false;
         private bool _RevolutionApproachBackward = false;
+        private bool _CheckKeyboardInput = false;
+        private bool _CheckGamePadInput = false;
         public int _CurrentTriggerIndex = 0;
 
         private List<Keys> _ForwardKeys, _BackwardKeys;
@@ -131,8 +132,10 @@ namespace MonoGame.SplineFlower
 
         public void SetInput(List<Keys> forwardKeys, List<Keys> backwardKeys, SplineWalkerTriggerMode triggerMode)
         {
-            InputMode = SplineWalkerInput.Keyboard;
+            _CheckKeyboardInput = true;
             _AutoStart = false;
+
+            InputMode = SplineWalkerInput.Device;
 
             _ForwardKeys = forwardKeys;
             _BackwardKeys = backwardKeys;
@@ -141,8 +144,10 @@ namespace MonoGame.SplineFlower
         }
         public void SetInput(List<Buttons> forwardButtons, List<Buttons> backwardButtons, SplineWalkerTriggerMode triggerMode)
         {
-            InputMode = SplineWalkerInput.GamePad;
+            _CheckGamePadInput = true;
             _AutoStart = false;
+
+            InputMode = SplineWalkerInput.Device;
 
             _ForwardButtons = forwardButtons;
             _BackwardButtons = backwardButtons;
@@ -151,8 +156,12 @@ namespace MonoGame.SplineFlower
         }
         public void ResetInput()
         {
-            InputMode = SplineWalkerInput.None;
+            _CheckKeyboardInput = false;
+            _CheckGamePadInput = false;
             _AutoStart = true;
+
+            InputMode = SplineWalkerInput.None;
+
             TriggerMode = SplineWalkerTriggerMode.Dynamic;
         }
         private void SetTriggerMode(SplineWalkerTriggerMode triggerMode)
@@ -364,45 +373,55 @@ namespace MonoGame.SplineFlower
                     }
                 }
             }
-            else if (InputMode == SplineWalkerInput.Keyboard)
+            else if (InputMode == SplineWalkerInput.Device)
             {
-                if (CheckIfForwardKeyWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                #region Keyboard Check
+
+                if (_CheckKeyboardInput)
                 {
-                    UpdateDynamicForwardMovement(gameTime);
-                }
-                else if (CheckIfForwardKeyWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
-                {
-                    UpdateDynamicBackwardMovement(gameTime);
-                }
-                else if (CheckIfForwardKeyWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
-                {
-                    UpdateTriggeredForwardMovement();
-                }
-                else if (CheckIfBackwardKeyWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
-                {
-                    UpdateTriggeredBackwardMovement();
+                    if (CheckIfForwardKeyWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                    {
+                        UpdateDynamicForwardMovement(gameTime);
+                    }
+                    else if (CheckIfBackwardKeyWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                    {
+                        UpdateDynamicBackwardMovement(gameTime);
+                    }
+                    else if (CheckIfForwardKeyWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                    {
+                        UpdateTriggeredForwardMovement();
+                    }
+                    else if (CheckIfBackwardKeyWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                    {
+                        UpdateTriggeredBackwardMovement();
+                    }
                 }
 
-                UpdateApproachingTrigger(gameTime);
-            }
-            else if (InputMode == SplineWalkerInput.GamePad)
-            {
-                if (CheckIfForwardButtonWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                #endregion
+
+                #region GamePad Check
+
+                if (_CheckGamePadInput)
                 {
-                    UpdateDynamicForwardMovement(gameTime);
+                    if (CheckIfForwardButtonWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                    {
+                        UpdateDynamicForwardMovement(gameTime);
+                    }
+                    else if (CheckIfBackwardButtonWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                    {
+                        UpdateDynamicBackwardMovement(gameTime);
+                    }
+                    else if (CheckIfForwardButtonWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                    {
+                        UpdateTriggeredForwardMovement();
+                    }
+                    else if (CheckIfBackwardButtonWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                    {
+                        UpdateTriggeredBackwardMovement();
+                    }
                 }
-                else if (CheckIfBackwardButtonWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
-                {
-                    UpdateDynamicBackwardMovement(gameTime);
-                }
-                else if (CheckIfForwardButtonWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
-                {
-                    UpdateTriggeredForwardMovement();
-                }
-                else if (CheckIfBackwardButtonWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
-                {
-                    UpdateTriggeredBackwardMovement();
-                }
+
+                #endregion
 
                 UpdateApproachingTrigger(gameTime);
             }

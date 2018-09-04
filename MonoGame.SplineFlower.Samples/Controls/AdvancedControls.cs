@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.SplineFlower.Content;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -37,13 +38,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             MySplineWalker.SetInput(
                 new List<Keys>() { Keys.W, Keys.D, Keys.Up, Keys.Right },
-                new List<Keys>() { Keys.S, Keys.A, Keys.Down, Keys.Left }, 
-                SplineWalker.SplineWalkerTriggerMode.TriggerByTrigger);
+                new List<Keys>() { Keys.S, Keys.A, Keys.Down, Keys.Left },
+                SplineWalker.SplineWalkerTriggerMode.Dynamic);
 
-            //MySplineWalker.SetInput(
-            //    new List<Buttons> { Buttons.DPadUp, Buttons.DPadRight, Buttons.RightTrigger, Buttons.LeftThumbstickUp, Buttons.LeftThumbstickRight }, 
-            //    new List<Buttons> { Buttons.DPadDown, Buttons.DPadLeft, Buttons.LeftTrigger, Buttons.LeftThumbstickDown, Buttons.LeftThumbstickLeft }, 
-            //    SplineWalker.SplineWalkerTriggerMode.Dynamic);
+            MySplineWalker.SetInput(
+                new List<Buttons> { Buttons.DPadUp, Buttons.DPadRight, Buttons.RightTrigger, Buttons.LeftThumbstickUp, Buttons.LeftThumbstickRight },
+                new List<Buttons> { Buttons.DPadDown, Buttons.DPadLeft, Buttons.LeftTrigger, Buttons.LeftThumbstickDown, Buttons.LeftThumbstickLeft },
+                SplineWalker.SplineWalkerTriggerMode.Dynamic);
 
             MoveSplineToScreenCenter();
 

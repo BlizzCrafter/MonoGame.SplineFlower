@@ -13,7 +13,7 @@ namespace MonoGame.SplineFlower.Samples
 
         private void toolStripDropDownButtonGitHub_Click(object sender, EventArgs e)
         {
-
+            Process.Start("https://github.com/sqrMin1/MonoGame.SplineFlower");
         }
 
         public SplineForm()

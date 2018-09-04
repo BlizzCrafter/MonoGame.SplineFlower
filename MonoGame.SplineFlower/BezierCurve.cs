@@ -50,7 +50,7 @@ namespace MonoGame.SplineFlower
         {
             if (!Setup.Initialized)
             {
-                throw new Exception("You need to initialize the SplineSharp library first by calling 'SplineSharp.Setup.Initialize();'");
+                throw new Exception("You need to initialize the MonoGame.SplineFlower library first by calling ' MonoGame.SplineFlower.Setup.Initialize();'");
             }
 
             if (_Points.Length <= 1 || _Points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;

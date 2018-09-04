@@ -33,7 +33,7 @@ namespace MonoGame.SplineFlower.Samples
 
         protected override void EventTriggered(Trigger obj)
         {
-            if (!AlreadyTriggered(obj))
+            if (CanTrigger(obj))
             {
                 if (obj.Name == "Open")
                 {

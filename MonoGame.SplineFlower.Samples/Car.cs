@@ -37,7 +37,7 @@ namespace MonoGame.SplineFlower.Samples
 
         protected override void EventTriggered(Trigger obj)
         {
-            if (!AlreadyTriggered(obj))
+            if (CanTrigger(obj))
             {
                 if (obj.Name == "Horn") _Horn.CreateInstance().Play();
                 else if (obj.Name == "Brakes")

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.SplineFlower.Content;
+using System.Collections.Generic;
 using System.Windows.Forms;
+
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
@@ -32,8 +34,16 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
             MySplineWalker.LoadContent(Editor.Content);
             MySplineWalker.TurnWhenWalkingBackwards = true;
-            //MySplineWalker.SetInput(Microsoft.Xna.Framework.Input.Keys.W, Microsoft.Xna.Framework.Input.Keys.S, SplineWalker.SplineWalkerTriggerMode.TriggerByTrigger);
-            MySplineWalker.SetInput(Buttons.DPadUp, Buttons.DPadDown, SplineWalker.SplineWalkerTriggerMode.Dynamic);
+
+            MySplineWalker.SetInput(
+                new List<Keys>() { Keys.W, Keys.D, Keys.Up, Keys.Right },
+                new List<Keys>() { Keys.S, Keys.A, Keys.Down, Keys.Left }, 
+                SplineWalker.SplineWalkerTriggerMode.TriggerByTrigger);
+
+            //MySplineWalker.SetInput(
+            //    new List<Buttons> { Buttons.DPadUp, Buttons.DPadRight, Buttons.RightTrigger, Buttons.LeftThumbstickUp, Buttons.LeftThumbstickRight }, 
+            //    new List<Buttons> { Buttons.DPadDown, Buttons.DPadLeft, Buttons.LeftTrigger, Buttons.LeftThumbstickDown, Buttons.LeftThumbstickLeft }, 
+            //    SplineWalker.SplineWalkerTriggerMode.Dynamic);
 
             MoveSplineToScreenCenter();
 

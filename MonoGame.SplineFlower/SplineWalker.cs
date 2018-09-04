@@ -97,8 +97,8 @@ namespace MonoGame.SplineFlower
         private bool _RevolutionApproachBackward = false;
         public int _CurrentTriggerIndex = 0;
 
-        private Keys _ForwardKey, _BackwardKey;
-        private Buttons _ForwardButton, _BackwardButton;
+        private List<Keys> _ForwardKeys, _BackwardKeys;
+        private List<Buttons> _ForwardButtons, _BackwardButtons;
         private KeyboardState _oldKeyboardState;
         private GamePadState _oldGamePadState;
 
@@ -129,23 +129,23 @@ namespace MonoGame.SplineFlower
             Initialized = true;
         }
 
-        public void SetInput(Keys forwardKey, Keys backwardKey, SplineWalkerTriggerMode triggerMode)
+        public void SetInput(List<Keys> forwardKeys, List<Keys> backwardKeys, SplineWalkerTriggerMode triggerMode)
         {
             InputMode = SplineWalkerInput.Keyboard;
             _AutoStart = false;
 
-            _ForwardKey = forwardKey;
-            _BackwardKey = backwardKey;
+            _ForwardKeys = forwardKeys;
+            _BackwardKeys = backwardKeys;
 
             SetTriggerMode(triggerMode);
         }
-        public void SetInput(Buttons forwardButton, Buttons backwardButton, SplineWalkerTriggerMode triggerMode)
+        public void SetInput(List<Buttons> forwardButtons, List<Buttons> backwardButtons, SplineWalkerTriggerMode triggerMode)
         {
             InputMode = SplineWalkerInput.GamePad;
             _AutoStart = false;
 
-            _ForwardButton = forwardButton;
-            _BackwardButton = backwardButton;
+            _ForwardButtons = forwardButtons;
+            _BackwardButtons = backwardButtons;
 
             SetTriggerMode(triggerMode);
         }
@@ -366,21 +366,19 @@ namespace MonoGame.SplineFlower
             }
             else if (InputMode == SplineWalkerInput.Keyboard)
             {
-                if (Keyboard.GetState().IsKeyDown(_ForwardKey) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                if (CheckIfForwardKeyWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
                 {
                     UpdateDynamicForwardMovement(gameTime);
                 }
-                else if (Keyboard.GetState().IsKeyDown(_BackwardKey) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                else if (CheckIfForwardKeyWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
                 {
                     UpdateDynamicBackwardMovement(gameTime);
                 }
-                else if (Keyboard.GetState().IsKeyDown(_ForwardKey) && _oldKeyboardState.IsKeyUp(_ForwardKey) &&
-                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                else if (CheckIfForwardKeyWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
                 {
                     UpdateTriggeredForwardMovement();
                 }
-                else if (Keyboard.GetState().IsKeyDown(_BackwardKey) && _oldKeyboardState.IsKeyUp(_BackwardKey) &&
-                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                else if (CheckIfBackwardKeyWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
                 {
                     UpdateTriggeredBackwardMovement();
                 }
@@ -389,21 +387,19 @@ namespace MonoGame.SplineFlower
             }
             else if (InputMode == SplineWalkerInput.GamePad)
             {
-                if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_ForwardButton) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                if (CheckIfForwardButtonWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
                 {
                     UpdateDynamicForwardMovement(gameTime);
                 }
-                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_BackwardButton) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
+                else if (CheckIfBackwardButtonWasPressed(false) && TriggerMode == SplineWalkerTriggerMode.Dynamic)
                 {
                     UpdateDynamicBackwardMovement(gameTime);
                 }
-                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_ForwardButton) && _oldGamePadState.IsButtonUp(_ForwardButton) &&
-                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                else if (CheckIfForwardButtonWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
                 {
                     UpdateTriggeredForwardMovement();
                 }
-                else if (GamePad.GetState(PlayerIndex.One).IsButtonDown(_BackwardButton) && _oldGamePadState.IsButtonUp(_BackwardButton) &&
-                        TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
+                else if (CheckIfBackwardButtonWasPressed(true) && TriggerMode == SplineWalkerTriggerMode.TriggerByTrigger)
                 {
                     UpdateTriggeredBackwardMovement();
                 }
@@ -425,6 +421,46 @@ namespace MonoGame.SplineFlower
 
             _oldGamePadState = GamePad.GetState(PlayerIndex.One);
             _oldKeyboardState = Keyboard.GetState();
+        }
+        private bool CheckIfForwardButtonWasPressed(bool checkIfReleased)
+        {
+            return _ForwardButtons.Any(
+                    x =>
+                    {
+                        if (GamePad.GetState(PlayerIndex.One).IsButtonDown(x) && (checkIfReleased ? _oldGamePadState.IsButtonUp(x) : true)) return true;
+
+                        return false;
+                    });
+        }
+        private bool CheckIfBackwardButtonWasPressed(bool checkIfReleased)
+        {
+            return _BackwardButtons.Any(
+                    x =>
+                    {
+                        if (GamePad.GetState(PlayerIndex.One).IsButtonDown(x) && (checkIfReleased ? _oldGamePadState.IsButtonUp(x) : true)) return true;
+
+                        return false;
+                    });
+        }
+        private bool CheckIfForwardKeyWasPressed(bool checkIfReleased)
+        {
+            return _ForwardKeys.Any(
+                    x =>
+                    {
+                        if (Keyboard.GetState().IsKeyDown(x) && (checkIfReleased ? _oldKeyboardState.IsKeyUp(x) : true)) return true;
+
+                        return false;
+                    });
+        }
+        private bool CheckIfBackwardKeyWasPressed(bool checkIfReleased)
+        {
+            return _BackwardKeys.Any(
+                    x =>
+                    {
+                        if (Keyboard.GetState().IsKeyDown(x) && (checkIfReleased ? _oldKeyboardState.IsKeyUp(x) : true)) return true;
+
+                        return false;
+                    });
         }
         private void UpdateTriggeredForwardMovement()
         {

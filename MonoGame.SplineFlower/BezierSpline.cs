@@ -577,7 +577,6 @@ namespace MonoGame.SplineFlower
             {
                 new Transform(new Vector2(0, 0)),
                 new Transform(new Vector2(250, 0)),
-                new Transform(new Vector2(0, 100)),
                 new Transform(new Vector2(0, 250)),
                 new Transform(new Vector2(250, 250))
             };
@@ -585,7 +584,6 @@ namespace MonoGame.SplineFlower
             CalculateBezierCenter(_Points);
 
             _Modes = new BezierControlPointMode[] {
-                BezierControlPointMode.Free,
                 BezierControlPointMode.Free,
                 BezierControlPointMode.Free
             };

@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace MonoGame.SplineFlower.Content
 {
     public static class Setup
     {
         public static float SplineMarkerResolution { get; set; } = 1000f;
+        public static float SplineStepDistance { get; private set; }
         public static int LineSteps { get; set; } = 20;
 
         public static bool ShowBezierSpline { get; set; } = true;
@@ -53,6 +55,8 @@ namespace MonoGame.SplineFlower.Content
             {
                 Circle = CreateCircleTexture(graphicsDevice, 8);
             }
+
+            SplineStepDistance = SplineMarkerResolution / (float)Math.Pow(SplineMarkerResolution, 2) * 3f;
 
             Initialized = true;
         }

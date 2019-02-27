@@ -7,6 +7,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
     public class CatMulRomSpline : TransformControl
     {
         public BezierSpline MySpline;
+        public Car MySplineWalker;
 
         protected override void Initialize()
         {
@@ -16,7 +17,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySpline = new BezierSpline();
             MySpline.Reset();
             MySpline.CatMulRom = true;
-            MySpline.Loop = false;
+            MySpline.Loop = true;
             TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
             TryGetTriggerFromPosition = MySpline.TryGetTriggerFromPosition;
             GetAllPoints = MySpline.GetAllPoints;
@@ -25,6 +26,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MovePointDiff += SplineEditor_MovePointDiff;
 
             MoveSplineToScreenCenter();
+
+            MySplineWalker = new Car();
+            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Loop, 7);
+            MySplineWalker.LoadContent(Editor.Content, Editor.Font);
 
             SetMultiSampleCount(8);
 
@@ -78,6 +83,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Update(gameTime);
         }
 
         protected override void Draw()
@@ -91,6 +98,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 Editor.spriteBatch.Begin();
 
                 if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
+                
+                Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.GetProgress.ToString(), new Vector2(10, 30), Color.White);
 
                 Editor.spriteBatch.End();
 

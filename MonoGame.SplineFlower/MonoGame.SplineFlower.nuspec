@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/sqrMin1/MonoGame.SplineFlower</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/sqrMin1/MonoGame.SplineFlower/master/Logos/Logo_Square_256.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Create wonderful smooth BézierSplines with TriggerEvents for your MonoGame project.</description>
+    <description>Create wonderful smooth BézierSplines and CatMulRomSplines with TriggerEvents for your MonoGame project. MIT License!</description>
     <copyright>Copyright (c) 2018 Marcel 'sqrMin1' Härtel</copyright>
     <tags>MonoGame WindowsForms</tags>
 	<references>

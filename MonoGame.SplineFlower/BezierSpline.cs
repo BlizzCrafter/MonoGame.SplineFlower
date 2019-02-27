@@ -446,7 +446,7 @@ namespace MonoGame.SplineFlower
                         {
                             if ((int)Math.Round(t * Setup.SplineMarkerResolution, 0) % Setup.LineSteps == 0)
                             {
-                                DrawLine(spriteBatch, lastPos + GetDirectionIntern(t), angleStep,
+                                DrawLine(spriteBatch, lastPos + GetDirectionIntern(t), angleStep + MathHelper.ToRadians(180),
                                     Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
                             }
                         }

@@ -432,26 +432,29 @@ namespace MonoGame.SplineFlower
 
                 if (_IsCatMulRom)
                 {
-                    Vector2 lastPos = GetPoint(0);
-                    for (float t = 0; t < _Points.Length - (_Loop ? 0 : 3f); t += Setup.SplineStepDistance)
+                    if (Setup.ShowCurves)
                     {
-                        Vector2 pos = GetPoint(t);
-
-                        float distanceStep = Vector2.Distance(pos, lastPos);
-                        float angleStep = (float)Math.Atan2(lastPos.Y - pos.Y, lastPos.X - pos.X);
-
-                        DrawLine(spriteBatch, lastPos, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
-
-                        if (Setup.ShowDirectionVectors)
+                        Vector2 lastPos = GetPoint(0);
+                        for (float t = 0; t < _Points.Length - (_Loop ? 0 : 3f); t += Setup.SplineStepDistance)
                         {
-                            if ((int)Math.Round(t * Setup.SplineMarkerResolution, 0) % Setup.LineSteps == 0)
-                            {
-                                DrawLine(spriteBatch, lastPos + GetDirectionIntern(t), angleStep + MathHelper.ToRadians(180),
-                                    Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
-                            }
-                        }
+                            Vector2 pos = GetPoint(t);
 
-                        lastPos = pos;
+                            float distanceStep = Vector2.Distance(pos, lastPos);
+                            float angleStep = (float)Math.Atan2(lastPos.Y - pos.Y, lastPos.X - pos.X);
+
+                            DrawLine(spriteBatch, lastPos, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+
+                            if (Setup.ShowDirectionVectors)
+                            {
+                                if ((int)Math.Round(t * Setup.SplineMarkerResolution, 0) % Setup.LineSteps == 0)
+                                {
+                                    DrawLine(spriteBatch, lastPos + GetDirectionIntern(t), angleStep + MathHelper.ToRadians(180),
+                                        Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
+                                }
+                            }
+
+                            lastPos = pos;
+                        }
                     }
                 }
                 else

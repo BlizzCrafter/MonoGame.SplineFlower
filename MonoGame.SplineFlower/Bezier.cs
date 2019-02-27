@@ -71,10 +71,10 @@ namespace MonoGame.SplineFlower
                 p0 = p1 >= 1 ? p1 - 1 : points.Length - 1;
             }
 
-            if (p1 == points.Length) p1 = 0;
-            if (p2 == points.Length) p2 = 0;
-            if (p3 == points.Length) p3 = 0;
-            if (p0 == points.Length) p0 = 0;
+            if (p1 >= points.Length) p1 = 0;
+            if (p2 >= points.Length) p2 = 0;
+            if (p3 >= points.Length) p3 = 0;
+            if (p0 >= points.Length) p0 = 0;
 
             t = t - (int)t;
 
@@ -110,10 +110,10 @@ namespace MonoGame.SplineFlower
                 p0 = p1 >= 1 ? p1 - 1 : points.Length - 1;
             }
 
-            if (p1 == points.Length) p1 = 0;
-            if (p2 == points.Length) p2 = 0;
-            if (p3 == points.Length) p3 = 0;
-            if (p0 == points.Length) p0 = 0;
+            if (p1 >= points.Length) p1 = 0;
+            if (p2 >= points.Length) p2 = 0;
+            if (p3 >= points.Length) p3 = 0;
+            if (p0 >= points.Length) p0 = 0;
 
             t = t - (int)t;
 

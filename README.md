@@ -1,7 +1,7 @@
 ![Banner](Logos/Logo_Banner_800.png)
 
 # Welcome to MonoGame.SplineFlower!
-[![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/sqrMin1)
+[![Twitter Follow](https://img.shields.io/twitter/follow/SandboxBlizz.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/SandboxBlizz)
 [![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
 
 [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower)
@@ -126,7 +126,7 @@ You can do pretty much anything with BézierSplines. The limit is really just yo
 *Play around with the samples and learn from it.*
 
 ### Now Have Fun with MonoGame.SplineFlower!
-[![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/sqrMin1)
+[![Twitter Follow](https://img.shields.io/twitter/follow/SandboxBlizz.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/SandboxBlizz)
 [![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
 
 [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower)

@@ -8,7 +8,7 @@
 [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content)
 [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=flat-square&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content.Pipeline)
 
-Create wonderful smooth **BézierSplines** with **TriggerEvents** for your **MonoGame** project.
+Create wonderful smooth **BézierSplines** and **CatMulRomSplines** with **TriggerEvents** for your **MonoGame** project.
 
 ### Building
 
@@ -20,17 +20,17 @@ Create wonderful smooth **BézierSplines** with **TriggerEvents** for your **Mon
 The **Visual Studio 2015** solution contains the following projects:
 - **MonoGame.SplineFlower** (the portable class library)
 - **MonoGame.SplineFlower.Content** (spline data and setup class)
-- **MonoGame.SplineFlower.Content.Pipeline** (creates .xnb files out of .json BézierSpline data)
+- **MonoGame.SplineFlower.Content.Pipeline** (creates .xnb files out of .json spline data)
 - **MonoGame.SplineFlower.Samples** (showing features of the library)
-- **MonoGame.SplineFlower.Editor** (create, import and export BézierSplines)
-- **MonoGame.SplineFlower.GameTest** (DesktopGL project which loads a BézierSpline with the ContentManager)
+- **MonoGame.SplineFlower.Editor** (create, import and export splines)
+- **MonoGame.SplineFlower.GameTest** (DesktopGL project which loads a spline with the ContentManager)
 
 1. In your own MonoGame project you need to reference **MonoGame.SplineFlower** if you want to use the library capabilities
-2. If you want to load BézierSplines with the **ContentManager**, you also need to reference **MonoGame.SplineFlower.Content.Pipeline**
-> Note: You don't need this reference if you want to load BézierSpline data with **Json.Net**
-3. When you want to draw the BézierSpline - inclusive trigger events - you need to reference **MonoGame.SplineFlower.Content** to have access
+2. If you want to load splines with the **ContentManager**, you also need to reference **MonoGame.SplineFlower.Content.Pipeline**
+> Note: You don't need this reference if you want to load spline data with **Json.Net**
+3. When you want to draw the spline - inclusive trigger events - you need to reference **MonoGame.SplineFlower.Content** to have access
 to the **static class Setup**, because you need to call **Setup.Initialize(graphics.GraphicsDevice);** for this purpose
-> Note: You don't need this reference if you don't want to draw your BézierSplines. **You don't need to draw BézierSpline at all.**
+> Note: You don't need this reference if you don't want to draw your splines. **You don't need to draw splines at all.**
 This is just a **Debug** feature to make your life as a game developer easier ;)
 
 For an easy installation you should make use of the nuget package manager:
@@ -40,7 +40,7 @@ For an easy installation you should make use of the nuget package manager:
 
 So what can this library actually do for you? **[[Watch the Video!](https://youtu.be/0Wez5AryxwI)]**
 
-Despite drawing simple lines, it generates very smooth BézierCurves and BézierSplines pretty fast,
+Despite drawing simple lines, it generates very smooth BézierCurves, BézierSplines and CatMulRomSplines pretty fast,
 because it uses **polynomial math formulas** behind the scenes.
 
 This makes it possible to generate:
@@ -68,8 +68,8 @@ You can change control modes simply by clicking on them with the **Right Mouse B
 #### MonoGame.SplineFlower.Editor
 ![Editor](doc/Editor.png)
 
-It is also possible to create **looped** BézierSplines as you can see!
-With the **Middle Mouse Button** you can drag the whole BézierSpline to keep the overview.
+It is also possible to create **looped** splines as you can see!
+With the **Middle Mouse Button** you can drag the whole spline to keep the overview.
 
 Did you noticed the nice little car on the picture? This is a **[SplineWalker](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/MonoGame.SplineFlower/SplineWalker.cs)**.
 
@@ -106,7 +106,7 @@ public class Car : SplineWalker
 
 Click **[here](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/MonoGame.SplineFlower.Samples/Car.cs)** to see a full integration example.
 
-A nice thing about a SplineWalker is, that he can trigger custom events on a BézierSpline while he walks along the spline.
+A nice thing about a SplineWalker is, that he can trigger custom events on a spline while he walks along the spline.
 
 You can define your own Trigger with the TriggerEditor:
 
@@ -122,7 +122,7 @@ A SplineWalker also has 3 different built-in movement modes:
 
 ---
 
-You can do pretty much anything with BézierSplines. The limit is really just your imagination.
+You can do pretty much anything with splines. The limit is really just your imagination.
 *Play around with the samples and learn from it.*
 
 ### Now Have Fun with MonoGame.SplineFlower!

@@ -8,6 +8,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
     {
         public BezierSpline MySpline;
         public Car MySplineWalker;
+        public Marker MySplineMarker;
 
         protected override void Initialize()
         {
@@ -30,6 +31,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySplineWalker = new Car();
             MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Loop, 7);
             MySplineWalker.LoadContent(Editor.Content, Editor.Font);
+
+            MySplineMarker = new Marker();
+            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0, false, autoStart: false);
+            MySplineMarker.LoadContent(Editor.Content);
 
             SetMultiSampleCount(8);
 
@@ -85,6 +90,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             base.Update(gameTime);
 
             if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Update(gameTime);
+            if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Update(gameTime);
         }
 
         protected override void Draw()
@@ -99,7 +105,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
                 if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
-                
+                if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
+
+                Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker.GetProgress.ToString(), new Vector2(10, 10), Color.White);
                 Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.GetProgress.ToString(), new Vector2(10, 30), Color.White);
 
                 Editor.spriteBatch.End();

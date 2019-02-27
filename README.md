@@ -54,6 +54,9 @@ This makes it possible to generate:
 #### Complex BézierSplines
 ![BezierSpline](doc/BezierSpline.png)
 
+#### Complex CatMulRomSplines
+![BezierSpline](doc/CatMulRomSpline.png)
+
 Did you notice the different colors of the control points?
 You can set them in 3 different modes:
 
@@ -62,6 +65,8 @@ You can set them in 3 different modes:
 - **Free** allows you to freely place the control point, but often resulting in sharp corners.
 - **Aligned** will enforce such corners and allow you to have connected control points asymmetrical.
 - **Mirrored** behave like the aligned one, but allow you to have the connected control points symmetrical.
+
+> Note: A CatmulRomSpline will always have its control points in the **Free** mode!
 
 You can change control modes simply by clicking on them with the **Right Mouse Button** in the:
 
@@ -116,9 +121,17 @@ It is reachable from the main editor through the **Tools** button.
 
 A SplineWalker also has 3 different built-in movement modes:
 
-- **Once** travels the BézierSpline just one time and will stop at the last control point.
-- **Looped** travels the BézierSpline infinitely (smoothly starts again at the starting point).
-- **PingPong** travels the BézierSpline forward and then backward when he reaches the last control point / starting point (infinitely).
+- **Once** travels the spline just one time and will stop at the last control point.
+- **Looped** travels the spline infinitely (smoothly starts again at the starting point).
+- **PingPong** travels the spline forward and then backward when he reaches the last control point / starting point (infinitely).
+
+It's also possible to define different trigger directions:
+
+- **Forward** triggers only in the forward direction.
+- **Backward** triggers only in the backward direction.
+- **ForwardAndBackward** triggers in both directions.
+
+> Note:It's also possible to control a SplineWalker with your Keyboard or GamePad if you wish so!
 
 ---
 

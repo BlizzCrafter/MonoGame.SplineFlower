@@ -14,13 +14,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin GameFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:GameFont.spritefont
-
 #begin Audio/cardrive.xnb
 /copy:Audio/cardrive.xnb
 
@@ -32,6 +25,18 @@
 
 #begin car.xnb
 /copy:car.xnb
+
+#begin Cloverleaf.json
+/importer:BezierSplineImporter
+/processor:BezierSplineProcessor
+/build:Cloverleaf.json
+
+#begin GameFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:GameFont.spritefont
 
 #begin SplineFlower.json
 /importer:BezierSplineImporter

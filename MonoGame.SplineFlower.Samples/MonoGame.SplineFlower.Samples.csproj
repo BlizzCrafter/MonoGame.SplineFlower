@@ -64,6 +64,9 @@
     <Compile Include="Controls\AdvancedControls.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\CatMulRomSpline.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\CurveControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -125,7 +128,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\TankTrack.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Tank_Bottom.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

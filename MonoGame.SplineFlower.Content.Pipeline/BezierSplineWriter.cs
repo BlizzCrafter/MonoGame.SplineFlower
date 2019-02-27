@@ -14,6 +14,8 @@ namespace MonoGame.SplineFlower.Content.Pipeline
         protected override void Write(ContentWriter writer, BezierSpline input)
         {
             writer.Write(Setup.SplineMarkerResolution);
+            writer.Write(input.CatMulRom);
+            writer.Write(input.Loop);
 
             Transform[] points = input.GetAllPoints();
             writer.Write(points.Length);
@@ -34,12 +36,10 @@ namespace MonoGame.SplineFlower.Content.Pipeline
             for (int i = 0; i < trigger.Length; i++)
             {
                 writer.Write(trigger[i].Name);
-                writer.Write(trigger[i].Progress);
+                writer.Write(trigger[i].GetPlainProgress);
                 writer.Write(trigger[i].TriggerRange);
                 writer.Write(trigger[i].ID.ToString());
             }
-
-            writer.Write(input.Loop);
         }
     }
 }

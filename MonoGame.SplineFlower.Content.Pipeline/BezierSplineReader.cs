@@ -10,6 +10,8 @@ namespace MonoGame.SplineFlower.Content.Pipeline
             BezierSpline bezierSpline = new BezierSpline();
 
             Setup.SplineMarkerResolution = input.ReadSingle();
+            bezierSpline.CatMulRom = input.ReadBoolean();
+            bezierSpline.Loop = input.ReadBoolean();
 
             int pointLength = input.ReadInt32();
             Transform[] points = new Transform[pointLength];
@@ -40,8 +42,6 @@ namespace MonoGame.SplineFlower.Content.Pipeline
                 points,
                 pointModes,
                 trigger);
-
-            bezierSpline.Loop = input.ReadBoolean();
 
             return bezierSpline;
         }

@@ -102,10 +102,16 @@ namespace MonoGame.SplineFlower.Editor
             toolStripButtonTrackLoop.Enabled = false;
         }
 
+        private void toolStripButtonCatMulRom_Click(object sender, EventArgs e)
+        {
+            splineControl.MySpline.CatMulRom = true;
+            toolStripButtonCatMulRom.Enabled = false;
+        }
+
         #endregion
 
         #region Spline Walker
-        
+
         private void toolStripButtonResetSplineWalker_Click(object sender, EventArgs e)
         {
             splineControl.MySplineWalker.Reset();
@@ -167,7 +173,7 @@ namespace MonoGame.SplineFlower.Editor
 
         private void UpdateTriggerInterface(Trigger trigger)
         {
-            trackBarMarker.Value = (int)(trigger.Progress * Setup.SplineMarkerResolution);
+            trackBarMarker.Value = (int)(trigger.GetPlainProgress * Setup.SplineMarkerResolution);
             toolStripNumericUpDownTriggerRange.Value = (int)(trigger.TriggerRange * Setup.SplineMarkerResolution);
         }
 
@@ -226,6 +232,7 @@ namespace MonoGame.SplineFlower.Editor
             {
                 GetJsonHandling.GetBezierSplineData.SplineMarkerResolution = Setup.SplineMarkerResolution;
                 GetJsonHandling.GetBezierSplineData.SplineWalkerDuration = splineControl.MySplineWalker.Duration;
+                GetJsonHandling.GetBezierSplineData.CatMulRom = splineControl.MySpline.CatMulRom;
                 GetJsonHandling.GetBezierSplineData.Loop = splineControl.MySpline.Loop;
 
                 CreateJsonReadyPointData();
@@ -275,7 +282,7 @@ namespace MonoGame.SplineFlower.Editor
                     new TriggerDummy(
                         triggerToExport[i].Name,
                         triggerToExport[i].ID.ToString(),
-                        triggerToExport[i].Progress,
+                        triggerToExport[i].GetPlainProgress,
                         triggerToExport[i].TriggerRange * Setup.SplineMarkerResolution);
             }
         }
@@ -298,7 +305,9 @@ namespace MonoGame.SplineFlower.Editor
                 Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
                 splineControl.MySplineWalker.Duration = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
                 toolStripNumericUpDownDuration.Value = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
+                splineControl.MySpline.CatMulRom = GetJsonHandling.GetBezierSplineData.CatMulRom;
                 splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
+                toolStripButtonCatMulRom.Enabled = !GetJsonHandling.GetBezierSplineData.CatMulRom;
                 toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
 
                 Trigger[] loadedTrigger;

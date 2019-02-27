@@ -28,7 +28,7 @@ namespace MonoGame.SplineFlower
             Color.Yellow,
             Color.Cyan
         };
-                
+
         public Transform[] GetAllPoints()
         {
             return _Points;
@@ -49,17 +49,20 @@ namespace MonoGame.SplineFlower
             _Trigger.Add(new Trigger(name, progress, triggerRange, out triggerID));
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
             _Trigger.Last().GetDirectionOnSpline = GetDirection;
+            _Trigger.Last().GetMaxProgress = MaxProgress;
             _Trigger.Last().UpdateTriggerRotation();
 
             ReorderTriggerList();
 
             return triggerID;
         }
+
         private void AddTrigger(string name, float progress, float triggerRange, string triggerID)
         {
             _Trigger.Add(new Trigger(name, progress, triggerRange, triggerID));
             _Trigger.Last().TriggerEvent += BezierSpline_TriggerEvent;
             _Trigger.Last().GetDirectionOnSpline = GetDirection;
+            _Trigger.Last().GetMaxProgress = MaxProgress;
             _Trigger.Last().UpdateTriggerRotation();
         }
         private void BezierSpline_TriggerEvent(Trigger obj)
@@ -68,8 +71,36 @@ namespace MonoGame.SplineFlower
         }
         public void ReorderTriggerList()
         {
-            List<Trigger> ordered = _Trigger.OrderBy(x => x.Progress).ToList();
+            List<Trigger> ordered = _Trigger.OrderBy(x => x.GetPlainProgress).ToList();
             _Trigger = ordered;
+        }
+        
+        public bool CatMulRom
+        {
+            get { return _IsCatMulRom; }
+            set
+            {
+                _IsCatMulRom = value;
+                if (_Modes != null)
+                {
+                    for (int i = 0; i < _Modes.Length; i++) _Modes[i] = BezierControlPointMode.Free;
+                }
+            }
+        }
+        private bool _IsCatMulRom = false;
+
+        public float MaxProgress()
+        {
+            float maxProgress = 0;
+
+            if (_IsCatMulRom)
+            {
+                maxProgress = 1 + (_Points.Length - 4);
+                if (_Loop) maxProgress += 3f;
+            }
+            else maxProgress = 1f;
+
+            return maxProgress;
         }
 
         public bool Loop
@@ -78,10 +109,10 @@ namespace MonoGame.SplineFlower
             set
             {
                 _Loop = value;
-                if (value)
+                if (value && !CatMulRom && _Modes != null)
                 {
                     _Modes[_Modes.Length - 1] = _Modes[0];
-                    SetControlPoint(_Points.Length -1, _Points[0]);
+                    SetControlPoint(_Points.Length - 1, _Points[0]);
                 }
             }
         }
@@ -115,20 +146,23 @@ namespace MonoGame.SplineFlower
 
         public void SetControlPointMode(int index, BezierControlPointMode mode)
         {
-            int modeIndex = (index + 1) / 3;
-            _Modes[modeIndex] = mode;
-            if (_Loop)
+            if (!_IsCatMulRom)
             {
-                if (modeIndex == 0)
+                int modeIndex = (index + 1) / 3;
+                _Modes[modeIndex] = mode;
+                if (_Loop)
                 {
-                    _Modes[_Modes.Length - 1] = mode;
+                    if (modeIndex == 0)
+                    {
+                        _Modes[_Modes.Length - 1] = mode;
+                    }
+                    else if (modeIndex == _Modes.Length - 1)
+                    {
+                        _Modes[0] = mode;
+                    }
                 }
-                else if (modeIndex == _Modes.Length - 1)
-                {
-                    _Modes[0] = mode;
-                }
+                EnforceMode(index);
             }
-            EnforceMode(index);
         }
 
         public void Translate(Vector2 amount)
@@ -147,39 +181,42 @@ namespace MonoGame.SplineFlower
 
         public void MoveAxis(int index, Vector2 diff)
         {
-            if (Setup.MovePointAxis)
+            if (!_IsCatMulRom)
             {
-                if (index % 3 == 0)
+                if (Setup.MovePointAxis)
                 {
-                    if (_Loop)
+                    if (index % 3 == 0)
                     {
-                        if (index == 0)
+                        if (_Loop)
                         {
-                            _Points[1].Translate(diff);
-                            _Points[_Points.Length - 2].Translate(diff);
-                            _Points[_Points.Length - 1] = _Points[0];
-                        }
-                        else if (index == _Points.Length - 1)
-                        {
-                            _Points[0] = _Points[_Points.Length - 1];
-                            _Points[1].Translate(diff);
-                            _Points[index - 1].Translate(diff);
+                            if (index == 0)
+                            {
+                                _Points[1].Translate(diff);
+                                _Points[_Points.Length - 2].Translate(diff);
+                                _Points[_Points.Length - 1] = _Points[0];
+                            }
+                            else if (index == _Points.Length - 1)
+                            {
+                                _Points[0] = _Points[_Points.Length - 1];
+                                _Points[1].Translate(diff);
+                                _Points[index - 1].Translate(diff);
+                            }
+                            else
+                            {
+                                _Points[index - 1].Translate(diff);
+                                _Points[index + 1].Translate(diff);
+                            }
                         }
                         else
                         {
-                            _Points[index - 1].Translate(diff);
-                            _Points[index + 1].Translate(diff);
-                        }
-                    }
-                    else
-                    {
-                        if (index > 0)
-                        {
-                            _Points[index - 1].Translate(diff);
-                        }
-                        if (index + 1 < _Points.Length)
-                        {
-                            _Points[index + 1].Translate(diff);
+                            if (index > 0)
+                            {
+                                _Points[index - 1].Translate(diff);
+                            }
+                            if (index + 1 < _Points.Length)
+                            {
+                                _Points[index + 1].Translate(diff);
+                            }
                         }
                     }
                 }
@@ -251,52 +288,66 @@ namespace MonoGame.SplineFlower
 
         public Vector2 GetPoint(float t)
         {
-            int i;
-            if (t >= 1f)
-            {
-                t = 1f;
-                i = _Points.Length - 4;
-            }
+            if (CatMulRom) return Bezier.GetPoint(_Points, t, _Loop);
             else
             {
-                t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
-                i = (int)t;
-                t -= i;
-                i *= 3;
+                int i;
+                if (t >= 1f)
+                {
+                    t = 1f;
+                    i = _Points.Length - 4;
+                }
+                else
+                {
+                    t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
+                    i = (int)t;
+                    t -= i;
+                    i *= 3;
+                }
+                return Bezier.GetPoint(_Points[i].Position, _Points[i + 1].Position, _Points[i + 2].Position, _Points[i + 3].Position, t);
             }
-            return Bezier.GetPoint(_Points[i].Position, _Points[i + 1].Position, _Points[i + 2].Position, _Points[i + 3].Position, t);
         }
         private Vector2 GetPointIntern(float t, int curveIndex)
         {
-            return Bezier.GetPoint(
-                _Points[0 + (curveIndex * 3)].Position,
-                _Points[1 + (curveIndex * 3)].Position,
-                _Points[2 + (curveIndex * 3)].Position,
-                _Points[3 + (curveIndex * 3)].Position, t);
+            if (CatMulRom) return Bezier.GetPoint(_Points, t, _Loop);
+            else
+            {
+                return Bezier.GetPoint(
+                    _Points[0 + (curveIndex * 3)].Position,
+                    _Points[1 + (curveIndex * 3)].Position,
+                    _Points[2 + (curveIndex * 3)].Position,
+                    _Points[3 + (curveIndex * 3)].Position, t);
+            }
         }
 
         public Vector2 GetDirection(float t)
         {
-            int i;
-            if (t >= 1f)
-            {
-                t = 1f;
-                i = _Points.Length - 4;
-            }
+            if (_IsCatMulRom) return Bezier.GetFirstDerivative(_Points, t, _Loop);
             else
             {
-                t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
-                i = (int)t;
-                t -= i;
-                i *= 3;
+                int i;
+                if (t >= 1f)
+                {
+                    t = 1f;
+                    i = _Points.Length - 4;
+                }
+                else
+                {
+                    t = MathHelper.Clamp(t, 0f, 1f) * CurveCount;
+                    i = (int)t;
+                    t -= i;
+                    i *= 3;
+                }
+                return Bezier.GetFirstDerivative(_Points[i].Position, _Points[i + 1].Position, _Points[i + 2].Position, _Points[i + 3].Position, t);
             }
-            return Bezier.GetFirstDerivative(_Points[i].Position, _Points[i + 1].Position, _Points[i + 2].Position, _Points[i + 3].Position, t);
         }
         private Vector2 GetDirectionIntern(float t)
         {
             Vector2 direction = Vector2.Zero;
 
-            direction = Bezier.GetFirstDerivative(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t);
+            if (_IsCatMulRom) direction = Bezier.GetFirstDerivative(_Points, t, _Loop);
+            else direction = Bezier.GetFirstDerivative(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t);
+
             direction.Normalize();
             return direction;
         }
@@ -379,27 +430,55 @@ namespace MonoGame.SplineFlower
                     }
                 }
 
-                if (Setup.ShowCurves)
+                if (_IsCatMulRom)
                 {
-                    Vector2 lineStart = GetPointIntern(0f, 0);
-                    for (int j = 0; j < CurveCount; j++)
+                    Vector2 lastPos = GetPoint(0);
+                    for (float t = 0; t < _Points.Length - (_Loop ? 0 : 3f); t += Setup.SplineStepDistance)
                     {
-                        for (int i = 1; i <= Setup.LineSteps; i++)
+                        Vector2 pos = GetPoint(t);
+
+                        float distanceStep = Vector2.Distance(pos, lastPos);
+                        float angleStep = (float)Math.Atan2(lastPos.Y - pos.Y, lastPos.X - pos.X);
+
+                        DrawLine(spriteBatch, lastPos, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+
+                        if (Setup.ShowDirectionVectors)
                         {
-                            Vector2 lineEnd = GetPointIntern(i / (float)Setup.LineSteps, j);
-
-                            float distanceStep = Vector2.Distance(lineStart, lineEnd);
-                            float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
-
-                            DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
-
-                            if (Setup.ShowDirectionVectors)
+                            if ((int)Math.Round(t * Setup.SplineMarkerResolution, 0) % Setup.LineSteps == 0)
                             {
-                                DrawLine(spriteBatch, lineEnd + GetDirectionIntern(i / (float)Setup.LineSteps), angleStep,
+                                DrawLine(spriteBatch, lastPos + GetDirectionIntern(t), angleStep,
                                     Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
                             }
+                        }
 
-                            lineStart = lineEnd;
+                        lastPos = pos;
+                    }
+                }
+                else
+                {
+
+                    if (Setup.ShowCurves)
+                    {
+                        Vector2 lineStart = GetPointIntern(0f, 0);
+                        for (int j = 0; j < CurveCount; j++)
+                        {
+                            for (int i = 1; i <= Setup.LineSteps; i++)
+                            {
+                                Vector2 lineEnd = GetPointIntern(i / (float)Setup.LineSteps, j);
+
+                                float distanceStep = Vector2.Distance(lineStart, lineEnd);
+                                float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
+
+                                DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+
+                                if (Setup.ShowDirectionVectors)
+                                {
+                                    DrawLine(spriteBatch, lineEnd + GetDirectionIntern(i / (float)Setup.LineSteps), angleStep,
+                                        Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
+                                }
+
+                                lineStart = lineEnd;
+                            }
                         }
                     }
                 }
@@ -478,6 +557,19 @@ namespace MonoGame.SplineFlower
                              0f);
         }
 
+        private void DrawCircle(SpriteBatch spriteBatch, Vector2 position)
+        {
+            spriteBatch.Draw(Setup.Circle,
+                             position,
+                             null,
+                             Setup.TriggerEventColor,
+                             0,
+                             new Vector2(Setup.Circle.Width / 2, Setup.Circle.Height / 2),
+                             Setup.TriggerEventThickness,
+                             SpriteEffects.None,
+                             0f);
+        }
+
 
         public void Reset()
         {
@@ -485,6 +577,7 @@ namespace MonoGame.SplineFlower
             {
                 new Transform(new Vector2(0, 0)),
                 new Transform(new Vector2(250, 0)),
+                new Transform(new Vector2(0, 100)),
                 new Transform(new Vector2(0, 250)),
                 new Transform(new Vector2(250, 250))
             };
@@ -492,6 +585,7 @@ namespace MonoGame.SplineFlower
             CalculateBezierCenter(_Points);
 
             _Modes = new BezierControlPointMode[] {
+                BezierControlPointMode.Free,
                 BezierControlPointMode.Free,
                 BezierControlPointMode.Free
             };
@@ -532,7 +626,7 @@ namespace MonoGame.SplineFlower
             _Trigger = new List<Trigger>();
             for (int i = 0; i < trigger.Length; i++)
             {
-                AddTrigger(trigger[i].Name, trigger[i].Progress, trigger[i].TriggerRange * Setup.SplineMarkerResolution, trigger[i].ID.ToString());
+                AddTrigger(trigger[i].Name, trigger[i].GetPlainProgress, trigger[i].TriggerRange * Setup.SplineMarkerResolution, trigger[i].ID.ToString());
             }
 
             CalculateBezierCenter(_Points);

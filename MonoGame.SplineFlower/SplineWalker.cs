@@ -426,13 +426,13 @@ namespace MonoGame.SplineFlower
                 UpdateApproachingTrigger(gameTime);
             }
 
-           if (_LookForward)
+            if (_LookForward)
             {
-                _Direction = _Spline.GetDirection(GetProgress);
+                _Direction = _Spline.GetDirection(GetProgress * _Spline.MaxProgress());
                 Rotation = (float)Math.Atan2(_Direction.X, -_Direction.Y) - (_TurnWhenWalkingBackwards ? MathHelper.ToRadians(180) : 0);
             }
 
-            SetPosition(_Spline.GetPoint(GetProgress));
+            SetPosition(_Spline.GetPoint(GetProgress * _Spline.MaxProgress()));
 
             if (CanTriggerEvents &&
                 _Spline.GetAllTrigger().Count > 0 &&
@@ -553,14 +553,14 @@ namespace MonoGame.SplineFlower
         {
             if (_ApproachingNextTrigger)
             {
-                if (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once ? -0.003f : +0.003f) ||
-                    (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachForward)) UpdateDynamicForwardMovement(gameTime, true);
+                if (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + (_CurrentTriggerIndex == GetTriggers().Count - 1 && WalkerMode == SplineWalkerMode.Once ? -Setup.SplineStepDistance : Setup.SplineStepDistance) ||
+                    (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + Setup.SplineStepDistance && _RevolutionApproachForward)) UpdateDynamicForwardMovement(gameTime, true);
                 else _ApproachingNextTrigger = false;
             }
             else if (_ApproachingPreviousTrigger)
             {
-                if (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + 0.003f ||
-                    (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + 0.003f && _RevolutionApproachBackward)) UpdateDynamicBackwardMovement(gameTime, true);
+                if (GetProgress > GetTrigger(_CurrentTriggerIndex).Progress + Setup.SplineStepDistance ||
+                    (GetProgress < GetTrigger(_CurrentTriggerIndex).Progress + Setup.SplineStepDistance && _RevolutionApproachBackward)) UpdateDynamicBackwardMovement(gameTime, true);
                 else _ApproachingPreviousTrigger = false;
             }
         }

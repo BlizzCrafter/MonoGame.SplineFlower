@@ -34,6 +34,7 @@
             this.toolStripButtonAddCurveLeft = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAddCurveRight = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonTrackLoop = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCatMulRom = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonResetSplineWalker = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxWalkerMode = new System.Windows.Forms.ToolStripComboBox();
@@ -100,6 +101,7 @@
             this.toolStripButtonAddCurveLeft,
             this.toolStripButtonAddCurveRight,
             this.toolStripButtonTrackLoop,
+            this.toolStripButtonCatMulRom,
             this.toolStripSeparator1,
             this.toolStripButtonResetSplineWalker,
             this.toolStripComboBoxWalkerMode,
@@ -151,6 +153,17 @@
             this.toolStripButtonTrackLoop.Size = new System.Drawing.Size(23, 25);
             this.toolStripButtonTrackLoop.Text = "Track Loop";
             this.toolStripButtonTrackLoop.Click += new System.EventHandler(this.toolStripButtonTrackLoop_Click);
+            // 
+            // toolStripButtonCatMulRom
+            // 
+            this.toolStripButtonCatMulRom.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCatMulRom.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCatMulRom.Image")));
+            this.toolStripButtonCatMulRom.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonCatMulRom.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCatMulRom.Name = "toolStripButtonCatMulRom";
+            this.toolStripButtonCatMulRom.Size = new System.Drawing.Size(23, 25);
+            this.toolStripButtonCatMulRom.Text = "CatMulRom";
+            this.toolStripButtonCatMulRom.Click += new System.EventHandler(this.toolStripButtonCatMulRom_Click);
             // 
             // toolStripSeparator1
             // 
@@ -303,6 +316,7 @@
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.GetAllPoints = null;
+            this.splineControl.GetAllTrigger = null;
             this.splineControl.Location = new System.Drawing.Point(0, 56);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
@@ -639,6 +653,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowFPS;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowCursorPosition;
+        private System.Windows.Forms.ToolStripButton toolStripButtonCatMulRom;
     }
 }
 

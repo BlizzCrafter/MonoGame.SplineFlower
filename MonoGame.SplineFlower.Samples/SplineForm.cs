@@ -8,7 +8,7 @@ namespace MonoGame.SplineFlower.Samples
     {
         private void toolStripDropDownButtonTwitter_Click(object sender, EventArgs e)
         {
-            Process.Start("https://twitter.com/sqrMin1");
+            Process.Start("https://twitter.com/SandboxBlizz");
         }
 
         private void toolStripDropDownButtonGitHub_Click(object sender, EventArgs e)
@@ -62,8 +62,8 @@ namespace MonoGame.SplineFlower.Samples
         }
         private void UpdateControls()
         {
-            lineControl.LineControl_RecalculateBezierCenter();
-            lineControl.MoveSplineToScreenCenter();
+            catMulRomSpline.SplineControl_RecalculateBezierCenter();
+            catMulRomSpline.MoveSplineToScreenCenter();
 
             curveControlQuadratic.CurveControl_RecalculateBezierCenter();
             curveControlQuadratic.MoveSplineToScreenCenter();

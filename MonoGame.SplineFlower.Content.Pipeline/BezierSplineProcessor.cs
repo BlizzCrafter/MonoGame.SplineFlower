@@ -8,13 +8,13 @@ namespace MonoGame.SplineFlower.Content.Pipeline
         public override BezierSpline Process(BezierSplineData input, ContentProcessorContext context)
         {
             BezierSpline bezierSpline = new BezierSpline();
+            bezierSpline.CatMulRom = input.CatMulRom;
+            bezierSpline.Loop = input.Loop;
 
             bezierSpline.LoadJsonBezierSplineData(
                 input.PointData,
                 input.PointModeData,
                 input.TriggerData);
-
-            bezierSpline.Loop = input.Loop;
 
             return bezierSpline;
         }

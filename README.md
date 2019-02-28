@@ -131,7 +131,7 @@ It's also possible to define different trigger directions:
 - **Backward** triggers only in the backward direction.
 - **ForwardAndBackward** triggers in both directions.
 
-> Note:It's also possible to control a SplineWalker with your Keyboard or GamePad if you wish so!
+> Note: It's also possible to control a SplineWalker with your Keyboard or GamePad if you wish so!
 
 ---
 

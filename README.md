@@ -55,12 +55,12 @@ This makes it possible to generate:
 ![BezierSpline](doc/BezierSpline.png)
 
 #### Complex CatMulRomSplines
-![BezierSpline](doc/CatMulRomSpline.png)
+![CatMulRomSpline](doc/CatMulRom_0.gif)
 
 Did you notice the different colors of the control points?
 You can set them in 3 different modes:
 
-![BezierSpline](doc/ControlModes.png)
+![ControlModes](doc/ControlModes.png)
 
 - **Free** allows you to freely place the control point, but often resulting in sharp corners.
 - **Aligned** will enforce such corners and allow you to have connected control points asymmetrical.
@@ -137,6 +137,8 @@ It's also possible to define different trigger directions:
 
 You can do pretty much anything with splines. The limit is really just your imagination.
 *Play around with the samples and learn from it.*
+
+![CatMulRomSpline](doc/CatMulRom_1.gif)
 
 ### Now Have Fun with MonoGame.SplineFlower!
 [![Twitter Follow](https://img.shields.io/twitter/follow/SandboxBlizz.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/SandboxBlizz)

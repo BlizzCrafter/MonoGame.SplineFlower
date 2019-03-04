@@ -29,7 +29,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void MoveSplineToScreenCenter()
         {
-            if (MyLine != null) TranslateAllPointsToScreenCenter(MyLine.GetBezierCenter);
+            if (MyLine != null) TranslateAllPointsToScreenCenter(MyLine.GetBezierCenter.Position);
         }
 
         protected override void Draw()

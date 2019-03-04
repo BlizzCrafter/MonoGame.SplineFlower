@@ -175,7 +175,7 @@ namespace MonoGame.SplineFlower
 
         public void Position(Vector2 position)
         {
-            Vector2 diff = GetBezierCenter - position;
+            Vector2 diff = GetBezierCenter.Position - position;
             Translate(-diff);
         }
 
@@ -505,7 +505,7 @@ namespace MonoGame.SplineFlower
                         DrawCircle(spriteBatch, _Trigger[i].Progress);
                     }
                 }
-                DrawCircle(spriteBatch, GetBezierCenter, Setup.CenterSplineColor);
+                DrawCircle(spriteBatch, GetBezierCenter.Position, Setup.CenterSplineColor);
             }
         }
 

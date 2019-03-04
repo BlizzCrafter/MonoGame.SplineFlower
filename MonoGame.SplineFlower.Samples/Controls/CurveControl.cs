@@ -43,7 +43,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void MoveSplineToScreenCenter()
         {
-            if (MyCurve != null) TranslateAllPointsToScreenCenter(MyCurve.GetBezierCenter);
+            if (MyCurve != null) TranslateAllPointsToScreenCenter(MyCurve.GetBezierCenter.Position);
         }
 
         protected override void Update(GameTime gameTime)

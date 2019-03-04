@@ -5,7 +5,7 @@ namespace MonoGame.SplineFlower
 {
     public abstract class PointBase
     {
-        public Vector2 GetBezierCenter { get; private set; }
+        public Transform GetBezierCenter { get; private set; }
 
         public void CalculateBezierCenter(Transform[] allPoints)
         {
@@ -15,7 +15,7 @@ namespace MonoGame.SplineFlower
             float centerX = maxX / allPoints.Count();
             float centerY = maxY / allPoints.Count();
 
-            GetBezierCenter = new Vector2(centerX, centerY);
+            GetBezierCenter = new Transform(new Vector2(centerX, centerY));
         }
     }
 }

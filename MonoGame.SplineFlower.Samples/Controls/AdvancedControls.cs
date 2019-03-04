@@ -60,7 +60,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void MoveSplineToScreenCenter()
         {
-            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.GetBezierCenter);
+            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.GetBezierCenter.Position);
         }
 
         private void SplineEditor_MovePointDiff(Vector2 obj)

@@ -505,6 +505,7 @@ namespace MonoGame.SplineFlower
                         DrawCircle(spriteBatch, _Trigger[i].Progress);
                     }
                 }
+                DrawCircle(spriteBatch, GetBezierCenter, Setup.CenterSplineColor);
             }
         }
 
@@ -560,12 +561,12 @@ namespace MonoGame.SplineFlower
                              0f);
         }
 
-        private void DrawCircle(SpriteBatch spriteBatch, Vector2 position)
+        private void DrawCircle(SpriteBatch spriteBatch, Vector2 position, Color color)
         {
             spriteBatch.Draw(Setup.Circle,
                              position,
                              null,
-                             Setup.TriggerEventColor,
+                             color,
                              0,
                              new Vector2(Setup.Circle.Width / 2, Setup.Circle.Height / 2),
                              Setup.TriggerEventThickness,

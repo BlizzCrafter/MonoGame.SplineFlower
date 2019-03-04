@@ -36,6 +36,8 @@ namespace MonoGame.SplineFlower.Content
         public static Color PointColor { get; set; } = Color.Red;
         public static int PointThickness { get; set; } = 10;
 
+        public static Color CenterSplineColor { get; set; } = new Color(237, 188, 100, 225);
+
         public static bool MovePointAxis { get; set; } = true;
 
         public static Texture2D Pixel { get; set; }

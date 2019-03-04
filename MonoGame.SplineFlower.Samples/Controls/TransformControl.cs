@@ -40,8 +40,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            
-            if (TranslatePointClick || TranslateAllPointsClick) RecalculateBezierCenter.Invoke();
 
             TranslatePointClick = false;
             TranslateAllPointsClick = false;
@@ -91,6 +89,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 TranslatePointFirstClick.X = e.Location.X;
                 TranslatePointFirstClick.Y = e.Location.Y;
+
+                RecalculateBezierCenter.Invoke();
             }
         }
 
@@ -113,6 +113,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
             if (_OldBezierDistance != distance) TranslateAllPoints(distance);
 
             _OldBezierDistance = distance;
+
+            RecalculateBezierCenter.Invoke();
         }
     }
 }

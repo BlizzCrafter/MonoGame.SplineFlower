@@ -434,9 +434,8 @@ namespace MonoGame.SplineFlower
 
             SetPosition(_Spline.GetPoint(GetProgress * _Spline.MaxProgress()));
 
-            if (CanTriggerEvents &&
-                _Spline.GetAllTrigger().Count > 0 &&
-                _CurrentTriggerIndex > -1) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(GetProgress);
+            int triggerCount = _Spline.GetAllTrigger().Count;
+            if (CanTriggerEvents && _CurrentTriggerIndex <= triggerCount - 1) _Spline.GetAllTrigger()[_CurrentTriggerIndex].CheckIfTriggered(GetProgress);
 
             _oldGamePadState = GamePad.GetState(PlayerIndex.One);
             _oldKeyboardState = Keyboard.GetState();

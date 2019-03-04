@@ -24,12 +24,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void LineControl_RecalculateBezierCenter()
         {
-            if (MyLine != null) MyLine.CalculateBezierCenter(MyLine.GetAllPoints());
+            if (MyLine != null) MyLine.CalculateSplineCenter(MyLine.GetAllPoints());
         }
 
         public void MoveSplineToScreenCenter()
         {
-            if (MyLine != null) TranslateAllPointsToScreenCenter(MyLine.GetBezierCenter.Position);
+            if (MyLine != null) TranslateAllPointsToScreenCenter(MyLine.GetSplineCenter.Position);
         }
 
         protected override void Draw()

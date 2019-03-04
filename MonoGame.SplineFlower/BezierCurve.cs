@@ -128,7 +128,7 @@ namespace MonoGame.SplineFlower
                 new Transform(new Vector2(200, 200))
             };
 
-            CalculateBezierCenter(_Points);
+            CalculateSplineCenter(_Points);
         }
 
         public void CreateCubic()
@@ -143,7 +143,7 @@ namespace MonoGame.SplineFlower
                 new Transform(new Vector2(300, 300))
             };
 
-            CalculateBezierCenter(_Points);
+            CalculateSplineCenter(_Points);
         }
     }
 }

@@ -50,12 +50,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void SplineControl_RecalculateBezierCenter()
         {
-            if (MySpline != null) MySpline.CalculateBezierCenter(MySpline.GetAllPoints());
+            if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints());
         }
 
         public void MoveSplineToScreenCenter()
         {
-            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.GetBezierCenter.Position);
+            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.GetSplineCenter.Position);
         }
 
         private void SplineEditor_MovePointDiff(Vector2 obj)

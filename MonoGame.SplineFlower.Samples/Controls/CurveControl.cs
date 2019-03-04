@@ -38,12 +38,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void CurveControl_RecalculateBezierCenter()
         {
-            if (MyCurve != null) MyCurve.CalculateBezierCenter(MyCurve.GetAllPoints());
+            if (MyCurve != null) MyCurve.CalculateSplineCenter(MyCurve.GetAllPoints());
         }
 
         public void MoveSplineToScreenCenter()
         {
-            if (MyCurve != null) TranslateAllPointsToScreenCenter(MyCurve.GetBezierCenter.Position);
+            if (MyCurve != null) TranslateAllPointsToScreenCenter(MyCurve.GetSplineCenter.Position);
         }
 
         protected override void Update(GameTime gameTime)

@@ -175,7 +175,7 @@ namespace MonoGame.SplineFlower
 
         public void Position(Vector2 position)
         {
-            Vector2 diff = GetBezierCenter.Position - position;
+            Vector2 diff = GetSplineCenter.Position - position;
             Translate(-diff);
         }
 
@@ -372,7 +372,7 @@ namespace MonoGame.SplineFlower
                 EnforceMode(0);
             }
 
-            CalculateBezierCenter(_Points);
+            CalculateSplineCenter(_Points);
         }
 
         public void AddCurveRight()
@@ -395,7 +395,7 @@ namespace MonoGame.SplineFlower
                 EnforceMode(0);
             }
 
-            CalculateBezierCenter(_Points);
+            CalculateSplineCenter(_Points);
         }
 
         public void DrawSpline(SpriteBatch spriteBatch)
@@ -505,7 +505,7 @@ namespace MonoGame.SplineFlower
                         DrawCircle(spriteBatch, _Trigger[i].Progress);
                     }
                 }
-                DrawCircle(spriteBatch, GetBezierCenter.Position, Setup.CenterSplineColor);
+                DrawCircle(spriteBatch, GetSplineCenter.Position, Setup.CenterSplineColor);
             }
         }
 
@@ -585,7 +585,7 @@ namespace MonoGame.SplineFlower
                 new Transform(new Vector2(250, 250))
             };
             
-            CalculateBezierCenter(_Points);
+            CalculateSplineCenter(_Points);
 
             _Modes = new BezierControlPointMode[] {
                 BezierControlPointMode.Free,
@@ -631,7 +631,7 @@ namespace MonoGame.SplineFlower
                 AddTrigger(trigger[i].Name, trigger[i].GetPlainProgress, trigger[i].TriggerRange * Setup.SplineMarkerResolution, trigger[i].ID.ToString());
             }
 
-            CalculateBezierCenter(_Points);
+            CalculateSplineCenter(_Points);
         }
         private Transform[] LoadJsonPointData(TransformDummy[] pointData)
         {

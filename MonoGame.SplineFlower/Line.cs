@@ -82,7 +82,7 @@ namespace MonoGame.SplineFlower
             FirstPoint.SetPosition(new Vector2(0, 0));
             SecondPoint.SetPosition(new Vector2(200, 0));
 
-            CalculateBezierCenter(new Transform[] { FirstPoint, SecondPoint });
+            CalculateSplineCenter(new Transform[] { FirstPoint, SecondPoint });
         }
     }
 }

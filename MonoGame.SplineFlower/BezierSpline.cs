@@ -146,6 +146,8 @@ namespace MonoGame.SplineFlower
 
         public void SetControlPointMode(int index, BezierControlPointMode mode)
         {
+            if (index == Setup.CenterSplineIndex) return;
+
             if (!_IsCatMulRom)
             {
                 int modeIndex = (index + 1) / 3;
@@ -175,12 +177,14 @@ namespace MonoGame.SplineFlower
 
         public void Position(Vector2 position)
         {
-            Vector2 diff = GetSplineCenter.Position - position;
+            Vector2 diff = CenterSpline.Position - position;
             Translate(-diff);
         }
 
         public void MoveAxis(int index, Vector2 diff)
         {
+            if (index == Setup.CenterSplineIndex) return;
+
             if (!_IsCatMulRom)
             {
                 if (Setup.MovePointAxis)
@@ -225,6 +229,8 @@ namespace MonoGame.SplineFlower
 
         public void EnforceMode(int index)
         {
+            if (index == Setup.CenterSplineIndex) return;
+
             int modeIndex = (index + 1) / 3;
             BezierControlPointMode mode = _Modes[modeIndex];
             if (mode == BezierControlPointMode.Free || !Loop && (modeIndex == 0 || modeIndex == _Modes.Length - 1))
@@ -273,7 +279,8 @@ namespace MonoGame.SplineFlower
 
         public Transform TryGetTransformFromPosition(Vector2 position)
         {
-            if (_Points.Any(x => x.TryGetPosition(position))) return _Points.First(x => x.TryGetPosition(position));
+            if (CenterSpline.TryGetPosition(position)) return CenterSpline;
+            else if (_Points.Any(x => x.TryGetPosition(position))) return _Points.First(x => x.TryGetPosition(position));
 
             return null;
         }
@@ -505,7 +512,7 @@ namespace MonoGame.SplineFlower
                         DrawCircle(spriteBatch, _Trigger[i].Progress);
                     }
                 }
-                DrawCircle(spriteBatch, GetSplineCenter.Position, Setup.CenterSplineColor);
+                DrawCircle(spriteBatch, CenterSpline.Position, Setup.CenterSplineColor);
             }
         }
 

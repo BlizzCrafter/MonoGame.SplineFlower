@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.SplineFlower.Content;
 using System.Linq;
 
 namespace MonoGame.SplineFlower
 {
     public abstract class PointBase
     {
-        public Transform GetSplineCenter { get; private set; }
+        public Transform CenterSpline { get; private set; }
 
         public void CalculateSplineCenter(Transform[] allPoints)
         {
@@ -15,8 +16,8 @@ namespace MonoGame.SplineFlower
             float centerX = maxX / allPoints.Count();
             float centerY = maxY / allPoints.Count();
 
-            GetSplineCenter = new Transform(new Vector2(centerX, centerY));
-            GetSplineCenter.Index = -999;
+            CenterSpline = new Transform(new Vector2(centerX, centerY));
+            CenterSpline.Index = Setup.CenterSplineIndex;
         }
     }
 }

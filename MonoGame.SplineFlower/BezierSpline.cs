@@ -10,6 +10,30 @@ namespace MonoGame.SplineFlower
     public class BezierSpline : PointBase
     {
         public BezierSpline() { }
+        public BezierSpline(Transform[] points)
+        {
+            if (points.Length < 4) throw new Exception("You need at least 4 points to successfully create a spline.'");
+
+            Array.Resize(ref _Points, points.Length);
+            Array.Copy(points, _Points, _Points.Length);
+
+            int modCounter = 0, modCount = 1;
+            for (int i = 0; i < _Points.Length; i++)
+            {
+                if (modCounter < 2) modCounter++;
+                else
+                {
+                    modCount++;
+                    modCounter = 0;
+                }
+            }
+
+            Array.Resize(ref _Modes, modCount);
+
+            _Trigger = new List<Trigger>();
+
+            CalculateSplineCenter(_Points);
+        }
 
         public enum BezierControlPointMode
         {
@@ -173,6 +197,8 @@ namespace MonoGame.SplineFlower
             // that we don't translate the Start and the End point (which are the same then) twice.
             // We do that by using the 'Distinct()' command.
             _Points.Distinct().ToList().ForEach(x => x.Translate(amount));
+
+            CalculateSplineCenter(_Points);
         }
 
         public void Rotate(float amount)

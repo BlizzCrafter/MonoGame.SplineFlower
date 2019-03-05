@@ -9,6 +9,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
     {
         public enum CenterTransformMode
         {
+            None,
             Rotate,
             Scale,
             ScaleRotate
@@ -48,13 +49,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (Editor.IsMouseInsideControl)
             {
+                TranslatePointFirstClick = e.Location;
+
                 if (e.Button == MouseButtons.Left)
                 {
                     SelectedTransform = GetSpline.TryGetTransformFromPosition(new Vector2(e.X, e.Y));
                     if (SelectedTransform != null)
                     {
-                        TranslatePointFirstClick = e.Location;
-
                         if (SelectedTransform.IsCenterSpline)
                         {
                             if (SetCenterTransformMode == CenterTransformMode.Rotate) RotatePointClick = true;
@@ -64,16 +65,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
                                 RotatePointClick = true;
                                 ScalePointClick = true;
                             }
+                            else TranslateAllPointsClick = true;
                         }
                         else TranslatePointClick = true;
                     }
                     else SelectedTrigger = GetSpline.TryGetTriggerFromPosition(new Vector2(e.X, e.Y));
                 }
-                else if (e.Button == MouseButtons.Middle)
-                {
-                    TranslatePointFirstClick = e.Location;
-                    TranslateAllPointsClick = true;
-                }
+                else if (e.Button == MouseButtons.Middle) TranslateAllPointsClick = true;
             }
         }
 

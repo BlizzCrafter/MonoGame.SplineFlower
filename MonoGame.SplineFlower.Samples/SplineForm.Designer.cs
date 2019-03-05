@@ -31,24 +31,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineForm));
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
+            this.comboBoxCenterTransformMode = new System.Windows.Forms.ComboBox();
             this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
             this.buttonResetSplineWalker = new System.Windows.Forms.Button();
             this.buttonLoop = new System.Windows.Forms.Button();
             this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
+            this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
             this.tabPageCatMulRom = new System.Windows.Forms.TabPage();
+            this.comboBoxCenterTransformMode_2 = new System.Windows.Forms.ComboBox();
+            this.catMulRomSpline = new MonoGame.SplineFlower.Samples.Controls.CatMulRomSpline();
             this.tabPageAdvancedControls = new System.Windows.Forms.TabPage();
             this.buttonHelp = new System.Windows.Forms.Button();
+            this.advancedControls = new MonoGame.SplineFlower.Samples.Controls.AdvancedControls();
             this.tabPageInfo = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
-            this.comboBoxCenterTransformMode = new System.Windows.Forms.ComboBox();
-            this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
-            this.catMulRomSpline = new MonoGame.SplineFlower.Samples.Controls.CatMulRomSpline();
-            this.advancedControls = new MonoGame.SplineFlower.Samples.Controls.AdvancedControls();
-            this.comboBoxCenterTransformMode_2 = new System.Windows.Forms.ComboBox();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
@@ -85,6 +85,24 @@
             this.tabPageBezierSpline.TabIndex = 3;
             this.tabPageBezierSpline.Text = "Beziér Spline";
             this.tabPageBezierSpline.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxCenterTransformMode
+            // 
+            this.comboBoxCenterTransformMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxCenterTransformMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCenterTransformMode.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCenterTransformMode.FormattingEnabled = true;
+            this.comboBoxCenterTransformMode.Items.AddRange(new object[] {
+            "None",
+            "Rotate",
+            "Scale",
+            "ScaleRotate"});
+            this.comboBoxCenterTransformMode.Location = new System.Drawing.Point(3, 409);
+            this.comboBoxCenterTransformMode.MaxDropDownItems = 3;
+            this.comboBoxCenterTransformMode.Name = "comboBoxCenterTransformMode";
+            this.comboBoxCenterTransformMode.Size = new System.Drawing.Size(159, 26);
+            this.comboBoxCenterTransformMode.TabIndex = 13;
+            this.comboBoxCenterTransformMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxCenterTransformMode_SelectedIndexChanged);
             // 
             // comboBoxWalkerMode
             // 
@@ -151,6 +169,21 @@
             this.buttonAddCurveLeft.UseVisualStyleBackColor = true;
             this.buttonAddCurveLeft.Click += new System.EventHandler(this.buttonAddCurve_Click);
             // 
+            // splineControl
+            // 
+            this.splineControl.BackColor = System.Drawing.Color.GreenYellow;
+            this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
+            this.splineControl.GetSpline = null;
+            this.splineControl.Location = new System.Drawing.Point(0, 0);
+            this.splineControl.Name = "splineControl";
+            this.splineControl.SelectedTrigger = null;
+            this.splineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.splineControl.Size = new System.Drawing.Size(774, 524);
+            this.splineControl.TabIndex = 12;
+            this.splineControl.Text = "Bézier Spline";
+            // 
             // tabPageCatMulRom
             // 
             this.tabPageCatMulRom.Controls.Add(this.comboBoxCenterTransformMode_2);
@@ -162,6 +195,39 @@
             this.tabPageCatMulRom.TabIndex = 0;
             this.tabPageCatMulRom.Text = "CatMulRom Spline";
             this.tabPageCatMulRom.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxCenterTransformMode_2
+            // 
+            this.comboBoxCenterTransformMode_2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBoxCenterTransformMode_2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCenterTransformMode_2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCenterTransformMode_2.FormattingEnabled = true;
+            this.comboBoxCenterTransformMode_2.Items.AddRange(new object[] {
+            "None",
+            "Rotate",
+            "Scale",
+            "ScaleRotate"});
+            this.comboBoxCenterTransformMode_2.Location = new System.Drawing.Point(6, 490);
+            this.comboBoxCenterTransformMode_2.MaxDropDownItems = 3;
+            this.comboBoxCenterTransformMode_2.Name = "comboBoxCenterTransformMode_2";
+            this.comboBoxCenterTransformMode_2.Size = new System.Drawing.Size(159, 26);
+            this.comboBoxCenterTransformMode_2.TabIndex = 14;
+            this.comboBoxCenterTransformMode_2.SelectedIndexChanged += new System.EventHandler(this.comboBoxCenterTransformMode_2_SelectedIndexChanged);
+            // 
+            // catMulRomSpline
+            // 
+            this.catMulRomSpline.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.catMulRomSpline.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.catMulRomSpline.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.catMulRomSpline.ForeColor = System.Drawing.Color.Orange;
+            this.catMulRomSpline.GetSpline = null;
+            this.catMulRomSpline.Location = new System.Drawing.Point(3, 3);
+            this.catMulRomSpline.Name = "catMulRomSpline";
+            this.catMulRomSpline.SelectedTrigger = null;
+            this.catMulRomSpline.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.catMulRomSpline.Size = new System.Drawing.Size(768, 518);
+            this.catMulRomSpline.TabIndex = 0;
+            this.catMulRomSpline.Text = "CatMulRom Spline";
             // 
             // tabPageAdvancedControls
             // 
@@ -186,6 +252,21 @@
             this.buttonHelp.Text = "?";
             this.buttonHelp.UseVisualStyleBackColor = true;
             this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            // 
+            // advancedControls
+            // 
+            this.advancedControls.BackColor = System.Drawing.Color.Tan;
+            this.advancedControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.advancedControls.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.advancedControls.ForeColor = System.Drawing.Color.GhostWhite;
+            this.advancedControls.GetSpline = null;
+            this.advancedControls.Location = new System.Drawing.Point(3, 3);
+            this.advancedControls.Name = "advancedControls";
+            this.advancedControls.SelectedTrigger = null;
+            this.advancedControls.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.advancedControls.Size = new System.Drawing.Size(768, 518);
+            this.advancedControls.TabIndex = 0;
+            this.advancedControls.Text = "Advanced Controls";
             // 
             // tabPageInfo
             // 
@@ -241,85 +322,6 @@
             this.richTextBoxLicense.TabIndex = 2;
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;
-            // 
-            // comboBoxCenterTransformMode
-            // 
-            this.comboBoxCenterTransformMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboBoxCenterTransformMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCenterTransformMode.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxCenterTransformMode.FormattingEnabled = true;
-            this.comboBoxCenterTransformMode.Items.AddRange(new object[] {
-            "Rotate",
-            "Scale",
-            "ScaleRotate"});
-            this.comboBoxCenterTransformMode.Location = new System.Drawing.Point(3, 409);
-            this.comboBoxCenterTransformMode.MaxDropDownItems = 3;
-            this.comboBoxCenterTransformMode.Name = "comboBoxCenterTransformMode";
-            this.comboBoxCenterTransformMode.Size = new System.Drawing.Size(159, 26);
-            this.comboBoxCenterTransformMode.TabIndex = 13;
-            this.comboBoxCenterTransformMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxCenterTransformMode_SelectedIndexChanged);
-            // 
-            // splineControl
-            // 
-            this.splineControl.BackColor = System.Drawing.Color.GreenYellow;
-            this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
-            this.splineControl.GetSpline = null;
-            this.splineControl.Location = new System.Drawing.Point(0, 0);
-            this.splineControl.Name = "splineControl";
-            this.splineControl.SelectedTrigger = null;
-            this.splineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.splineControl.Size = new System.Drawing.Size(774, 524);
-            this.splineControl.TabIndex = 12;
-            this.splineControl.Text = "Bézier Spline";
-            // 
-            // catMulRomSpline
-            // 
-            this.catMulRomSpline.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.catMulRomSpline.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.catMulRomSpline.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.catMulRomSpline.ForeColor = System.Drawing.Color.Orange;
-            this.catMulRomSpline.GetSpline = null;
-            this.catMulRomSpline.Location = new System.Drawing.Point(3, 3);
-            this.catMulRomSpline.Name = "catMulRomSpline";
-            this.catMulRomSpline.SelectedTrigger = null;
-            this.catMulRomSpline.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.catMulRomSpline.Size = new System.Drawing.Size(768, 518);
-            this.catMulRomSpline.TabIndex = 0;
-            this.catMulRomSpline.Text = "CatMulRom Spline";
-            // 
-            // advancedControls
-            // 
-            this.advancedControls.BackColor = System.Drawing.Color.Tan;
-            this.advancedControls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.advancedControls.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.advancedControls.ForeColor = System.Drawing.Color.GhostWhite;
-            this.advancedControls.GetSpline = null;
-            this.advancedControls.Location = new System.Drawing.Point(3, 3);
-            this.advancedControls.Name = "advancedControls";
-            this.advancedControls.SelectedTrigger = null;
-            this.advancedControls.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.advancedControls.Size = new System.Drawing.Size(768, 518);
-            this.advancedControls.TabIndex = 0;
-            this.advancedControls.Text = "Advanced Controls";
-            // 
-            // comboBoxCenterTransformMode_2
-            // 
-            this.comboBoxCenterTransformMode_2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboBoxCenterTransformMode_2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCenterTransformMode_2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxCenterTransformMode_2.FormattingEnabled = true;
-            this.comboBoxCenterTransformMode_2.Items.AddRange(new object[] {
-            "Rotate",
-            "Scale",
-            "ScaleRotate"});
-            this.comboBoxCenterTransformMode_2.Location = new System.Drawing.Point(6, 490);
-            this.comboBoxCenterTransformMode_2.MaxDropDownItems = 3;
-            this.comboBoxCenterTransformMode_2.Name = "comboBoxCenterTransformMode_2";
-            this.comboBoxCenterTransformMode_2.Size = new System.Drawing.Size(159, 26);
-            this.comboBoxCenterTransformMode_2.TabIndex = 14;
-            this.comboBoxCenterTransformMode_2.SelectedIndexChanged += new System.EventHandler(this.comboBoxCenterTransformMode_2_SelectedIndexChanged);
             // 
             // SplineForm
             // 

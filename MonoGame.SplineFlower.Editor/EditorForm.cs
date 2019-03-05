@@ -461,7 +461,7 @@ namespace MonoGame.SplineFlower.Editor
             toolStripComboBoxEvents.SelectedIndex = 0;
             toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
             toolStripComboBoxWalkerMode.SelectedIndex = 0;
-            toolStripComboBoxCenterTransformMode.SelectedIndex = 2;
+            toolStripComboBoxCenterTransformMode.SelectedIndex = 3;
         }
 
         private void FormEditor_Resize(object sender, EventArgs e)

@@ -24,8 +24,8 @@ namespace MonoGame.SplineFlower.Samples
         private void SplineEditorForm_Load(object sender, EventArgs e)
         {
             comboBoxWalkerMode.SelectedIndex = 0;
-            comboBoxCenterTransformMode.SelectedIndex = 2;
-            comboBoxCenterTransformMode_2.SelectedIndex = 2;
+            comboBoxCenterTransformMode.SelectedIndex = 3;
+            comboBoxCenterTransformMode_2.SelectedIndex = 3;
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)

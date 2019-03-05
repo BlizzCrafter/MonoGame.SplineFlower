@@ -316,6 +316,7 @@
             // 
             this.toolStripComboBoxCenterTransformMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripComboBoxCenterTransformMode.Items.AddRange(new object[] {
+            "None",
             "Rotate",
             "Scale",
             "ScaleRotate"});

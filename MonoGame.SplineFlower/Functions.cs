@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonoGame.SplineFlower
 {
@@ -22,11 +18,12 @@ namespace MonoGame.SplineFlower
             return (float)Math.Atan2((double)Direction.X, -(double)Direction.Y);
         }
 
-        public static Vector2 RotateToPosition(Vector2 Origin, Vector2 Destination, float distance)
+        public static Vector2 RotateToPosition(Vector2 Origin, Vector2 Destination, float distance, float degreeCorrection)
         {
             Vector2 Rotation = Vector2.Zero;
 
-            return Rotate(MathHelper.ToRadians(90f) + GetRotation(Origin, Destination, ref Rotation), -distance, Origin);
+            return Rotate(
+                MathHelper.ToRadians(180f) + MathHelper.ToRadians(degreeCorrection) + GetRotation(Origin, Destination, ref Rotation), -distance, Origin);
         }
     }
 }

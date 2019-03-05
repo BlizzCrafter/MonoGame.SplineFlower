@@ -175,6 +175,17 @@ namespace MonoGame.SplineFlower
             _Points.Distinct().ToList().ForEach(x => x.Translate(amount));
         }
 
+        public void Rotate(float amount)
+        {
+            _Points.Distinct().ToList().ForEach(
+                    x => x.SetPosition(Functions.RotateToPosition(
+                        x.Position,
+                    new Vector2(
+                        CenterSpline.Position.X,
+                        CenterSpline.Position.Y),
+                    amount, 1f)));
+        }
+
         public void Scale(float amount)
         {
             _Points.Distinct().ToList().ForEach(
@@ -183,7 +194,18 @@ namespace MonoGame.SplineFlower
                     new Vector2(
                         CenterSpline.Position.X,
                         CenterSpline.Position.Y),
-                    amount)));
+                    amount, 90f)));
+        }
+
+        public void ScaleRotate(float amount)
+        {
+            _Points.Distinct().ToList().ForEach(
+                    x => x.SetPosition(Functions.RotateToPosition(
+                        x.Position,
+                    new Vector2(
+                        CenterSpline.Position.X,
+                        CenterSpline.Position.Y),
+                    amount, 45f)));
         }
 
         public void Position(Vector2 position)

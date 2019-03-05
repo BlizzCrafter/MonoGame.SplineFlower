@@ -11,9 +11,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public enum CenterTransformMode
         {
             Rotate,
-            Scale
+            Scale,
+            ScaleRotate
         }
-        private CenterTransformMode _CenterTransformMode = CenterTransformMode.Scale;
+        public CenterTransformMode SetCenterTransformMode { get; set; } = CenterTransformMode.ScaleRotate;
 
         protected bool ScalePointClick = false;
         protected bool RotatePointClick = false;
@@ -57,8 +58,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                         if (SelectedTransform.IsCenterSpline)
                         {
-                            if (_CenterTransformMode == CenterTransformMode.Rotate) RotatePointClick = true;
-                            else if (_CenterTransformMode == CenterTransformMode.Scale) ScalePointClick = true;
+                            if (SetCenterTransformMode == CenterTransformMode.Rotate) RotatePointClick = true;
+                            else if (SetCenterTransformMode == CenterTransformMode.Scale) ScalePointClick = true;
+                            else if (SetCenterTransformMode == CenterTransformMode.ScaleRotate)
+                            {
+                                RotatePointClick = true;
+                                ScalePointClick = true;
+                            }
                         }
                         else TranslatePointClick = true;
                     }
@@ -91,7 +97,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
             }
-            else if (ScalePointClick) GetSpline.Scale(yDiff);
+            else if (RotatePointClick && !ScalePointClick) GetSpline.Rotate(yDiff);
+            else if (ScalePointClick && !RotatePointClick) GetSpline.Scale(yDiff);
+            else if (ScalePointClick && RotatePointClick) GetSpline.ScaleRotate(yDiff);
 
             TranslatePointFirstClick.X = e.Location.X;
             TranslatePointFirstClick.Y = e.Location.Y;

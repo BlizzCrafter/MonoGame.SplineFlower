@@ -92,10 +92,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
                     SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
                     GetSpline.MoveAxis(SelectedTransform.Index, new Vector2(-xDiff, -yDiff));
                     GetSpline.GetAllTrigger().ForEach(x => x.UpdateTriggerRotation());
+                    GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
                 }
                 else if (TranslateAllPointsClick) GetSpline.Translate(new Vector2(-xDiff, -yDiff));
-
-                GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
             }
             else if (RotatePointClick && !ScalePointClick) GetSpline.Rotate(yDiff);
             else if (ScalePointClick && !RotatePointClick) GetSpline.Scale(yDiff);
@@ -113,8 +112,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
             if (_OldBezierDistance != distance) GetSpline.Translate(distance);
 
             _OldBezierDistance = distance;
-
-            GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
         }
     }
 }

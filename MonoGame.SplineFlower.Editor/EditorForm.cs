@@ -346,6 +346,7 @@ namespace MonoGame.SplineFlower.Editor
                 }
 
                 splineControl.MySplineWalker.Reset(SplineWalker.ResetLocation.End);
+                splineControl.MoveSplineToScreenCenter();
             }
         }
 

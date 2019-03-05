@@ -74,7 +74,7 @@ namespace MonoGame.SplineFlower
             List<Trigger> ordered = _Trigger.OrderBy(x => x.GetPlainProgress).ToList();
             _Trigger = ordered;
         }
-        
+
         public bool CatMulRom
         {
             get { return _IsCatMulRom; }
@@ -178,35 +178,53 @@ namespace MonoGame.SplineFlower
         public void Rotate(float amount)
         {
             _Points.Distinct().ToList().ForEach(
-                    x => x.SetPosition(Functions.RotateToPosition(
-                        x.Position,
-                    new Vector2(
-                        CenterSpline.Position.X,
-                        CenterSpline.Position.Y),
-                    amount, 1f)));
+                    x =>
+                    {
+                        if (!x.Position.Equals(CenterSpline.Position))
+                        {
+                            x.SetPosition(Functions.RotateToPosition(
+                            x.Position,
+                        new Vector2(
+                            CenterSpline.Position.X,
+                            CenterSpline.Position.Y),
+                        amount, 1f));
+                        }
+                    });
         }
 
         public void Scale(float amount)
         {
             _Points.Distinct().ToList().ForEach(
-                    x => x.SetPosition(Functions.RotateToPosition(
-                        x.Position,
-                    new Vector2(
-                        CenterSpline.Position.X,
-                        CenterSpline.Position.Y),
-                    amount, 90f)));
+                    x =>
+                    {
+                        if (!x.Position.Equals(CenterSpline.Position))
+                        {
+                            x.SetPosition(Functions.RotateToPosition(
+                            x.Position,
+                        new Vector2(
+                            CenterSpline.Position.X,
+                            CenterSpline.Position.Y),
+                        amount, 90f));
+                        }
+                    });
         }
 
         public void ScaleRotate(float amount)
         {
             _Points.Distinct().ToList().ForEach(
-                    x => x.SetPosition(Functions.RotateToPosition(
-                        x.Position,
-                    new Vector2(
-                        CenterSpline.Position.X,
-                        CenterSpline.Position.Y),
-                    amount, 45f)));
-        }
+                    x =>
+                    {
+                        if (!x.Position.Equals(CenterSpline.Position))
+                        {
+                            x.SetPosition(Functions.RotateToPosition(
+                                x.Position,
+                            new Vector2(
+                                CenterSpline.Position.X,
+                                CenterSpline.Position.Y),
+                            amount, 45f));
+                        }
+                    });
+        } 
 
         public void Position(Vector2 position)
         {

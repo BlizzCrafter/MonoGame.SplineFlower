@@ -14,18 +14,21 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Scale,
             ScaleRotate
         }
+        [Browsable(false)]
         public CenterTransformMode SetCenterTransformMode { get; set; } = CenterTransformMode.ScaleRotate;
 
+        [Browsable(false)]
+        public Trigger SelectedTrigger { get; set; }
+
+        [Browsable(false)]
+        public BezierSpline GetSpline { get; set; }
+        
         protected bool ScalePointClick = false;
         protected bool RotatePointClick = false;
         protected bool TranslatePointClick = false;
         protected bool TranslateAllPointsClick = false;
         protected System.Drawing.Point TranslatePointFirstClick;
         protected Transform SelectedTransform;
-        public Trigger SelectedTrigger { get; set; }
-
-        [Browsable(false)]
-        public BezierSpline GetSpline { get; set; }
 
         private Vector2 _BezierPosition;
         private Vector2 _OldBezierDistance;

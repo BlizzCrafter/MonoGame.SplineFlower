@@ -484,7 +484,7 @@ namespace MonoGame.SplineFlower
 
         public void DrawSpline(SpriteBatch spriteBatch)
         {
-            if (Setup.ShowBezierSpline)
+            if (Setup.ShowSpline)
             {
                 if (!Setup.Initialized)
                 {
@@ -589,7 +589,7 @@ namespace MonoGame.SplineFlower
                         DrawCircle(spriteBatch, _Trigger[i].Progress);
                     }
                 }
-                DrawCircle(spriteBatch, CenterSpline.Position, Setup.CenterSplineColor);
+                if (Setup.ShowCenterSpline) DrawCircle(spriteBatch, CenterSpline.Position, Setup.CenterSplineColor);
             }
         }
 

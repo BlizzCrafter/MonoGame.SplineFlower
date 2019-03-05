@@ -618,7 +618,7 @@ namespace MonoGame.SplineFlower
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            if (Setup.ShowBezierSpline && Setup.ShowSplineWalker)
+            if (Setup.ShowSpline && Setup.ShowSplineWalker)
             {
                 spriteBatch.Draw(Setup.Pixel,
                                  _Size,

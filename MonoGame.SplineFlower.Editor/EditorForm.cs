@@ -34,7 +34,7 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripMenuItemDrawSpline_CheckedChanged(object sender, EventArgs e)
         {
-            Setup.ShowBezierSpline = toolStripMenuItemDrawSpline.Checked;
+            Setup.ShowSpline = toolStripMenuItemDrawSpline.Checked;
         }
 
         private void toolStripMenuItemDrawBaseLine_CheckedChanged(object sender, EventArgs e)
@@ -55,6 +55,11 @@ namespace MonoGame.SplineFlower.Editor
         private void toolStripMenuItemDrawTrigger_CheckedChanged(object sender, EventArgs e)
         {
             Setup.ShowTriggers = toolStripMenuItemDrawTrigger.Checked;
+        }
+
+        private void toolStripMenuItemDrawCenterSpline_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowCenterSpline = toolStripMenuItemDrawCenterSpline.Checked;
         }
 
         private void toolStripMenuItemDrawSplineWalker_CheckedChanged(object sender, EventArgs e)

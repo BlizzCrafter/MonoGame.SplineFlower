@@ -10,7 +10,7 @@ namespace MonoGame.SplineFlower.Content
         public static float SplineStepDistance { get; private set; }
         public static int LineSteps { get; set; } = 20;
 
-        public static bool ShowBezierSpline { get; set; } = true;
+        public static bool ShowSpline { get; set; } = true;
         public static bool ShowSplineWalker { get; set; } = true;
 
         public static Color BaseLineColor { get; set; } = Color.White;
@@ -38,6 +38,7 @@ namespace MonoGame.SplineFlower.Content
 
         public static Color CenterSplineColor { get; set; } = new Color(237, 188, 100, 225);
         public static int CenterSplineIndex { get; } = -999999;
+        public static bool ShowCenterSpline { get; set; } = true;
 
         public static bool MovePointAxis { get; set; } = true;
 

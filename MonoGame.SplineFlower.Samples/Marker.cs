@@ -43,7 +43,7 @@ namespace MonoGame.SplineFlower.Samples
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Setup.ShowBezierSpline && ShowSplineMarker)
+            if (Setup.ShowSpline && ShowSplineMarker)
             {
                 spriteBatch.Draw(_Arrow,
                                  Position,

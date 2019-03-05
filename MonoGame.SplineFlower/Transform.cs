@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.SplineFlower.Content;
-using System;
+using System.Collections.Generic;
 
 namespace MonoGame.SplineFlower
 {
-    public class Transform : IComparable<Transform>
+    public class Transform : IEqualityComparer<Transform>
     {
         public Rectangle Size { get { return _Size; } }
         private Rectangle _Size = Rectangle.Empty;
@@ -47,11 +47,15 @@ namespace MonoGame.SplineFlower
             return false;
         }
 
-        public int CompareTo(Transform other)
+        public bool Equals(Transform x, Transform y)
         {
-            if (Position.X >= other.Position.X &&
-                Position.Y >= other.Position.Y) return 1;
-            return -1;
+            if (x.Position == y.Position) return true;
+            else return false;
+        }
+
+        public int GetHashCode(Transform obj)
+        {
+            return obj.Position.GetHashCode();
         }
     }
 }

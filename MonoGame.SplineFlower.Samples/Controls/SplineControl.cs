@@ -17,12 +17,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             MySpline = new BezierSpline();
             MySpline.Reset();
-            TryGetTransformFromPosition = MySpline.TryGetTransformFromPosition;
-            TryGetTriggerFromPosition = MySpline.TryGetTriggerFromPosition;
-            GetAllPoints = MySpline.GetAllPoints;
-            GetAllTrigger = MySpline.GetAllTrigger;
-            RecalculateBezierCenter += SplineControl_RecalculateBezierCenter; ;
-            MovePointDiff += SplineEditor_MovePointDiff;
+            GetSpline = MySpline;
 
             MySplineWalker = new Car();
             MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7);
@@ -53,12 +48,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void MoveSplineToScreenCenter()
         {
-            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.GetSplineCenter.Position);
-        }
-
-        private void SplineEditor_MovePointDiff(Vector2 obj)
-        {
-            MySpline.MoveAxis(SelectedTransform.Index, obj);
+            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.CenterSpline.Position);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -67,8 +57,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
             
             if (e.Button == MouseButtons.Right)
             {
-                SelectedTransform = TryGetTransformFromPosition(new Vector2(e.X, e.Y));
-                if (SelectedTransform != null)
+                SelectedTransform = GetSpline.TryGetTransformFromPosition(new Vector2(e.X, e.Y));
+                if (SelectedTransform != null && !SelectedTransform.IsCenterSpline)
                 {
                     BezierSpline.BezierControlPointMode nextMode = MySpline.GetControlPointMode(SelectedTransform.Index).Next();
                     MySpline.SetControlPointMode(SelectedTransform.Index, nextMode);

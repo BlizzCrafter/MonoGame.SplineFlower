@@ -17,22 +17,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public Trigger SelectedTrigger { get; set; }
 
         [Browsable(false)]
-        public Func<Vector2, Transform> TryGetTransformFromPosition { get; set; }
-
-        [Browsable(false)]
-        public Func<Vector2, Trigger> TryGetTriggerFromPosition { get; set; }
-
-        [Browsable(false)]
-        public Func<Transform[]> GetAllPoints { get; set; }
-
-        [Browsable(false)]
-        public Func<List<Trigger>> GetAllTrigger { get; set; }
-
-        [Browsable(false)]
-        protected event Action RecalculateBezierCenter = delegate { };
-
-        [Browsable(false)]
-        protected event Action<Vector2> MovePointDiff = delegate { };
+        public BezierSpline GetSpline { get; set; }
 
         private Vector2 _BezierPosition;
         private Vector2 _OldBezierDistance;
@@ -54,13 +39,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    SelectedTransform = TryGetTransformFromPosition(new Vector2(e.X, e.Y));
+                    SelectedTransform = GetSpline.TryGetTransformFromPosition(new Vector2(e.X, e.Y));
                     if (SelectedTransform != null)
                     {
                         TranslatePointFirstClick = e.Location;
                         TranslatePointClick = true;
                     }
-                    else if(TryGetTriggerFromPosition != null) SelectedTrigger = TryGetTriggerFromPosition(new Vector2(e.X, e.Y));
+                    else SelectedTrigger = GetSpline.TryGetTriggerFromPosition(new Vector2(e.X, e.Y));
                 }
                 else if (e.Button == MouseButtons.Middle)
                 {
@@ -82,21 +67,21 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 if (SelectedTransform != null && TranslatePointClick)
                 {
                     SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
-                    MovePointDiff.Invoke(new Vector2(-xDiff, -yDiff));
-                    if (GetAllTrigger != null) GetAllTrigger().ForEach(x => x.UpdateTriggerRotation());
+                    GetSpline.MoveAxis(SelectedTransform.Index, new Vector2(-xDiff, -yDiff));
+                    GetSpline.GetAllTrigger().ForEach(x => x.UpdateTriggerRotation());
                 }
                 else if (TranslateAllPointsClick) TranslateAllPoints(new Vector2(-xDiff, -yDiff));
 
                 TranslatePointFirstClick.X = e.Location.X;
                 TranslatePointFirstClick.Y = e.Location.Y;
 
-                RecalculateBezierCenter.Invoke();
+                GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
             }
         }
 
         public void TranslateAllPoints(Vector2 amount)
         {
-            Transform[] allPoints = GetAllPoints().Distinct().ToArray();
+            Transform[] allPoints = GetSpline.GetAllPoints().Distinct().ToArray();
             for (int i = 0; i < allPoints.Length; i++)
             {
                 allPoints[i].Translate(new Vector2(amount.X, amount.Y));
@@ -114,7 +99,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             _OldBezierDistance = distance;
 
-            RecalculateBezierCenter.Invoke();
+            GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
         }
     }
 }

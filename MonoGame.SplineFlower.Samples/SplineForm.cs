@@ -65,12 +65,6 @@ namespace MonoGame.SplineFlower.Samples
             catMulRomSpline.SplineControl_RecalculateBezierCenter();
             catMulRomSpline.MoveSplineToScreenCenter();
 
-            curveControlQuadratic.CurveControl_RecalculateBezierCenter();
-            curveControlQuadratic.MoveSplineToScreenCenter();
-
-            curveControlCubic.CurveControl_RecalculateBezierCenter();
-            curveControlCubic.MoveSplineToScreenCenter();
-
             splineControl.SplineControl_RecalculateBezierCenter();
             splineControl.MoveSplineToScreenCenter();
         }

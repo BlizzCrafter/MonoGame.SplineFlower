@@ -315,16 +315,12 @@
             this.splineControl.BackColor = System.Drawing.Color.Yellow;
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splineControl.GetAllPoints = null;
-            this.splineControl.GetAllTrigger = null;
             this.splineControl.Location = new System.Drawing.Point(0, 56);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
             this.splineControl.Size = new System.Drawing.Size(782, 441);
             this.splineControl.TabIndex = 0;
             this.splineControl.Text = "Bézier Spline Editor";
-            this.splineControl.TryGetTransformFromPosition = null;
-            this.splineControl.TryGetTriggerFromPosition = null;
             this.splineControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.splineControl_MouseUp);
             // 
             // menuStripMainMenu

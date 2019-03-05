@@ -10,7 +10,7 @@ namespace MonoGame.SplineFlower.GameTest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        BezierSpline MyBezierSpline;
+        BezierSpline MySpline;
         Car MySplineWalker;
 
         public Game1()
@@ -30,24 +30,53 @@ namespace MonoGame.SplineFlower.GameTest
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            MyBezierSpline = Content.Load<BezierSpline>(@"SplineTrack");
+            // Loading a spline with the MonoGame.SplineFlower.Content.Pipeline
+            MySpline = Content.Load<BezierSpline>(@"SplineTrack");
 
+            // Programmatically creating a looped CatMulRomSpline
+            // MySpline = new BezierSpline(new Transform[]
+            //    {
+            //        new Transform(new Vector2(100, 100)),
+            //        new Transform(new Vector2(200, 100)),
+            //        new Transform(new Vector2(150, 200)),
+            //        new Transform(new Vector2(200, 200)),
+            //        new Transform(new Vector2(300, 200)),
+            //        new Transform(new Vector2(300, 100)),
+            //        new Transform(new Vector2(400, 100)),
+            //        new Transform(new Vector2(450, 200)),
+            //        new Transform(new Vector2(400, 400)),
+            //        new Transform(new Vector2(200, 450))
+            //    });
+            // MySpline.CatMulRom = true;
+            // MySpline.Loop = true;
+
+            // Place a SplineWalker on the spline
             MySplineWalker = new Car();
-            MySplineWalker.CreateSplineWalker(MyBezierSpline, SplineWalker.SplineWalkerMode.Loop, 7);
+            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Loop, 7);
             MySplineWalker.LoadContent(Content, Content.Load<SpriteFont>(@"GameFont"));
 
-            // Uncomment the following line to directly set the position of the BezierSpline (Bezier Center).
-            //MyBezierSpline.Position(new Vector2(200, 150));
+            // Uncomment to directly set the position of the spline (SplineCenter)
+            // MySpline.Position(new Vector2(200, 150));
 
-            // Uncomment the following line to translate all control points of the BezierSpline from where the BezierSpline spawned.
-            //MyBezierSpline.Translate(new Vector2(200, 150));
+            // Uncomment to translate all control points of the spline from where the it spawned
+            // MySpline.Translate(new Vector2(200, 150));
+
+            // Uncomment to rotate the spline
+            // MySpline.Rotate(-90f);
+
+            // Uncomment to scale the spline
+            // MySpline.Scale(-50f);
+
+            // Uncomment to scale-rotate the spline and scale it again afterwards
+            // MySpline.ScaleRotate(-180f);
+            // MySpline.Scale(-50f);
         }
 
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            MySplineWalker.Update(gameTime);
+            if (MySplineWalker != null) MySplineWalker.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -56,8 +85,8 @@ namespace MonoGame.SplineFlower.GameTest
 
             spriteBatch.Begin();
 
-            MyBezierSpline.DrawSpline(spriteBatch);
-            MySplineWalker.Draw(spriteBatch);
+            if (MySpline != null) MySpline.DrawSpline(spriteBatch);
+            if (MySplineWalker != null) MySplineWalker.Draw(spriteBatch);
 
             spriteBatch.End();
 

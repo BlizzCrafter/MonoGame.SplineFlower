@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Create wonderful smooth BézierSplines and CatMulRomSplines with TriggerEvents for your MonoGame project. MIT License!</description>
     <copyright>Copyright (c) 2018 Marcel 'sqrMin1' Härtel</copyright>
-    <tags>MonoGame WindowsForms</tags>
+    <tags>MonoGame WindowsForms Splines</tags>
 	<references>
 		<group targetFramework="net452">
 		<reference file="MonoGame.SplineFlower.dll" />

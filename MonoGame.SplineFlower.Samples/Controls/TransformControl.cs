@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Forms.Controls;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MonoGame.SplineFlower.Samples.Controls
@@ -93,7 +92,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                     GetSpline.MoveAxis(SelectedTransform.Index, new Vector2(-xDiff, -yDiff));
                     GetSpline.GetAllTrigger().ForEach(x => x.UpdateTriggerRotation());
                 }
-                else if (TranslateAllPointsClick) TranslateAllPoints(new Vector2(-xDiff, -yDiff));
+                else if (TranslateAllPointsClick) GetSpline.Translate(new Vector2(-xDiff, -yDiff));
 
                 GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
             }
@@ -104,25 +103,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
             TranslatePointFirstClick.X = e.Location.X;
             TranslatePointFirstClick.Y = e.Location.Y;
         }
-        
-
-        public void TranslateAllPoints(Vector2 amount)
-        {
-            Transform[] allPoints = GetSpline.GetAllPoints().Distinct().ToArray();
-            for (int i = 0; i < allPoints.Length; i++)
-            {
-                allPoints[i].Translate(new Vector2(amount.X, amount.Y));
-            }
-
-            _BezierPosition += amount;
-        }
 
         protected void TranslateAllPointsToScreenCenter(Vector2 bezierCenter)
         {
             Vector2 centerScreen = new Vector2(ClientSize.Width / 2, ClientSize.Height / 2);
             Vector2 distance = centerScreen - bezierCenter;
 
-            if (_OldBezierDistance != distance) TranslateAllPoints(distance);
+            if (_OldBezierDistance != distance) GetSpline.Translate(distance);
 
             _OldBezierDistance = distance;
 

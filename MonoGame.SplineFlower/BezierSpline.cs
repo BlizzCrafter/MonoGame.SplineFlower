@@ -175,6 +175,17 @@ namespace MonoGame.SplineFlower
             _Points.Distinct().ToList().ForEach(x => x.Translate(amount));
         }
 
+        public void Scale(float amount)
+        {
+            _Points.Distinct().ToList().ForEach(
+                    x => x.SetPosition(Functions.RotateToPosition(
+                        x.Position,
+                    new Vector2(
+                        CenterSpline.Position.X,
+                        CenterSpline.Position.Y),
+                    amount)));
+        }
+
         public void Position(Vector2 position)
         {
             Vector2 diff = CenterSpline.Position - position;

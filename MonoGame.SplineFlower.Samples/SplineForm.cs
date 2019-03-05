@@ -28,28 +28,37 @@ namespace MonoGame.SplineFlower.Samples
 
         private void buttonAddCurve_Click(object sender, EventArgs e)
         {
-            splineControl.MySpline.AddCurveLeft();
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySpline.AddCurveLeft();
         }
 
         private void buttonAddCurveRight_Click(object sender, EventArgs e)
         {
-            splineControl.MySpline.AddCurveRight();
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySpline.AddCurveRight();
         }
 
         private void buttonLoop_Click(object sender, EventArgs e)
         {
-            splineControl.MySpline.Loop = true;
-            buttonLoop.Enabled = false;
+            if (splineControl != null && splineControl.MySpline != null)
+            {
+                splineControl.MySpline.Loop = true;
+                buttonLoop.Enabled = false;
+            }
         }
 
         private void buttonResetSplineWalker_Click(object sender, EventArgs e)
         {
-            splineControl.MySplineWalker.Reset();
+            if (splineControl != null &&
+                splineControl.MySplineWalker != null &&
+                splineControl.MySplineWalker.Initialized)
+            {
+                splineControl.MySplineWalker.Reset();
+            }
         }
 
         private void comboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (splineControl.MySplineWalker != null &&
+            if (splineControl != null &&
+                splineControl.MySplineWalker != null &&
                 splineControl.MySplineWalker.Initialized)
             {
                 splineControl.MySplineWalker.WalkerMode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
@@ -62,11 +71,17 @@ namespace MonoGame.SplineFlower.Samples
         }
         private void UpdateControls()
         {
-            catMulRomSpline.SplineControl_RecalculateBezierCenter();
-            catMulRomSpline.MoveSplineToScreenCenter();
+            if (catMulRomSpline != null)
+            {
+                catMulRomSpline.SplineControl_RecalculateBezierCenter();
+                catMulRomSpline.MoveSplineToScreenCenter();
+            }
 
-            splineControl.SplineControl_RecalculateBezierCenter();
-            splineControl.MoveSplineToScreenCenter();
+            if (splineControl != null)
+            {
+                splineControl.SplineControl_RecalculateBezierCenter();
+                splineControl.MoveSplineToScreenCenter();
+            }
         }
 
         private void SplineEditorForm_ResizeEnd(object sender, EventArgs e)

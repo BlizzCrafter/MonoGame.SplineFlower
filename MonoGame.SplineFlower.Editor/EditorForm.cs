@@ -29,7 +29,7 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripMenuItemCenterSpline_Click(object sender, EventArgs e)
         {
-            splineControl.MoveSplineToScreenCenter();
+            if (splineControl != null) splineControl.MoveSplineToScreenCenter();
         }
 
         private void toolStripMenuItemDrawSpline_CheckedChanged(object sender, EventArgs e)
@@ -74,12 +74,12 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripMenuItemShowFPS_CheckedChanged(object sender, EventArgs e)
         {
-            splineControl.Editor.ShowFPS = toolStripMenuItemShowFPS.Checked;
+            if (splineControl != null) splineControl.Editor.ShowFPS = toolStripMenuItemShowFPS.Checked;
         }
 
         private void toolStripMenuItemShowCursorPosition_CheckedChanged(object sender, EventArgs e)
         {
-            splineControl.Editor.ShowCursorPosition = toolStripMenuItemShowCursorPosition.Checked;
+            if (splineControl != null) splineControl.Editor.ShowCursorPosition = toolStripMenuItemShowCursorPosition.Checked;
         }
 
         #endregion
@@ -88,24 +88,30 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripButtonAddCurveLeft_Click(object sender, EventArgs e)
         {
-            splineControl.MySpline.AddCurveLeft();
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySpline.AddCurveLeft();
         }
 
         private void toolStripButtonAddCurveRight_Click(object sender, EventArgs e)
         {
-            splineControl.MySpline.AddCurveRight();
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySpline.AddCurveRight();
         }
 
         private void toolStripButtonTrackLoop_Click(object sender, EventArgs e)
         {
-            splineControl.MySpline.Loop = true;
-            toolStripButtonTrackLoop.Enabled = false;
+            if (splineControl != null && splineControl.MySpline != null)
+            {
+                splineControl.MySpline.Loop = true;
+                toolStripButtonTrackLoop.Enabled = false;
+            }
         }
 
         private void toolStripButtonCatMulRom_Click(object sender, EventArgs e)
         {
-            splineControl.MySpline.CatMulRom = true;
-            toolStripButtonCatMulRom.Enabled = false;
+            if (splineControl != null && splineControl.MySpline != null)
+            {
+                splineControl.MySpline.CatMulRom = true;
+                toolStripButtonCatMulRom.Enabled = false;
+            }
         }
 
         #endregion
@@ -114,17 +120,17 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripButtonResetSplineWalker_Click(object sender, EventArgs e)
         {
-            splineControl.MySplineWalker.Reset();
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySplineWalker.Reset();
         }
 
         private void toolStripComboBoxWalkerMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            splineControl.MySplineWalker.WalkerMode = (SplineWalker.SplineWalkerMode)toolStripComboBoxWalkerMode.SelectedIndex;
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySplineWalker.WalkerMode = (SplineWalker.SplineWalkerMode)toolStripComboBoxWalkerMode.SelectedIndex;
         }
 
         private void toolStripNumericUpDownDuration_ValueChanged(object sender, EventArgs e)
         {
-            splineControl.MySplineWalker.Duration = (int)toolStripNumericUpDownDuration.Value;
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySplineWalker.Duration = (int)toolStripNumericUpDownDuration.Value;
         }
 
         #endregion
@@ -151,12 +157,15 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripButtonAddEvent_Click(object sender, EventArgs e)
         {
-            Guid triggerID = splineControl.MySplineWalker.AddTrigger(
+            if (splineControl != null && splineControl.MySpline != null)
+            {
+                Guid triggerID = splineControl.MySplineWalker.AddTrigger(
                 toolStripComboBoxEvents.SelectedItem.ToString(),
                 GetSplinePosition(),
                 (int)toolStripNumericUpDownTriggerRange.Value);
 
-            toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(toolStripComboBoxEvents.SelectedItem.ToString(), triggerID.ToString()));
+                toolStripComboBoxSelectedTrigger.Items.Add(GetSelectedTriggerString(toolStripComboBoxEvents.SelectedItem.ToString(), triggerID.ToString()));
+            }
         }
 
         private void toolStripNumericUpDownTriggerRange_ValueChanged(object sender, EventArgs e)
@@ -188,14 +197,13 @@ namespace MonoGame.SplineFlower.Editor
         
         private void trackBarMarker_Scroll(object sender, EventArgs e)
         {
-            splineControl.MySplineMarker.SetPosition(GetSplinePosition());
+            if (splineControl != null && splineControl.MySpline != null) splineControl.MySplineMarker.SetPosition(GetSplinePosition());
         }
 
         private void trackBarMarker_MouseDown(object sender, MouseEventArgs e)
         {
             if (splineControl != null &&
-                splineControl.MySplineMarker != null &&
-                splineControl.MySplineMarker.Initialized)
+                splineControl.MySplineMarker != null)
             {
                 if (!splineControl.MySplineMarker.MarkerSelected) splineControl.MySplineWalker.Stop = true;
             }
@@ -204,8 +212,7 @@ namespace MonoGame.SplineFlower.Editor
         private void trackBarMarker_MouseUp(object sender, MouseEventArgs e)
         {
             if (splineControl != null &&
-                splineControl.MySplineMarker != null &&
-                splineControl.MySplineMarker.Initialized)
+                splineControl.MySplineMarker != null)
             {
                 if (!splineControl.MySplineMarker.MarkerSelected)
                 {
@@ -476,8 +483,11 @@ namespace MonoGame.SplineFlower.Editor
 
         private void MoveSplineToCenterOfScreen()
         {
-            splineControl.SplineControl_RecalculateBezierCenter();
-            splineControl.MoveSplineToScreenCenter();
+            if (splineControl != null)
+            {
+                splineControl.SplineControl_RecalculateBezierCenter();
+                splineControl.MoveSplineToScreenCenter();
+            }
         }
     }
 }

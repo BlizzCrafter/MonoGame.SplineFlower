@@ -156,6 +156,10 @@
       <Project>{47ED5EF0-837F-4938-9892-7A920426C5A9}</Project>
       <Name>MonoGame.SplineFlower.Content</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MonoGame.SplineFlower.Editor\MonoGame.SplineFlower.Editor.csproj">
+      <Project>{EA4CA280-957F-4191-93F2-E2E8CA3B08C2}</Project>
+      <Name>MonoGame.SplineFlower.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonoGame.SplineFlower\MonoGame.SplineFlower.csproj">
       <Project>{a80b8857-995d-48e0-aaff-e425588e756d}</Project>
       <Name>MonoGame.SplineFlower</Name>

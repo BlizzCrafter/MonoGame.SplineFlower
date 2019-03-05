@@ -24,6 +24,8 @@ namespace MonoGame.SplineFlower.Samples
         private void SplineEditorForm_Load(object sender, EventArgs e)
         {
             comboBoxWalkerMode.SelectedIndex = 0;
+            comboBoxCenterTransformMode.SelectedIndex = 2;
+            comboBoxCenterTransformMode_2.SelectedIndex = 2;
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)
@@ -62,6 +64,26 @@ namespace MonoGame.SplineFlower.Samples
                 splineControl.MySplineWalker.Initialized)
             {
                 splineControl.MySplineWalker.WalkerMode = (SplineWalker.SplineWalkerMode)comboBoxWalkerMode.SelectedIndex;
+            }
+        }
+
+        private void comboBoxCenterTransformMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (splineControl != null &&
+                splineControl.MySplineWalker != null &&
+                splineControl.MySplineWalker.Initialized)
+            {
+                splineControl.SetCenterTransformMode = (Controls.TransformControl.CenterTransformMode)comboBoxCenterTransformMode.SelectedIndex;
+            }
+        }
+
+        private void comboBoxCenterTransformMode_2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (catMulRomSpline != null &&
+                catMulRomSpline.MySplineWalker != null &&
+                catMulRomSpline.MySplineWalker.Initialized)
+            {
+                catMulRomSpline.SetCenterTransformMode = (Controls.TransformControl.CenterTransformMode)comboBoxCenterTransformMode_2.SelectedIndex;
             }
         }
 

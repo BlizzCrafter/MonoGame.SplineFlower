@@ -46,6 +46,7 @@
             this.toolStripLabelSelected = new System.Windows.Forms.ToolStripLabel();
             this.toolStripNumericUpDownDuration = new MonoGame.SplineFlower.Editor.Controls.ToolStrip.ToolStripNumericUpDown();
             this.toolStripLabelDuration = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxCenterTransformMode = new System.Windows.Forms.ToolStripComboBox();
             this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
             this.menuStripMainMenu = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,10 +85,10 @@
             // 
             this.trackBarMarker.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.trackBarMarker.LargeChange = 10;
-            this.trackBarMarker.Location = new System.Drawing.Point(0, 497);
+            this.trackBarMarker.Location = new System.Drawing.Point(0, 665);
             this.trackBarMarker.Maximum = 1000;
             this.trackBarMarker.Name = "trackBarMarker";
-            this.trackBarMarker.Size = new System.Drawing.Size(782, 56);
+            this.trackBarMarker.Size = new System.Drawing.Size(1006, 56);
             this.trackBarMarker.TabIndex = 12;
             this.trackBarMarker.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarMarker.Scroll += new System.EventHandler(this.trackBarMarker_Scroll);
@@ -112,11 +113,12 @@
             this.toolStripNumericUpDownTriggerRange,
             this.toolStripLabelSelected,
             this.toolStripNumericUpDownDuration,
-            this.toolStripLabelDuration});
+            this.toolStripLabelDuration,
+            this.toolStripComboBoxCenterTransformMode});
             this.toolStripToolBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripToolBar.Location = new System.Drawing.Point(0, 28);
+            this.toolStripToolBar.Location = new System.Drawing.Point(0, 26);
             this.toolStripToolBar.Name = "toolStripToolBar";
-            this.toolStripToolBar.Size = new System.Drawing.Size(782, 28);
+            this.toolStripToolBar.Size = new System.Drawing.Size(1006, 28);
             this.toolStripToolBar.Stretch = true;
             this.toolStripToolBar.TabIndex = 21;
             this.toolStripToolBar.Text = "Tool Bar";
@@ -310,15 +312,29 @@
             this.toolStripLabelDuration.Size = new System.Drawing.Size(67, 25);
             this.toolStripLabelDuration.Text = "Duration";
             // 
+            // toolStripComboBoxCenterTransformMode
+            // 
+            this.toolStripComboBoxCenterTransformMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxCenterTransformMode.Items.AddRange(new object[] {
+            "Rotate",
+            "Scale",
+            "ScaleRotate"});
+            this.toolStripComboBoxCenterTransformMode.MaxDropDownItems = 3;
+            this.toolStripComboBoxCenterTransformMode.Name = "toolStripComboBoxCenterTransformMode";
+            this.toolStripComboBoxCenterTransformMode.Size = new System.Drawing.Size(121, 28);
+            this.toolStripComboBoxCenterTransformMode.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxCenterTransformMode_SelectedIndexChanged);
+            // 
             // splineControl
             // 
             this.splineControl.BackColor = System.Drawing.Color.Yellow;
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splineControl.Location = new System.Drawing.Point(0, 56);
+            this.splineControl.GetSpline = null;
+            this.splineControl.Location = new System.Drawing.Point(0, 54);
             this.splineControl.Name = "splineControl";
             this.splineControl.SelectedTrigger = null;
-            this.splineControl.Size = new System.Drawing.Size(782, 441);
+            this.splineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.splineControl.Size = new System.Drawing.Size(1006, 611);
             this.splineControl.TabIndex = 0;
             this.splineControl.Text = "Bézier Spline Editor";
             this.splineControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.splineControl_MouseUp);
@@ -333,7 +349,7 @@
             this.toolStripMenuItemTools});
             this.menuStripMainMenu.Location = new System.Drawing.Point(0, 0);
             this.menuStripMainMenu.Name = "menuStripMainMenu";
-            this.menuStripMainMenu.Size = new System.Drawing.Size(782, 28);
+            this.menuStripMainMenu.Size = new System.Drawing.Size(1006, 26);
             this.menuStripMainMenu.TabIndex = 22;
             this.menuStripMainMenu.Text = "Main Menu";
             // 
@@ -349,7 +365,7 @@
             this.toolStripMenuItemFile.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._088;
             this.toolStripMenuItemFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemFile.Name = "toolStripMenuItemFile";
-            this.toolStripMenuItemFile.Size = new System.Drawing.Size(68, 24);
+            this.toolStripMenuItemFile.Size = new System.Drawing.Size(68, 22);
             this.toolStripMenuItemFile.Text = "File";
             // 
             // toolStripMenuItemNew
@@ -419,7 +435,7 @@
             this.toolStripMenuItemDiagnostics.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._026;
             this.toolStripMenuItemDiagnostics.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemDiagnostics.Name = "toolStripMenuItemDiagnostics";
-            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 24);
+            this.toolStripMenuItemDiagnostics.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItemDiagnostics.Text = "Diagnostics";
             // 
             // toolStripMenuItemCenterSpline
@@ -552,7 +568,7 @@
             this.toolStripMenuItemTools.Image = global::MonoGame.SplineFlower.Editor.Properties.Resources._095;
             this.toolStripMenuItemTools.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemTools.Name = "toolStripMenuItemTools";
-            this.toolStripMenuItemTools.Size = new System.Drawing.Size(76, 24);
+            this.toolStripMenuItemTools.Size = new System.Drawing.Size(76, 22);
             this.toolStripMenuItemTools.Text = "Tools";
             // 
             // toolStripMenuItemTriggerEditor
@@ -579,7 +595,7 @@
             // FormEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(782, 553);
+            this.ClientSize = new System.Drawing.Size(1006, 721);
             this.Controls.Add(this.splineControl);
             this.Controls.Add(this.trackBarMarker);
             this.Controls.Add(this.toolStripToolBar);
@@ -650,6 +666,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowFPS;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowCursorPosition;
         private System.Windows.Forms.ToolStripButton toolStripButtonCatMulRom;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxCenterTransformMode;
     }
 }
 

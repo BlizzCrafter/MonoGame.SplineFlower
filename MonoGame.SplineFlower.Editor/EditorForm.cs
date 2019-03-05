@@ -191,10 +191,18 @@ namespace MonoGame.SplineFlower.Editor
             return itemName + "_" + itemID;
         }
 
+        private void toolStripComboBoxCenterTransformMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (splineControl != null)
+            {
+                splineControl.SetCenterTransformMode = (Samples.Controls.TransformControl.CenterTransformMode)toolStripComboBoxCenterTransformMode.SelectedIndex;
+            }
+        }
+
         #endregion
 
         #region TrackBar
-        
+
         private void trackBarMarker_Scroll(object sender, EventArgs e)
         {
             if (splineControl != null && splineControl.MySpline != null) splineControl.MySplineMarker.SetPosition(GetSplinePosition());
@@ -452,6 +460,7 @@ namespace MonoGame.SplineFlower.Editor
             toolStripComboBoxEvents.SelectedIndex = 0;
             toolStripComboBoxSelectedTrigger.SelectedIndex = 0;
             toolStripComboBoxWalkerMode.SelectedIndex = 0;
+            toolStripComboBoxCenterTransformMode.SelectedIndex = 2;
         }
 
         private void FormEditor_Resize(object sender, EventArgs e)

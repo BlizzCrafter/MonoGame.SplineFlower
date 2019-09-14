@@ -4,19 +4,24 @@
     <id>MonoGame.SplineFlower.Content.Pipeline</id>
     <version>$version$</version>
     <title>MonoGame.SplineFlower.Content.Pipeline</title>
-    <authors>Marcel 'sqrMin1' Härtel</authors>
-    <owners>Marcel Härtel</owners>
+    <authors>Marcel Härtel</authors>
+    <owners>Marcel Härtel, SandboxBlizz</owners>
     <licenseUrl>https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/sqrMin1/MonoGame.SplineFlower</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/sqrMin1/MonoGame.SplineFlower/master/Logos/Logo_Square_256.png</iconUrl>
+	<license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Load your splines with the ContentManager of the MonoGame.Framework. MIT License!</description>
-    <copyright>Copyright (c) 2018 Marcel 'sqrMin1' Härtel</copyright>
+    <description>Load your splines with the ContentManager of the MonoGame.Framework.</description>
+    <copyright>Copyright (c) 2019 Marcel Härtel, SandboxBlizz</copyright>
     <tags>MonoGame WindowsForms Splines</tags>
 	<references>
-		<group targetFramework="net452">
+		<group targetFramework="net461">
+		<reference file="MonoGame.Framework.dll" />
 		<reference file="MonoGame.SplineFlower.Content.Pipeline.dll" />
 		</group>
 	</references>
   </metadata>
+  <files>
+    <file src="..\Libs\**\*.*" target="lib\net461" />
+</files>
 </package>

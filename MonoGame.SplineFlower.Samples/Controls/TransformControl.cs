@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
-    public abstract class TransformControl : UpdateWindow
+    public abstract class TransformControl : MonoGameControl
     {
         public enum CenterTransformMode
         {
@@ -50,7 +50,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseDown(e);
 
-            if (Editor.IsMouseInsideControl)
+            if (IsMouseInsideControl)
             {
                 TranslatePointFirstClick = e.Location;
 

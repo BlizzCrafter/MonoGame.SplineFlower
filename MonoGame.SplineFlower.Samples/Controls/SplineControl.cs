@@ -13,7 +13,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         protected override void Initialize()
         {
             base.Initialize();
-            Setup.Initialize(Editor.graphics);
+            Setup.Initialize(GraphicsDevice);
 
             MySpline = new BezierSpline();
             MySpline.Reset();

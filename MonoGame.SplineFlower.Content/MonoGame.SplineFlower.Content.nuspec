@@ -6,7 +6,6 @@
     <title>MonoGame.SplineFlower.Content</title>
     <authors>Marcel Härtel</authors>
     <owners>Marcel Härtel, SandboxBlizz</owners>
-    <licenseUrl>https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/sqrMin1/MonoGame.SplineFlower</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/sqrMin1/MonoGame.SplineFlower/master/Logos/Logo_Square_256.png</iconUrl>
 	<license type="expression">MIT</license>
@@ -16,8 +15,12 @@
     <tags>MonoGame WindowsForms Splines</tags>
 	<references>
 		<group targetFramework="net461">
+		<reference file="MonoGame.Framework.dll" />
 		<reference file="MonoGame.SplineFlower.Content.dll" />
 		</group>
 	</references>
   </metadata>
+  <files>
+    <file src="..\Libs\MonoGame.Framework.dll" target="lib\net461" />
+</files>
 </package>

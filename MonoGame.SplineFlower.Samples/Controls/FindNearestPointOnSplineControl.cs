@@ -10,6 +10,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         private Vector2 _NearestPoint = Vector2.Zero;
         private float _NearestPointSplinePosition = 0f;
+        public float NearestPointAccuracy { get; set; } = Setup.SplineMarkerResolution;
 
         protected override void Initialize()
         {
@@ -59,7 +60,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (MySpline != null)
             {
-                _NearestPoint = MySpline.FindNearestPoint(TestTransform.Position, out _NearestPointSplinePosition);
+                _NearestPoint = MySpline.FindNearestPoint(TestTransform.Position, out _NearestPointSplinePosition, NearestPointAccuracy);
             }
         }
 

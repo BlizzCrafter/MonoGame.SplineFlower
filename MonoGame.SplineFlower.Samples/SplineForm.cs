@@ -105,6 +105,14 @@ namespace MonoGame.SplineFlower.Samples
             }
         }
 
+        private void numericUpDownAccuracy_ValueChanged(object sender, EventArgs e)
+        {
+            if (findNearestPointControl1 != null && findNearestPointControl1.MySpline != null)
+            {
+                findNearestPointControl1.NearestPointAccuracy = (float)numericUpDownAccuracy.Value;
+            }
+        }
+
         private void SplineEditorForm_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized) UpdateControls();

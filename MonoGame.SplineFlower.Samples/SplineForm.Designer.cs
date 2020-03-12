@@ -37,26 +37,29 @@
             this.buttonLoop = new System.Windows.Forms.Button();
             this.buttonAddCurveRight = new System.Windows.Forms.Button();
             this.buttonAddCurveLeft = new System.Windows.Forms.Button();
+            this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
             this.tabPageCatMulRom = new System.Windows.Forms.TabPage();
             this.comboBoxCenterTransformMode_2 = new System.Windows.Forms.ComboBox();
+            this.catMulRomSpline = new MonoGame.SplineFlower.Samples.Controls.CatMulRomSpline();
             this.tabPageFindNearestPoint = new System.Windows.Forms.TabPage();
+            this.labelAccuracy = new System.Windows.Forms.Label();
+            this.numericUpDownAccuracy = new System.Windows.Forms.NumericUpDown();
+            this.buttonCatMulRomFindTest = new System.Windows.Forms.Button();
+            this.buttonLoopFindTest = new System.Windows.Forms.Button();
+            this.findNearestPointControl1 = new MonoGame.SplineFlower.Samples.Controls.FindNearestPointControl();
             this.tabPageAdvancedControls = new System.Windows.Forms.TabPage();
             this.buttonHelp = new System.Windows.Forms.Button();
+            this.advancedControls = new MonoGame.SplineFlower.Samples.Controls.AdvancedControls();
             this.tabPageInfo = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
-            this.buttonLoopFindTest = new System.Windows.Forms.Button();
-            this.buttonCatMulRomFindTest = new System.Windows.Forms.Button();
-            this.splineControl = new MonoGame.SplineFlower.Samples.Controls.SplineControl();
-            this.catMulRomSpline = new MonoGame.SplineFlower.Samples.Controls.CatMulRomSpline();
-            this.findNearestPointControl1 = new MonoGame.SplineFlower.Samples.Controls.FindNearestPointControl();
-            this.advancedControls = new MonoGame.SplineFlower.Samples.Controls.AdvancedControls();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
             this.tabPageFindNearestPoint.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).BeginInit();
             this.tabPageAdvancedControls.SuspendLayout();
             this.tabPageInfo.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -175,6 +178,22 @@
             this.buttonAddCurveLeft.UseVisualStyleBackColor = true;
             this.buttonAddCurveLeft.Click += new System.EventHandler(this.buttonAddCurve_Click);
             // 
+            // splineControl
+            // 
+            this.splineControl.BackColor = System.Drawing.Color.GreenYellow;
+            this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
+            this.splineControl.GetSpline = null;
+            this.splineControl.Location = new System.Drawing.Point(0, 0);
+            this.splineControl.MouseHoverUpdatesOnly = false;
+            this.splineControl.Name = "splineControl";
+            this.splineControl.SelectedTrigger = null;
+            this.splineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.splineControl.Size = new System.Drawing.Size(774, 524);
+            this.splineControl.TabIndex = 12;
+            this.splineControl.Text = "Bézier Spline";
+            // 
             // tabPageCatMulRom
             // 
             this.tabPageCatMulRom.Controls.Add(this.comboBoxCenterTransformMode_2);
@@ -205,8 +224,26 @@
             this.comboBoxCenterTransformMode_2.TabIndex = 14;
             this.comboBoxCenterTransformMode_2.SelectedIndexChanged += new System.EventHandler(this.comboBoxCenterTransformMode_2_SelectedIndexChanged);
             // 
+            // catMulRomSpline
+            // 
+            this.catMulRomSpline.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.catMulRomSpline.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.catMulRomSpline.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.catMulRomSpline.ForeColor = System.Drawing.Color.Orange;
+            this.catMulRomSpline.GetSpline = null;
+            this.catMulRomSpline.Location = new System.Drawing.Point(3, 3);
+            this.catMulRomSpline.MouseHoverUpdatesOnly = false;
+            this.catMulRomSpline.Name = "catMulRomSpline";
+            this.catMulRomSpline.SelectedTrigger = null;
+            this.catMulRomSpline.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.catMulRomSpline.Size = new System.Drawing.Size(768, 518);
+            this.catMulRomSpline.TabIndex = 0;
+            this.catMulRomSpline.Text = "CatMulRom Spline";
+            // 
             // tabPageFindNearestPoint
             // 
+            this.tabPageFindNearestPoint.Controls.Add(this.labelAccuracy);
+            this.tabPageFindNearestPoint.Controls.Add(this.numericUpDownAccuracy);
             this.tabPageFindNearestPoint.Controls.Add(this.buttonCatMulRomFindTest);
             this.tabPageFindNearestPoint.Controls.Add(this.buttonLoopFindTest);
             this.tabPageFindNearestPoint.Controls.Add(this.findNearestPointControl1);
@@ -217,6 +254,82 @@
             this.tabPageFindNearestPoint.TabIndex = 6;
             this.tabPageFindNearestPoint.Text = "FindNearestPoint";
             this.tabPageFindNearestPoint.UseVisualStyleBackColor = true;
+            // 
+            // labelAccuracy
+            // 
+            this.labelAccuracy.AutoSize = true;
+            this.labelAccuracy.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAccuracy.Location = new System.Drawing.Point(8, 466);
+            this.labelAccuracy.Name = "labelAccuracy";
+            this.labelAccuracy.Size = new System.Drawing.Size(81, 20);
+            this.labelAccuracy.TabIndex = 7;
+            this.labelAccuracy.Text = "Accuracy";
+            // 
+            // numericUpDownAccuracy
+            // 
+            this.numericUpDownAccuracy.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownAccuracy.Increment = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericUpDownAccuracy.Location = new System.Drawing.Point(8, 489);
+            this.numericUpDownAccuracy.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownAccuracy.Name = "numericUpDownAccuracy";
+            this.numericUpDownAccuracy.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDownAccuracy.TabIndex = 6;
+            this.numericUpDownAccuracy.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDownAccuracy.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownAccuracy.ValueChanged += new System.EventHandler(this.numericUpDownAccuracy_ValueChanged);
+            // 
+            // buttonCatMulRomFindTest
+            // 
+            this.buttonCatMulRomFindTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCatMulRomFindTest.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCatMulRomFindTest.Location = new System.Drawing.Point(657, 436);
+            this.buttonCatMulRomFindTest.Name = "buttonCatMulRomFindTest";
+            this.buttonCatMulRomFindTest.Size = new System.Drawing.Size(111, 37);
+            this.buttonCatMulRomFindTest.TabIndex = 5;
+            this.buttonCatMulRomFindTest.Text = "CatMulRom";
+            this.buttonCatMulRomFindTest.UseVisualStyleBackColor = true;
+            this.buttonCatMulRomFindTest.Click += new System.EventHandler(this.buttonCatMulRomFindTest_Click);
+            // 
+            // buttonLoopFindTest
+            // 
+            this.buttonLoopFindTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLoopFindTest.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLoopFindTest.Location = new System.Drawing.Point(657, 479);
+            this.buttonLoopFindTest.Name = "buttonLoopFindTest";
+            this.buttonLoopFindTest.Size = new System.Drawing.Size(111, 37);
+            this.buttonLoopFindTest.TabIndex = 4;
+            this.buttonLoopFindTest.Text = "Loop";
+            this.buttonLoopFindTest.UseVisualStyleBackColor = true;
+            this.buttonLoopFindTest.Click += new System.EventHandler(this.buttonLoopFindTest_Click);
+            // 
+            // findNearestPointControl1
+            // 
+            this.findNearestPointControl1.BackColor = System.Drawing.Color.Khaki;
+            this.findNearestPointControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.findNearestPointControl1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findNearestPointControl1.ForeColor = System.Drawing.Color.CadetBlue;
+            this.findNearestPointControl1.GetSpline = null;
+            this.findNearestPointControl1.Location = new System.Drawing.Point(3, 3);
+            this.findNearestPointControl1.MouseHoverUpdatesOnly = false;
+            this.findNearestPointControl1.Name = "findNearestPointControl1";
+            this.findNearestPointControl1.NearestPointAccuracy = 1000F;
+            this.findNearestPointControl1.SelectedTrigger = null;
+            this.findNearestPointControl1.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.findNearestPointControl1.Size = new System.Drawing.Size(768, 518);
+            this.findNearestPointControl1.TabIndex = 0;
+            this.findNearestPointControl1.Text = "Find Nearest Point On Spline";
             // 
             // tabPageAdvancedControls
             // 
@@ -241,6 +354,22 @@
             this.buttonHelp.Text = "?";
             this.buttonHelp.UseVisualStyleBackColor = true;
             this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            // 
+            // advancedControls
+            // 
+            this.advancedControls.BackColor = System.Drawing.Color.Tan;
+            this.advancedControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.advancedControls.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.advancedControls.ForeColor = System.Drawing.Color.GhostWhite;
+            this.advancedControls.GetSpline = null;
+            this.advancedControls.Location = new System.Drawing.Point(3, 3);
+            this.advancedControls.MouseHoverUpdatesOnly = false;
+            this.advancedControls.Name = "advancedControls";
+            this.advancedControls.SelectedTrigger = null;
+            this.advancedControls.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.advancedControls.Size = new System.Drawing.Size(768, 518);
+            this.advancedControls.TabIndex = 0;
+            this.advancedControls.Text = "Advanced Controls";
             // 
             // tabPageInfo
             // 
@@ -297,94 +426,6 @@
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;
             // 
-            // buttonLoopFindTest
-            // 
-            this.buttonLoopFindTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLoopFindTest.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLoopFindTest.Location = new System.Drawing.Point(657, 479);
-            this.buttonLoopFindTest.Name = "buttonLoopFindTest";
-            this.buttonLoopFindTest.Size = new System.Drawing.Size(111, 37);
-            this.buttonLoopFindTest.TabIndex = 4;
-            this.buttonLoopFindTest.Text = "Loop";
-            this.buttonLoopFindTest.UseVisualStyleBackColor = true;
-            this.buttonLoopFindTest.Click += new System.EventHandler(this.buttonLoopFindTest_Click);
-            // 
-            // buttonCatMulRomFindTest
-            // 
-            this.buttonCatMulRomFindTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCatMulRomFindTest.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCatMulRomFindTest.Location = new System.Drawing.Point(657, 436);
-            this.buttonCatMulRomFindTest.Name = "buttonCatMulRomFindTest";
-            this.buttonCatMulRomFindTest.Size = new System.Drawing.Size(111, 37);
-            this.buttonCatMulRomFindTest.TabIndex = 5;
-            this.buttonCatMulRomFindTest.Text = "CatMulRom";
-            this.buttonCatMulRomFindTest.UseVisualStyleBackColor = true;
-            this.buttonCatMulRomFindTest.Click += new System.EventHandler(this.buttonCatMulRomFindTest_Click);
-            // 
-            // splineControl
-            // 
-            this.splineControl.BackColor = System.Drawing.Color.GreenYellow;
-            this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
-            this.splineControl.GetSpline = null;
-            this.splineControl.Location = new System.Drawing.Point(0, 0);
-            this.splineControl.MouseHoverUpdatesOnly = false;
-            this.splineControl.Name = "splineControl";
-            this.splineControl.SelectedTrigger = null;
-            this.splineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.splineControl.Size = new System.Drawing.Size(774, 524);
-            this.splineControl.TabIndex = 12;
-            this.splineControl.Text = "Bézier Spline";
-            // 
-            // catMulRomSpline
-            // 
-            this.catMulRomSpline.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.catMulRomSpline.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.catMulRomSpline.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.catMulRomSpline.ForeColor = System.Drawing.Color.Orange;
-            this.catMulRomSpline.GetSpline = null;
-            this.catMulRomSpline.Location = new System.Drawing.Point(3, 3);
-            this.catMulRomSpline.MouseHoverUpdatesOnly = false;
-            this.catMulRomSpline.Name = "catMulRomSpline";
-            this.catMulRomSpline.SelectedTrigger = null;
-            this.catMulRomSpline.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.catMulRomSpline.Size = new System.Drawing.Size(768, 518);
-            this.catMulRomSpline.TabIndex = 0;
-            this.catMulRomSpline.Text = "CatMulRom Spline";
-            // 
-            // findNearestPointControl1
-            // 
-            this.findNearestPointControl1.BackColor = System.Drawing.Color.Khaki;
-            this.findNearestPointControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.findNearestPointControl1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findNearestPointControl1.ForeColor = System.Drawing.Color.CadetBlue;
-            this.findNearestPointControl1.GetSpline = null;
-            this.findNearestPointControl1.Location = new System.Drawing.Point(3, 3);
-            this.findNearestPointControl1.MouseHoverUpdatesOnly = false;
-            this.findNearestPointControl1.Name = "findNearestPointControl1";
-            this.findNearestPointControl1.SelectedTrigger = null;
-            this.findNearestPointControl1.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.findNearestPointControl1.Size = new System.Drawing.Size(768, 518);
-            this.findNearestPointControl1.TabIndex = 0;
-            this.findNearestPointControl1.Text = "Find Nearest Point On Spline";
-            // 
-            // advancedControls
-            // 
-            this.advancedControls.BackColor = System.Drawing.Color.Tan;
-            this.advancedControls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.advancedControls.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.advancedControls.ForeColor = System.Drawing.Color.GhostWhite;
-            this.advancedControls.GetSpline = null;
-            this.advancedControls.Location = new System.Drawing.Point(3, 3);
-            this.advancedControls.MouseHoverUpdatesOnly = false;
-            this.advancedControls.Name = "advancedControls";
-            this.advancedControls.SelectedTrigger = null;
-            this.advancedControls.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.advancedControls.Size = new System.Drawing.Size(768, 518);
-            this.advancedControls.TabIndex = 0;
-            this.advancedControls.Text = "Advanced Controls";
-            // 
             // SplineForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -401,6 +442,8 @@
             this.tabPageBezierSpline.ResumeLayout(false);
             this.tabPageCatMulRom.ResumeLayout(false);
             this.tabPageFindNearestPoint.ResumeLayout(false);
+            this.tabPageFindNearestPoint.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).EndInit();
             this.tabPageAdvancedControls.ResumeLayout(false);
             this.tabPageInfo.ResumeLayout(false);
             this.tabPageInfo.PerformLayout();
@@ -435,6 +478,8 @@
         private Controls.FindNearestPointControl findNearestPointControl1;
         private System.Windows.Forms.Button buttonCatMulRomFindTest;
         private System.Windows.Forms.Button buttonLoopFindTest;
+        private System.Windows.Forms.Label labelAccuracy;
+        public System.Windows.Forms.NumericUpDown numericUpDownAccuracy;
     }
 }
 

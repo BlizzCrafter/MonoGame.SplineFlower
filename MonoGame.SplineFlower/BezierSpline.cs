@@ -436,6 +436,41 @@ namespace MonoGame.SplineFlower
             return direction;
         }
 
+        public Vector2 FindNearestPoint(Vector2 worldPos, float accuracy = 100f)
+        {
+            float normalizedT;
+            return FindNearestPoint(worldPos, out normalizedT, accuracy);
+        }
+        public Vector2 FindNearestPoint(Vector2 worldPos, out float normalizedT, float accuracy = 100f)
+        {
+            Vector2 result = Vector2.Zero;
+            normalizedT = -1f;
+
+            float step = AccuracyToStepSize(accuracy);
+
+            float minDistance = float.PositiveInfinity;
+            for (float i = 0f; i < MaxProgress(); i += step)
+            {
+                Vector2 thisPoint = GetPoint(i);
+                float thisDistance = (worldPos - thisPoint).LengthSquared();
+                if (thisDistance < minDistance)
+                {
+                    minDistance = thisDistance;
+                    result = thisPoint;
+                    normalizedT = i / MaxProgress();
+                }
+            }
+
+            return result;
+        }
+        private float AccuracyToStepSize(float accuracy)
+        {
+            if (accuracy <= 0f)
+                return 0.2f;
+
+            return MathHelper.Clamp(1f / accuracy, 0.001f, 0.2f);
+        }
+
         public void AddCurveLeft()
         {
             Transform point = _Points[_Points.Length - 1];

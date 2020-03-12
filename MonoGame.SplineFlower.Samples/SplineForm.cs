@@ -87,6 +87,24 @@ namespace MonoGame.SplineFlower.Samples
             }
         }
 
+        private void buttonLoopFindTest_Click(object sender, EventArgs e)
+        {
+            if (findNearestPointControl1 != null && findNearestPointControl1.MySpline != null)
+            {
+                findNearestPointControl1.MySpline.Loop = true;
+                buttonLoopFindTest.Enabled = false;
+            }
+        }
+
+        private void buttonCatMulRomFindTest_Click(object sender, EventArgs e)
+        {
+            if (findNearestPointControl1 != null && findNearestPointControl1.MySpline != null)
+            {
+                findNearestPointControl1.MySpline.CatMulRom = true;
+                buttonCatMulRomFindTest.Enabled = false;
+            }
+        }
+
         private void SplineEditorForm_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized) UpdateControls();

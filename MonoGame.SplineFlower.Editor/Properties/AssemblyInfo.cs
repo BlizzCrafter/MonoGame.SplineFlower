@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MonoGame.SplineFlower.Editor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Sandbox Blizz")]
 [assembly: AssemblyProduct("MonoGame.SplineFlower.Editor")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright ©  2018-2020 Sandbox Blizz")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -14,6 +14,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Initialize();
             Setup.Initialize(Editor.graphics);
+            Setup.ShowCurves = true;
 
             MySpline = new BezierSpline();
             MySpline.Reset();
@@ -21,7 +22,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySpline.Loop = true;
             GetSpline = MySpline;
 
-            MoveSplineToScreenCenter();
+            CenterSpline();
 
             MySplineWalker = new Car();
             MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Loop, 7);
@@ -46,11 +47,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public void SplineControl_RecalculateBezierCenter()
         {
             if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints());
-        }
-
-        public void MoveSplineToScreenCenter()
-        {
-            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.CenterSpline.Position);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

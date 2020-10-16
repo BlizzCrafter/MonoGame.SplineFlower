@@ -16,12 +16,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Initialize();
             Setup.Initialize(GraphicsDevice);
+            Setup.ShowCurves = true;
 
             MySpline = new BezierSpline();
             MySpline.Reset();
             GetSpline = MySpline;
 
-            MoveSplineToScreenCenter();
+            CenterSpline();
 
             TestTransform = new Transform(new Vector2(200, 350));
 
@@ -40,11 +41,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public void SplineControl_RecalculateBezierCenter()
         {
             if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints());
-        }
-
-        public void MoveSplineToScreenCenter()
-        {
-            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.CenterSpline.Position);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

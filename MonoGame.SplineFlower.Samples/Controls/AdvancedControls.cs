@@ -17,6 +17,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Initialize();
             Setup.Initialize(Editor.graphics);
+            Setup.ShowCurves = true;
 
             MySpline = new BezierSpline();
             MySpline = Editor.Content.Load<BezierSpline>(@"TankTrack");
@@ -41,7 +42,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 new List<Buttons> { Buttons.DPadDown, Buttons.DPadLeft, Buttons.LeftTrigger, Buttons.LeftThumbstickDown, Buttons.LeftThumbstickLeft },
                 SplineWalker.SplineWalkerTriggerMode.Dynamic);
 
-            MoveSplineToScreenCenter();
+            CenterSpline();
 
             SetMultiSampleCount(8);
 
@@ -51,11 +52,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public void SplineControl_RecalculateBezierCenter()
         {
             if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints());
-        }
-
-        public void MoveSplineToScreenCenter()
-        {
-            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.CenterSpline.Position);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

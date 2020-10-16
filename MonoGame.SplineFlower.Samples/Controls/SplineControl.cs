@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using MonoGame.SplineFlower.Content;
+using MonoGame.SplineFlower.Utils;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
@@ -14,6 +15,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Initialize();
             Setup.Initialize(GraphicsDevice);
+            Setup.ShowCurves = true;
 
             MySpline = new BezierSpline();
             MySpline.Reset();
@@ -27,7 +29,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0, false, autoStart: false);
             MySplineMarker.LoadContent(Editor.Content);
 
-            MoveSplineToScreenCenter();
+            CenterSpline();
 
             SetMultiSampleCount(8);
 
@@ -44,11 +46,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public void SplineControl_RecalculateBezierCenter()
         {
             if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints());
-        }
-
-        public void MoveSplineToScreenCenter()
-        {
-            if (MySpline != null) TranslateAllPointsToScreenCenter(MySpline.CenterSpline.Position);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

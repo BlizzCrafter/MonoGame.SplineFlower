@@ -53,7 +53,6 @@
     <Compile Include="BezierCurve.cs" />
     <Compile Include="BezierSpline.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Functions.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="PointBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +64,10 @@
     <ProjectReference Include="..\MonoGame.SplineFlower.Content\MonoGame.SplineFlower.Content.csproj">
       <Project>{47ed5ef0-837f-4938-9892-7a920426c5a9}</Project>
       <Name>MonoGame.SplineFlower.Content</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame.SplineFlower.Utils\MonoGame.SplineFlower.Utils.csproj">
+      <Project>{9bd9804d-795a-4af4-af03-3d95cf845a01}</Project>
+      <Name>MonoGame.SplineFlower.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

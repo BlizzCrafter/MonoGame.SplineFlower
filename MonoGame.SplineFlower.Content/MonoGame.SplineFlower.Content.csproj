@@ -57,6 +57,12 @@
     <Compile Include="TransformDummy.cs" />
     <Compile Include="TriggerDummy.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame.SplineFlower.Utils\MonoGame.SplineFlower.Utils.csproj">
+      <Project>{9bd9804d-795a-4af4-af03-3d95cf845a01}</Project>
+      <Name>MonoGame.SplineFlower.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == NuGetRelease nuget pack "$(ProjectPath)" -properties Configuration=NuGetRelease -OutputDirectory "$(SolutionDir)create"</PostBuildEvent>

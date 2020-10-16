@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower", "MonoGame.SplineFlower\MonoGame.SplineFlower.csproj", "{A80B8857-995D-48E0-AAFF-E425588E756D}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Content", "MonoGame.SplineFlower.Content\MonoGame.SplineFlower.Content.csproj", "{47ED5EF0-837F-4938-9892-7A920426C5A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.GameTest", "MonoGame.SplineFlower.GameTest\MonoGame.SplineFlower.GameTest.csproj", "{74CE87E4-A8B4-4CAD-82E7-CD8DCA1602B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Utils", "MonoGame.SplineFlower.Utils\MonoGame.SplineFlower.Utils.csproj", "{9BD9804D-795A-4AF4-AF03-3D95CF845A01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E756A006-82D1-4E74-BB07-4B32AA0DB9D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,8 +101,29 @@ Global
 		{74CE87E4-A8B4-4CAD-82E7-CD8DCA1602B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74CE87E4-A8B4-4CAD-82E7-CD8DCA1602B7}.Release|x86.ActiveCfg = Release|Any CPU
 		{74CE87E4-A8B4-4CAD-82E7-CD8DCA1602B7}.Release|x86.Build.0 = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Debug|x86.Build.0 = Debug|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.NuGetRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.NuGetRelease|Any CPU.Build.0 = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.NuGetRelease|x86.ActiveCfg = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.NuGetRelease|x86.Build.0 = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Release|x86.ActiveCfg = Release|Any CPU
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A80B8857-995D-48E0-AAFF-E425588E756D} = {E756A006-82D1-4E74-BB07-4B32AA0DB9D5}
+		{E5CDB18E-9F83-4AE3-8ACE-32A425E3BA02} = {E756A006-82D1-4E74-BB07-4B32AA0DB9D5}
+		{47ED5EF0-837F-4938-9892-7A920426C5A9} = {E756A006-82D1-4E74-BB07-4B32AA0DB9D5}
+		{9BD9804D-795A-4AF4-AF03-3D95CF845A01} = {E756A006-82D1-4E74-BB07-4B32AA0DB9D5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F2AD63A-40FE-4094-8467-D3AA8BF4BD4E}
 	EndGlobalSection
 EndGlobal

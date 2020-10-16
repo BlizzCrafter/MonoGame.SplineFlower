@@ -57,6 +57,9 @@ This makes it possible to generate:
 #### Complex CatMulRomSplines
 ![CatMulRomSpline](doc/CatMulRom_0.gif)
 
+#### Polygon Stripe Splines
+![PolygonStripe](doc/PolygonStripe.png)
+
 Did you notice the different colors of the control points?
 You can set them in 3 different modes:
 

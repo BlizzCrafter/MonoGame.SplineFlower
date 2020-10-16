@@ -207,7 +207,7 @@
   <data name="richTextBoxLicense.Text" xml:space="preserve">
     <value>MIT License
 
-Copyright (c) 2019 Marcel Härtel, Sandbox Blizz
+Copyright (c) 2020 Marcel Härtel, Sandbox Blizz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -225,7 +225,13 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</value>
+SOFTWARE.
+
+------
+
+Third Party:
+
+RoadTexture from KennyAssets: https://www.kenney.nl/assets/road-textures</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

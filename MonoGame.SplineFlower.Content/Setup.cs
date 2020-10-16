@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.SplineFlower.Utils;
 using System;
 
 namespace MonoGame.SplineFlower.Content
@@ -12,6 +13,8 @@ namespace MonoGame.SplineFlower.Content
 
         public static bool ShowSpline { get; set; } = true;
         public static bool ShowSplineWalker { get; set; } = true;
+
+        public static bool ShowPolygonStripe { get; set; } = true;
 
         public static Color BaseLineColor { get; set; } = Color.White;
         public static float BaseLineThickness { get; set; } = 1f;
@@ -46,9 +49,29 @@ namespace MonoGame.SplineFlower.Content
         public static Texture2D Circle { get; set; }
 
         public static bool Initialized { get; private set; } = false;
+        public static void CheckInitialization()
+        {
+            if (!Initialized)
+            {
+                throw new Exception("You need to initialize the MonoGame.SplineFlower library first by calling ' MonoGame.SplineFlower.Setup.Initialize();'");
+            }
+        }
 
         public static void Initialize(GraphicsDevice graphicsDevice)
         {
+            Functions.graphics = graphicsDevice;
+            Functions.GetBasicEffect = new BasicEffect(graphicsDevice);
+            Functions.GetBasicEffect.TextureEnabled = true;
+            Functions.GetBasicEffect.VertexColorEnabled = true;
+
+            Functions.RasterizerState = new RasterizerState
+            {
+                FillMode = FillMode.Solid,
+                CullMode = CullMode.None
+            };
+
+            Functions.DisplayToWorldUnit = 256f;
+
             if (Pixel == null)
             {
                 Pixel = new Texture2D(graphicsDevice, 1, 1);

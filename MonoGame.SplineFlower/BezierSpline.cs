@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.SplineFlower.Content;
+using MonoGame.SplineFlower.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,10 @@ namespace MonoGame.SplineFlower
 {
     public class BezierSpline : PointBase
     {
-        public BezierSpline() { }
-        public BezierSpline(Transform[] points)
+        public BezierSpline()
+        {
+        }
+        public BezierSpline(Transform[] points) : this()
         {
             if (points.Length < 4) throw new Exception("You need at least 4 points to successfully create a spline.'");
 
@@ -144,7 +147,11 @@ namespace MonoGame.SplineFlower
 
         public int CurveCount
         {
-            get { return (_Points.Length - 1) / 3; }
+            get
+            {
+                if (CatMulRom) return Loop ? _Points.Length : _Points.Length - 3;
+                else return (_Points.Length - 1) / 3;
+            }
         }
 
         public int ControlPointCount
@@ -517,14 +524,135 @@ namespace MonoGame.SplineFlower
             CalculateSplineCenter(_Points);
         }
 
+        public Texture2D PolygonStripeTexture
+        {
+            get { return _PolygonStripeTexture; }
+            set
+            {
+                _PolygonStripeTexture = value;
+                Functions.GetBasicEffect.Texture = value;
+            }
+        }
+        private Texture2D _PolygonStripeTexture;
+        private VertexBuffer _VertexBuffer;
+        private IndexBuffer _IndexBuffer;
+        private Vector3[] _Vertices;
+        private short[] _Triangles;
+        private VertexPositionColorTexture[] _PolygonStripe;
+
+        public void RefreshPolygonStripe() => PolygonStripeCreated = false;
+        public bool PolygonStripeCreated { get; set; } = false;
+        public float PolygonStripeWidth { get; set; } = 64f;
+
+        public void CreatePolygonStripe()
+        {
+            Setup.CheckInitialization();
+
+            Transform[] points = new Transform[0];
+            int pointCount = 0;
+
+            if (CatMulRom) pointCount = (Setup.LineSteps * CurveCount) + 1;
+            else pointCount = Setup.LineSteps + 1;
+
+            Array.Resize(ref points, pointCount);
+
+            for (int i = 0; i <= pointCount - 1; i++)
+            {
+                points[i] = new Transform(GetPoint(i / (float)Setup.LineSteps));
+            }
+
+            _Vertices = new Vector3[points.Length * 2];
+            Vector2[] UVS = new Vector2[_Vertices.Length];
+            int numTris = 2 * (points.Length - 1) + (Loop ? 2 : 0);
+            _Triangles = new short[numTris * 3];
+            short verticesIndex = 0;
+            int trianglesIndex = 0;
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                Vector2 forward = Vector2.Zero;
+                if (i < points.Length - 1 || Loop)
+                {
+                    forward += points[(i + 1) % points.Length].Position - points[i].Position;
+                }
+                if (i > 0 || Loop)
+                {
+                    forward += points[i].Position - points[(i - 1 + points.Length) % points.Length].Position;
+                }
+                forward.Normalize();
+
+                Vector2 left = new Vector2(-forward.Y, forward.X); //Swap X(default) & Y(inverse) to get the left side of the forward direction
+
+                _Vertices[verticesIndex] = new Vector3(points[i].Position + left * PolygonStripeWidth * 0.5f, 0);
+                _Vertices[verticesIndex + 1] = new Vector3(points[i].Position - left * PolygonStripeWidth * 0.5f, 0);
+
+                float completionPercent = i / (float)(points.Length - 1);
+                float v = 1 - Math.Abs(2 * completionPercent - 1);
+                UVS[verticesIndex] = new Vector2(0, v);
+                UVS[verticesIndex + 1] = new Vector2(1, v);
+
+                if (i < points.Length - 1 || Loop)
+                {
+                    _Triangles[trianglesIndex] = verticesIndex;
+                    _Triangles[trianglesIndex + 1] = (short)((verticesIndex + 2) % _Vertices.Length);
+                    _Triangles[trianglesIndex + 2] = (short)(verticesIndex + 1);
+
+                    _Triangles[trianglesIndex + 3] = (short)(verticesIndex + 1);
+                    _Triangles[trianglesIndex + 4] = (short)((verticesIndex + 2) % _Vertices.Length);
+                    _Triangles[trianglesIndex + 5] = (short)((verticesIndex + 3) % _Vertices.Length);
+                }
+
+                verticesIndex += 2;
+                trianglesIndex += 6;
+            }
+
+            _PolygonStripe = new VertexPositionColorTexture[_Vertices.Length];
+            for (int i = 0; i < _Vertices.Length; i++)
+            {
+                _PolygonStripe[i].Position = new Vector3(_Vertices[i].X, _Vertices[i].Y, 0);
+                _PolygonStripe[i].TextureCoordinate = UVS[i];
+                _PolygonStripe[i].Color = Color.White;
+            }
+
+            _VertexBuffer = new VertexBuffer(Functions.graphics, typeof(VertexPositionColorTexture), _PolygonStripe.Length, BufferUsage.WriteOnly);
+            _VertexBuffer.SetData(_PolygonStripe);
+
+            _IndexBuffer = new IndexBuffer(Functions.graphics, typeof(short), _Triangles.Length, BufferUsage.WriteOnly);
+            _IndexBuffer.SetData(_Triangles);
+
+            PolygonStripeCreated = true;
+        }
+
+        public void DrawPolygonStripe()
+        {
+            if (Setup.ShowPolygonStripe)
+            {
+                Setup.CheckInitialization();
+
+                if (PolygonStripeCreated && _PolygonStripe != null && _PolygonStripe.Length > 0)
+                {
+                    Functions.graphics.BlendState = BlendState.Opaque;
+                    Functions.graphics.DepthStencilState = DepthStencilState.Default;
+                    Functions.graphics.RasterizerState = Functions.RasterizerState;
+
+                    foreach (var pass in Functions.GetBasicEffect.CurrentTechnique.Passes)
+                    {
+                        pass.Apply();
+
+                        Functions.graphics.SetVertexBuffer(_VertexBuffer);
+                        Functions.graphics.Indices = _IndexBuffer;
+
+                        Functions.graphics.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _Vertices.Length);
+                    }
+                }
+            }
+        }
+
         public void DrawSpline(SpriteBatch spriteBatch)
         {
             if (Setup.ShowSpline)
             {
-                if (!Setup.Initialized)
-                {
-                    throw new Exception("You need to initialize the  MonoGame.SplineFlower library first by calling ' MonoGame.SplineFlower.Setup.Initialize();'");
-                }
+                Setup.CheckInitialization();
 
                 if (_Points.Length <= 1 || _Points.ToList().TrueForAll(x => x.Equals(Vector2.Zero))) return;
 
@@ -638,7 +766,7 @@ namespace MonoGame.SplineFlower
                              Vector2.Zero,
                              new Vector2(distance, thickness),
                              SpriteEffects.None,
-                             0);
+                             0f);
         }
 
         private void DrawPoint(SpriteBatch spriteBatch, int index, float angle, float thickness = -1f)

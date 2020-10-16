@@ -122,13 +122,13 @@ namespace MonoGame.SplineFlower.Samples
             if (catMulRomSpline != null)
             {
                 catMulRomSpline.SplineControl_RecalculateBezierCenter();
-                catMulRomSpline.MoveSplineToScreenCenter();
+                catMulRomSpline.CenterSpline();
             }
 
             if (splineControl != null)
             {
                 splineControl.SplineControl_RecalculateBezierCenter();
-                splineControl.MoveSplineToScreenCenter();
+                splineControl.CenterSpline();
             }
         }
 

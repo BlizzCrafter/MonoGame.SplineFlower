@@ -114,8 +114,7 @@ namespace MonoGame.SplineFlower.Editor
         {
             if (splineControl != null && splineControl.MySpline != null)
             {
-                splineControl.MySpline.CatMulRom = true;
-                toolStripButtonCatMulRom.Enabled = false;
+                splineControl.MySpline.CatMulRom = !splineControl.MySpline.CatMulRom;
             }
         }
 
@@ -327,7 +326,6 @@ namespace MonoGame.SplineFlower.Editor
                 toolStripNumericUpDownDuration.Value = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
                 splineControl.MySpline.CatMulRom = GetJsonHandling.GetBezierSplineData.CatMulRom;
                 splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
-                toolStripButtonCatMulRom.Enabled = !GetJsonHandling.GetBezierSplineData.CatMulRom;
                 toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
 
                 Trigger[] loadedTrigger;

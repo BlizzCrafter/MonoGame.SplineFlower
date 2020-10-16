@@ -41,6 +41,8 @@
             this.tabPageCatMulRom = new System.Windows.Forms.TabPage();
             this.comboBoxCenterTransformMode_2 = new System.Windows.Forms.ComboBox();
             this.catMulRomSpline = new MonoGame.SplineFlower.Samples.Controls.CatMulRomSpline();
+            this.tabPagePolygonSplineControl = new System.Windows.Forms.TabPage();
+            this.polygonSplineControl1 = new MonoGame.SplineFlower.Samples.Controls.PolygonSplineControl();
             this.tabPageFindNearestPoint = new System.Windows.Forms.TabPage();
             this.labelAccuracy = new System.Windows.Forms.Label();
             this.numericUpDownAccuracy = new System.Windows.Forms.NumericUpDown();
@@ -58,6 +60,7 @@
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
+            this.tabPagePolygonSplineControl.SuspendLayout();
             this.tabPageFindNearestPoint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).BeginInit();
             this.tabPageAdvancedControls.SuspendLayout();
@@ -69,6 +72,7 @@
             // 
             this.tabControlEditorTabs.Controls.Add(this.tabPageBezierSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPageCatMulRom);
+            this.tabControlEditorTabs.Controls.Add(this.tabPagePolygonSplineControl);
             this.tabControlEditorTabs.Controls.Add(this.tabPageFindNearestPoint);
             this.tabControlEditorTabs.Controls.Add(this.tabPageAdvancedControls);
             this.tabControlEditorTabs.Controls.Add(this.tabPageInfo);
@@ -239,6 +243,30 @@
             this.catMulRomSpline.Size = new System.Drawing.Size(768, 518);
             this.catMulRomSpline.TabIndex = 0;
             this.catMulRomSpline.Text = "CatMulRom Spline";
+            // 
+            // tabPagePolygonSplineControl
+            // 
+            this.tabPagePolygonSplineControl.Controls.Add(this.polygonSplineControl1);
+            this.tabPagePolygonSplineControl.Location = new System.Drawing.Point(4, 25);
+            this.tabPagePolygonSplineControl.Name = "tabPagePolygonSplineControl";
+            this.tabPagePolygonSplineControl.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPagePolygonSplineControl.Size = new System.Drawing.Size(774, 524);
+            this.tabPagePolygonSplineControl.TabIndex = 7;
+            this.tabPagePolygonSplineControl.Text = "PolygonSplineControl";
+            this.tabPagePolygonSplineControl.UseVisualStyleBackColor = true;
+            // 
+            // polygonSplineControl1
+            // 
+            this.polygonSplineControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.polygonSplineControl1.GetSpline = null;
+            this.polygonSplineControl1.Location = new System.Drawing.Point(3, 3);
+            this.polygonSplineControl1.MouseHoverUpdatesOnly = false;
+            this.polygonSplineControl1.Name = "polygonSplineControl1";
+            this.polygonSplineControl1.SelectedTrigger = null;
+            this.polygonSplineControl1.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.polygonSplineControl1.Size = new System.Drawing.Size(768, 518);
+            this.polygonSplineControl1.TabIndex = 0;
+            this.polygonSplineControl1.Text = "polygonSplineControl1";
             // 
             // tabPageFindNearestPoint
             // 
@@ -441,6 +469,7 @@
             this.tabControlEditorTabs.ResumeLayout(false);
             this.tabPageBezierSpline.ResumeLayout(false);
             this.tabPageCatMulRom.ResumeLayout(false);
+            this.tabPagePolygonSplineControl.ResumeLayout(false);
             this.tabPageFindNearestPoint.ResumeLayout(false);
             this.tabPageFindNearestPoint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).EndInit();
@@ -480,6 +509,8 @@
         private System.Windows.Forms.Button buttonLoopFindTest;
         private System.Windows.Forms.Label labelAccuracy;
         public System.Windows.Forms.NumericUpDown numericUpDownAccuracy;
+        private System.Windows.Forms.TabPage tabPagePolygonSplineControl;
+        private Controls.PolygonSplineControl polygonSplineControl1;
     }
 }
 

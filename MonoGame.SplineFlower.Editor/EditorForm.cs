@@ -29,7 +29,7 @@ namespace MonoGame.SplineFlower.Editor
 
         private void toolStripMenuItemCenterSpline_Click(object sender, EventArgs e)
         {
-            if (splineControl != null) splineControl.MoveSplineToScreenCenter();
+            if (splineControl != null) splineControl.CenterSpline();
         }
 
         private void toolStripMenuItemDrawSpline_CheckedChanged(object sender, EventArgs e)
@@ -351,7 +351,7 @@ namespace MonoGame.SplineFlower.Editor
                 }
 
                 splineControl.MySplineWalker.Reset(SplineWalker.ResetLocation.End);
-                splineControl.MoveSplineToScreenCenter();
+                splineControl.CenterSpline();
             }
         }
 
@@ -383,7 +383,7 @@ namespace MonoGame.SplineFlower.Editor
             splineControl.MySpline.GetAllPoints()[0].Translate(-Vector2.One);
 
             // Move the BezierSpline to the center of the screen.
-            splineControl.MoveSplineToScreenCenter();
+            splineControl.CenterSpline();
 
             // Reset the SelectedTrigger of the SplineMarker.
             ResetSplineMarkerSelectedTrigger();
@@ -501,7 +501,7 @@ namespace MonoGame.SplineFlower.Editor
             if (splineControl != null)
             {
                 splineControl.SplineControl_RecalculateBezierCenter();
-                splineControl.MoveSplineToScreenCenter();
+                splineControl.CenterSpline();
             }
         }
     }

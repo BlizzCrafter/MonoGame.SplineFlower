@@ -23,5 +23,6 @@
   </metadata>
   <files>
     <file src="..\Libs\MonoGame.Framework.dll" target="lib\net461" />
+	<file src="bin\NuGetRelease\MonoGame.SplineFlower.Utils.dll" target="lib\net461" />
 </files>
 </package>

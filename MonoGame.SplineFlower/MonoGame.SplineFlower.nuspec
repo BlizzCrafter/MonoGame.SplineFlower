@@ -20,4 +20,7 @@
 		</group>
 	</references>
   </metadata>
+  <files>
+	<file src="bin\NuGetRelease\MonoGame.SplineFlower.Utils.dll" target="lib\net461" />
+</files>
 </package>

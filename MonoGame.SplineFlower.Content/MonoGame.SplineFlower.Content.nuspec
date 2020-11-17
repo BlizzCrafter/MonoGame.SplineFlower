@@ -17,6 +17,7 @@
 		<group targetFramework="net461">
 		<reference file="MonoGame.Framework.dll" />
 		<reference file="MonoGame.SplineFlower.Content.dll" />
+		<reference file="MonoGame.SplineFlower.Utils.dll" />
 		</group>
 	</references>
   </metadata>

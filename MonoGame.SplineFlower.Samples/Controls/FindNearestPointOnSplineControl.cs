@@ -33,6 +33,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
             base.Initialize();
             Setup.Initialize(GraphicsDevice);
             Setup.ShowCurves = true;
+            Setup.ShowDirectionVectors = true;
+            Setup.ShowLines = true;
+            Setup.ShowPoints = true;
 
             MySpline = new BezierSpline();
             GetSpline = MySpline;

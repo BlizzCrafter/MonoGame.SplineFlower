@@ -18,6 +18,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
             base.Initialize();
             Setup.Initialize(Editor.graphics);
             Setup.ShowCurves = true;
+            Setup.ShowDirectionVectors = true;
+            Setup.ShowLines = true;
+            Setup.ShowPoints = true;
 
             MySpline = new CatMulRomSpline();
             MySpline.Loop = true;

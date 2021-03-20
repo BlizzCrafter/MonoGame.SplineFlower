@@ -19,6 +19,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
             base.Initialize();
             Setup.Initialize(Editor.graphics);
             Setup.ShowCurves = true;
+            Setup.ShowDirectionVectors = true;
+            Setup.ShowLines = true;
+            Setup.ShowPoints = true;
 
             MySpline = new HermiteSpline();
             //Custom ctr-Test
@@ -127,8 +130,11 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Dispose(disposing);
 
-            MySpline.TangentSelected -= MySpline_TangentSelected;
-            MySpline.TangentDeselected -= MySpline_TangentDeselected;
+            if (MySpline != null)
+            {
+                MySpline.TangentSelected -= MySpline_TangentSelected;
+                MySpline.TangentDeselected -= MySpline_TangentDeselected;
+            }
         }
     }
 }

@@ -23,13 +23,18 @@
 #begin Audio/horn.xnb
 /copy:Audio/horn.xnb
 
+#begin BezierTest.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:BezierTest.json
+
 #begin car.xnb
 /copy:car.xnb
 
-#begin Cloverleaf.json
-/importer:BezierSplineImporter
-/processor:BezierSplineProcessor
-/build:Cloverleaf.json
+#begin CatMulRomTest.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:CatMulRomTest.json
 
 #begin GameFont.spritefont
 /importer:FontDescriptionImporter
@@ -38,10 +43,10 @@
 /processorParam:TextureFormat=Compressed
 /build:GameFont.spritefont
 
-#begin RoadPolygonTest.json
-/importer:BezierSplineImporter
-/processor:BezierSplineProcessor
-/build:RoadPolygonTest.json
+#begin HermiteTest.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:HermiteTest.json
 
 #begin roadTexture.png
 /importer:TextureImporter
@@ -54,19 +59,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:roadTexture.png
-
-#begin SplineFlower.json
-/importer:BezierSplineImporter
-/processor:BezierSplineProcessor
-/build:SplineFlower.json
-
-#begin SplineTrack.json
-/importer:BezierSplineImporter
-/processor:BezierSplineProcessor
-/build:SplineTrack.json
-
-#begin TankTrack.json
-/importer:BezierSplineImporter
-/processor:BezierSplineProcessor
-/build:TankTrack.json
 

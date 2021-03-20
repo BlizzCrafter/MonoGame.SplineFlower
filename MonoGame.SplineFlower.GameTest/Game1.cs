@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.SplineFlower.Content;
 using MonoGame.SplineFlower.Samples;
+using MonoGame.SplineFlower.Spline;
 
 namespace MonoGame.SplineFlower.GameTest
 {
@@ -10,7 +11,7 @@ namespace MonoGame.SplineFlower.GameTest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        BezierSpline MySpline;
+        SplineBase MySpline;
         Car MySplineWalker;
 
         public Game1()
@@ -24,6 +25,7 @@ namespace MonoGame.SplineFlower.GameTest
             base.Initialize();
 
             Setup.Initialize(graphics.GraphicsDevice);
+            Setup.ShowTangents = false;
         }
 
         protected override void LoadContent()
@@ -31,24 +33,9 @@ namespace MonoGame.SplineFlower.GameTest
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Loading a spline with the MonoGame.SplineFlower.Content.Pipeline
-            MySpline = Content.Load<BezierSpline>(@"SplineTrack");
-
-            // Programmatically creating a looped CatMulRomSpline
-            // MySpline = new BezierSpline(new Transform[]
-            //    {
-            //        new Transform(new Vector2(100, 100)),
-            //        new Transform(new Vector2(200, 100)),
-            //        new Transform(new Vector2(150, 200)),
-            //        new Transform(new Vector2(200, 200)),
-            //        new Transform(new Vector2(300, 200)),
-            //        new Transform(new Vector2(300, 100)),
-            //        new Transform(new Vector2(400, 100)),
-            //        new Transform(new Vector2(450, 200)),
-            //        new Transform(new Vector2(400, 400)),
-            //        new Transform(new Vector2(200, 450))
-            //    });
-            // MySpline.CatMulRom = true;
-            // MySpline.Loop = true;
+            // MySpline = Content.Load<SplineBase>(@"BezierTest");
+            // MySpline = Content.Load<SplineBase>(@"CatMulRomTest");
+            MySpline = Content.Load<SplineBase>(@"HermiteTest");
 
             // Place a SplineWalker on the spline
             MySplineWalker = new Car();

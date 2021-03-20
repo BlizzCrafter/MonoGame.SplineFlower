@@ -12,6 +12,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public Car MySplineWalker;
         public Marker MySplineMarker;
 
+        private string _TangentText = "";
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -26,6 +28,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
             //    new Transform(new Vector2(0, 250))
             //});
             MySpline.Loop = false;
+            MySpline.TangentSelected += MySpline_TangentSelected;
+            MySpline.TangentDeselected += MySpline_TangentDeselected;
             GetSpline = MySpline;
 
             CenterSpline();
@@ -43,6 +47,16 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Editor.SetDisplayStyle = Forms.Services.GFXService.DisplayStyle.TopRight;
             Editor.ShowCursorPosition = false;
             Editor.ShowFPS = false;
+        }
+
+        private void MySpline_TangentSelected(int index)
+        {
+            _TangentText = $"Tangent #{index}";
+        }
+
+        private void MySpline_TangentDeselected()
+        {
+            _TangentText = "";
         }
 
         public void SplineControl_RecalculateSplineCenter()
@@ -96,11 +110,25 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker.GetProgress.ToString(), new Vector2(10, 10), Color.White);
                 Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.GetProgress.ToString(), new Vector2(10, 30), Color.White);
 
+                if (!string.IsNullOrEmpty(_TangentText)) Editor.spriteBatch.DrawString(Editor.Font, _TangentText, 
+                    new Vector2(
+                        Editor.graphics.Viewport.Width - Editor.Font.MeasureString(_TangentText).X - 10, 
+                        Editor.graphics.Viewport.Height - 125), 
+                    Color.White);
+
                 Editor.spriteBatch.End();
 
                 Editor.EndAntialising();
                 Editor.DrawDisplay();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            MySpline.TangentSelected -= MySpline_TangentSelected;
+            MySpline.TangentDeselected -= MySpline_TangentDeselected;
         }
     }
 }

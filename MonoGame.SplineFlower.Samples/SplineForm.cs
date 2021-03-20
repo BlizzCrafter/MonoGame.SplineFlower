@@ -21,25 +21,12 @@ namespace MonoGame.SplineFlower.Samples
         {
             InitializeComponent();
         }
-        private void MySpline_TangentSelected(int index)
-        {
-            labelSelectedTangent.Text = $"Tangent #{index}";
-            labelSelectedTangent.Visible = true;
-        }
-        private void MySpline_TangentDeselected()
-        {
-            labelSelectedTangent.Text = "";
-            labelSelectedTangent.Visible = false;
-        }
 
         private void SplineEditorForm_Load(object sender, EventArgs e)
         {
             comboBoxWalkerMode.SelectedIndex = 0;
             comboBoxCenterTransformMode.SelectedIndex = 3;
             comboBoxCenterTransformMode_2.SelectedIndex = 3;
-
-            hermiteSplineControl.MySpline.TangentSelected += MySpline_TangentSelected;
-            hermiteSplineControl.MySpline.TangentDeselected += MySpline_TangentDeselected;
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)

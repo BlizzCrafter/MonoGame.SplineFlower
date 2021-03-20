@@ -30,16 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineForm));
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
-            this.tabPageHermiteSpline = new System.Windows.Forms.TabPage();
-            this.panelAddSubstractTangentValues = new System.Windows.Forms.Panel();
-            this.labelSelectedTangent = new System.Windows.Forms.Label();
-            this.buttonSubstractBias = new System.Windows.Forms.Button();
-            this.buttonAddBias = new System.Windows.Forms.Button();
-            this.buttonSubstractTension = new System.Windows.Forms.Button();
-            this.buttonAddTension = new System.Windows.Forms.Button();
-            this.labelAddBias = new System.Windows.Forms.Label();
-            this.labelAddTension = new System.Windows.Forms.Label();
-            this.hermiteSplineControl = new MonoGame.SplineFlower.Samples.Controls.HermiteSplineControl();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
             this.comboBoxCenterTransformMode = new System.Windows.Forms.ComboBox();
             this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
@@ -51,6 +41,15 @@
             this.tabPageCatMulRom = new System.Windows.Forms.TabPage();
             this.comboBoxCenterTransformMode_2 = new System.Windows.Forms.ComboBox();
             this.catMulRomSpline = new MonoGame.SplineFlower.Samples.Controls.CatMulRomSplineControl();
+            this.tabPageHermiteSpline = new System.Windows.Forms.TabPage();
+            this.panelAddSubstractTangentValues = new System.Windows.Forms.Panel();
+            this.buttonSubstractBias = new System.Windows.Forms.Button();
+            this.buttonAddBias = new System.Windows.Forms.Button();
+            this.buttonSubstractTension = new System.Windows.Forms.Button();
+            this.buttonAddTension = new System.Windows.Forms.Button();
+            this.labelAddBias = new System.Windows.Forms.Label();
+            this.labelAddTension = new System.Windows.Forms.Label();
+            this.hermiteSplineControl = new MonoGame.SplineFlower.Samples.Controls.HermiteSplineControl();
             this.tabPagePolygonSplineControl = new System.Windows.Forms.TabPage();
             this.polygonSplineControl1 = new MonoGame.SplineFlower.Samples.Controls.PolygonSplineControl();
             this.tabPageFindNearestPoint = new System.Windows.Forms.TabPage();
@@ -68,10 +67,10 @@
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
             this.tabControlEditorTabs.SuspendLayout();
-            this.tabPageHermiteSpline.SuspendLayout();
-            this.panelAddSubstractTangentValues.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
+            this.tabPageHermiteSpline.SuspendLayout();
+            this.panelAddSubstractTangentValues.SuspendLayout();
             this.tabPagePolygonSplineControl.SuspendLayout();
             this.tabPageFindNearestPoint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).BeginInit();
@@ -82,9 +81,9 @@
             // 
             // tabControlEditorTabs
             // 
-            this.tabControlEditorTabs.Controls.Add(this.tabPageHermiteSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPageBezierSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPageCatMulRom);
+            this.tabControlEditorTabs.Controls.Add(this.tabPageHermiteSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPagePolygonSplineControl);
             this.tabControlEditorTabs.Controls.Add(this.tabPageFindNearestPoint);
             this.tabControlEditorTabs.Controls.Add(this.tabPageAdvancedControls);
@@ -95,129 +94,6 @@
             this.tabControlEditorTabs.SelectedIndex = 0;
             this.tabControlEditorTabs.Size = new System.Drawing.Size(782, 553);
             this.tabControlEditorTabs.TabIndex = 2;
-            // 
-            // tabPageHermiteSpline
-            // 
-            this.tabPageHermiteSpline.Controls.Add(this.panelAddSubstractTangentValues);
-            this.tabPageHermiteSpline.Controls.Add(this.hermiteSplineControl);
-            this.tabPageHermiteSpline.Location = new System.Drawing.Point(4, 25);
-            this.tabPageHermiteSpline.Name = "tabPageHermiteSpline";
-            this.tabPageHermiteSpline.Size = new System.Drawing.Size(774, 524);
-            this.tabPageHermiteSpline.TabIndex = 8;
-            this.tabPageHermiteSpline.Text = "Hermite Spline";
-            this.tabPageHermiteSpline.UseVisualStyleBackColor = true;
-            // 
-            // panelAddSubstractTangentValues
-            // 
-            this.panelAddSubstractTangentValues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAddSubstractTangentValues.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.panelAddSubstractTangentValues.Controls.Add(this.labelSelectedTangent);
-            this.panelAddSubstractTangentValues.Controls.Add(this.buttonSubstractBias);
-            this.panelAddSubstractTangentValues.Controls.Add(this.buttonAddBias);
-            this.panelAddSubstractTangentValues.Controls.Add(this.buttonSubstractTension);
-            this.panelAddSubstractTangentValues.Controls.Add(this.buttonAddTension);
-            this.panelAddSubstractTangentValues.Controls.Add(this.labelAddBias);
-            this.panelAddSubstractTangentValues.Controls.Add(this.labelAddTension);
-            this.panelAddSubstractTangentValues.Location = new System.Drawing.Point(621, 437);
-            this.panelAddSubstractTangentValues.Name = "panelAddSubstractTangentValues";
-            this.panelAddSubstractTangentValues.Size = new System.Drawing.Size(150, 84);
-            this.panelAddSubstractTangentValues.TabIndex = 6;
-            // 
-            // labelSelectedTangent
-            // 
-            this.labelSelectedTangent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelSelectedTangent.AutoSize = true;
-            this.labelSelectedTangent.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSelectedTangent.ForeColor = System.Drawing.Color.White;
-            this.labelSelectedTangent.Location = new System.Drawing.Point(3, 12);
-            this.labelSelectedTangent.Name = "labelSelectedTangent";
-            this.labelSelectedTangent.Size = new System.Drawing.Size(153, 20);
-            this.labelSelectedTangent.TabIndex = 9;
-            this.labelSelectedTangent.Text = "Selected Tangent";
-            this.labelSelectedTangent.Visible = false;
-            // 
-            // buttonSubstractBias
-            // 
-            this.buttonSubstractBias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSubstractBias.Location = new System.Drawing.Point(39, 49);
-            this.buttonSubstractBias.Name = "buttonSubstractBias";
-            this.buttonSubstractBias.Size = new System.Drawing.Size(28, 30);
-            this.buttonSubstractBias.TabIndex = 8;
-            this.buttonSubstractBias.Text = "-";
-            this.buttonSubstractBias.UseVisualStyleBackColor = true;
-            this.buttonSubstractBias.Click += new System.EventHandler(this.buttonSubstractBias_Click);
-            // 
-            // buttonAddBias
-            // 
-            this.buttonAddBias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddBias.Location = new System.Drawing.Point(6, 49);
-            this.buttonAddBias.Name = "buttonAddBias";
-            this.buttonAddBias.Size = new System.Drawing.Size(28, 30);
-            this.buttonAddBias.TabIndex = 7;
-            this.buttonAddBias.Text = "+";
-            this.buttonAddBias.UseVisualStyleBackColor = true;
-            this.buttonAddBias.Click += new System.EventHandler(this.buttonAddBias_Click);
-            // 
-            // buttonSubstractTension
-            // 
-            this.buttonSubstractTension.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSubstractTension.Location = new System.Drawing.Point(117, 49);
-            this.buttonSubstractTension.Name = "buttonSubstractTension";
-            this.buttonSubstractTension.Size = new System.Drawing.Size(28, 30);
-            this.buttonSubstractTension.TabIndex = 6;
-            this.buttonSubstractTension.Text = "-";
-            this.buttonSubstractTension.UseVisualStyleBackColor = true;
-            this.buttonSubstractTension.Click += new System.EventHandler(this.buttonSubstractTension_Click);
-            // 
-            // buttonAddTension
-            // 
-            this.buttonAddTension.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddTension.Location = new System.Drawing.Point(84, 49);
-            this.buttonAddTension.Name = "buttonAddTension";
-            this.buttonAddTension.Size = new System.Drawing.Size(28, 30);
-            this.buttonAddTension.TabIndex = 5;
-            this.buttonAddTension.Text = "+";
-            this.buttonAddTension.UseVisualStyleBackColor = true;
-            this.buttonAddTension.Click += new System.EventHandler(this.buttonAddTension_Click);
-            // 
-            // labelAddBias
-            // 
-            this.labelAddBias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelAddBias.AutoSize = true;
-            this.labelAddBias.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAddBias.ForeColor = System.Drawing.Color.White;
-            this.labelAddBias.Location = new System.Drawing.Point(3, 29);
-            this.labelAddBias.Name = "labelAddBias";
-            this.labelAddBias.Size = new System.Drawing.Size(45, 20);
-            this.labelAddBias.TabIndex = 4;
-            this.labelAddBias.Text = "Bias";
-            // 
-            // labelAddTension
-            // 
-            this.labelAddTension.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelAddTension.AutoSize = true;
-            this.labelAddTension.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAddTension.ForeColor = System.Drawing.Color.White;
-            this.labelAddTension.Location = new System.Drawing.Point(81, 29);
-            this.labelAddTension.Name = "labelAddTension";
-            this.labelAddTension.Size = new System.Drawing.Size(72, 20);
-            this.labelAddTension.TabIndex = 2;
-            this.labelAddTension.Text = "Tension";
-            // 
-            // hermiteSplineControl
-            // 
-            this.hermiteSplineControl.BackColor = System.Drawing.Color.Firebrick;
-            this.hermiteSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hermiteSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.hermiteSplineControl.ForeColor = System.Drawing.Color.LightSalmon;
-            this.hermiteSplineControl.GetSpline = null;
-            this.hermiteSplineControl.Location = new System.Drawing.Point(0, 0);
-            this.hermiteSplineControl.MouseHoverUpdatesOnly = false;
-            this.hermiteSplineControl.Name = "hermiteSplineControl";
-            this.hermiteSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.hermiteSplineControl.Size = new System.Drawing.Size(774, 524);
-            this.hermiteSplineControl.TabIndex = 0;
-            this.hermiteSplineControl.Text = "Hermite Spline";
             // 
             // tabPageBezierSpline
             // 
@@ -377,6 +253,115 @@
             this.catMulRomSpline.Size = new System.Drawing.Size(768, 518);
             this.catMulRomSpline.TabIndex = 0;
             this.catMulRomSpline.Text = "CatMulRom Spline";
+            // 
+            // tabPageHermiteSpline
+            // 
+            this.tabPageHermiteSpline.Controls.Add(this.panelAddSubstractTangentValues);
+            this.tabPageHermiteSpline.Controls.Add(this.hermiteSplineControl);
+            this.tabPageHermiteSpline.Location = new System.Drawing.Point(4, 25);
+            this.tabPageHermiteSpline.Name = "tabPageHermiteSpline";
+            this.tabPageHermiteSpline.Size = new System.Drawing.Size(774, 524);
+            this.tabPageHermiteSpline.TabIndex = 8;
+            this.tabPageHermiteSpline.Text = "Hermite Spline";
+            this.tabPageHermiteSpline.UseVisualStyleBackColor = true;
+            // 
+            // panelAddSubstractTangentValues
+            // 
+            this.panelAddSubstractTangentValues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelAddSubstractTangentValues.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panelAddSubstractTangentValues.Controls.Add(this.buttonSubstractBias);
+            this.panelAddSubstractTangentValues.Controls.Add(this.buttonAddBias);
+            this.panelAddSubstractTangentValues.Controls.Add(this.buttonSubstractTension);
+            this.panelAddSubstractTangentValues.Controls.Add(this.buttonAddTension);
+            this.panelAddSubstractTangentValues.Controls.Add(this.labelAddBias);
+            this.panelAddSubstractTangentValues.Controls.Add(this.labelAddTension);
+            this.panelAddSubstractTangentValues.Location = new System.Drawing.Point(621, 457);
+            this.panelAddSubstractTangentValues.Name = "panelAddSubstractTangentValues";
+            this.panelAddSubstractTangentValues.Size = new System.Drawing.Size(150, 64);
+            this.panelAddSubstractTangentValues.TabIndex = 6;
+            // 
+            // buttonSubstractBias
+            // 
+            this.buttonSubstractBias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSubstractBias.Location = new System.Drawing.Point(39, 29);
+            this.buttonSubstractBias.Name = "buttonSubstractBias";
+            this.buttonSubstractBias.Size = new System.Drawing.Size(28, 30);
+            this.buttonSubstractBias.TabIndex = 8;
+            this.buttonSubstractBias.Text = "-";
+            this.buttonSubstractBias.UseVisualStyleBackColor = true;
+            this.buttonSubstractBias.Click += new System.EventHandler(this.buttonSubstractBias_Click);
+            // 
+            // buttonAddBias
+            // 
+            this.buttonAddBias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddBias.Location = new System.Drawing.Point(6, 29);
+            this.buttonAddBias.Name = "buttonAddBias";
+            this.buttonAddBias.Size = new System.Drawing.Size(28, 30);
+            this.buttonAddBias.TabIndex = 7;
+            this.buttonAddBias.Text = "+";
+            this.buttonAddBias.UseVisualStyleBackColor = true;
+            this.buttonAddBias.Click += new System.EventHandler(this.buttonAddBias_Click);
+            // 
+            // buttonSubstractTension
+            // 
+            this.buttonSubstractTension.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSubstractTension.Location = new System.Drawing.Point(117, 29);
+            this.buttonSubstractTension.Name = "buttonSubstractTension";
+            this.buttonSubstractTension.Size = new System.Drawing.Size(28, 30);
+            this.buttonSubstractTension.TabIndex = 6;
+            this.buttonSubstractTension.Text = "-";
+            this.buttonSubstractTension.UseVisualStyleBackColor = true;
+            this.buttonSubstractTension.Click += new System.EventHandler(this.buttonSubstractTension_Click);
+            // 
+            // buttonAddTension
+            // 
+            this.buttonAddTension.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddTension.Location = new System.Drawing.Point(84, 29);
+            this.buttonAddTension.Name = "buttonAddTension";
+            this.buttonAddTension.Size = new System.Drawing.Size(28, 30);
+            this.buttonAddTension.TabIndex = 5;
+            this.buttonAddTension.Text = "+";
+            this.buttonAddTension.UseVisualStyleBackColor = true;
+            this.buttonAddTension.Click += new System.EventHandler(this.buttonAddTension_Click);
+            // 
+            // labelAddBias
+            // 
+            this.labelAddBias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAddBias.AutoSize = true;
+            this.labelAddBias.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAddBias.ForeColor = System.Drawing.Color.White;
+            this.labelAddBias.Location = new System.Drawing.Point(3, 9);
+            this.labelAddBias.Name = "labelAddBias";
+            this.labelAddBias.Size = new System.Drawing.Size(45, 20);
+            this.labelAddBias.TabIndex = 4;
+            this.labelAddBias.Text = "Bias";
+            // 
+            // labelAddTension
+            // 
+            this.labelAddTension.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAddTension.AutoSize = true;
+            this.labelAddTension.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAddTension.ForeColor = System.Drawing.Color.White;
+            this.labelAddTension.Location = new System.Drawing.Point(81, 9);
+            this.labelAddTension.Name = "labelAddTension";
+            this.labelAddTension.Size = new System.Drawing.Size(72, 20);
+            this.labelAddTension.TabIndex = 2;
+            this.labelAddTension.Text = "Tension";
+            // 
+            // hermiteSplineControl
+            // 
+            this.hermiteSplineControl.BackColor = System.Drawing.Color.Firebrick;
+            this.hermiteSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hermiteSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
+            this.hermiteSplineControl.ForeColor = System.Drawing.Color.LightSalmon;
+            this.hermiteSplineControl.GetSpline = null;
+            this.hermiteSplineControl.Location = new System.Drawing.Point(0, 0);
+            this.hermiteSplineControl.MouseHoverUpdatesOnly = false;
+            this.hermiteSplineControl.Name = "hermiteSplineControl";
+            this.hermiteSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.hermiteSplineControl.Size = new System.Drawing.Size(774, 524);
+            this.hermiteSplineControl.TabIndex = 0;
+            this.hermiteSplineControl.Text = "Hermite Spline";
             // 
             // tabPagePolygonSplineControl
             // 
@@ -599,11 +584,11 @@
             this.ResizeEnd += new System.EventHandler(this.SplineEditorForm_ResizeEnd);
             this.Resize += new System.EventHandler(this.SplineEditorForm_Resize);
             this.tabControlEditorTabs.ResumeLayout(false);
+            this.tabPageBezierSpline.ResumeLayout(false);
+            this.tabPageCatMulRom.ResumeLayout(false);
             this.tabPageHermiteSpline.ResumeLayout(false);
             this.panelAddSubstractTangentValues.ResumeLayout(false);
             this.panelAddSubstractTangentValues.PerformLayout();
-            this.tabPageBezierSpline.ResumeLayout(false);
-            this.tabPageCatMulRom.ResumeLayout(false);
             this.tabPagePolygonSplineControl.ResumeLayout(false);
             this.tabPageFindNearestPoint.ResumeLayout(false);
             this.tabPageFindNearestPoint.PerformLayout();
@@ -655,7 +640,6 @@
         private System.Windows.Forms.Button buttonAddTension;
         private System.Windows.Forms.Label labelAddBias;
         private System.Windows.Forms.Label labelAddTension;
-        private System.Windows.Forms.Label labelSelectedTangent;
     }
 }
 

@@ -46,7 +46,7 @@ namespace MonoGame.SplineFlower
             ID = Guid.Parse(id);
         }
 
-        public void UpdateTriggerRotation()
+        internal void UpdateTriggerRotation()
         {
             Vector2 direction = GetDirectionOnSpline(Progress);
             Rotation = (float)Math.Atan2(direction.X, -direction.Y);

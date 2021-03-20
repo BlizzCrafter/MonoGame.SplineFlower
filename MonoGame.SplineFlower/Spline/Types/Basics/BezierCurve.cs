@@ -4,7 +4,7 @@ using MonoGame.SplineFlower.Content;
 using System;
 using System.Linq;
 
-namespace MonoGame.SplineFlower
+namespace MonoGame.SplineFlower.Spline.Types.Basics
 {
     public class BezierCurve : PointBase
     {
@@ -31,16 +31,16 @@ namespace MonoGame.SplineFlower
         public Vector2 GetPoint(float t)
         {
             return BezierType == Type.Cubic ?
-                Bezier.GetPoint(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t) :
-                Bezier.GetPoint(_Points[0].Position, _Points[1].Position, _Points[2].Position, t);
+                Spline.GetCubicPoint(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t) :
+                Spline.GetQuadraticPoint(_Points[0].Position, _Points[1].Position, _Points[2].Position, t);
         }
 
         public Vector2 GetDirection(float t)
         {
             Vector2 direction = Vector2.Zero;
 
-            if (BezierType == Type.Cubic) direction = Bezier.GetFirstDerivative(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t);
-            else direction = Bezier.GetFirstDerivative(_Points[0].Position, _Points[1].Position, _Points[2].Position, t);
+            if (BezierType == Type.Cubic) direction = Spline.GetCubicTangent(_Points[0].Position, _Points[1].Position, _Points[2].Position, _Points[3].Position, t);
+            else direction = Spline.GetQuadraticTangent(_Points[0].Position, _Points[1].Position, _Points[2].Position, t);
 
             direction.Normalize();
             return direction;

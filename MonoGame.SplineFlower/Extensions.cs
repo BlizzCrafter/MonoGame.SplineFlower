@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace MonoGame.SplineFlower
 {
@@ -11,6 +12,12 @@ namespace MonoGame.SplineFlower
             T[] Arr = (T[])Enum.GetValues(src.GetType());
             int j = Array.IndexOf<T>(Arr, src) + 1;
             return (Arr.Length == j) ? Arr[0] : Arr[j];
+        }
+
+        public static Vector2 Normal(this Vector2 value)
+        {
+            value.Normalize();
+            return value;
         }
     }
 }

@@ -2,7 +2,7 @@
 using MonoGame.SplineFlower.Content;
 using System.Linq;
 
-namespace MonoGame.SplineFlower
+namespace MonoGame.SplineFlower.Spline
 {
     public abstract class PointBase
     {
@@ -18,6 +18,7 @@ namespace MonoGame.SplineFlower
 
             CenterSpline = new Transform(new Vector2(centerX, centerY));
             CenterSpline.Index = Setup.CenterSplineIndex;
+            CenterSpline.GetTransformType = Transform.TransformType.Center;
         }
     }
 }

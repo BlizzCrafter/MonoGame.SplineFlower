@@ -6,22 +6,32 @@ namespace MonoGame.SplineFlower
 {
     public class Transform : IEqualityComparer<Transform>
     {
+        internal enum TransformType
+        {
+            Point,
+            Tangent,
+            Center
+        }
+        internal TransformType GetTransformType { get; set; }
+
         public Rectangle Size { get { return _Size; } }
         private Rectangle _Size = Rectangle.Empty;
 
         public Vector2 Position { get; private set; } = Vector2.Zero;
         public int Index { get; internal set; } = -1;
-        public bool IsCenterSpline { get { return Index == Setup.CenterSplineIndex ? true : false; } }
+        public bool IsSelected { get; set; }
+        public bool IsPoint { get { return GetTransformType == TransformType.Point; } }
+        public bool IsTangent { get { return GetTransformType == TransformType.Tangent; } }
+        public bool IsCenter { get { return GetTransformType == TransformType.Center; } }
+
+        public object UserData { get; set; }
 
         public Transform() { }
         public Transform(Vector2 position) : this()
         {
             SetPosition(position);
         }
-        public Transform(ref Vector2 position) : this(position)
-        {
-            
-        }
+        public Transform(ref Vector2 position) : this(position) { }
 
         public void SetPosition(Vector2 position)
         {
@@ -33,17 +43,20 @@ namespace MonoGame.SplineFlower
                 Setup.PointThickness);
         }
 
-        public void Translate(Vector2 position)
+        internal void Translate(Vector2 value)
         {
-            Position += position;
-            _Size.X += (int)position.X;
-            _Size.Y += (int)position.Y;
+            Position += value;
+            _Size.X += (int)value.X;
+            _Size.Y += (int)value.Y;
         }
 
         internal bool TryGetPosition(Vector2 position)
         {
-            if (_Size.Contains(position)) return true;
-
+            if (_Size.Contains(position))
+            {
+                IsSelected = true;
+                return true;
+            }
             return false;
         }
 

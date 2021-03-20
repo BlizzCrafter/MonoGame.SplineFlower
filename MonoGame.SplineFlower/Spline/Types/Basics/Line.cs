@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.SplineFlower.Content;
+using MonoGame.SplineFlower.Spline;
 using System;
 
-namespace MonoGame.SplineFlower
+namespace MonoGame.SplineFlower.Spline.Types.Basics
 {
     public class Line : PointBase
     {

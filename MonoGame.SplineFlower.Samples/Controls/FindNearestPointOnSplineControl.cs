@@ -1,16 +1,32 @@
 ﻿using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using MonoGame.SplineFlower.Content;
+using MonoGame.SplineFlower.Spline;
+using MonoGame.SplineFlower.Spline.Types;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class FindNearestPointControl : TransformControl
     {
-        public BezierSpline MySpline;
+        public SplineBase MySpline;
 
         private Vector2 _NearestPoint = Vector2.Zero;
         private float _NearestPointSplinePosition = 0f;
         public float NearestPointAccuracy { get; set; } = Setup.SplineMarkerResolution;
+
+        public void CreateCatMulRomSpline()
+        {
+            MySpline = new CatMulRomSpline();
+            GetSpline = MySpline;
+            CenterSpline();
+        }
+
+        public void CreateBezierSpline()
+        {
+            MySpline = new BezierSpline();
+            GetSpline = MySpline;
+            CenterSpline();
+        }
 
         protected override void Initialize()
         {
@@ -19,7 +35,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Setup.ShowCurves = true;
 
             MySpline = new BezierSpline();
-            MySpline.Reset();
             GetSpline = MySpline;
 
             CenterSpline();
@@ -38,16 +53,16 @@ namespace MonoGame.SplineFlower.Samples.Controls
             if (MySpline != null) MySpline.ReorderTriggerList();
         }
 
-        public void SplineControl_RecalculateBezierCenter()
+        public void SplineControl_RecalculateSplineCenter()
         {
-            if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints());
+            if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
 
-            if (SelectedTransform != null) MySpline.EnforceMode(SelectedTransform.Index);
+            if (GetSpline.SelectedTransform != null) MySpline.EnforceMode(GetSpline.SelectedTransform.Index);
         }
 
         protected override void Update(GameTime gameTime)

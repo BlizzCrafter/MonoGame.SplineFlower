@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonoGame.SplineFlower.Spline.Types;
+using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -20,12 +21,25 @@ namespace MonoGame.SplineFlower.Samples
         {
             InitializeComponent();
         }
+        private void MySpline_TangentSelected(int index)
+        {
+            labelSelectedTangent.Text = $"Tangent #{index}";
+            labelSelectedTangent.Visible = true;
+        }
+        private void MySpline_TangentDeselected()
+        {
+            labelSelectedTangent.Text = "";
+            labelSelectedTangent.Visible = false;
+        }
 
         private void SplineEditorForm_Load(object sender, EventArgs e)
         {
             comboBoxWalkerMode.SelectedIndex = 0;
             comboBoxCenterTransformMode.SelectedIndex = 3;
             comboBoxCenterTransformMode_2.SelectedIndex = 3;
+
+            hermiteSplineControl.MySpline.TangentSelected += MySpline_TangentSelected;
+            hermiteSplineControl.MySpline.TangentDeselected += MySpline_TangentDeselected;
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)
@@ -100,8 +114,25 @@ namespace MonoGame.SplineFlower.Samples
         {
             if (findNearestPointControl1 != null && findNearestPointControl1.MySpline != null)
             {
-                findNearestPointControl1.MySpline.CatMulRom = true;
-                buttonCatMulRomFindTest.Enabled = false;
+                if (!buttonLoopFindTest.Enabled && findNearestPointControl1.MySpline.Loop)
+                {
+                    CreateFindNearestPointSplines();
+                    buttonLoopFindTest.Enabled = true;
+                }
+                else CreateFindNearestPointSplines();
+            }
+        }
+        private void CreateFindNearestPointSplines()
+        {
+            if (findNearestPointControl1.MySpline is BezierSpline)
+            {
+                findNearestPointControl1.CreateCatMulRomSpline();
+                buttonCatMulRomFindTest.Text = "Bezier";
+            }
+            else
+            {
+                findNearestPointControl1.CreateBezierSpline();
+                buttonCatMulRomFindTest.Text = "CatMulRom";
             }
         }
 
@@ -121,13 +152,13 @@ namespace MonoGame.SplineFlower.Samples
         {
             if (catMulRomSpline != null)
             {
-                catMulRomSpline.SplineControl_RecalculateBezierCenter();
+                catMulRomSpline.SplineControl_RecalculateSplineCenter();
                 catMulRomSpline.CenterSpline();
             }
 
             if (splineControl != null)
             {
-                splineControl.SplineControl_RecalculateBezierCenter();
+                splineControl.SplineControl_RecalculateSplineCenter();
                 splineControl.CenterSpline();
             }
         }
@@ -140,6 +171,26 @@ namespace MonoGame.SplineFlower.Samples
         private void buttonHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Please edit the Initialization method of the AdvancedControls.cs file to experience all the new ipnut features!\n\nKeyboard Forward: W, D, Up, Right\nKeyboard Backward: S, A, Down, Left\n\nGamePad Forward: DPadUp, DPadRight, RightTrigger, LeftThumbstickUp LeftThumbstickRight\nGamePad Backward: DPadDown, DPadLeft, LeftTrigger, LeftThumbstickDown, LeftThumbstickLeft\n\nTop down vehicle © Copyright by irmirx @ opengameart.org CC-BY 3.0", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonAddTension_Click(object sender, EventArgs e)
+        {
+            hermiteSplineControl.MySpline.AddTension();
+        }
+
+        private void buttonSubstractTension_Click(object sender, EventArgs e)
+        {
+            hermiteSplineControl.MySpline.SubstractTension();
+        }
+
+        private void buttonAddBias_Click(object sender, EventArgs e)
+        {
+            hermiteSplineControl.MySpline.AddBias();
+        }
+
+        private void buttonSubstractBias_Click(object sender, EventArgs e)
+        {
+            hermiteSplineControl.MySpline.SubstractBias();
         }
     }
 }

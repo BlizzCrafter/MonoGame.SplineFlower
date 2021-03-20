@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.SplineFlower.Spline;
 using System;
 
 namespace MonoGame.SplineFlower.Samples
@@ -10,9 +10,7 @@ namespace MonoGame.SplineFlower.Samples
     public class Tank : SplineWalker
     {
         private Texture2D _BeamRed, _BeamGreen;
-
         private Texture2D _TankBottom, _Tank_Middle, _TankTop;
-        //private SoundEffect _Horn, _HandBrake, _CarDrive;
 
         private float GunRotation = 0f, CurrentRotation = 0f;
 
@@ -26,7 +24,7 @@ namespace MonoGame.SplineFlower.Samples
             _TankTop = Content.Load<Texture2D>(@"Tank_Top");
         }
 
-        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, SplineWalkerTriggerDirection triggerDirection = SplineWalkerTriggerDirection.Forward, bool autoStart = true)
+        public override void CreateSplineWalker(SplineBase spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, SplineWalkerTriggerDirection triggerDirection = SplineWalkerTriggerDirection.Forward, bool autoStart = true)
         {
             base.CreateSplineWalker(spline, mode, duration, canTriggerEvents, triggerDirection, autoStart);
         }

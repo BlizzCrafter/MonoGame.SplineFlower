@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Forms.Controls;
+using MonoGame.SplineFlower.Spline;
 using MonoGame.SplineFlower.Utils;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -19,10 +20,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public CenterTransformMode SetCenterTransformMode { get; set; } = CenterTransformMode.ScaleRotate;
 
         [Browsable(false)]
-        public Trigger SelectedTrigger { get; set; }
-
-        [Browsable(false)]
-        public BezierSpline GetSpline { get; set; }
+        public SplineBase GetSpline { get; set; }
 
         private bool _ClickedOnTestTransform = false;
         protected bool ScalePointClick = false;
@@ -31,7 +29,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
         protected bool TranslateAllPointsClick = false;
         protected bool UseWorldUnits = false;        
         protected System.Drawing.Point TranslatePointFirstClick;
-        protected Transform SelectedTransform;
         protected Transform TestTransform;
 
         protected override void OnMouseUp(MouseEventArgs e)
@@ -43,9 +40,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
             RotatePointClick = false;
             TranslatePointClick = false;
             TranslateAllPointsClick = false;
-            SelectedTransform = null;
 
-            GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
+            GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -54,7 +50,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (IsMouseInsideControl)
             {
-                Vector2 mouseLocation = Vector2.Zero;
+                Vector2 mouseLocation;
                 if (UseWorldUnits)
                 {
                     mouseLocation = Functions.ConvertScreenToWorld(new Vector2(Editor.GetRelativeMousePosition.X, Editor.GetRelativeMousePosition.Y), true);
@@ -65,10 +61,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 if (e.Button == MouseButtons.Left)
                 {
-                    SelectedTransform = GetSpline.TryGetTransformFromPosition(mouseLocation);
-                    if (SelectedTransform != null)
+                    if (GetSpline.SelectTransform(mouseLocation) != null)
                     {
-                        if (SelectedTransform.IsCenterSpline)
+                        if (GetSpline.SelectedTransform != null && GetSpline.SelectedTransform.IsCenter)
                         {
                             if (SetCenterTransformMode == CenterTransformMode.Rotate) RotatePointClick = true;
                             else if (SetCenterTransformMode == CenterTransformMode.Scale) ScalePointClick = true;
@@ -83,13 +78,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
                     }
                     else
                     {
-                        SelectedTrigger = GetSpline.TryGetTriggerFromPosition(mouseLocation);
+                        GetSpline.SelectTrigger(mouseLocation);
 
                         if (TestTransform != null)
                         {
                             if (TestTransform.Size.Contains(mouseLocation))
                             {
-                                SelectedTransform = TestTransform;
+                                GetSpline.SelectedTransform = TestTransform;
                                 _ClickedOnTestTransform = true;
                                 TranslatePointClick = true;
                             }
@@ -104,7 +99,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseMove(e);
 
-            Vector2 mouseLocation = Vector2.Zero;
+            Vector2 mouseLocation;
 
             if (UseWorldUnits)
             {
@@ -117,17 +112,20 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (TranslatePointClick || TranslateAllPointsClick)
             {
-                if (SelectedTransform != null && TranslatePointClick)
+                if (TranslatePointClick)
                 {
-                    SelectedTransform.Translate(new Vector2(-xDiff, -yDiff));
+                    GetSpline.TranslateSelectedTransform(new Vector2(-xDiff, -yDiff));
                     if (!_ClickedOnTestTransform)
                     {
-                        GetSpline.MoveAxis(SelectedTransform.Index, new Vector2(-xDiff, -yDiff));
-                        GetSpline.GetAllTrigger().ForEach(x => x.UpdateTriggerRotation());
-                        GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints());
+                        if (GetSpline.SelectedTransform != null)
+                        {
+                            GetSpline.MoveAxis(GetSpline.SelectedTransform.Index, new Vector2(-xDiff, -yDiff));
+                        }
+                        GetSpline.UpdateTriggerRotation();
+                        GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints);
                     }
                 }
-                else if (TranslateAllPointsClick) GetSpline.Translate(new Vector2(-xDiff, -yDiff));
+                else if (TranslateAllPointsClick) GetSpline.TranslateAll(new Vector2(-xDiff, -yDiff));
             }
             else if (RotatePointClick && !ScalePointClick) GetSpline.Rotate(yDiff);
             else if (ScalePointClick && !RotatePointClick) GetSpline.Scale(yDiff);
@@ -144,7 +142,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 GetSpline.Position(ConvertUnits.ToSimUnits(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
                 GetSpline.PolygonStripeCreated = false;
             }
-            else GetSpline.Position(new Vector2(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
+            else if (GetSpline != null) GetSpline.Position(new Vector2(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
         }
     }
 }

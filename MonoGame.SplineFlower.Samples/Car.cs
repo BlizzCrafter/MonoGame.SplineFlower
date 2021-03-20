@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.SplineFlower.Spline;
 
 namespace MonoGame.SplineFlower.Samples
 {
@@ -30,7 +31,7 @@ namespace MonoGame.SplineFlower.Samples
             _CarDrive = Content.Load<SoundEffect>(@"Audio/cardrive");
         }
 
-        public override void CreateSplineWalker(BezierSpline spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, SplineWalkerTriggerDirection triggerDirection = SplineWalkerTriggerDirection.Forward, bool autoStart = true)
+        public override void CreateSplineWalker(SplineBase spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, SplineWalkerTriggerDirection triggerDirection = SplineWalkerTriggerDirection.Forward, bool autoStart = true)
         {
             base.CreateSplineWalker(spline, mode, duration, canTriggerEvents, triggerDirection, autoStart);
         }

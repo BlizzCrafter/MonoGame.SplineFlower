@@ -69,13 +69,16 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\AdvancedControls.cs">
+    <Compile Include="Controls\AdvancedControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\CatMulRomSpline.cs">
+    <Compile Include="Controls\CatMulRomSplineControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\FindNearestPointOnSplineControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\HermiteSplineControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PolygonSplineControl.cs">

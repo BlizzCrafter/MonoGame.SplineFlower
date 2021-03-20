@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.SplineFlower.Content;
+using MonoGame.SplineFlower.Spline;
+using MonoGame.SplineFlower.Spline.Types;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -8,9 +10,9 @@ using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
-    public class AdvancedControls : TransformControl
+    public class AdvancedControl : TransformControl
     {
-        public BezierSpline MySpline;
+        public CatMulRomSpline MySpline;
         public Tank MySplineWalker;
 
         protected override void Initialize()
@@ -19,8 +21,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Setup.Initialize(Editor.graphics);
             Setup.ShowCurves = true;
 
-            MySpline = new BezierSpline();
-            MySpline = Editor.Content.Load<BezierSpline>(@"TankTrack");
+            MySpline = new CatMulRomSpline();
             GetSpline = MySpline;
 
             MySplineWalker = new Tank();
@@ -49,9 +50,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
             AlwaysEnableKeyboardInput = true;
         }
 
-        public void SplineControl_RecalculateBezierCenter()
+        public void SplineControl_RecalculateSplineCenter()
         {
-            if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints());
+            if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -60,11 +61,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (e.Button == MouseButtons.Right)
             {
-                SelectedTransform = GetSpline.TryGetTransformFromPosition(new Vector2(e.X, e.Y));
-                if (SelectedTransform != null && !SelectedTransform.IsCenterSpline)
+                if (GetSpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !GetSpline.SelectedTransform.IsCenter)
                 {
-                    BezierSpline.BezierControlPointMode nextMode = MySpline.GetControlPointMode(SelectedTransform.Index).Next();
-                    MySpline.SetControlPointMode(SelectedTransform.Index, nextMode);
+                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(GetSpline.SelectedTransform.Index).Next();
+                    MySpline.SetControlPointMode(GetSpline.SelectedTransform.Index, nextMode);
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseMove(e);
 
-            if (SelectedTransform != null) MySpline.EnforceMode(SelectedTransform.Index);
+            if (GetSpline.SelectedTransform != null) MySpline.EnforceMode(GetSpline.SelectedTransform.Index);
         }
 
         protected override void Update(GameTime gameTime)

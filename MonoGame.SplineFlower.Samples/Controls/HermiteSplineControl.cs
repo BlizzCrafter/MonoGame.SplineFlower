@@ -1,65 +1,48 @@
-﻿using System.Windows.Forms;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using MonoGame.SplineFlower.Content;
-using MonoGame.SplineFlower.Spline;
 using MonoGame.SplineFlower.Spline.Types;
+using System.Windows.Forms;
+using static MonoGame.SplineFlower.Spline.SplineBase;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
-    public class SplineControl : TransformControl
+    public class HermiteSplineControl : TransformControl
     {
-        public SplineBase MySpline;
+        public HermiteSpline MySpline;
         public Car MySplineWalker;
         public Marker MySplineMarker;
 
         protected override void Initialize()
         {
             base.Initialize();
-            Setup.Initialize(GraphicsDevice);
+            Setup.Initialize(Editor.graphics);
             Setup.ShowCurves = true;
 
-            CreateBezierSpline();
+            MySpline = new HermiteSpline();
+            //Custom ctr-Test
+            //MySpline = new HermitSpline(new Transform[] {
+            //    new Transform(new Vector2(0, 0)),
+            //    new Transform(new Vector2(250, 0)),
+            //    new Transform(new Vector2(0, 250))
+            //});
+            MySpline.Loop = false;
+            GetSpline = MySpline;
 
             CenterSpline();
+
+            MySplineWalker = new Car();
+            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Loop, 7);
+            MySplineWalker.LoadContent(Editor.Content, Editor.Font);
+
+            MySplineMarker = new Marker();
+            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0, false, autoStart: false);
+            MySplineMarker.LoadContent(Editor.Content);
 
             SetMultiSampleCount(8);
 
             Editor.SetDisplayStyle = Forms.Services.GFXService.DisplayStyle.TopRight;
             Editor.ShowCursorPosition = false;
             Editor.ShowFPS = false;
-        }
-        public void CreateBezierSpline()
-        {
-            MySpline = new BezierSpline();
-            GetSpline = MySpline;
-            CreateSplineWalkerAndSplineMarker();
-        }
-        public void CreateCatMulRomSpline()
-        {
-            MySpline = new CatMulRomSpline();
-            GetSpline = MySpline;
-            CreateSplineWalkerAndSplineMarker();
-        }
-        public void CreateHermiteSpline()
-        {
-            MySpline = new HermiteSpline();
-            GetSpline = MySpline;
-            CreateSplineWalkerAndSplineMarker();
-        }
-        public void CreateSplineWalkerAndSplineMarker()
-        {
-            MySplineWalker = new Car();
-            MySplineWalker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 7);
-            MySplineWalker.LoadContent(Editor.Content, Editor.Font);
-
-            MySplineMarker = new Marker();
-            MySplineMarker.CreateSplineWalker(MySpline, SplineWalker.SplineWalkerMode.Once, 0, false, autoStart: false);
-            MySplineMarker.LoadContent(Editor.Content);
-        }
-
-        public void ReorderTriggerList()
-        {
-            if (MySpline != null) MySpline.ReorderTriggerList();
         }
 
         public void SplineControl_RecalculateSplineCenter()
@@ -70,12 +53,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            
+
             if (e.Button == MouseButtons.Right)
             {
                 if (GetSpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !GetSpline.SelectedTransform.IsCenter)
                 {
-                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(GetSpline.SelectedTransform.Index).Next();
+                    ControlPointMode nextMode = MySpline.GetControlPointMode(GetSpline.SelectedTransform.Index).Next();
                     MySpline.SetControlPointMode(GetSpline.SelectedTransform.Index, nextMode);
                 }
             }

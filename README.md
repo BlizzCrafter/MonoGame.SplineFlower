@@ -17,7 +17,7 @@ Create wonderful smooth **BézierSplines** and **CatMulRomSplines** with **Trigg
 # How-To
 ### Setup
 
-The **Visual Studio 2015** solution contains the following projects:
+The **Visual Studio 2019** solution contains the following projects:
 - **MonoGame.SplineFlower** (the portable class library)
 - **MonoGame.SplineFlower.Content** (spline data and setup class)
 - **MonoGame.SplineFlower.Content.Pipeline** (creates .xnb files out of .json spline data)

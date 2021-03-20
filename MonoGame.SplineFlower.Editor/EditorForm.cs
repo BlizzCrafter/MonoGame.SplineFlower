@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using MonoGame.SplineFlower.Content;
 
+using static MonoGame.SplineFlower.Spline.SplineBase;
+using MonoGame.SplineFlower.Spline.Types;
+
 namespace MonoGame.SplineFlower.Editor
 {
     public partial class FormEditor : Form
@@ -107,14 +110,6 @@ namespace MonoGame.SplineFlower.Editor
             {
                 splineControl.MySpline.Loop = true;
                 toolStripButtonTrackLoop.Enabled = false;
-            }
-        }
-
-        private void toolStripButtonCatMulRom_Click(object sender, EventArgs e)
-        {
-            if (splineControl != null && splineControl.MySpline != null)
-            {
-                splineControl.MySpline.CatMulRom = !splineControl.MySpline.CatMulRom;
             }
         }
 
@@ -249,60 +244,80 @@ namespace MonoGame.SplineFlower.Editor
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                GetJsonHandling.GetBezierSplineData.SplineMarkerResolution = Setup.SplineMarkerResolution;
-                GetJsonHandling.GetBezierSplineData.SplineWalkerDuration = splineControl.MySplineWalker.Duration;
-                GetJsonHandling.GetBezierSplineData.CatMulRom = splineControl.MySpline.CatMulRom;
-                GetJsonHandling.GetBezierSplineData.Loop = splineControl.MySpline.Loop;
+                GetJsonHandling.GetSplineData.SplineMarkerResolution = Setup.SplineMarkerResolution;
+                if (splineControl.MySpline.IsBezier) GetJsonHandling.GetSplineData.SplineType = SplineData.SplineTypeDummy.Bezier;
+                else if (splineControl.MySpline.IsCatMulRom) GetJsonHandling.GetSplineData.SplineType = SplineData.SplineTypeDummy.CatMulRom;
+                else if (splineControl.MySpline.IsHermite)
+                {
+                    GetJsonHandling.GetSplineData.SplineType = SplineData.SplineTypeDummy.Hermite;
+                    CreateJsonReadyTangentData((HermiteSpline)splineControl.MySpline);
+                }
+                GetJsonHandling.GetSplineData.SplineWalkerDuration = splineControl.MySplineWalker.Duration;
+                GetJsonHandling.GetSplineData.Loop = splineControl.MySpline.Loop;
 
                 CreateJsonReadyPointData();
                 CreateJsonReadyPointModeData();
                 CreateJsonReadyTriggerData();
 
-                Array.Resize(ref GetJsonHandling.GetBezierSplineData.TriggerNames, toolStripComboBoxEvents.Items.Count);
+                Array.Resize(ref GetJsonHandling.GetSplineData.TriggerNames, toolStripComboBoxEvents.Items.Count);
                 for (int i = 0; i < toolStripComboBoxEvents.Items.Count; i++)
                 {
-                    GetJsonHandling.GetBezierSplineData.TriggerNames[i] = toolStripComboBoxEvents.Items[i].ToString();
+                    GetJsonHandling.GetSplineData.TriggerNames[i] = toolStripComboBoxEvents.Items[i].ToString();
                 }
 
-                string json = JsonConvert.SerializeObject(GetJsonHandling.GetBezierSplineData, JsonSerializerSetup);
+                string json = JsonConvert.SerializeObject(GetJsonHandling.GetSplineData, JsonSerializerSetup);
                 File.WriteAllText(@Path.Combine(saveFileDialog.FileName), json, Encoding.UTF8);
             }
         }
         private void CreateJsonReadyPointData()
         {
-            Transform[] pointsToExport = splineControl.MySpline.GetAllPoints();
-            Array.Resize(ref GetJsonHandling.GetBezierSplineData.PointData, pointsToExport.Length);
+            Transform[] pointsToExport = splineControl.MySpline.GetAllPoints;
+            Array.Resize(ref GetJsonHandling.GetSplineData.PointData, pointsToExport.Length);
 
             for (int i = 0; i < pointsToExport.Length; i++)
             {
-                GetJsonHandling.GetBezierSplineData.PointData[i] =
+                GetJsonHandling.GetSplineData.PointData[i] =
                     new TransformDummy(pointsToExport[i].Index, pointsToExport[i].Position);
             }
         }
         private void CreateJsonReadyPointModeData()
         {
-            BezierSpline.BezierControlPointMode[] modePointsToExport = splineControl.MySpline.GetAllPointModes();
-            Array.Resize(ref GetJsonHandling.GetBezierSplineData.PointModeData, modePointsToExport.Length);
+            ControlPointMode[] modePointsToExport = splineControl.MySpline.GetAllPointModes;
+            Array.Resize(ref GetJsonHandling.GetSplineData.PointModeData, modePointsToExport.Length);
 
             for (int i = 0; i < modePointsToExport.Length; i++)
             {
-                GetJsonHandling.GetBezierSplineData.PointModeData[i] =
-                    new BezierControlPointModeDummy(modePointsToExport[i].ToString());
+                GetJsonHandling.GetSplineData.PointModeData[i] =
+                    new ControlPointModeDummy(modePointsToExport[i].ToString());
             }
         }
         private void CreateJsonReadyTriggerData()
         {
-            Trigger[] triggerToExport = splineControl.MySpline.GetAllTrigger().ToArray();
-            Array.Resize(ref GetJsonHandling.GetBezierSplineData.TriggerData, triggerToExport.Length);
+            Trigger[] triggerToExport = splineControl.MySpline.GetAllTrigger.ToArray();
+            Array.Resize(ref GetJsonHandling.GetSplineData.TriggerData, triggerToExport.Length);
 
             for (int i = 0; i < triggerToExport.Length; i++)
             {
-                GetJsonHandling.GetBezierSplineData.TriggerData[i] =
+                GetJsonHandling.GetSplineData.TriggerData[i] =
                     new TriggerDummy(
                         triggerToExport[i].Name,
                         triggerToExport[i].ID.ToString(),
                         triggerToExport[i].GetPlainProgress,
                         triggerToExport[i].TriggerRange * Setup.SplineMarkerResolution);
+            }
+        }
+        private void CreateJsonReadyTangentData(HermiteSpline hermiteSpline)
+        {
+            Transform[] tangentsToExport = hermiteSpline.GetAllTangents;
+            Array.Resize(ref GetJsonHandling.GetSplineData.TangentData, tangentsToExport.Length);
+
+            for (int i = 0; i < tangentsToExport.Length; i++)
+            {
+                GetJsonHandling.GetSplineData.TangentData[i] =
+                    new TransformDummy(tangentsToExport[i].Index, tangentsToExport[i].Position)
+                    {
+                        UserData = tangentsToExport[i].UserData as HermiteSpline.TangentData
+                    };
             }
         }
 
@@ -317,28 +332,44 @@ namespace MonoGame.SplineFlower.Editor
                 ResetSplineWalkerMode();
                 ResetTrackBarMarker();
 
-                GetJsonHandling.GetBezierSplineData =
-                    JsonConvert.DeserializeObject<BezierSplineData>(
+                GetJsonHandling.GetSplineData =
+                    JsonConvert.DeserializeObject<SplineData>(
                         File.ReadAllText(openFileDialog.FileName), JsonSerializerSetup);
 
-                Setup.SplineMarkerResolution = GetJsonHandling.GetBezierSplineData.SplineMarkerResolution;
-                splineControl.MySplineWalker.Duration = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
-                toolStripNumericUpDownDuration.Value = GetJsonHandling.GetBezierSplineData.SplineWalkerDuration;
-                splineControl.MySpline.CatMulRom = GetJsonHandling.GetBezierSplineData.CatMulRom;
-                splineControl.MySpline.Loop = GetJsonHandling.GetBezierSplineData.Loop;
-                toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetBezierSplineData.Loop;
+                Setup.SplineMarkerResolution = GetJsonHandling.GetSplineData.SplineMarkerResolution;
 
-                Trigger[] loadedTrigger;
-                splineControl.MySpline.LoadJsonBezierSplineData(
-                    GetJsonHandling.GetBezierSplineData.PointData,
-                    GetJsonHandling.GetBezierSplineData.PointModeData,
-                    GetJsonHandling.GetBezierSplineData.TriggerData,
-                    out loadedTrigger);
+                if (GetJsonHandling.GetSplineData.SplineType == SplineData.SplineTypeDummy.Bezier)
+                {
+                    splineControl.CreateBezierSpline();
+                    panelAddSubstractTangentValues.Visible = false;
+                }
+                else if (GetJsonHandling.GetSplineData.SplineType == SplineData.SplineTypeDummy.CatMulRom)
+                {
+                    splineControl.CreateCatMulRomSpline();
+                    panelAddSubstractTangentValues.Visible = false;
+                }
+                else if (GetJsonHandling.GetSplineData.SplineType == SplineData.SplineTypeDummy.Hermite)
+                {
+                    splineControl.CreateHermiteSpline();
+                    panelAddSubstractTangentValues.Visible = true;
+                }
+
+                splineControl.MySplineWalker.Duration = GetJsonHandling.GetSplineData.SplineWalkerDuration;
+                toolStripNumericUpDownDuration.Value = GetJsonHandling.GetSplineData.SplineWalkerDuration;
+                splineControl.MySpline.Loop = GetJsonHandling.GetSplineData.Loop;
+                toolStripButtonTrackLoop.Enabled = !GetJsonHandling.GetSplineData.Loop;
+
+                splineControl.MySpline.LoadJsonSplineData(
+                    GetJsonHandling.GetSplineData.PointData,
+                    GetJsonHandling.GetSplineData.PointModeData,
+                    GetJsonHandling.GetSplineData.TriggerData,
+                    GetJsonHandling.GetSplineData.TangentData,
+                    out Trigger[] loadedTrigger);
 
                 toolStripComboBoxEvents.Items.Clear();
-                for (int i = 0; i < GetJsonHandling.GetBezierSplineData.TriggerNames.Length; i++)
+                for (int i = 0; i < GetJsonHandling.GetSplineData.TriggerNames.Length; i++)
                 {
-                    toolStripComboBoxEvents.Items.Add(GetJsonHandling.GetBezierSplineData.TriggerNames[i]);
+                    toolStripComboBoxEvents.Items.Add(GetJsonHandling.GetSplineData.TriggerNames[i]);
                 }
                 toolStripComboBoxEvents.SelectedIndex = 0;
 
@@ -359,8 +390,7 @@ namespace MonoGame.SplineFlower.Editor
 
         #region File Menu
 
-        // New BezierSpline
-        private void toolStripMenuItemNew_Click(object sender, EventArgs e)
+        public void CreateNewSpline(SplineData.SplineTypeDummy splineType)
         {
             // Reset the SplineWalkerMode so that the SplineWalker stops when creating a new BezierSpline.
             ResetSplineWalkerMode();
@@ -368,17 +398,19 @@ namespace MonoGame.SplineFlower.Editor
             //Reset the TrackBarMarker to make sure the actual marker position is up to date.
             ResetTrackBarMarker();
 
-            // Reset the BezierSpline (which creates a new one).
-            splineControl.MySpline.Reset();
+            // Reset the Spline (which creates a new one).
+            if (splineType == SplineData.SplineTypeDummy.Bezier) splineControl.CreateBezierSpline();
+            else if (splineType == SplineData.SplineTypeDummy.CatMulRom) splineControl.CreateCatMulRomSpline();
+            else if (splineType == SplineData.SplineTypeDummy.Hermite) splineControl.CreateHermiteSpline();
 
             // Adding a small value to refresh the point positions.
-            splineControl.MySpline.GetAllPoints()[0].Translate(Vector2.One);
+            splineControl.MySpline.TranslateAll(Vector2.One);
 
             // Recalculating the new BezierCenter.
-            splineControl.SplineControl_RecalculateBezierCenter();
+            splineControl.SplineControl_RecalculateSplineCenter();
 
             // Revert the translation.
-            splineControl.MySpline.GetAllPoints()[0].Translate(-Vector2.One);
+            splineControl.MySpline.TranslateAll(-Vector2.One);
 
             // Move the BezierSpline to the center of the screen.
             splineControl.CenterSpline();
@@ -391,6 +423,21 @@ namespace MonoGame.SplineFlower.Editor
 
             // Reset the Looped status of the BezierSpline.
             ResetLoop();
+        }
+        private void toolStripMenuItemNewBezierSpline_Click(object sender, EventArgs e)
+        {
+            CreateNewSpline(SplineData.SplineTypeDummy.Bezier);
+            panelAddSubstractTangentValues.Visible = false;
+        }
+        private void toolStripMenuItemNewCatMulRomSpline_Click(object sender, EventArgs e)
+        {
+            CreateNewSpline(SplineData.SplineTypeDummy.CatMulRom);
+            panelAddSubstractTangentValues.Visible = false;
+        }
+        private void toolStripMenuItemNewHermiteSpline_Click(object sender, EventArgs e)
+        {
+            CreateNewSpline(SplineData.SplineTypeDummy.Hermite);
+            panelAddSubstractTangentValues.Visible = true;
         }
         private void ResetTrackBarMarker()
         {
@@ -453,7 +500,7 @@ namespace MonoGame.SplineFlower.Editor
             InitializeJsonSerializer();
 
             GetJsonHandling = new JsonHandling();
-            GetJsonHandling.GetBezierSplineData = new BezierSplineData();
+            GetJsonHandling.GetSplineData = new SplineData();
 
             saveFileDialog.InitialDirectory = @Path.Combine(Application.StartupPath, "Content", "Splines");
             openFileDialog.InitialDirectory = saveFileDialog.InitialDirectory;
@@ -479,18 +526,18 @@ namespace MonoGame.SplineFlower.Editor
 
         private void splineControl_MouseUp(object sender, MouseEventArgs e)
         {
-            if (splineControl != null && splineControl.SelectedTrigger != null)
+            if (splineControl != null && splineControl.MySpline.SelectedTrigger != null)
             {
                 if (splineControl.MySplineMarker != null && splineControl.MySplineMarker.Initialized)
                 {
-                    splineControl.MySplineMarker.SelectedTrigger = splineControl.SelectedTrigger.ID.ToString();
+                    splineControl.MySplineMarker.SelectedTrigger = splineControl.MySpline.SelectedTrigger.ID.ToString();
                     toolStripComboBoxSelectedTrigger.SelectedItem = GetSelectedTriggerString(
-                        splineControl.SelectedTrigger.Name,
-                        splineControl.SelectedTrigger.ID.ToString());
+                        splineControl.MySpline.SelectedTrigger.Name,
+                        splineControl.MySpline.SelectedTrigger.ID.ToString());
                 }
 
-                UpdateTriggerInterface(splineControl.SelectedTrigger);
-                splineControl.SelectedTrigger = null;
+                UpdateTriggerInterface(splineControl.MySpline.SelectedTrigger);
+                splineControl.MySpline.SelectedTrigger = null;
             }
         }
 
@@ -498,9 +545,29 @@ namespace MonoGame.SplineFlower.Editor
         {
             if (splineControl != null)
             {
-                splineControl.SplineControl_RecalculateBezierCenter();
+                splineControl.SplineControl_RecalculateSplineCenter();
                 splineControl.CenterSpline();
             }
+        }
+
+        private void buttonAddTension_Click(object sender, EventArgs e)
+        {
+            ((HermiteSpline)splineControl.MySpline).AddTension();
+        }
+
+        private void buttonSubstractTension_Click(object sender, EventArgs e)
+        {
+            ((HermiteSpline)splineControl.MySpline).SubstractTension();
+        }
+
+        private void buttonAddBias_Click(object sender, EventArgs e)
+        {
+            ((HermiteSpline)splineControl.MySpline).AddBias();
+        }
+
+        private void buttonSubstractBias_Click(object sender, EventArgs e)
+        {
+            ((HermiteSpline)splineControl.MySpline).SubstractBias();
         }
     }
 }

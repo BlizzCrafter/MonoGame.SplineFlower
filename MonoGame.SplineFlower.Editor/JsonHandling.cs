@@ -4,7 +4,7 @@ namespace MonoGame.SplineFlower.Editor
 {
     public class JsonHandling
     {
-        public BezierSplineData GetBezierSplineData;
+        public SplineData GetSplineData;
 
         public JsonHandling()
         {

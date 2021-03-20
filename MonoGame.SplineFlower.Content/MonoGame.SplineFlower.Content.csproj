@@ -49,8 +49,8 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BezierControlPointModeDummy.cs" />
-    <Compile Include="BezierSplineData.cs" />
+    <Compile Include="ControlPointModeDummy.cs" />
+    <Compile Include="SplineData.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />

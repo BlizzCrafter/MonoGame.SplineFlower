@@ -36,6 +36,8 @@ namespace MonoGame.SplineFlower.Content
         public static float TriggerEventThickness { get; set; } = 1f;
         public static bool ShowTriggers { get; set; } = true;
 
+        public static bool ShowTangents { get; set; } = true;
+
         public static Color PointColor { get; set; } = Color.Red;
         public static int PointThickness { get; set; } = 10;
 

@@ -1,14 +1,22 @@
 ﻿namespace MonoGame.SplineFlower.Content
 {
-    public class BezierSplineData
+    public class SplineData
     {
+        public enum SplineTypeDummy
+        {
+            Bezier,
+            CatMulRom,
+            Hermite
+        }
+        public SplineTypeDummy SplineType;
+
         public float SplineMarkerResolution;
         public int SplineWalkerDuration;
         public bool Loop;
-        public bool CatMulRom;
 
         public TransformDummy[] PointData;
-        public BezierControlPointModeDummy[] PointModeData;
+        public TransformDummy[] TangentData;
+        public ControlPointModeDummy[] PointModeData;
         public TriggerDummy[] TriggerData;
         public string[] TriggerNames;
     }

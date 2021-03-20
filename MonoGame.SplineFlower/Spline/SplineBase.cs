@@ -649,15 +649,15 @@ namespace MonoGame.SplineFlower.Spline
 
                         if (i + 1 > _Points.Length - 1)
                         {
-                            DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
+                            if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
                             break;
                         }
 
                         distance = Vector2.Distance(_Points[i].Position, _Points[i + 1].Position);
                         angle = (float)Math.Atan2(_Points[i + 1].Position.Y - _Points[i].Position.Y, _Points[i + 1].Position.X - _Points[i].Position.X);
 
-                        DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
-                        DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
+                        if (Setup.ShowLines) DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
+                        if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
                     }
                 }
 

@@ -19,6 +19,8 @@ namespace MonoGame.SplineFlower.Content
         public static Color BaseLineColor { get; set; } = Color.White;
         public static float BaseLineThickness { get; set; } = 1f;
         public static bool ShowBaseLine { get; set; } = true;
+        public static bool ShowLines { get; set; } = true;
+        public static bool ShowPoints { get; set; } = true;
 
         public static Color CurveLineColor { get; set; } = Color.Yellow;
         public static float CurveLineThickness { get; set; } = 1.5f;

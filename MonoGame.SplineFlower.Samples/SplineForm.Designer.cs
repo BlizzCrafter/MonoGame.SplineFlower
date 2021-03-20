@@ -51,6 +51,10 @@
             this.labelAddTension = new System.Windows.Forms.Label();
             this.hermiteSplineControl = new MonoGame.SplineFlower.Samples.Controls.HermiteSplineControl();
             this.tabPagePolygonSplineControl = new System.Windows.Forms.TabPage();
+            this.checkBoxShowPoints = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowLines = new System.Windows.Forms.CheckBox();
+            this.checkBoxDirectionVectors = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowCurves = new System.Windows.Forms.CheckBox();
             this.polygonSplineControl1 = new MonoGame.SplineFlower.Samples.Controls.PolygonSplineControl();
             this.tabPageFindNearestPoint = new System.Windows.Forms.TabPage();
             this.labelAccuracy = new System.Windows.Forms.Label();
@@ -66,6 +70,7 @@
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
+            this.buttonPolygonHelp = new System.Windows.Forms.Button();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
@@ -365,6 +370,11 @@
             // 
             // tabPagePolygonSplineControl
             // 
+            this.tabPagePolygonSplineControl.Controls.Add(this.buttonPolygonHelp);
+            this.tabPagePolygonSplineControl.Controls.Add(this.checkBoxShowPoints);
+            this.tabPagePolygonSplineControl.Controls.Add(this.checkBoxShowLines);
+            this.tabPagePolygonSplineControl.Controls.Add(this.checkBoxDirectionVectors);
+            this.tabPagePolygonSplineControl.Controls.Add(this.checkBoxShowCurves);
             this.tabPagePolygonSplineControl.Controls.Add(this.polygonSplineControl1);
             this.tabPagePolygonSplineControl.Location = new System.Drawing.Point(4, 25);
             this.tabPagePolygonSplineControl.Name = "tabPagePolygonSplineControl";
@@ -373,6 +383,50 @@
             this.tabPagePolygonSplineControl.TabIndex = 7;
             this.tabPagePolygonSplineControl.Text = "PolygonSplineControl";
             this.tabPagePolygonSplineControl.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxShowPoints
+            // 
+            this.checkBoxShowPoints.AutoSize = true;
+            this.checkBoxShowPoints.Location = new System.Drawing.Point(412, 6);
+            this.checkBoxShowPoints.Name = "checkBoxShowPoints";
+            this.checkBoxShowPoints.Size = new System.Drawing.Size(107, 21);
+            this.checkBoxShowPoints.TabIndex = 4;
+            this.checkBoxShowPoints.Text = "Show Points";
+            this.checkBoxShowPoints.UseVisualStyleBackColor = true;
+            this.checkBoxShowPoints.CheckedChanged += new System.EventHandler(this.checkBoxShowPoints_CheckedChanged);
+            // 
+            // checkBoxShowLines
+            // 
+            this.checkBoxShowLines.AutoSize = true;
+            this.checkBoxShowLines.Location = new System.Drawing.Point(304, 6);
+            this.checkBoxShowLines.Name = "checkBoxShowLines";
+            this.checkBoxShowLines.Size = new System.Drawing.Size(102, 21);
+            this.checkBoxShowLines.TabIndex = 3;
+            this.checkBoxShowLines.Text = "Show Lines";
+            this.checkBoxShowLines.UseVisualStyleBackColor = true;
+            this.checkBoxShowLines.CheckedChanged += new System.EventHandler(this.checkBoxShowLines_CheckedChanged);
+            // 
+            // checkBoxDirectionVectors
+            // 
+            this.checkBoxDirectionVectors.AutoSize = true;
+            this.checkBoxDirectionVectors.Location = new System.Drawing.Point(122, 6);
+            this.checkBoxDirectionVectors.Name = "checkBoxDirectionVectors";
+            this.checkBoxDirectionVectors.Size = new System.Drawing.Size(176, 21);
+            this.checkBoxDirectionVectors.TabIndex = 2;
+            this.checkBoxDirectionVectors.Text = "Show Direction Vectors";
+            this.checkBoxDirectionVectors.UseVisualStyleBackColor = true;
+            this.checkBoxDirectionVectors.CheckedChanged += new System.EventHandler(this.checkBoxDirectionVectors_CheckedChanged);
+            // 
+            // checkBoxShowCurves
+            // 
+            this.checkBoxShowCurves.AutoSize = true;
+            this.checkBoxShowCurves.Location = new System.Drawing.Point(8, 6);
+            this.checkBoxShowCurves.Name = "checkBoxShowCurves";
+            this.checkBoxShowCurves.Size = new System.Drawing.Size(112, 21);
+            this.checkBoxShowCurves.TabIndex = 1;
+            this.checkBoxShowCurves.Text = "Show Curves";
+            this.checkBoxShowCurves.UseVisualStyleBackColor = true;
+            this.checkBoxShowCurves.CheckedChanged += new System.EventHandler(this.checkBoxShowCurves_CheckedChanged);
             // 
             // polygonSplineControl1
             // 
@@ -571,6 +625,18 @@
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;
             // 
+            // buttonPolygonHelp
+            // 
+            this.buttonPolygonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPolygonHelp.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPolygonHelp.Location = new System.Drawing.Point(737, 6);
+            this.buttonPolygonHelp.Name = "buttonPolygonHelp";
+            this.buttonPolygonHelp.Size = new System.Drawing.Size(31, 32);
+            this.buttonPolygonHelp.TabIndex = 5;
+            this.buttonPolygonHelp.Text = "?";
+            this.buttonPolygonHelp.UseVisualStyleBackColor = true;
+            this.buttonPolygonHelp.Click += new System.EventHandler(this.buttonPolygonHelp_Click);
+            // 
             // SplineForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -590,6 +656,7 @@
             this.panelAddSubstractTangentValues.ResumeLayout(false);
             this.panelAddSubstractTangentValues.PerformLayout();
             this.tabPagePolygonSplineControl.ResumeLayout(false);
+            this.tabPagePolygonSplineControl.PerformLayout();
             this.tabPageFindNearestPoint.ResumeLayout(false);
             this.tabPageFindNearestPoint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).EndInit();
@@ -640,6 +707,11 @@
         private System.Windows.Forms.Button buttonAddTension;
         private System.Windows.Forms.Label labelAddBias;
         private System.Windows.Forms.Label labelAddTension;
+        private System.Windows.Forms.CheckBox checkBoxShowCurves;
+        private System.Windows.Forms.CheckBox checkBoxShowPoints;
+        private System.Windows.Forms.CheckBox checkBoxShowLines;
+        private System.Windows.Forms.CheckBox checkBoxDirectionVectors;
+        private System.Windows.Forms.Button buttonPolygonHelp;
     }
 }
 

@@ -136,11 +136,11 @@
     <None Include="Content\car.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\RoadPolygonTest.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="Content\RaceTrack.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\roadTexture.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\SplineTrack.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

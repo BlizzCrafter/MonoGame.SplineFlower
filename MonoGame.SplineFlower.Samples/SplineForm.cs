@@ -1,4 +1,5 @@
-﻿using MonoGame.SplineFlower.Spline.Types;
+﻿using MonoGame.SplineFlower.Content;
+using MonoGame.SplineFlower.Spline.Types;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -160,6 +161,11 @@ namespace MonoGame.SplineFlower.Samples
             MessageBox.Show("Please edit the Initialization method of the AdvancedControls.cs file to experience all the new ipnut features!\n\nKeyboard Forward: W, D, Up, Right\nKeyboard Backward: S, A, Down, Left\n\nGamePad Forward: DPadUp, DPadRight, RightTrigger, LeftThumbstickUp LeftThumbstickRight\nGamePad Backward: DPadDown, DPadLeft, LeftTrigger, LeftThumbstickDown, LeftThumbstickLeft\n\nTop down vehicle © Copyright by irmirx @ opengameart.org CC-BY 3.0", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void buttonPolygonHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("'Track Tiles' © Copyright by TRBRY @ opengameart.org CC - BY 3.0\n\nhttps://opengameart.org/content/track-tiles", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void buttonAddTension_Click(object sender, EventArgs e)
         {
             hermiteSplineControl.MySpline.AddTension();
@@ -178,6 +184,26 @@ namespace MonoGame.SplineFlower.Samples
         private void buttonSubstractBias_Click(object sender, EventArgs e)
         {
             hermiteSplineControl.MySpline.SubstractBias();
+        }
+
+        private void checkBoxShowCurves_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowCurves = checkBoxShowCurves.Checked;
+        }
+
+        private void checkBoxDirectionVectors_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowDirectionVectors = checkBoxDirectionVectors.Checked;
+        }
+
+        private void checkBoxShowLines_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowLines = checkBoxShowLines.Checked;
+        }
+
+        private void checkBoxShowPoints_CheckedChanged(object sender, EventArgs e)
+        {
+            Setup.ShowPoints = checkBoxShowPoints.Checked;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.SplineFlower.Spline;
-using MonoGame.SplineFlower.Spline.Types;
 using MonoGame.SplineFlower.Utils;
 using MonoGame.SplineFlower.Content;
 using System;
@@ -11,7 +10,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class PolygonSplineControl : TransformControl
     {
-        public CatMulRomSpline MySpline;
+        public SplineBase MySpline;
 
         protected override void Initialize()
         {
@@ -19,9 +18,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             Setup.Initialize(Editor.graphics);
             Setup.ShowCurves = false;
+            Setup.ShowDirectionVectors = false;
+            Setup.ShowLines = false;
+            Setup.ShowPoints = false;
             UseWorldUnits = true;
 
-            MySpline = new CatMulRomSpline();
+            MySpline = Editor.Content.Load<SplineBase>("RaceTrack");
             MySpline.PolygonStripeTexture = Editor.Content.Load<Texture2D>("roadTexture");
             MySpline.Loop = true;            
             GetSpline = MySpline;

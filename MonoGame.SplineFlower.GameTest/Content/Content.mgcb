@@ -48,6 +48,11 @@
 /processor:SplineProcessor
 /build:HermiteTest.json
 
+#begin RaceTrack.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:RaceTrack.json
+
 #begin roadTexture.png
 /importer:TextureImporter
 /processor:TextureProcessor

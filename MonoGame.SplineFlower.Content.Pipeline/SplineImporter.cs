@@ -5,10 +5,10 @@ using System.IO;
 
 namespace MonoGame.SplineFlower.Content.Pipeline
 {
-    [ContentImporter(".json", DisplayName = "Bezier Spline Importer - MonoGame.SplineFlower", DefaultProcessor = "BezierSplineProcessor")]
-    public class BezierSplineImporter : ContentImporter<BezierSplineData>
+    [ContentImporter(".json", DisplayName = "Spline Importer - MonoGame.SplineFlower", DefaultProcessor = "SplineProcessor")]
+    public class SplineImporter : ContentImporter<SplineData>
     {
-        public override BezierSplineData Import(string filename, ContentImporterContext context)
+        public override SplineData Import(string filename, ContentImporterContext context)
         {
             using (var streamReader = new StreamReader(filename))
             {
@@ -21,7 +21,7 @@ namespace MonoGame.SplineFlower.Content.Pipeline
                     serializer.TypeNameHandling = TypeNameHandling.Auto;
                     serializer.Converters.Add(new StringEnumConverter());
 
-                    return serializer.Deserialize<BezierSplineData>(jsonReader);
+                    return serializer.Deserialize<SplineData>(jsonReader);
                 }
             }
         }

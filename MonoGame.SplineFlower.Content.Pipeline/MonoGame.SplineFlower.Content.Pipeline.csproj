@@ -55,10 +55,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BezierSplineImporter.cs" />
-    <Compile Include="BezierSplineProcessor.cs" />
-    <Compile Include="BezierSplineReader.cs" />
-    <Compile Include="BezierSplineWriter.cs" />
+    <Compile Include="SplineImporter.cs" />
+    <Compile Include="SplineProcessor.cs" />
+    <Compile Include="SplineReader.cs" />
+    <Compile Include="SplineWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

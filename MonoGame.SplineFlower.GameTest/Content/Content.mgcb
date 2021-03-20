@@ -65,3 +65,8 @@
 /processorParam:TextureFormat=Color
 /build:roadTexture.png
 
+#begin SplineTrack.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:SplineTrack.json
+

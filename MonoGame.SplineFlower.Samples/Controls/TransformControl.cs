@@ -137,12 +137,14 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void CenterSpline()
         {
+            if (GetSpline == null) return;
+
             if (UseWorldUnits)
             {
                 GetSpline.Position(ConvertUnits.ToSimUnits(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
                 GetSpline.PolygonStripeCreated = false;
             }
-            else if (GetSpline != null) GetSpline.Position(new Vector2(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
+            else GetSpline.Position(new Vector2(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
         }
     }
 }

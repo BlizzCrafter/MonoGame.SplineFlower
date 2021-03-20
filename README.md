@@ -57,6 +57,9 @@ This makes it possible to generate:
 #### Complex CatMulRomSplines
 ![CatMulRomSpline](doc/CatMulRom_0.gif)
 
+#### Complex CatMulRomSplines
+![HermiteSpline](doc/HermiteSplines.png)
+
 #### Polygon Stripe Splines
 ![PolygonStripe](doc/PolygonStripe.png)
 

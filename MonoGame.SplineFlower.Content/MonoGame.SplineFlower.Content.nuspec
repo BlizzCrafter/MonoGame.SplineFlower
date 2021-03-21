@@ -11,7 +11,7 @@
 	<license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Debug your splines with this package. Call Setup.Initialize(graphics.GraphicsDevice); to do that.</description>
-    <copyright>Copyright (c) 2019 Marcel Härtel, SandboxBlizz</copyright>
+    <copyright>Copyright (c) 2021 Marcel Härtel, SandboxBlizz</copyright>
     <tags>MonoGame WindowsForms Splines</tags>
 	<references>
 		<group targetFramework="net461">

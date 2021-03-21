@@ -8,7 +8,7 @@
 [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content-blue.svg?style=flat-square&logo=NuGet&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content)
 [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=flat-square&logo=NuGet&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content.Pipeline)
 
-Create wonderful smooth **BézierSplines** and **CatMulRomSplines** with **TriggerEvents** for your **MonoGame** project.
+Create wonderful smooth **Bézier-, CatMulRom- and Hermite-Splines** with **TriggerEvents** for your **MonoGame** project.
 
 ### Building
 

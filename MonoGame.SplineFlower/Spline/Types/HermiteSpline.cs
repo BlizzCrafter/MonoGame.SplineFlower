@@ -150,6 +150,13 @@ namespace MonoGame.SplineFlower.Spline.Types
             CreateTangents();
         }
 
+        public override void AddCurveRight()
+        {
+            base.AddCurveRight();
+
+            CreateTangents();
+        }
+
         public override void Reset()
         {
             base.Reset();

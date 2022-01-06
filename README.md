@@ -1,7 +1,7 @@
 ![Banner](Logos/Logo_Banner_800.png)
 
 # Welcome to MonoGame.SplineFlower!
-[![Twitter Follow](https://img.shields.io/twitter/follow/SandboxBlizz.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/SandboxBlizz)
+[![Twitter Follow](https://img.shields.io/twitter/follow/blizz_crafter.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/blizz_crafter)
 [![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
 
 [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=flat-square&logo=NuGet&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower)
@@ -148,6 +148,6 @@ You can do pretty much anything with splines. The limit is really just your imag
 ![CatMulRomSpline](doc/CatMulRom_1.gif)
 
 ### Now Have Fun with MonoGame.SplineFlower!
-[![Twitter Follow](https://img.shields.io/twitter/follow/SandboxBlizz.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/SandboxBlizz)
+[![Twitter Follow](https://img.shields.io/twitter/follow/blizz_crafter.svg?style=flat-square&label=Follow&logo=twitter)](https://twitter.com/blizz_crafter)
 
 ![Logo](Logos/Logo_Shadow_256.png)

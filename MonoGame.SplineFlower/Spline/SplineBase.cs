@@ -505,14 +505,22 @@ namespace MonoGame.SplineFlower.Spline
 
             if (distance > PointDistance)
             {
-                Vector2 direction = Vector2.Zero;
-                Functions.GetRotation(neighbour.Position, middlePoint.Position, ref direction);
-
-                Vector2 absoluteAccerleration = new Vector2(Math.Abs(Acceleration.X), Math.Abs(Acceleration.Y));
-                Vector2 acceleration = Vector2.Clamp(absoluteAccerleration / AccelerationDamping, AccelerationMin, AccelerationMax);
-
-                TranslateTransform(neighbour, direction * acceleration * gameTime.ElapsedGameTime.Milliseconds);
+                DoTranslation(middlePoint, neighbour, gameTime, false);
             }
+            else if (distance < PointDistance / 2f)
+            {
+                DoTranslation(middlePoint, neighbour, gameTime, true);
+            }
+        }
+        private void DoTranslation(Transform middlePoint, Transform neighbour, GameTime gameTime, bool inverseDirection)
+        {
+            Vector2 direction = Vector2.Zero;
+            Functions.GetRotation(neighbour.Position, middlePoint.Position, ref direction, inverseDirection);
+
+            Vector2 absoluteAccerleration = new Vector2(Math.Abs(Acceleration.X), Math.Abs(Acceleration.Y));
+            Vector2 acceleration = Vector2.Clamp(absoluteAccerleration / AccelerationDamping, AccelerationMin, AccelerationMax);
+
+            TranslateTransform(neighbour, direction * acceleration * gameTime.ElapsedGameTime.Milliseconds);
         }
 
         public Vector2 FindNearestPoint(Vector2 worldPos, float accuracy = 100f)

@@ -23,10 +23,20 @@ namespace MonoGame.SplineFlower.Spline
 
             _Trigger = new List<Trigger>();
 
+            CalculateIndex();
             CalculatePointModes();
             CalculateTransformNeighbours();
             CalculateSplineCenter(_Points);
         }
+
+        private void CalculateIndex()
+        {
+            for (int i = 0; i < _Points.Length; i++)
+            {
+                _Points[i].Index = i;
+            }
+        }
+
         private void CalculatePointModes()
         {
             int modCounter = 0, modCount = 1;
@@ -134,6 +144,8 @@ namespace MonoGame.SplineFlower.Spline
             get { return this is HermiteSpline; }
         }
 
+        public bool IsChain { get; private set; }
+
         public int CurveCount
         {
             get
@@ -187,6 +199,11 @@ namespace MonoGame.SplineFlower.Spline
                 }
             }
             EnforceMode(index);
+        }
+
+        public virtual void TranslateTransform(Transform point, Vector2 value)
+        {
+            if (point != null) point.Translate(value);
         }
 
         public virtual void TranslateSelectedTransform(Vector2 value)
@@ -441,6 +458,63 @@ namespace MonoGame.SplineFlower.Spline
             _Trigger = ordered;
         }
 
+        public Vector2 Acceleration { get; set; }
+        public Vector2 AccelerationMin { get; set; } = new Vector2(0.8f);
+        public Vector2 AccelerationMax { get; set; } = new Vector2(1f);
+        public float AccelerationDamping { get; set; } = 10f;
+        public float PointDistance { get; set; }
+
+        public void CreateChain(float pointDistance = 50, float pointSpeed = 1f)
+        {
+            IsChain = true;
+            PointDistance = pointDistance;
+            AccelerationMax = new Vector2(pointSpeed);
+        }
+
+        public void UpdateChain(GameTime gameTime, Transform startPoint = null)
+        {
+            Transform middlePoint;
+
+            if (startPoint == null) middlePoint = SelectedTransform;
+            else middlePoint = startPoint;
+
+            if (middlePoint != null && middlePoint.Left != null) UpdateNeighbourRecursiveLeft(ref middlePoint, middlePoint.Left, gameTime);
+            if (middlePoint != null && middlePoint.Right != null) UpdateNeighbourRecursiveRight(ref middlePoint, middlePoint.Right, gameTime);
+        }
+        private void UpdateNeighbourRecursiveLeft(ref Transform middlePoint, Transform neighbour, GameTime gameTime)
+        {
+            if (neighbour != null)
+            {
+                if (neighbour.Left != null) UpdateNeighbourRecursiveLeft(ref neighbour, neighbour.Left, gameTime);
+
+                UpdateNeighbour(ref middlePoint, neighbour, gameTime);
+            }
+        }
+        private void UpdateNeighbourRecursiveRight(ref Transform middlePoint, Transform neighbour, GameTime gameTime)
+        {
+            if (neighbour != null)
+            {
+                if (neighbour.Right != null) UpdateNeighbourRecursiveRight(ref neighbour, neighbour.Right, gameTime);
+
+                UpdateNeighbour(ref middlePoint, neighbour, gameTime);
+            }
+        }
+        private void UpdateNeighbour(ref Transform middlePoint, Transform neighbour, GameTime gameTime)
+        {
+            float distance = Vector2.Distance(middlePoint.Position, neighbour.Position);
+
+            if (distance > PointDistance)
+            {
+                Vector2 direction = Vector2.Zero;
+                Functions.GetRotation(neighbour.Position, middlePoint.Position, ref direction);
+
+                Vector2 absoluteAccerleration = new Vector2(Math.Abs(Acceleration.X), Math.Abs(Acceleration.Y));
+                Vector2 acceleration = Vector2.Clamp(absoluteAccerleration / AccelerationDamping, AccelerationMin, AccelerationMax);
+
+                TranslateTransform(neighbour, direction * acceleration * gameTime.ElapsedGameTime.Milliseconds);
+            }
+        }
+
         public Vector2 FindNearestPoint(Vector2 worldPos, float accuracy = 100f)
         {
             return FindNearestPoint(worldPos, out _, accuracy);
@@ -534,6 +608,7 @@ namespace MonoGame.SplineFlower.Spline
 
             _Trigger = new List<Trigger>();
 
+            CalculateIndex();
             CalculatePointModes();
             CalculateTransformNeighbours();
             CalculateSplineCenter(_Points);
@@ -675,8 +750,6 @@ namespace MonoGame.SplineFlower.Spline
                     float distance = 0, angle = 0;
                     for (int i = 0; i < _Points.Length; i++)
                     {
-                        _Points[i].Index = i;
-
                         if (i + 1 > _Points.Length - 1)
                         {
                             if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
@@ -687,7 +760,18 @@ namespace MonoGame.SplineFlower.Spline
                         angle = (float)Math.Atan2(_Points[i + 1].Position.Y - _Points[i].Position.Y, _Points[i + 1].Position.X - _Points[i].Position.X);
 
                         if (Setup.ShowLines) DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
-                        if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
+                        if (Setup.ShowPoints)
+                        {
+                            DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
+
+                            #region DEBUG
+                            //Transform.Size (clickable center)
+                            //DrawPoint(spriteBatch, _Points[i].Size.Center.ToVector2(), i, angle, Color.GreenYellow, Setup.PointThickness / 2f);
+
+                            //angle between points
+                            //DrawLine(spriteBatch, _Points[i].Position, angle, 20, Color.GreenYellow, 2f);
+                            #endregion
+                        }
                     }
                 }
 
@@ -913,6 +997,8 @@ namespace MonoGame.SplineFlower.Spline
             {
                 points[i] = new Transform(pointData[i].Position);
             }
+
+            CalculateIndex();
 
             return points;
         }

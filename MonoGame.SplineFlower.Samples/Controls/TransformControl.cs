@@ -107,29 +107,30 @@ namespace MonoGame.SplineFlower.Samples.Controls
             }
             else mouseLocation = new Vector2(e.Location.X, e.Location.Y);
 
-            int xDiff = TranslatePointFirstClick.X - (int)mouseLocation.X;
-            int yDiff = TranslatePointFirstClick.Y - (int)mouseLocation.Y;
+            GetSpline.Acceleration = new Vector2(
+                TranslatePointFirstClick.X - (int)mouseLocation.X,
+                TranslatePointFirstClick.Y - (int)mouseLocation.Y);
 
             if (TranslatePointClick || TranslateAllPointsClick)
             {
                 if (TranslatePointClick)
                 {
-                    GetSpline.TranslateSelectedTransform(new Vector2(-xDiff, -yDiff));
+                    GetSpline.TranslateSelectedTransform(new Vector2(-GetSpline.Acceleration.X, -GetSpline.Acceleration.Y));
                     if (!_ClickedOnTestTransform)
                     {
                         if (GetSpline.SelectedTransform != null)
                         {
-                            GetSpline.MoveAxis(GetSpline.SelectedTransform.Index, new Vector2(-xDiff, -yDiff));
+                            GetSpline.MoveAxis(GetSpline.SelectedTransform.Index, new Vector2(-GetSpline.Acceleration.X, -GetSpline.Acceleration.Y));
                         }
                         GetSpline.UpdateTriggerRotation();
                         GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints);
                     }
                 }
-                else if (TranslateAllPointsClick) GetSpline.TranslateAll(new Vector2(-xDiff, -yDiff));
+                else if (TranslateAllPointsClick) GetSpline.TranslateAll(new Vector2(-GetSpline.Acceleration.X, -GetSpline.Acceleration.Y));
             }
-            else if (RotatePointClick && !ScalePointClick) GetSpline.Rotate(yDiff);
-            else if (ScalePointClick && !RotatePointClick) GetSpline.Scale(yDiff);
-            else if (ScalePointClick && RotatePointClick) GetSpline.ScaleRotate(yDiff);
+            else if (RotatePointClick && !ScalePointClick) GetSpline.Rotate(GetSpline.Acceleration.Y);
+            else if (ScalePointClick && !RotatePointClick) GetSpline.Scale(GetSpline.Acceleration.Y);
+            else if (ScalePointClick && RotatePointClick) GetSpline.ScaleRotate(GetSpline.Acceleration.Y);
 
             TranslatePointFirstClick.X = (int)mouseLocation.X;
             TranslatePointFirstClick.Y = (int)mouseLocation.Y;

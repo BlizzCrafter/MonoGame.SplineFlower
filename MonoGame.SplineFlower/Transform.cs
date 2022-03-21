@@ -43,7 +43,7 @@ namespace MonoGame.SplineFlower
                 Setup.PointThickness);
         }
 
-        internal void Translate(Vector2 value)
+        public void Translate(Vector2 value)
         {
             Position += value;
             _Size.X += (int)value.X;

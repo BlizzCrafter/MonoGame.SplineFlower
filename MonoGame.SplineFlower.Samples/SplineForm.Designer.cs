@@ -51,6 +51,7 @@
             this.labelAddTension = new System.Windows.Forms.Label();
             this.hermiteSplineControl = new MonoGame.SplineFlower.Samples.Controls.HermiteSplineControl();
             this.tabPagePolygonSplineControl = new System.Windows.Forms.TabPage();
+            this.buttonPolygonHelp = new System.Windows.Forms.Button();
             this.checkBoxShowPoints = new System.Windows.Forms.CheckBox();
             this.checkBoxShowLines = new System.Windows.Forms.CheckBox();
             this.checkBoxDirectionVectors = new System.Windows.Forms.CheckBox();
@@ -70,7 +71,6 @@
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
-            this.buttonPolygonHelp = new System.Windows.Forms.Button();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
@@ -381,8 +381,20 @@
             this.tabPagePolygonSplineControl.Padding = new System.Windows.Forms.Padding(3);
             this.tabPagePolygonSplineControl.Size = new System.Drawing.Size(774, 524);
             this.tabPagePolygonSplineControl.TabIndex = 7;
-            this.tabPagePolygonSplineControl.Text = "PolygonSplineControl";
+            this.tabPagePolygonSplineControl.Text = "PolygonSpline";
             this.tabPagePolygonSplineControl.UseVisualStyleBackColor = true;
+            // 
+            // buttonPolygonHelp
+            // 
+            this.buttonPolygonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPolygonHelp.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPolygonHelp.Location = new System.Drawing.Point(737, 6);
+            this.buttonPolygonHelp.Name = "buttonPolygonHelp";
+            this.buttonPolygonHelp.Size = new System.Drawing.Size(31, 32);
+            this.buttonPolygonHelp.TabIndex = 5;
+            this.buttonPolygonHelp.Text = "?";
+            this.buttonPolygonHelp.UseVisualStyleBackColor = true;
+            this.buttonPolygonHelp.Click += new System.EventHandler(this.buttonPolygonHelp_Click);
             // 
             // checkBoxShowPoints
             // 
@@ -624,18 +636,6 @@
             this.richTextBoxLicense.TabIndex = 2;
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;
-            // 
-            // buttonPolygonHelp
-            // 
-            this.buttonPolygonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPolygonHelp.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPolygonHelp.Location = new System.Drawing.Point(737, 6);
-            this.buttonPolygonHelp.Name = "buttonPolygonHelp";
-            this.buttonPolygonHelp.Size = new System.Drawing.Size(31, 32);
-            this.buttonPolygonHelp.TabIndex = 5;
-            this.buttonPolygonHelp.Text = "?";
-            this.buttonPolygonHelp.UseVisualStyleBackColor = true;
-            this.buttonPolygonHelp.Click += new System.EventHandler(this.buttonPolygonHelp_Click);
             // 
             // SplineForm
             // 

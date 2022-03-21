@@ -24,6 +24,7 @@ namespace MonoGame.SplineFlower.Spline
             _Trigger = new List<Trigger>();
 
             CalculatePointModes();
+            CalculateTransformNeighbours();
             CalculateSplineCenter(_Points);
         }
         private void CalculatePointModes()
@@ -39,6 +40,33 @@ namespace MonoGame.SplineFlower.Spline
                 }
             }
             Array.Resize(ref _Modes, modCount);
+        }
+
+        private void CalculateTransformNeighbours()
+        {
+            for (int i = 0; i < _Points.Length; i++)
+            {
+                if (_Points[i].IsPoint)
+                {
+                    if (i - 1 < 0)
+                    {
+                        if (Loop)
+                        {
+                            _Points[i].Left = _Points[_Points.Length - 2];
+                        }
+                    }
+                    else _Points[i].Left = _Points[i - 1];
+
+                    if (i + 1 > _Points.Length - 1)
+                    {
+                        if (Loop)
+                        {
+                            _Points[i].Right = _Points[1];
+                        }
+                    }
+                    else _Points[i].Right = _Points[i + 1];
+                }
+            }
         }
 
         public enum ControlPointMode
@@ -86,6 +114,7 @@ namespace MonoGame.SplineFlower.Spline
                     _Modes[_Modes.Length - 1] = _Modes[0];
                     SetControlPoint(_Points.Length - 1, _Points[0]);
                 }
+                CalculateTransformNeighbours();
             }
         }
         private bool _Loop;
@@ -506,6 +535,7 @@ namespace MonoGame.SplineFlower.Spline
             _Trigger = new List<Trigger>();
 
             CalculatePointModes();
+            CalculateTransformNeighbours();
             CalculateSplineCenter(_Points);
         }
 

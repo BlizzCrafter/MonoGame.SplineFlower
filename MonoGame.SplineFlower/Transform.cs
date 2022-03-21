@@ -14,6 +14,15 @@ namespace MonoGame.SplineFlower
         }
         internal TransformType GetTransformType { get; set; }
 
+        /// <summary>
+        /// Reference of the Transform which is left from this Transform.
+        /// </summary>
+        public Transform Left { get; set; }
+        /// <summary>
+        /// Reference of the Transform which is right from this Transform.
+        /// </summary>
+        public Transform Right { get; set; }
+
         public Rectangle Size { get { return _Size; } }
         private Rectangle _Size = Rectangle.Empty;
 

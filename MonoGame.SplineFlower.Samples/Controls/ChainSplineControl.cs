@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.SplineFlower.Content;
 using MonoGame.SplineFlower.Spline.Types;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
@@ -30,7 +26,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 new Transform(new Vector2(0, 100))
             });
             MySpline.GetAllTangents.ToList().ForEach(x => x.Translate(new Vector2(0, 50)));
-            MySpline.Loop = false;
+            MySpline.Loop = true;
             GetSpline = MySpline;
 
             CenterSpline();
@@ -62,7 +58,24 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 Editor.spriteBatch.Begin();
 
-                if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySpline != null)
+                {
+                    MySpline.DrawSpline(Editor.spriteBatch);
+
+                    if (MySpline.SelectedTransform != null)
+                    {
+                        if (MySpline.SelectedTransform.Left != null)
+                        {
+                            Editor.spriteBatch.DrawString(Editor.Font, "LEFT", new Vector2(MySpline.SelectedTransform.Left.Position.X, MySpline.SelectedTransform.Left.Position.Y - MySpline.SelectedTransform.Left.Size.Height), Color.White);
+                        }
+
+                        if (MySpline.SelectedTransform.Right != null)
+                        {
+                            Editor.spriteBatch.DrawString(Editor.Font, "RIGHT", new Vector2(MySpline.SelectedTransform.Right.Position.X, MySpline.SelectedTransform.Right.Position.Y - MySpline.SelectedTransform.Right.Size.Height), Color.White);
+                        }
+                    }
+                }
+
                 Editor.spriteBatch.End();
 
                 Editor.EndAntialising();

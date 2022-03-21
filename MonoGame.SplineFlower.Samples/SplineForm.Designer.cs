@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineForm));
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
+            this.tabPageChainSpline = new System.Windows.Forms.TabPage();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
             this.comboBoxCenterTransformMode = new System.Windows.Forms.ComboBox();
             this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
@@ -71,7 +72,9 @@
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
+            this.chainSplineControl = new MonoGame.SplineFlower.Samples.Controls.ChainSplineControl();
             this.tabControlEditorTabs.SuspendLayout();
+            this.tabPageChainSpline.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
             this.tabPageHermiteSpline.SuspendLayout();
@@ -86,6 +89,7 @@
             // 
             // tabControlEditorTabs
             // 
+            this.tabControlEditorTabs.Controls.Add(this.tabPageChainSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPageBezierSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPageCatMulRom);
             this.tabControlEditorTabs.Controls.Add(this.tabPageHermiteSpline);
@@ -99,6 +103,16 @@
             this.tabControlEditorTabs.SelectedIndex = 0;
             this.tabControlEditorTabs.Size = new System.Drawing.Size(782, 553);
             this.tabControlEditorTabs.TabIndex = 2;
+            // 
+            // tabPageChainSpline
+            // 
+            this.tabPageChainSpline.Controls.Add(this.chainSplineControl);
+            this.tabPageChainSpline.Location = new System.Drawing.Point(4, 25);
+            this.tabPageChainSpline.Name = "tabPageChainSpline";
+            this.tabPageChainSpline.Size = new System.Drawing.Size(774, 524);
+            this.tabPageChainSpline.TabIndex = 9;
+            this.tabPageChainSpline.Text = "ChainSpline";
+            this.tabPageChainSpline.UseVisualStyleBackColor = true;
             // 
             // tabPageBezierSpline
             // 
@@ -637,6 +651,21 @@
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;
             // 
+            // chainSplineControl
+            // 
+            this.chainSplineControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(129)))), ((int)(((byte)(142)))));
+            this.chainSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chainSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chainSplineControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(182)))), ((int)(((byte)(105)))));
+            this.chainSplineControl.GetSpline = null;
+            this.chainSplineControl.Location = new System.Drawing.Point(0, 0);
+            this.chainSplineControl.MouseHoverUpdatesOnly = false;
+            this.chainSplineControl.Name = "chainSplineControl";
+            this.chainSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.chainSplineControl.Size = new System.Drawing.Size(774, 524);
+            this.chainSplineControl.TabIndex = 0;
+            this.chainSplineControl.Text = "Chain Spline";
+            // 
             // SplineForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -650,6 +679,7 @@
             this.ResizeEnd += new System.EventHandler(this.SplineEditorForm_ResizeEnd);
             this.Resize += new System.EventHandler(this.SplineEditorForm_Resize);
             this.tabControlEditorTabs.ResumeLayout(false);
+            this.tabPageChainSpline.ResumeLayout(false);
             this.tabPageBezierSpline.ResumeLayout(false);
             this.tabPageCatMulRom.ResumeLayout(false);
             this.tabPageHermiteSpline.ResumeLayout(false);
@@ -712,6 +742,8 @@
         private System.Windows.Forms.CheckBox checkBoxShowLines;
         private System.Windows.Forms.CheckBox checkBoxDirectionVectors;
         private System.Windows.Forms.Button buttonPolygonHelp;
+        private System.Windows.Forms.TabPage tabPageChainSpline;
+        private Controls.ChainSplineControl chainSplineControl;
     }
 }
 

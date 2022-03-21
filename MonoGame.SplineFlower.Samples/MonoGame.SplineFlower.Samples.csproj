@@ -75,6 +75,9 @@
     <Compile Include="Controls\CatMulRomSplineControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ChainSplineControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\FindNearestPointOnSplineControl.cs">
       <SubType>Component</SubType>
     </Compile>

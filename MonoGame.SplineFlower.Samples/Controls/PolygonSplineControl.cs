@@ -62,7 +62,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 Editor.spriteBatch.Begin(effect: Functions.GetBasicEffect);
 
-                if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySpline != null) MySpline.Draw(Editor.spriteBatch);
 
                 Editor.spriteBatch.End();
 

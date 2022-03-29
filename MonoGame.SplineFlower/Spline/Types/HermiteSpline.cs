@@ -174,9 +174,9 @@ namespace MonoGame.SplineFlower.Spline.Types
             CreateTangents();
         }
 
-        public override void DrawSpline(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.DrawSpline(spriteBatch);
+            base.Draw(spriteBatch);
 
             if (Setup.ShowTangents)
             {

@@ -109,7 +109,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 Editor.spriteBatch.Begin();
 
-                if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySpline != null) MySpline.Draw(Editor.spriteBatch);
                 if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
                 if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
 

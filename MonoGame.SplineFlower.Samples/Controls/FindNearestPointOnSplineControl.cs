@@ -88,7 +88,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 Editor.spriteBatch.Begin();
 
-                if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySpline != null) MySpline.Draw(Editor.spriteBatch);
 
                 Editor.spriteBatch.DrawCircle(_NearestPoint, Color.LightGreen);
                 Editor.spriteBatch.DrawPoint(TestTransform.Position, Color.LightGreen);

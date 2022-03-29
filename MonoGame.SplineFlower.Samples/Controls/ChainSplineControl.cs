@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using MonoGame.SplineFlower.Content;
+﻿using MonoGame.SplineFlower.Content;
 using MonoGame.SplineFlower.Spline.Types;
-using System.Linq;
 
 namespace MonoGame.SplineFlower.Samples.Controls
 {
@@ -17,19 +15,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Setup.ShowDirectionVectors = false;
             Setup.ShowLines = true;
             Setup.ShowPoints = true;
-            Setup.ShowTangents = true;
 
-            MySpline = new CatMulRomSpline(new Transform[] 
-            {
-                new Transform(new Vector2(0, 0)),
-                new Transform(new Vector2(100, 0)),
-                new Transform(new Vector2(100, 100)),
-                new Transform(new Vector2(0, 100))
-            });
+            MySpline = new CatMulRomSpline();
             MySpline.AddCurveLeft();
             MySpline.AddCurveRight();
-            //MySpline.GetAllTangents.ToList().ForEach(x => x.Translate(new Vector2(0, 50)));
-            MySpline.Loop = false;
             MySpline.CreateChain();
             GetSpline = MySpline;
 
@@ -47,13 +36,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
             if (MySpline != null) MySpline.CalculateSplineCenter(MySpline.GetAllPoints);
         }
 
-        protected override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            if (MySpline != null) MySpline.UpdateChain(gameTime);
-        }
-
         protected override void Draw()
         {
             base.Draw();
@@ -66,7 +48,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 if (MySpline != null)
                 {
-                    MySpline.DrawSpline(Editor.spriteBatch);
+                    MySpline.Draw(Editor.spriteBatch);
 
                     #region DEBUG
                     //if (MySpline.SelectedTransform != null)

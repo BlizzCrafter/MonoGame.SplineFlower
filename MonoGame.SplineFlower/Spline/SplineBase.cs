@@ -23,6 +23,11 @@ namespace MonoGame.SplineFlower.Spline
 
             _Trigger = new List<Trigger>();
 
+            RecalculateSpline();
+        }
+
+        private void RecalculateSpline()
+        {
             CalculateIndex();
             CalculatePointModes();
             CalculateTransformNeighbours();
@@ -469,37 +474,43 @@ namespace MonoGame.SplineFlower.Spline
             IsChain = true;
             PointDistance = pointDistance;
             AccelerationMax = new Vector2(pointSpeed);
+
+            SelectedTransform = _Points[0];
+            UpdateChain();
         }
 
-        public void UpdateChain(GameTime gameTime, Transform startPoint = null)
+        private void UpdateChain(GameTime gameTime = null)
         {
             Transform middlePoint;
 
-            if (startPoint == null) middlePoint = SelectedTransform;
-            else middlePoint = startPoint;
+            if (SelectedTransform != null)
+            {
+                if (SelectedTransform.IsPoint) middlePoint = SelectedTransform;
+                else middlePoint = _Points[0];
 
-            if (middlePoint != null && middlePoint.Left != null) UpdateNeighbourRecursiveLeft(ref middlePoint, middlePoint.Left, gameTime);
-            if (middlePoint != null && middlePoint.Right != null) UpdateNeighbourRecursiveRight(ref middlePoint, middlePoint.Right, gameTime);
+                if (middlePoint != null && middlePoint.Left != null) UpdateNeighbourRecursiveLeft(middlePoint, middlePoint.Left, gameTime);
+                if (middlePoint != null && middlePoint.Right != null) UpdateNeighbourRecursiveRight(middlePoint, middlePoint.Right, gameTime);
+            }
         }
-        private void UpdateNeighbourRecursiveLeft(ref Transform middlePoint, Transform neighbour, GameTime gameTime)
+        private void UpdateNeighbourRecursiveLeft(Transform middlePoint, Transform neighbour, GameTime gameTime)
         {
             if (neighbour != null)
             {
-                if (neighbour.Left != null) UpdateNeighbourRecursiveLeft(ref neighbour, neighbour.Left, gameTime);
+                if (neighbour.Left != null) UpdateNeighbourRecursiveLeft(neighbour, neighbour.Left, gameTime);
 
-                UpdateNeighbour(ref middlePoint, neighbour, gameTime);
+                UpdateNeighbour(middlePoint, neighbour, gameTime);
             }
         }
-        private void UpdateNeighbourRecursiveRight(ref Transform middlePoint, Transform neighbour, GameTime gameTime)
+        private void UpdateNeighbourRecursiveRight(Transform middlePoint, Transform neighbour, GameTime gameTime)
         {
             if (neighbour != null)
             {
-                if (neighbour.Right != null) UpdateNeighbourRecursiveRight(ref neighbour, neighbour.Right, gameTime);
+                if (neighbour.Right != null) UpdateNeighbourRecursiveRight(neighbour, neighbour.Right, gameTime);
 
-                UpdateNeighbour(ref middlePoint, neighbour, gameTime);
+                UpdateNeighbour(middlePoint, neighbour, gameTime);
             }
         }
-        private void UpdateNeighbour(ref Transform middlePoint, Transform neighbour, GameTime gameTime)
+        private void UpdateNeighbour(Transform middlePoint, Transform neighbour, GameTime gameTime)
         {
             float distance = Vector2.Distance(middlePoint.Position, neighbour.Position);
 
@@ -520,7 +531,8 @@ namespace MonoGame.SplineFlower.Spline
             Vector2 absoluteAccerleration = new Vector2(Math.Abs(Acceleration.X), Math.Abs(Acceleration.Y));
             Vector2 acceleration = Vector2.Clamp(absoluteAccerleration / AccelerationDamping, AccelerationMin, AccelerationMax);
 
-            TranslateTransform(neighbour, direction * acceleration * gameTime.ElapsedGameTime.Milliseconds);
+            if (gameTime != null) TranslateTransform(neighbour, direction * acceleration * gameTime.ElapsedGameTime.Milliseconds);
+            else TranslateTransform(neighbour, direction * acceleration);
         }
 
         public Vector2 FindNearestPoint(Vector2 worldPos, float accuracy = 100f)
@@ -576,7 +588,7 @@ namespace MonoGame.SplineFlower.Spline
                 EnforceMode(0);
             }
 
-            CalculateSplineCenter(_Points);
+            RecalculateSpline();
         }
         public virtual void AddCurveRight() 
         {
@@ -598,7 +610,7 @@ namespace MonoGame.SplineFlower.Spline
                 EnforceMode(0);
             }
 
-            CalculateSplineCenter(_Points);
+            RecalculateSpline();
         }
 
         public virtual void Reset()
@@ -616,10 +628,7 @@ namespace MonoGame.SplineFlower.Spline
 
             _Trigger = new List<Trigger>();
 
-            CalculateIndex();
-            CalculatePointModes();
-            CalculateTransformNeighbours();
-            CalculateSplineCenter(_Points);
+            RecalculateSpline();
         }
 
         public Texture2D PolygonStripeTexture
@@ -745,7 +754,12 @@ namespace MonoGame.SplineFlower.Spline
             }
         }
 
-        public virtual void DrawSpline(SpriteBatch spriteBatch)
+        public virtual void Update(GameTime gameTime)
+        {
+            if (IsChain) UpdateChain(gameTime);
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Setup.ShowSpline)
             {

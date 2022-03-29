@@ -147,5 +147,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
             }
             else GetSpline.Position(new Vector2(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
         }
+
+        protected override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (GetSpline != null) GetSpline.Update(gameTime);
+        }
     }
 }

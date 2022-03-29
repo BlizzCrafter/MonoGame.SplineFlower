@@ -8,8 +8,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class FindNearestPointControl : TransformControl
     {
-        public SplineBase MySpline;
-
         private Vector2 _NearestPoint = Vector2.Zero;
         private float _NearestPointSplinePosition = 0f;
         public float NearestPointAccuracy { get; set; } = Setup.SplineMarkerResolution;
@@ -17,14 +15,12 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public void CreateCatMulRomSpline()
         {
             MySpline = new CatMulRomSpline();
-            GetSpline = MySpline;
             CenterSpline();
         }
 
         public void CreateBezierSpline()
         {
             MySpline = new BezierSpline();
-            GetSpline = MySpline;
             CenterSpline();
         }
 
@@ -38,7 +34,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Setup.ShowPoints = true;
 
             MySpline = new BezierSpline();
-            GetSpline = MySpline;
 
             CenterSpline();
 
@@ -65,7 +60,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseMove(e);
 
-            if (GetSpline.SelectedTransform != null) MySpline.EnforceMode(GetSpline.SelectedTransform.Index);
+            if (MySpline.SelectedTransform != null) MySpline.EnforceMode(MySpline.SelectedTransform.Index);
         }
 
         protected override void Update(GameTime gameTime)

@@ -168,22 +168,22 @@ namespace MonoGame.SplineFlower.Samples
 
         private void buttonAddTension_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.AddTension();
+            ((HermiteSpline)hermiteSplineControl.MySpline).AddTension();
         }
 
         private void buttonSubstractTension_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.SubstractTension();
+            ((HermiteSpline)hermiteSplineControl.MySpline).SubstractTension();
         }
 
         private void buttonAddBias_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.AddBias();
+            ((HermiteSpline)hermiteSplineControl.MySpline).AddBias();
         }
 
         private void buttonSubstractBias_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.SubstractBias();
+            ((HermiteSpline)hermiteSplineControl.MySpline).SubstractBias();
         }
 
         private void checkBoxShowCurves_CheckedChanged(object sender, EventArgs e)

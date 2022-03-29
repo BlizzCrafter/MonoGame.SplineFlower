@@ -120,7 +120,7 @@
             this.chainSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chainSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chainSplineControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(182)))), ((int)(((byte)(105)))));
-            this.chainSplineControl.GetSpline = null;
+            this.chainSplineControl.MySpline = null;
             this.chainSplineControl.Location = new System.Drawing.Point(0, 0);
             this.chainSplineControl.MouseHoverUpdatesOnly = false;
             this.chainSplineControl.Name = "chainSplineControl";
@@ -234,7 +234,7 @@
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
-            this.splineControl.GetSpline = null;
+            this.splineControl.MySpline = null;
             this.splineControl.Location = new System.Drawing.Point(0, 0);
             this.splineControl.MouseHoverUpdatesOnly = false;
             this.splineControl.Name = "splineControl";
@@ -279,7 +279,7 @@
             this.catMulRomSpline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.catMulRomSpline.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
             this.catMulRomSpline.ForeColor = System.Drawing.Color.Orange;
-            this.catMulRomSpline.GetSpline = null;
+            this.catMulRomSpline.MySpline = null;
             this.catMulRomSpline.Location = new System.Drawing.Point(3, 3);
             this.catMulRomSpline.MouseHoverUpdatesOnly = false;
             this.catMulRomSpline.Name = "catMulRomSpline";
@@ -388,7 +388,7 @@
             this.hermiteSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hermiteSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
             this.hermiteSplineControl.ForeColor = System.Drawing.Color.LightSalmon;
-            this.hermiteSplineControl.GetSpline = null;
+            this.hermiteSplineControl.MySpline = null;
             this.hermiteSplineControl.Location = new System.Drawing.Point(0, 0);
             this.hermiteSplineControl.MouseHoverUpdatesOnly = false;
             this.hermiteSplineControl.Name = "hermiteSplineControl";
@@ -473,7 +473,7 @@
             // 
             this.polygonSplineControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.polygonSplineControl1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.polygonSplineControl1.GetSpline = null;
+            this.polygonSplineControl1.MySpline = null;
             this.polygonSplineControl1.Location = new System.Drawing.Point(3, 3);
             this.polygonSplineControl1.MouseHoverUpdatesOnly = false;
             this.polygonSplineControl1.Name = "polygonSplineControl1";
@@ -562,7 +562,7 @@
             this.findNearestPointControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.findNearestPointControl1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.findNearestPointControl1.ForeColor = System.Drawing.Color.CadetBlue;
-            this.findNearestPointControl1.GetSpline = null;
+            this.findNearestPointControl1.MySpline = null;
             this.findNearestPointControl1.Location = new System.Drawing.Point(3, 3);
             this.findNearestPointControl1.MouseHoverUpdatesOnly = false;
             this.findNearestPointControl1.Name = "findNearestPointControl1";
@@ -602,7 +602,7 @@
             this.advancedControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.advancedControls.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.advancedControls.ForeColor = System.Drawing.Color.GhostWhite;
-            this.advancedControls.GetSpline = null;
+            this.advancedControls.MySpline = null;
             this.advancedControls.Location = new System.Drawing.Point(3, 3);
             this.advancedControls.MouseHoverUpdatesOnly = false;
             this.advancedControls.Name = "advancedControls";

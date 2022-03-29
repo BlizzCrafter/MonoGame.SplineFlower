@@ -11,7 +11,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class AdvancedControl : TransformControl
     {
-        public SplineBase MySpline;
         public Tank MySplineWalker;
 
         protected override void Initialize()
@@ -25,8 +24,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             MySpline = Editor.Content.Load<SplineBase>("SplineTrack");
             //UpdateTriggerRotation() should be called after loading a spline with visual triggers to make sure they are rotated correctly on the spline
-            MySpline.UpdateTriggerRotation(); 
-            GetSpline = MySpline;
+            MySpline.UpdateTriggerRotation();
 
             MySplineWalker = new Tank();
             MySplineWalker.CreateSplineWalker(
@@ -65,10 +63,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (e.Button == MouseButtons.Right)
             {
-                if (GetSpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !GetSpline.SelectedTransform.IsCenter)
+                if (MySpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !MySpline.SelectedTransform.IsCenter)
                 {
-                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(GetSpline.SelectedTransform.Index).Next();
-                    MySpline.SetControlPointMode(GetSpline.SelectedTransform.Index, nextMode);
+                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(MySpline.SelectedTransform.Index).Next();
+                    MySpline.SetControlPointMode(MySpline.SelectedTransform.Index, nextMode);
                 }
             }
         }
@@ -77,7 +75,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseMove(e);
 
-            if (GetSpline.SelectedTransform != null) MySpline.EnforceMode(GetSpline.SelectedTransform.Index);
+            if (MySpline.SelectedTransform != null) MySpline.EnforceMode(MySpline.SelectedTransform.Index);
         }
 
         protected override void Update(GameTime gameTime)

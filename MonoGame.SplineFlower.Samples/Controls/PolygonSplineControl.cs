@@ -10,8 +10,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class PolygonSplineControl : TransformControl
     {
-        public SplineBase MySpline;
-
         protected override void Initialize()
         {
             base.Initialize();
@@ -25,8 +23,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             MySpline = Editor.Content.Load<SplineBase>("RaceTrack");
             MySpline.PolygonStripeTexture = Editor.Content.Load<Texture2D>("roadTexture");
-            MySpline.Loop = true;            
-            GetSpline = MySpline;
+            MySpline.Loop = true;
 
             CenterSpline();            
 
@@ -77,10 +74,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (e.Button == MouseButtons.Right)
             {
-                if (GetSpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !GetSpline.SelectedTransform.IsCenter)
+                if (MySpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !MySpline.SelectedTransform.IsCenter)
                 {
-                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(GetSpline.SelectedTransform.Index).Next();
-                    MySpline.SetControlPointMode(GetSpline.SelectedTransform.Index, nextMode);
+                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(MySpline.SelectedTransform.Index).Next();
+                    MySpline.SetControlPointMode(MySpline.SelectedTransform.Index, nextMode);
                 }
             }
         }
@@ -88,7 +85,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseMove(e);
 
-            if (GetSpline.SelectedTransform != null) MySpline.EnforceMode(GetSpline.SelectedTransform.Index);
+            if (MySpline.SelectedTransform != null) MySpline.EnforceMode(MySpline.SelectedTransform.Index);
         }
         private void PolygonSplineControl_OnMouseWheelUpwards(MouseEventArgs e)
         {

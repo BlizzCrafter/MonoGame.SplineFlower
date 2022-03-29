@@ -5,8 +5,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class ChainSplineControl : TransformControl
     {
-        public CatMulRomSpline MySpline;
-
         protected override void Initialize()
         {
             base.Initialize();
@@ -20,7 +18,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySpline.AddCurveLeft();
             MySpline.AddCurveRight();
             MySpline.CreateChain();
-            GetSpline = MySpline;
 
             CenterSpline();
 

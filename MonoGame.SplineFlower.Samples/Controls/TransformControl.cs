@@ -20,7 +20,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public CenterTransformMode SetCenterTransformMode { get; set; } = CenterTransformMode.ScaleRotate;
 
         [Browsable(false)]
-        public SplineBase GetSpline { get; set; }
+        public SplineBase MySpline { get; set; }
 
         private bool _ClickedOnTestTransform = false;
         protected bool ScalePointClick = false;
@@ -41,7 +41,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             TranslatePointClick = false;
             TranslateAllPointsClick = false;
 
-            GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints);
+            MySpline.CalculateSplineCenter(MySpline.GetAllPoints);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -61,9 +61,9 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 if (e.Button == MouseButtons.Left)
                 {
-                    if (GetSpline.SelectTransform(mouseLocation) != null)
+                    if (MySpline.SelectTransform(mouseLocation) != null)
                     {
-                        if (GetSpline.SelectedTransform != null && GetSpline.SelectedTransform.IsCenter)
+                        if (MySpline.SelectedTransform != null && MySpline.SelectedTransform.IsCenter)
                         {
                             if (SetCenterTransformMode == CenterTransformMode.Rotate) RotatePointClick = true;
                             else if (SetCenterTransformMode == CenterTransformMode.Scale) ScalePointClick = true;
@@ -78,13 +78,13 @@ namespace MonoGame.SplineFlower.Samples.Controls
                     }
                     else
                     {
-                        GetSpline.SelectTrigger(mouseLocation);
+                        MySpline.SelectTrigger(mouseLocation);
 
                         if (TestTransform != null)
                         {
                             if (TestTransform.Size.Contains(mouseLocation))
                             {
-                                GetSpline.SelectedTransform = TestTransform;
+                                MySpline.SelectedTransform = TestTransform;
                                 _ClickedOnTestTransform = true;
                                 TranslatePointClick = true;
                             }
@@ -107,7 +107,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             }
             else mouseLocation = new Vector2(e.Location.X, e.Location.Y);
 
-            GetSpline.Acceleration = new Vector2(
+            MySpline.Acceleration = new Vector2(
                 TranslatePointFirstClick.X - (int)mouseLocation.X,
                 TranslatePointFirstClick.Y - (int)mouseLocation.Y);
 
@@ -115,22 +115,22 @@ namespace MonoGame.SplineFlower.Samples.Controls
             {
                 if (TranslatePointClick)
                 {
-                    GetSpline.TranslateSelectedTransform(new Vector2(-GetSpline.Acceleration.X, -GetSpline.Acceleration.Y));
+                    MySpline.TranslateSelectedTransform(new Vector2(-MySpline.Acceleration.X, -MySpline.Acceleration.Y));
                     if (!_ClickedOnTestTransform)
                     {
-                        if (GetSpline.SelectedTransform != null)
+                        if (MySpline.SelectedTransform != null)
                         {
-                            GetSpline.MoveAxis(GetSpline.SelectedTransform.Index, new Vector2(-GetSpline.Acceleration.X, -GetSpline.Acceleration.Y));
+                            MySpline.MoveAxis(MySpline.SelectedTransform.Index, new Vector2(-MySpline.Acceleration.X, -MySpline.Acceleration.Y));
                         }
-                        GetSpline.UpdateTriggerRotation();
-                        GetSpline.CalculateSplineCenter(GetSpline.GetAllPoints);
+                        MySpline.UpdateTriggerRotation();
+                        MySpline.CalculateSplineCenter(MySpline.GetAllPoints);
                     }
                 }
-                else if (TranslateAllPointsClick) GetSpline.TranslateAll(new Vector2(-GetSpline.Acceleration.X, -GetSpline.Acceleration.Y));
+                else if (TranslateAllPointsClick) MySpline.TranslateAll(new Vector2(-MySpline.Acceleration.X, -MySpline.Acceleration.Y));
             }
-            else if (RotatePointClick && !ScalePointClick) GetSpline.Rotate(GetSpline.Acceleration.Y);
-            else if (ScalePointClick && !RotatePointClick) GetSpline.Scale(GetSpline.Acceleration.Y);
-            else if (ScalePointClick && RotatePointClick) GetSpline.ScaleRotate(GetSpline.Acceleration.Y);
+            else if (RotatePointClick && !ScalePointClick) MySpline.Rotate(MySpline.Acceleration.Y);
+            else if (ScalePointClick && !RotatePointClick) MySpline.Scale(MySpline.Acceleration.Y);
+            else if (ScalePointClick && RotatePointClick) MySpline.ScaleRotate(MySpline.Acceleration.Y);
 
             TranslatePointFirstClick.X = (int)mouseLocation.X;
             TranslatePointFirstClick.Y = (int)mouseLocation.Y;
@@ -138,21 +138,21 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
         public void CenterSpline()
         {
-            if (GetSpline == null) return;
+            if (MySpline == null) return;
 
             if (UseWorldUnits)
             {
-                GetSpline.Position(ConvertUnits.ToSimUnits(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
-                GetSpline.PolygonStripeCreated = false;
+                MySpline.Position(ConvertUnits.ToSimUnits(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
+                MySpline.PolygonStripeCreated = false;
             }
-            else GetSpline.Position(new Vector2(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
+            else MySpline.Position(new Vector2(Editor.graphics.Viewport.Width / 2, Editor.graphics.Viewport.Height / 2));
         }
 
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (GetSpline != null) GetSpline.Update(gameTime);
+            if (MySpline != null) MySpline.Update(gameTime);
         }
     }
 }

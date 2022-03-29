@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineForm));
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
             this.tabPageChainSpline = new System.Windows.Forms.TabPage();
+            this.chainSplineControl = new MonoGame.SplineFlower.Samples.Controls.ChainSplineControl();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
             this.comboBoxCenterTransformMode = new System.Windows.Forms.ComboBox();
             this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
@@ -72,7 +73,6 @@
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
             this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
-            this.chainSplineControl = new MonoGame.SplineFlower.Samples.Controls.ChainSplineControl();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageChainSpline.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
@@ -89,10 +89,10 @@
             // 
             // tabControlEditorTabs
             // 
-            this.tabControlEditorTabs.Controls.Add(this.tabPageChainSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPageBezierSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPageCatMulRom);
             this.tabControlEditorTabs.Controls.Add(this.tabPageHermiteSpline);
+            this.tabControlEditorTabs.Controls.Add(this.tabPageChainSpline);
             this.tabControlEditorTabs.Controls.Add(this.tabPagePolygonSplineControl);
             this.tabControlEditorTabs.Controls.Add(this.tabPageFindNearestPoint);
             this.tabControlEditorTabs.Controls.Add(this.tabPageAdvancedControls);
@@ -113,6 +113,21 @@
             this.tabPageChainSpline.TabIndex = 9;
             this.tabPageChainSpline.Text = "ChainSpline";
             this.tabPageChainSpline.UseVisualStyleBackColor = true;
+            // 
+            // chainSplineControl
+            // 
+            this.chainSplineControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(129)))), ((int)(((byte)(142)))));
+            this.chainSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chainSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chainSplineControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(182)))), ((int)(((byte)(105)))));
+            this.chainSplineControl.GetSpline = null;
+            this.chainSplineControl.Location = new System.Drawing.Point(0, 0);
+            this.chainSplineControl.MouseHoverUpdatesOnly = false;
+            this.chainSplineControl.Name = "chainSplineControl";
+            this.chainSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.chainSplineControl.Size = new System.Drawing.Size(774, 524);
+            this.chainSplineControl.TabIndex = 0;
+            this.chainSplineControl.Text = "Chain Spline";
             // 
             // tabPageBezierSpline
             // 
@@ -598,8 +613,8 @@
             // 
             // tabPageInfo
             // 
-            this.tabPageInfo.Controls.Add(this.statusStrip);
             this.tabPageInfo.Controls.Add(this.richTextBoxLicense);
+            this.tabPageInfo.Controls.Add(this.statusStrip);
             this.tabPageInfo.Location = new System.Drawing.Point(4, 25);
             this.tabPageInfo.Name = "tabPageInfo";
             this.tabPageInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -636,8 +651,8 @@
             this.toolStripDropDownButtonTwitter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonTwitter.Image")));
             this.toolStripDropDownButtonTwitter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButtonTwitter.Name = "toolStripDropDownButtonTwitter";
-            this.toolStripDropDownButtonTwitter.Size = new System.Drawing.Size(224, 36);
-            this.toolStripDropDownButtonTwitter.Text = "@SandboxBlizz";
+            this.toolStripDropDownButtonTwitter.Size = new System.Drawing.Size(204, 36);
+            this.toolStripDropDownButtonTwitter.Text = "@BlizzCrafter";
             this.toolStripDropDownButtonTwitter.Click += new System.EventHandler(this.toolStripDropDownButtonTwitter_Click);
             // 
             // richTextBoxLicense
@@ -646,25 +661,10 @@
             this.richTextBoxLicense.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxLicense.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxLicense.Name = "richTextBoxLicense";
-            this.richTextBoxLicense.Size = new System.Drawing.Size(768, 518);
+            this.richTextBoxLicense.Size = new System.Drawing.Size(768, 480);
             this.richTextBoxLicense.TabIndex = 2;
             this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
             this.richTextBoxLicense.ZoomFactor = 1.5F;
-            // 
-            // chainSplineControl
-            // 
-            this.chainSplineControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(129)))), ((int)(((byte)(142)))));
-            this.chainSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chainSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chainSplineControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(182)))), ((int)(((byte)(105)))));
-            this.chainSplineControl.GetSpline = null;
-            this.chainSplineControl.Location = new System.Drawing.Point(0, 0);
-            this.chainSplineControl.MouseHoverUpdatesOnly = false;
-            this.chainSplineControl.Name = "chainSplineControl";
-            this.chainSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.chainSplineControl.Size = new System.Drawing.Size(774, 524);
-            this.chainSplineControl.TabIndex = 0;
-            this.chainSplineControl.Text = "Chain Spline";
             // 
             // SplineForm
             // 

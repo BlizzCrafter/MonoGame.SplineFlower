@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MonoGame.SplineFlower.Samples")]
 [assembly: AssemblyDescription("Testing the MonoGame.SplineFlower PCL")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sandbox Blizz")]
+[assembly: AssemblyCompany("BlizzCrafter")]
 [assembly: AssemblyProduct("MonoGame.SplineFlower.Samples")]
-[assembly: AssemblyCopyright("Copyright © 2018-2020 Sandbox Blizz")]
+[assembly: AssemblyCopyright("Copyright © 2018-2022 BlizzCrafter")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.0.0")]
-[assembly: AssemblyFileVersion("1.4.0.0")]
+[assembly: AssemblyVersion("1.5.0.0")]
+[assembly: AssemblyFileVersion("1.5.0.0")]

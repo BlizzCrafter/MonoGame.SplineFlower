@@ -10,7 +10,7 @@ namespace MonoGame.SplineFlower.Samples
     {
         private void toolStripDropDownButtonTwitter_Click(object sender, EventArgs e)
         {
-            Process.Start("https://twitter.com/SandboxBlizz");
+            Process.Start("https://twitter.com/blizz_crafter");
         }
 
         private void toolStripDropDownButtonGitHub_Click(object sender, EventArgs e)

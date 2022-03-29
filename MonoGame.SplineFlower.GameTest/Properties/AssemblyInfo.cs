@@ -9,8 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("MonoGame.SplineFlower.GameTest")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("Sandbox Blizz")]
-[assembly: AssemblyCopyright("Copyright ©  2018-2020 Sandbox Blizz")]
+[assembly: AssemblyCompany("BlizzCrafter")]
+[assembly: AssemblyCopyright("Copyright ©  2018-2022 BlizzCrafter")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

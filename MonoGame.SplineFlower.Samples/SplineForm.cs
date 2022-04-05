@@ -10,7 +10,7 @@ namespace MonoGame.SplineFlower.Samples
     {
         private void toolStripDropDownButtonTwitter_Click(object sender, EventArgs e)
         {
-            Process.Start("https://twitter.com/SandboxBlizz");
+            Process.Start("https://twitter.com/blizz_crafter");
         }
 
         private void toolStripDropDownButtonGitHub_Click(object sender, EventArgs e)
@@ -158,7 +158,7 @@ namespace MonoGame.SplineFlower.Samples
 
         private void buttonHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Please edit the Initialization method of the AdvancedControls.cs file to experience all the new ipnut features!\n\nKeyboard Forward: W, D, Up, Right\nKeyboard Backward: S, A, Down, Left\n\nGamePad Forward: DPadUp, DPadRight, RightTrigger, LeftThumbstickUp LeftThumbstickRight\nGamePad Backward: DPadDown, DPadLeft, LeftTrigger, LeftThumbstickDown, LeftThumbstickLeft\n\nTop down vehicle © Copyright by irmirx @ opengameart.org CC-BY 3.0", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Please edit the Initialization method of the AdvancedControls.cs file to experience all the new ipnut features!\n\nKeyboard Forward: W, D, Up, Right\nKeyboard Backward: S, A, Down, Left\n\nGamePad Forward: DPadUp, DPadRight, RightTrigger, LeftThumbstickUp LeftThumbstickRight\nGamePad Backward: DPadDown, DPadLeft, LeftTrigger, LeftThumbstickDown, LeftThumbstickLeft", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonPolygonHelp_Click(object sender, EventArgs e)
@@ -168,22 +168,22 @@ namespace MonoGame.SplineFlower.Samples
 
         private void buttonAddTension_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.AddTension();
+            ((HermiteSpline)hermiteSplineControl.MySpline).AddTension();
         }
 
         private void buttonSubstractTension_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.SubstractTension();
+            ((HermiteSpline)hermiteSplineControl.MySpline).SubstractTension();
         }
 
         private void buttonAddBias_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.AddBias();
+            ((HermiteSpline)hermiteSplineControl.MySpline).AddBias();
         }
 
         private void buttonSubstractBias_Click(object sender, EventArgs e)
         {
-            hermiteSplineControl.MySpline.SubstractBias();
+            ((HermiteSpline)hermiteSplineControl.MySpline).SubstractBias();
         }
 
         private void checkBoxShowCurves_CheckedChanged(object sender, EventArgs e)

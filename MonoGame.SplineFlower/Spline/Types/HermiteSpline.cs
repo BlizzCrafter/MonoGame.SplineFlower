@@ -111,6 +111,16 @@ namespace MonoGame.SplineFlower.Spline.Types
                 ((TangentData)GetAllTangents[i].UserData).Tension, t);
         }
 
+        public override void TranslateTransform(Transform point, Vector2 value)
+        {
+            base.TranslateTransform(point, value);
+
+            if (point != null && point.IsPoint)
+            {
+                GetAllTangents.ToList().Find(x => x.Index == point.Index).Translate(value);
+            }
+        }
+
         public override void TranslateSelectedTransform(Vector2 value)
         {
             base.TranslateSelectedTransform(value);
@@ -164,16 +174,14 @@ namespace MonoGame.SplineFlower.Spline.Types
             CreateTangents();
         }
 
-        public override void DrawSpline(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            base.DrawSpline(spriteBatch);
+            base.Draw(spriteBatch);
 
             if (Setup.ShowTangents)
             {
                 for (int i = 0; i < GetAllTangents.Length; i++)
                 {
-                    GetAllTangents[i].Index = GetAllPoints[i].Index;
-
                     float distance = Vector2.Distance(GetAllTangents[i].Position, GetAllPoints[i].Position);
                     float angle = (float)Math.Atan2(GetAllPoints[i].Position.Y - GetAllTangents[i].Position.Y, GetAllPoints[i].Position.X - GetAllTangents[i].Position.X);
 

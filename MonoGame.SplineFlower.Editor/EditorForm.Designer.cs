@@ -329,7 +329,7 @@
             this.splineControl.BackColor = System.Drawing.Color.Yellow;
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splineControl.GetSpline = null;
+            this.splineControl.MySpline = null;
             this.splineControl.Location = new System.Drawing.Point(0, 54);
             this.splineControl.MouseHoverUpdatesOnly = false;
             this.splineControl.Name = "splineControl";

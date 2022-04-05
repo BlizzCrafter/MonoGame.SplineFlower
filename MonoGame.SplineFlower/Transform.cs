@@ -14,6 +14,15 @@ namespace MonoGame.SplineFlower
         }
         internal TransformType GetTransformType { get; set; }
 
+        /// <summary>
+        /// Reference of the Transform which is left from this Transform.
+        /// </summary>
+        public Transform Left { get; set; }
+        /// <summary>
+        /// Reference of the Transform which is right from this Transform.
+        /// </summary>
+        public Transform Right { get; set; }
+
         public Rectangle Size { get { return _Size; } }
         private Rectangle _Size = Rectangle.Empty;
 
@@ -43,11 +52,11 @@ namespace MonoGame.SplineFlower
                 Setup.PointThickness);
         }
 
-        internal void Translate(Vector2 value)
+        public void Translate(Vector2 value)
         {
             Position += value;
-            _Size.X += (int)value.X;
-            _Size.Y += (int)value.Y;
+            _Size.X = (int)Position.X - (Setup.PointThickness / 2);
+            _Size.Y = (int)Position.Y - (Setup.PointThickness / 2);
         }
 
         internal bool TryGetPosition(Vector2 position)

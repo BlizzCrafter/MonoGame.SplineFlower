@@ -23,9 +23,25 @@ namespace MonoGame.SplineFlower.Spline
 
             _Trigger = new List<Trigger>();
 
+            RecalculateSpline();
+        }
+
+        private void RecalculateSpline()
+        {
+            CalculateIndex();
             CalculatePointModes();
+            CalculateTransformNeighbours();
             CalculateSplineCenter(_Points);
         }
+
+        private void CalculateIndex()
+        {
+            for (int i = 0; i < _Points.Length; i++)
+            {
+                _Points[i].Index = i;
+            }
+        }
+
         private void CalculatePointModes()
         {
             int modCounter = 0, modCount = 1;
@@ -39,6 +55,33 @@ namespace MonoGame.SplineFlower.Spline
                 }
             }
             Array.Resize(ref _Modes, modCount);
+        }
+
+        private void CalculateTransformNeighbours()
+        {
+            for (int i = 0; i < _Points.Length; i++)
+            {
+                if (_Points[i].IsPoint)
+                {
+                    if (i - 1 < 0)
+                    {
+                        if (Loop)
+                        {
+                            _Points[i].Left = _Points[_Points.Length - 2];
+                        }
+                    }
+                    else _Points[i].Left = _Points[i - 1];
+
+                    if (i + 1 > _Points.Length - 1)
+                    {
+                        if (Loop)
+                        {
+                            _Points[i].Right = _Points[1];
+                        }
+                    }
+                    else _Points[i].Right = _Points[i + 1];
+                }
+            }
         }
 
         public enum ControlPointMode
@@ -86,6 +129,7 @@ namespace MonoGame.SplineFlower.Spline
                     _Modes[_Modes.Length - 1] = _Modes[0];
                     SetControlPoint(_Points.Length - 1, _Points[0]);
                 }
+                CalculateTransformNeighbours();
             }
         }
         private bool _Loop;
@@ -104,6 +148,8 @@ namespace MonoGame.SplineFlower.Spline
         {
             get { return this is HermiteSpline; }
         }
+
+        public bool IsChain { get; private set; }
 
         public int CurveCount
         {
@@ -158,6 +204,11 @@ namespace MonoGame.SplineFlower.Spline
                 }
             }
             EnforceMode(index);
+        }
+
+        public virtual void TranslateTransform(Transform point, Vector2 value)
+        {
+            if (point != null) point.Translate(value);
         }
 
         public virtual void TranslateSelectedTransform(Vector2 value)
@@ -412,6 +463,78 @@ namespace MonoGame.SplineFlower.Spline
             _Trigger = ordered;
         }
 
+        public Vector2 Acceleration { get; set; }
+        public Vector2 AccelerationMin { get; set; } = new Vector2(0.8f);
+        public Vector2 AccelerationMax { get; set; } = new Vector2(1f);
+        public float AccelerationDamping { get; set; } = 10f;
+        public float PointDistance { get; set; }
+
+        public void CreateChain(float pointDistance = 50, float pointSpeed = 1f)
+        {
+            IsChain = true;
+            PointDistance = pointDistance;
+            AccelerationMax = new Vector2(pointSpeed);
+
+            SelectedTransform = _Points[0];
+            UpdateChain();
+        }
+
+        private void UpdateChain(GameTime gameTime = null)
+        {
+            Transform middlePoint;
+
+            if (SelectedTransform != null)
+            {
+                if (SelectedTransform.IsPoint) middlePoint = SelectedTransform;
+                else middlePoint = _Points[0];
+
+                if (middlePoint != null && middlePoint.Left != null) UpdateNeighbourRecursiveLeft(middlePoint, middlePoint.Left, gameTime);
+                if (middlePoint != null && middlePoint.Right != null) UpdateNeighbourRecursiveRight(middlePoint, middlePoint.Right, gameTime);
+            }
+        }
+        private void UpdateNeighbourRecursiveLeft(Transform middlePoint, Transform neighbour, GameTime gameTime)
+        {
+            if (neighbour != null)
+            {
+                if (neighbour.Left != null) UpdateNeighbourRecursiveLeft(neighbour, neighbour.Left, gameTime);
+
+                UpdateNeighbour(middlePoint, neighbour, gameTime);
+            }
+        }
+        private void UpdateNeighbourRecursiveRight(Transform middlePoint, Transform neighbour, GameTime gameTime)
+        {
+            if (neighbour != null)
+            {
+                if (neighbour.Right != null) UpdateNeighbourRecursiveRight(neighbour, neighbour.Right, gameTime);
+
+                UpdateNeighbour(middlePoint, neighbour, gameTime);
+            }
+        }
+        private void UpdateNeighbour(Transform middlePoint, Transform neighbour, GameTime gameTime)
+        {
+            float distance = Vector2.Distance(middlePoint.Position, neighbour.Position);
+
+            if (distance > PointDistance)
+            {
+                DoTranslation(middlePoint, neighbour, gameTime, false);
+            }
+            else if (distance < PointDistance / 2f)
+            {
+                DoTranslation(middlePoint, neighbour, gameTime, true);
+            }
+        }
+        private void DoTranslation(Transform middlePoint, Transform neighbour, GameTime gameTime, bool inverseDirection)
+        {
+            Vector2 direction = Vector2.Zero;
+            Functions.GetRotation(neighbour.Position, middlePoint.Position, ref direction, inverseDirection);
+
+            Vector2 absoluteAccerleration = new Vector2(Math.Abs(Acceleration.X), Math.Abs(Acceleration.Y));
+            Vector2 acceleration = Vector2.Clamp(absoluteAccerleration / AccelerationDamping, AccelerationMin, AccelerationMax);
+
+            if (gameTime != null) TranslateTransform(neighbour, direction * acceleration * gameTime.ElapsedGameTime.Milliseconds);
+            else TranslateTransform(neighbour, direction * acceleration);
+        }
+
         public Vector2 FindNearestPoint(Vector2 worldPos, float accuracy = 100f)
         {
             return FindNearestPoint(worldPos, out _, accuracy);
@@ -465,7 +588,7 @@ namespace MonoGame.SplineFlower.Spline
                 EnforceMode(0);
             }
 
-            CalculateSplineCenter(_Points);
+            RecalculateSpline();
         }
         public virtual void AddCurveRight() 
         {
@@ -487,7 +610,7 @@ namespace MonoGame.SplineFlower.Spline
                 EnforceMode(0);
             }
 
-            CalculateSplineCenter(_Points);
+            RecalculateSpline();
         }
 
         public virtual void Reset()
@@ -505,8 +628,7 @@ namespace MonoGame.SplineFlower.Spline
 
             _Trigger = new List<Trigger>();
 
-            CalculatePointModes();
-            CalculateSplineCenter(_Points);
+            RecalculateSpline();
         }
 
         public Texture2D PolygonStripeTexture
@@ -632,7 +754,12 @@ namespace MonoGame.SplineFlower.Spline
             }
         }
 
-        public virtual void DrawSpline(SpriteBatch spriteBatch)
+        public virtual void Update(GameTime gameTime)
+        {
+            if (IsChain) UpdateChain(gameTime);
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Setup.ShowSpline)
             {
@@ -642,22 +769,37 @@ namespace MonoGame.SplineFlower.Spline
 
                 if (Setup.ShowBaseLine)
                 {
-                    float distance = 0, angle = 0;
                     for (int i = 0; i < _Points.Length; i++)
                     {
-                        _Points[i].Index = i;
-
-                        if (i + 1 > _Points.Length - 1)
+                        if (i < _Points.Length - 1)
                         {
-                            if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
-                            break;
+                            if (Setup.ShowLines) DrawLine(spriteBatch, _Points[i].Position, _Points[i + 1].Position, Setup.BaseLineColor, Setup.BaseLineThickness);
                         }
 
-                        distance = Vector2.Distance(_Points[i].Position, _Points[i + 1].Position);
-                        angle = (float)Math.Atan2(_Points[i + 1].Position.Y - _Points[i].Position.Y, _Points[i + 1].Position.X - _Points[i].Position.X);
+                        if (i == 0)
+                        {
+                            if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, 0, Setup.StartPointColor, Setup.StartPointThickness);
+                        }
+                        else if (i + 1 > _Points.Length - 1)
+                        {
+                            if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, 0, Setup.EndPointColor, Setup.EndPointThickness);
+                            break;
+                        }
+                        else
+                        {
+                            if (Setup.ShowPoints)
+                            {
+                                DrawPoint(spriteBatch, _Points[i].Position, i, 0, null);
 
-                        if (Setup.ShowLines) DrawLine(spriteBatch, _Points[i].Position, angle, distance, Setup.BaseLineColor, Setup.BaseLineThickness);
-                        if (Setup.ShowPoints) DrawPoint(spriteBatch, _Points[i].Position, i, angle, null);
+                                #region DEBUG
+                                //Transform.Size (clickable center)
+                                //DrawPoint(spriteBatch, _Points[i].Size.Center.ToVector2(), i, angle, Color.GreenYellow, Setup.PointThickness / 2f);
+
+                                //angle between points
+                                //DrawLine(spriteBatch, _Points[i].Position, angle, 20, Color.GreenYellow, 2f);
+                                #endregion}
+                            }
+                        }
                     }
                 }
 
@@ -671,17 +813,14 @@ namespace MonoGame.SplineFlower.Spline
                         {
                             Vector2 pos = GetPoint(t);
 
-                            float distanceStep = Vector2.Distance(pos, lastPos);
-                            float angleStep = (float)Math.Atan2(lastPos.Y - pos.Y, lastPos.X - pos.X);
-
-                            DrawLine(spriteBatch, lastPos, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+                            DrawLine(spriteBatch, pos, lastPos, Setup.CurveLineColor, Setup.CurveLineThickness);
 
                             if (Setup.ShowDirectionVectors)
                             {
                                 if ((int)Math.Round(t * Setup.SplineMarkerResolution, 0) % (Setup.LineSteps / 4f) == 0)
                                 {
-                                    DrawLine(spriteBatch, lastPos + GetDirection(t).Normal(), angleStep + MathHelper.ToRadians(180),
-                                        Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
+                                    DrawLine(spriteBatch, pos + GetDirection(t).Normal(), lastPos, 
+                                        Setup.DirectionLineColor, Setup.DirectionLineThickness, true);
                                 }
                             }
 
@@ -694,17 +833,14 @@ namespace MonoGame.SplineFlower.Spline
                         {
                             Vector2 pos = GetPoint(t);
 
-                            float distanceStep = Vector2.Distance(pos, lastPos);
-                            float angleStep = (float)Math.Atan2(lastPos.Y - pos.Y, lastPos.X - pos.X);
-
-                            DrawLine(spriteBatch, lastPos, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+                            DrawLine(spriteBatch, pos, lastPos, Setup.CurveLineColor, Setup.CurveLineThickness);
 
                             if (Setup.ShowDirectionVectors)
                             {
                                 if ((int)Math.Round(t * Setup.SplineMarkerResolution, 0) % Setup.LineSteps == 0)
                                 {
-                                    DrawLine(spriteBatch, lastPos + GetDirection(t).Normal(), angleStep + MathHelper.ToRadians(180),
-                                        Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
+                                    DrawLine(spriteBatch, pos + GetDirection(t).Normal(), lastPos, 
+                                        Setup.DirectionLineColor, Setup.DirectionLineThickness, true);
                                 }
                             }
 
@@ -720,15 +856,12 @@ namespace MonoGame.SplineFlower.Spline
                             {
                                 Vector2 lineEnd = GetPoint(i / (float)Setup.LineSteps);
 
-                                float distanceStep = Vector2.Distance(lineStart, lineEnd);
-                                float angleStep = (float)Math.Atan2(lineEnd.Y - lineStart.Y, lineEnd.X - lineStart.X);
-
-                                DrawLine(spriteBatch, lineStart, angleStep, distanceStep, Setup.CurveLineColor, Setup.CurveLineThickness);
+                                DrawLine(spriteBatch, lineStart, lineEnd, Setup.CurveLineColor, Setup.CurveLineThickness);
 
                                 if (Setup.ShowDirectionVectors)
                                 {
-                                    DrawLine(spriteBatch, lineEnd + GetDirection(i / (float)Setup.LineSteps).Normal(), angleStep,
-                                        Setup.DirectionLineLength, Setup.DirectionLineColor, Setup.DirectionLineThickness);
+                                    DrawLine(spriteBatch, lineStart + GetDirection(i / (float)Setup.LineSteps).Normal(), lineEnd,
+                                        Setup.DirectionLineColor, Setup.DirectionLineThickness, true);
                                 }
 
                                 lineStart = lineEnd;
@@ -760,6 +893,13 @@ namespace MonoGame.SplineFlower.Spline
             }
         }
 
+        protected void DrawLine(SpriteBatch spriteBatch, Vector2 position, Vector2 lastPosition, Color color, float thickness, bool directionLine = false)
+        {
+            float distance = (directionLine ? Setup.DirectionLineLength : Vector2.Distance(position, lastPosition));
+            float angle = (float)Math.Atan2(lastPosition.Y - position.Y, lastPosition.X - position.X);
+
+            DrawLine(spriteBatch, position, angle + (directionLine ? MathHelper.ToRadians(180) : 0), distance, color, thickness);
+        }
         protected void DrawLine(SpriteBatch spriteBatch, Vector2 position, float angle, float distance, Color color, float thickness)
         {
             spriteBatch.Draw(Setup.Pixel,
@@ -778,10 +918,10 @@ namespace MonoGame.SplineFlower.Spline
             spriteBatch.Draw(Setup.Pixel,
                              position,
                              null,
-                             color ?? (index == 0 ? Setup.StartPointColor : _ModeColors[(int)GetControlPointMode(index)]),
+                             color ?? _ModeColors[(int)GetControlPointMode(index)],
                              angle,
                              new Vector2(0.5f),
-                             thickness > 0f ? thickness : Setup.PointThickness * (index == 0 ? Setup.StartPointThickness : 1f),
+                             thickness > 0f ? thickness : Setup.PointThickness,
                              SpriteEffects.None,
                              0f);
         }
@@ -883,6 +1023,8 @@ namespace MonoGame.SplineFlower.Spline
             {
                 points[i] = new Transform(pointData[i].Position);
             }
+
+            CalculateIndex();
 
             return points;
         }

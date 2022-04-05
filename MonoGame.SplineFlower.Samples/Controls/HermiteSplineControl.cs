@@ -8,7 +8,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class HermiteSplineControl : TransformControl
     {
-        public HermiteSpline MySpline;
         public Car MySplineWalker;
         public Marker MySplineMarker;
 
@@ -23,17 +22,18 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Setup.ShowLines = true;
             Setup.ShowPoints = true;
 
-            MySpline = new HermiteSpline();
-            //Custom ctr-Test
-            //MySpline = new HermitSpline(new Transform[] {
-            //    new Transform(new Vector2(0, 0)),
-            //    new Transform(new Vector2(250, 0)),
-            //    new Transform(new Vector2(0, 250))
-            //});
-            MySpline.Loop = false;
-            MySpline.TangentSelected += MySpline_TangentSelected;
-            MySpline.TangentDeselected += MySpline_TangentDeselected;
-            GetSpline = MySpline;
+            MySpline = new HermiteSpline
+            {
+                //Custom ctr-Test
+                //MySpline = new HermitSpline(new Transform[] {
+                //    new Transform(new Vector2(0, 0)),
+                //    new Transform(new Vector2(250, 0)),
+                //    new Transform(new Vector2(0, 250))
+                //});
+                Loop = false
+            };
+            ((HermiteSpline)MySpline).TangentSelected += MySpline_TangentSelected;
+            ((HermiteSpline)MySpline).TangentDeselected += MySpline_TangentDeselected;
 
             CenterSpline();
 
@@ -73,10 +73,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (e.Button == MouseButtons.Right)
             {
-                if (GetSpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !GetSpline.SelectedTransform.IsCenter)
+                if (MySpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !MySpline.SelectedTransform.IsCenter)
                 {
-                    ControlPointMode nextMode = MySpline.GetControlPointMode(GetSpline.SelectedTransform.Index).Next();
-                    MySpline.SetControlPointMode(GetSpline.SelectedTransform.Index, nextMode);
+                    ControlPointMode nextMode = MySpline.GetControlPointMode(MySpline.SelectedTransform.Index).Next();
+                    MySpline.SetControlPointMode(MySpline.SelectedTransform.Index, nextMode);
                 }
             }
         }
@@ -85,7 +85,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseMove(e);
 
-            if (GetSpline.SelectedTransform != null) MySpline.EnforceMode(GetSpline.SelectedTransform.Index);
+            if (MySpline.SelectedTransform != null) MySpline.EnforceMode(MySpline.SelectedTransform.Index);
         }
 
         protected override void Update(GameTime gameTime)
@@ -106,7 +106,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 Editor.spriteBatch.Begin();
 
-                if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySpline != null) MySpline.Draw(Editor.spriteBatch);
                 if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
                 if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
 
@@ -132,8 +132,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (MySpline != null)
             {
-                MySpline.TangentSelected -= MySpline_TangentSelected;
-                MySpline.TangentDeselected -= MySpline_TangentDeselected;
+                ((HermiteSpline)MySpline).TangentSelected -= MySpline_TangentSelected;
+                ((HermiteSpline)MySpline).TangentDeselected -= MySpline_TangentDeselected;
             }
         }
     }

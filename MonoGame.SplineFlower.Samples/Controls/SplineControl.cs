@@ -8,7 +8,6 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class SplineControl : TransformControl
     {
-        public SplineBase MySpline;
         public Car MySplineWalker;
         public Marker MySplineMarker;
 
@@ -34,19 +33,16 @@ namespace MonoGame.SplineFlower.Samples.Controls
         public void CreateBezierSpline()
         {
             MySpline = new BezierSpline();
-            GetSpline = MySpline;
             CreateSplineWalkerAndSplineMarker();
         }
         public void CreateCatMulRomSpline()
         {
             MySpline = new CatMulRomSpline();
-            GetSpline = MySpline;
             CreateSplineWalkerAndSplineMarker();
         }
         public void CreateHermiteSpline()
         {
             MySpline = new HermiteSpline();
-            GetSpline = MySpline;
             CreateSplineWalkerAndSplineMarker();
         }
         public void CreateSplineWalkerAndSplineMarker()
@@ -76,10 +72,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
             
             if (e.Button == MouseButtons.Right)
             {
-                if (GetSpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !GetSpline.SelectedTransform.IsCenter)
+                if (MySpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !base.MySpline.SelectedTransform.IsCenter)
                 {
-                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(GetSpline.SelectedTransform.Index).Next();
-                    MySpline.SetControlPointMode(GetSpline.SelectedTransform.Index, nextMode);
+                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(base.MySpline.SelectedTransform.Index).Next();
+                    MySpline.SetControlPointMode(base.MySpline.SelectedTransform.Index, nextMode);
                 }
             }
         }
@@ -88,7 +84,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.OnMouseMove(e);
 
-            if (GetSpline.SelectedTransform != null) MySpline.EnforceMode(GetSpline.SelectedTransform.Index);
+            if (MySpline.SelectedTransform != null) MySpline.EnforceMode(MySpline.SelectedTransform.Index);
         }
 
         protected override void Update(GameTime gameTime)
@@ -109,7 +105,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
                 Editor.spriteBatch.Begin();
 
-                if (MySpline != null) MySpline.DrawSpline(Editor.spriteBatch);
+                if (MySpline != null) MySpline.Draw(Editor.spriteBatch);
                 if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
                 if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
 

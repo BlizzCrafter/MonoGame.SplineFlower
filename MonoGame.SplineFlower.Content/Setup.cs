@@ -31,19 +31,18 @@ namespace MonoGame.SplineFlower.Content
         public static float DirectionLineLength { get; set; } = 50f;
         public static bool ShowDirectionVectors { get; set; } = true;
 
+        public static Color PointColor { get; set; } = Color.Red;
+        public static int PointThickness { get; set; } = 10;
         public static Color StartPointColor { get; set; } = Color.White;
-        public static float StartPointThickness { get; set; } = 1.3f;
+        public static int StartPointThickness { get; set; } = 14;
         public static Color EndPointColor { get; set; } = Color.Black;
-        public static float EndPointThickness { get; set; } = 1.3f;
+        public static int EndPointThickness { get; set; } = 14;
 
         public static Color TriggerEventColor { get; set; } = Color.Magenta;
         public static float TriggerEventThickness { get; set; } = 1f;
         public static bool ShowTriggers { get; set; } = true;
 
         public static bool ShowTangents { get; set; } = true;
-
-        public static Color PointColor { get; set; } = Color.Red;
-        public static int PointThickness { get; set; } = 10;
 
         public static Color CenterSplineColor { get; set; } = new Color(237, 188, 100, 225);
         public static int CenterSplineIndex { get; } = -999999;

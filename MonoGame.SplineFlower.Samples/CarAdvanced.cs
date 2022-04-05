@@ -1,27 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.SplineFlower.Spline;
-using System;
 
 namespace MonoGame.SplineFlower.Samples
 {
-    public class Tank : SplineWalker
+    public class CarAdvanced : SplineWalker
     {
+        private Texture2D _Car;
         private Texture2D _BeamRed, _BeamGreen;
-        private Texture2D _TankBottom, _Tank_Middle, _TankTop;
-
-        private float GunRotation = 0f, CurrentRotation = 0f;
 
         public void LoadContent(ContentManager Content)
         {
+            _Car = Content.Load<Texture2D>(@"car");
             _BeamRed = Content.Load<Texture2D>(@"Beam_Red");
             _BeamGreen = Content.Load<Texture2D>(@"Beam_Green");
-
-            _TankBottom = Content.Load<Texture2D>(@"Tank_Bottom");
-            _Tank_Middle = Content.Load<Texture2D>(@"Tank_Middle");
-            _TankTop = Content.Load<Texture2D>(@"Tank_Top");
         }
 
         public override void CreateSplineWalker(SplineBase spline, SplineWalkerMode mode, int duration, bool canTriggerEvents = true, SplineWalkerTriggerDirection triggerDirection = SplineWalkerTriggerDirection.Forward, bool autoStart = true)
@@ -59,55 +52,19 @@ namespace MonoGame.SplineFlower.Samples
             base.EventTriggered(obj);
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            Vector2 angleVector = new Vector2(
-                GamePad.GetState(PlayerIndex.One, GamePadDeadZone.Circular).ThumbSticks.Right.X,
-                -GamePad.GetState(PlayerIndex.One, GamePadDeadZone.Circular).ThumbSticks.Right.Y);
-
-            GunRotation = (float)Math.Atan2(angleVector.X, -angleVector.Y);
-
-            if (Math.Abs(GunRotation) > 0)
-            {
-                CurrentRotation = GunRotation;
-            }
-        }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
 
-            spriteBatch.Draw(_TankBottom,
-                                 Position,
-                                 null,
-                                 Color.White,
-                                 Rotation,
-                                 new Vector2(_TankBottom.Width / 2, _TankBottom.Height / 2),
-                                 0.1f,
-                                 SpriteEffects.None,
-                                 0f);
-
-            spriteBatch.Draw(_Tank_Middle,
-                                 Position,
-                                 null,
-                                 Color.White,
-                                 Rotation,
-                                 new Vector2(_Tank_Middle.Width / 2, _Tank_Middle.Height / 2),
-                                 0.1f,
-                                 SpriteEffects.None,
-                                 0f);
-
-            spriteBatch.Draw(_TankTop,
-                                 Position,
-                                 null,
-                                 Color.White,
-                                 CurrentRotation,
-                                 new Vector2(_TankTop.Width / 2, (_TankTop.Height / 2) + 100),
-                                 0.1f,
-                                 SpriteEffects.None,
-                                 0f);
+            spriteBatch.Draw(_Car,
+                             Position,
+                             null,
+                             Color.White,
+                             Rotation,
+                             new Vector2(_Car.Width / 2, _Car.Height / 2),
+                             0.1f,
+                             SpriteEffects.None,
+                             0f);
 
             foreach (Trigger trigger in GetTriggers()) DrawTrigger(spriteBatch, trigger);
         }

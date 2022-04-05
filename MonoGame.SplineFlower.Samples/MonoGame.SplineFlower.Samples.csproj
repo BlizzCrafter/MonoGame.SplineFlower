@@ -69,6 +69,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarAdvanced.cs" />
     <Compile Include="Controls\AdvancedControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -103,7 +104,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Car.cs" />
-    <Compile Include="Tank.cs" />
     <EmbeddedResource Include="SplineForm.resx">
       <DependentUpon>SplineForm.cs</DependentUpon>
       <SubType>Designer</SubType>

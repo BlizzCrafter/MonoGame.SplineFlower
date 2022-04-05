@@ -11,7 +11,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 {
     public class AdvancedControl : TransformControl
     {
-        public Tank MySplineWalker;
+        public CarAdvanced MySplineWalker;
 
         protected override void Initialize()
         {
@@ -26,7 +26,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             //UpdateTriggerRotation() should be called after loading a spline with visual triggers to make sure they are rotated correctly on the spline
             MySpline.UpdateTriggerRotation();
 
-            MySplineWalker = new Tank();
+            MySplineWalker = new CarAdvanced();
             MySplineWalker.CreateSplineWalker(
                 MySpline, 
                 SplineWalker.SplineWalkerMode.Loop, 

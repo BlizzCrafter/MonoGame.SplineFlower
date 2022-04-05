@@ -5,13 +5,13 @@
     <version>$version$</version>
     <title>MonoGame.SplineFlower</title>
     <authors>Marcel Härtel</authors>
-    <owners>Marcel Härtel, SandboxBlizz</owners>
+    <owners>Marcel Härtel</owners>
     <projectUrl>https://github.com/sqrMin1/MonoGame.SplineFlower</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/sqrMin1/MonoGame.SplineFlower/master/Logos/Logo_Square_256.png</iconUrl>
 	<license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Create wonderful smooth BézierSplines, CatMulRomSplines and HermiteSplines with TriggerEvents for your MonoGame project.</description>
-    <copyright>Copyright (c) 2021 Marcel Härtel, SandboxBlizz</copyright>
+    <copyright>Copyright (c) 2022 Marcel Härtel</copyright>
     <tags>MonoGame WindowsForms Splines</tags>
 	<references>
 		<group targetFramework="net461">

@@ -72,7 +72,7 @@ namespace MonoGame.SplineFlower.GameTest
 
             spriteBatch.Begin();
 
-            if (MySpline != null) MySpline.DrawSpline(spriteBatch);
+            if (MySpline != null) MySpline.Draw(spriteBatch);
             if (MySplineWalker != null) MySplineWalker.Draw(spriteBatch);
 
             spriteBatch.End();

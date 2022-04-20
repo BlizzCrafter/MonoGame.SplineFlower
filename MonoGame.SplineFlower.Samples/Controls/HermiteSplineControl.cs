@@ -22,16 +22,11 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Setup.ShowLines = true;
             Setup.ShowPoints = true;
 
-            MySpline = new HermiteSpline
-            {
-                //Custom ctr-Test
-                //MySpline = new HermitSpline(new Transform[] {
-                //    new Transform(new Vector2(0, 0)),
-                //    new Transform(new Vector2(250, 0)),
-                //    new Transform(new Vector2(0, 250))
-                //});
-                Loop = false
-            };
+            MySpline = new HermiteSpline();
+            ((HermiteSpline)MySpline).GetAllTangents[1].Translate(new Vector2(125, 200));
+            ((HermiteSpline)MySpline).GetAllTangents[2].Translate(new Vector2(125, 0));
+            ((HermiteSpline)MySpline).AddTension(30f);
+            ((HermiteSpline)MySpline).AddBias(2.5f);
             ((HermiteSpline)MySpline).TangentSelected += MySpline_TangentSelected;
             ((HermiteSpline)MySpline).TangentDeselected += MySpline_TangentDeselected;
 

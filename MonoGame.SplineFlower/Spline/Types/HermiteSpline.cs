@@ -51,28 +51,28 @@ namespace MonoGame.SplineFlower.Spline.Types
             }
         }
 
-        public void AddTension()
+        public void AddTension(float factor = 1f)
         {
-            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Tension += 0.1f;
-            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Tension += 0.1f);
+            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Tension += 0.1f * factor;
+            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Tension += 0.1f * factor);
         }
 
-        public void SubstractTension()
+        public void SubstractTension(float factor = 1f)
         {
-            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Tension -= 0.1f;
-            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Tension -= 0.1f);
+            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Tension -= 0.1f * factor;
+            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Tension -= 0.1f * factor);
         }
 
-        public void AddBias()
+        public void AddBias(float factor = 1f)
         {
-            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Bias += 0.1f;
-            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Bias += 0.1f);
+            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Bias += 0.1f * factor;
+            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Bias += 0.1f * factor);
         }
 
-        public void SubstractBias()
+        public void SubstractBias(float factor = 1f)
         {
-            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Bias -= 0.1f;
-            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Bias -= 0.1f);
+            if (SelectedTransform != null && SelectedTransform.IsTangent) ((TangentData)SelectedTransform.UserData).Bias -= 0.1f * factor;
+            else GetAllTangents.ToList().ForEach(x => ((TangentData)x.UserData).Bias -= 0.1f * factor);
         }
 
         public override Vector2 GetPoint(float t)

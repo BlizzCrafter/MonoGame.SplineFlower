@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplineForm));
             this.tabControlEditorTabs = new System.Windows.Forms.TabControl();
-            this.tabPageChainSpline = new System.Windows.Forms.TabPage();
-            this.chainSplineControl = new MonoGame.SplineFlower.Samples.Controls.ChainSplineControl();
             this.tabPageBezierSpline = new System.Windows.Forms.TabPage();
             this.comboBoxCenterTransformMode = new System.Windows.Forms.ComboBox();
             this.comboBoxWalkerMode = new System.Windows.Forms.ComboBox();
@@ -52,6 +50,8 @@
             this.labelAddBias = new System.Windows.Forms.Label();
             this.labelAddTension = new System.Windows.Forms.Label();
             this.hermiteSplineControl = new MonoGame.SplineFlower.Samples.Controls.HermiteSplineControl();
+            this.tabPageChainSpline = new System.Windows.Forms.TabPage();
+            this.chainSplineControl = new MonoGame.SplineFlower.Samples.Controls.ChainSplineControl();
             this.tabPagePolygonSplineControl = new System.Windows.Forms.TabPage();
             this.buttonPolygonHelp = new System.Windows.Forms.Button();
             this.checkBoxShowPoints = new System.Windows.Forms.CheckBox();
@@ -69,16 +69,16 @@
             this.buttonHelp = new System.Windows.Forms.Button();
             this.advancedControls = new MonoGame.SplineFlower.Samples.Controls.AdvancedControl();
             this.tabPageInfo = new System.Windows.Forms.TabPage();
+            this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
-            this.richTextBoxLicense = new System.Windows.Forms.RichTextBox();
             this.tabControlEditorTabs.SuspendLayout();
-            this.tabPageChainSpline.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
             this.tabPageHermiteSpline.SuspendLayout();
             this.panelAddSubstractTangentValues.SuspendLayout();
+            this.tabPageChainSpline.SuspendLayout();
             this.tabPagePolygonSplineControl.SuspendLayout();
             this.tabPageFindNearestPoint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).BeginInit();
@@ -103,31 +103,6 @@
             this.tabControlEditorTabs.SelectedIndex = 0;
             this.tabControlEditorTabs.Size = new System.Drawing.Size(782, 553);
             this.tabControlEditorTabs.TabIndex = 2;
-            // 
-            // tabPageChainSpline
-            // 
-            this.tabPageChainSpline.Controls.Add(this.chainSplineControl);
-            this.tabPageChainSpline.Location = new System.Drawing.Point(4, 25);
-            this.tabPageChainSpline.Name = "tabPageChainSpline";
-            this.tabPageChainSpline.Size = new System.Drawing.Size(774, 524);
-            this.tabPageChainSpline.TabIndex = 9;
-            this.tabPageChainSpline.Text = "ChainSpline";
-            this.tabPageChainSpline.UseVisualStyleBackColor = true;
-            // 
-            // chainSplineControl
-            // 
-            this.chainSplineControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(129)))), ((int)(((byte)(142)))));
-            this.chainSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chainSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chainSplineControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(182)))), ((int)(((byte)(105)))));
-            this.chainSplineControl.MySpline = null;
-            this.chainSplineControl.Location = new System.Drawing.Point(0, 0);
-            this.chainSplineControl.MouseHoverUpdatesOnly = false;
-            this.chainSplineControl.Name = "chainSplineControl";
-            this.chainSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
-            this.chainSplineControl.Size = new System.Drawing.Size(774, 524);
-            this.chainSplineControl.TabIndex = 0;
-            this.chainSplineControl.Text = "Chain Spline";
             // 
             // tabPageBezierSpline
             // 
@@ -234,9 +209,9 @@
             this.splineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splineControl.ForeColor = System.Drawing.Color.DarkOrange;
-            this.splineControl.MySpline = null;
             this.splineControl.Location = new System.Drawing.Point(0, 0);
             this.splineControl.MouseHoverUpdatesOnly = false;
+            this.splineControl.MySpline = null;
             this.splineControl.Name = "splineControl";
             this.splineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
             this.splineControl.Size = new System.Drawing.Size(774, 524);
@@ -279,9 +254,9 @@
             this.catMulRomSpline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.catMulRomSpline.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
             this.catMulRomSpline.ForeColor = System.Drawing.Color.Orange;
-            this.catMulRomSpline.MySpline = null;
             this.catMulRomSpline.Location = new System.Drawing.Point(3, 3);
             this.catMulRomSpline.MouseHoverUpdatesOnly = false;
+            this.catMulRomSpline.MySpline = null;
             this.catMulRomSpline.Name = "catMulRomSpline";
             this.catMulRomSpline.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
             this.catMulRomSpline.Size = new System.Drawing.Size(768, 518);
@@ -388,14 +363,39 @@
             this.hermiteSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hermiteSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
             this.hermiteSplineControl.ForeColor = System.Drawing.Color.LightSalmon;
-            this.hermiteSplineControl.MySpline = null;
             this.hermiteSplineControl.Location = new System.Drawing.Point(0, 0);
             this.hermiteSplineControl.MouseHoverUpdatesOnly = false;
+            this.hermiteSplineControl.MySpline = null;
             this.hermiteSplineControl.Name = "hermiteSplineControl";
             this.hermiteSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
             this.hermiteSplineControl.Size = new System.Drawing.Size(774, 524);
             this.hermiteSplineControl.TabIndex = 0;
             this.hermiteSplineControl.Text = "Hermite Spline";
+            // 
+            // tabPageChainSpline
+            // 
+            this.tabPageChainSpline.Controls.Add(this.chainSplineControl);
+            this.tabPageChainSpline.Location = new System.Drawing.Point(4, 25);
+            this.tabPageChainSpline.Name = "tabPageChainSpline";
+            this.tabPageChainSpline.Size = new System.Drawing.Size(774, 524);
+            this.tabPageChainSpline.TabIndex = 9;
+            this.tabPageChainSpline.Text = "ChainSpline";
+            this.tabPageChainSpline.UseVisualStyleBackColor = true;
+            // 
+            // chainSplineControl
+            // 
+            this.chainSplineControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(129)))), ((int)(((byte)(142)))));
+            this.chainSplineControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chainSplineControl.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chainSplineControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(182)))), ((int)(((byte)(105)))));
+            this.chainSplineControl.Location = new System.Drawing.Point(0, 0);
+            this.chainSplineControl.MouseHoverUpdatesOnly = false;
+            this.chainSplineControl.MySpline = null;
+            this.chainSplineControl.Name = "chainSplineControl";
+            this.chainSplineControl.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
+            this.chainSplineControl.Size = new System.Drawing.Size(774, 524);
+            this.chainSplineControl.TabIndex = 0;
+            this.chainSplineControl.Text = "Chain Spline";
             // 
             // tabPagePolygonSplineControl
             // 
@@ -473,9 +473,9 @@
             // 
             this.polygonSplineControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.polygonSplineControl1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
-            this.polygonSplineControl1.MySpline = null;
             this.polygonSplineControl1.Location = new System.Drawing.Point(3, 3);
             this.polygonSplineControl1.MouseHoverUpdatesOnly = false;
+            this.polygonSplineControl1.MySpline = null;
             this.polygonSplineControl1.Name = "polygonSplineControl1";
             this.polygonSplineControl1.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
             this.polygonSplineControl1.Size = new System.Drawing.Size(768, 518);
@@ -562,9 +562,9 @@
             this.findNearestPointControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.findNearestPointControl1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.findNearestPointControl1.ForeColor = System.Drawing.Color.CadetBlue;
-            this.findNearestPointControl1.MySpline = null;
             this.findNearestPointControl1.Location = new System.Drawing.Point(3, 3);
             this.findNearestPointControl1.MouseHoverUpdatesOnly = false;
+            this.findNearestPointControl1.MySpline = null;
             this.findNearestPointControl1.Name = "findNearestPointControl1";
             this.findNearestPointControl1.NearestPointAccuracy = 1000F;
             this.findNearestPointControl1.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
@@ -602,9 +602,9 @@
             this.advancedControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.advancedControls.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.advancedControls.ForeColor = System.Drawing.Color.GhostWhite;
-            this.advancedControls.MySpline = null;
             this.advancedControls.Location = new System.Drawing.Point(3, 3);
             this.advancedControls.MouseHoverUpdatesOnly = false;
+            this.advancedControls.MySpline = null;
             this.advancedControls.Name = "advancedControls";
             this.advancedControls.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
             this.advancedControls.Size = new System.Drawing.Size(768, 518);
@@ -622,6 +622,17 @@
             this.tabPageInfo.TabIndex = 4;
             this.tabPageInfo.Text = "Info";
             this.tabPageInfo.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxLicense
+            // 
+            this.richTextBoxLicense.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxLicense.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxLicense.Location = new System.Drawing.Point(3, 3);
+            this.richTextBoxLicense.Name = "richTextBoxLicense";
+            this.richTextBoxLicense.Size = new System.Drawing.Size(768, 480);
+            this.richTextBoxLicense.TabIndex = 2;
+            this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
+            this.richTextBoxLicense.ZoomFactor = 1.5F;
             // 
             // statusStrip
             // 
@@ -655,17 +666,6 @@
             this.toolStripDropDownButtonTwitter.Text = "@BlizzCrafter";
             this.toolStripDropDownButtonTwitter.Click += new System.EventHandler(this.toolStripDropDownButtonTwitter_Click);
             // 
-            // richTextBoxLicense
-            // 
-            this.richTextBoxLicense.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxLicense.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxLicense.Location = new System.Drawing.Point(3, 3);
-            this.richTextBoxLicense.Name = "richTextBoxLicense";
-            this.richTextBoxLicense.Size = new System.Drawing.Size(768, 480);
-            this.richTextBoxLicense.TabIndex = 2;
-            this.richTextBoxLicense.Text = resources.GetString("richTextBoxLicense.Text");
-            this.richTextBoxLicense.ZoomFactor = 1.5F;
-            // 
             // SplineForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -679,12 +679,12 @@
             this.ResizeEnd += new System.EventHandler(this.SplineEditorForm_ResizeEnd);
             this.Resize += new System.EventHandler(this.SplineEditorForm_Resize);
             this.tabControlEditorTabs.ResumeLayout(false);
-            this.tabPageChainSpline.ResumeLayout(false);
             this.tabPageBezierSpline.ResumeLayout(false);
             this.tabPageCatMulRom.ResumeLayout(false);
             this.tabPageHermiteSpline.ResumeLayout(false);
             this.panelAddSubstractTangentValues.ResumeLayout(false);
             this.panelAddSubstractTangentValues.PerformLayout();
+            this.tabPageChainSpline.ResumeLayout(false);
             this.tabPagePolygonSplineControl.ResumeLayout(false);
             this.tabPagePolygonSplineControl.PerformLayout();
             this.tabPageFindNearestPoint.ResumeLayout(false);

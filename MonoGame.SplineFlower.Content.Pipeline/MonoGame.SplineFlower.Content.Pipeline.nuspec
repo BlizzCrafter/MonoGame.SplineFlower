@@ -21,7 +21,8 @@
 	</references>
   </metadata>
   <files>
-    <file src="..\Libs\**\*.*" target="lib\net461" />
+    <file src="..\MonoGame.SplineFlower.Samples\bin\NuGetRelease\MonoGame.Framework.*" target="lib\net461" />
+	<file src="..\MonoGame.SplineFlower.Samples\bin\NuGetRelease\MonoGame.Framework.Content.Pipeline.*" target="lib\net461" />
 	<file src="bin\NuGetRelease\MonoGame.SplineFlower.dll" target="lib\net461" />
 	<file src="bin\NuGetRelease\MonoGame.SplineFlower.Content.dll" target="lib\net461" />
 	<file src="bin\NuGetRelease\Newtonsoft.Json.*" target="lib\net461" />

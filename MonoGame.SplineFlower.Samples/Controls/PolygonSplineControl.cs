@@ -41,7 +41,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Update(gameTime);
 
-            Editor.Cam.GetTransformation(GraphicsDevice);
+            Editor.Cam.GetTransformation();
             Functions.UpdateProjectionViewMatrix(Editor.Cam.AbsolutPosition, Editor.Cam.Zoom);
 
             MySpline.CreatePolygonStripe();

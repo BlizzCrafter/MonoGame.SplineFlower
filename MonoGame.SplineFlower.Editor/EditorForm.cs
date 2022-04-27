@@ -336,7 +336,7 @@ namespace MonoGame.SplineFlower.Editor
                     JsonConvert.DeserializeObject<SplineData>(
                         File.ReadAllText(openFileDialog.FileName), JsonSerializerSetup);
 
-                Setup.SplineMarkerResolution = GetJsonHandling.GetSplineData.SplineMarkerResolution;
+                Setup.SetSplineMarkerResolution(GetJsonHandling.GetSplineData.SplineMarkerResolution);
 
                 if (GetJsonHandling.GetSplineData.SplineType == SplineData.SplineTypeDummy.Bezier)
                 {

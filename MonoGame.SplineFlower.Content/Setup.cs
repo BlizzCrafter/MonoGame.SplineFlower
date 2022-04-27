@@ -7,7 +7,12 @@ namespace MonoGame.SplineFlower.Content
 {
     public static class Setup
     {
-        public static float SplineMarkerResolution { get; set; } = 1000f;
+        public static void SetSplineMarkerResolution(float resolution)
+        {
+            SplineMarkerResolution = resolution;
+            SplineStepDistance = SplineMarkerResolution / (float)Math.Pow(SplineMarkerResolution, 2) * 3f;
+        }
+        public static float SplineMarkerResolution { get; private set; } = 1000f;
         public static float SplineStepDistance { get; private set; }
         public static int LineSteps { get; set; } = 20;
 
@@ -62,7 +67,7 @@ namespace MonoGame.SplineFlower.Content
             }
         }
 
-        public static void Initialize(GraphicsDevice graphicsDevice)
+        public static void Initialize(GraphicsDevice graphicsDevice, float splineMarkerResolution = 1000f)
         {
             Functions.graphics = graphicsDevice;
             Functions.GetBasicEffect = new BasicEffect(graphicsDevice);
@@ -88,10 +93,11 @@ namespace MonoGame.SplineFlower.Content
                 Circle = CreateCircleTexture(graphicsDevice, 8);
             }
 
-            SplineStepDistance = SplineMarkerResolution / (float)Math.Pow(SplineMarkerResolution, 2) * 3f;
+            SetSplineMarkerResolution(splineMarkerResolution);
 
             Initialized = true;
         }
+
         private static Texture2D CreateCircleTexture(GraphicsDevice device, int radius)
         {
             Texture2D texture = new Texture2D(device, radius, radius);

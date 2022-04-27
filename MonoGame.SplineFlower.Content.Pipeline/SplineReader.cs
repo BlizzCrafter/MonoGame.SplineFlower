@@ -12,7 +12,7 @@ namespace MonoGame.SplineFlower.Content.Pipeline
         {
             SplineBase spline = existingInstance;
 
-            Setup.SplineMarkerResolution = input.ReadSingle();
+            Setup.SetSplineMarkerResolution(input.ReadSingle());
 
             int pointLength = input.ReadInt32();
             Transform[] points = new Transform[pointLength];

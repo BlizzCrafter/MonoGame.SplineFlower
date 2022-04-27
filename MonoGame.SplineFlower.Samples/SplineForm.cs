@@ -205,5 +205,36 @@ namespace MonoGame.SplineFlower.Samples
         {
             Setup.ShowPoints = checkBoxShowPoints.Checked;
         }
+
+        private void buttonRotatePlus_Click(object sender, EventArgs e)
+        {
+            chainSplineControl.RotatePlus();
+        }
+
+        private void buttonRotateMinus_Click(object sender, EventArgs e)
+        {
+            chainSplineControl.RotateMinus();
+        }
+
+        private void buttonRotateStop_Click(object sender, EventArgs e)
+        {
+            chainSplineControl.RotateStop();
+        }
+
+        private void numericUpDownResolution_ValueChanged(object sender, EventArgs e)
+        {
+            Setup.SetSplineMarkerResolution((float)((NumericUpDown)sender).Value);
+        }
+
+        private void numericUpDownCurveCount_ValueChanged(object sender, EventArgs e)
+        {
+            buttonGenerate.Enabled = true;
+        }
+
+        private void buttonGenerate_Click(object sender, EventArgs e)
+        {
+            ((Button)sender).Enabled = false;
+            chainSplineControl.CreateSpline((int)numericUpDownCurveCount.Value);
+        }
     }
 }

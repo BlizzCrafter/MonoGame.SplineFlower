@@ -218,7 +218,7 @@ namespace MonoGame.SplineFlower.Spline
 
         public virtual void TranslateAll(Vector2 amount)
         {
-            // When the BezierSpline is a loop, we need to make sure
+            // When the spline is a loop, we need to make sure
             // that we don't translate the Start and the End point (which are the same then) twice.
             // We do that by using the 'Distinct()' command.
             _Points.Distinct().ToList().ForEach(x => x.Translate(amount));
@@ -228,7 +228,9 @@ namespace MonoGame.SplineFlower.Spline
 
         public void Rotate(float amount)
         {
-            _Points.Distinct().ToList().ForEach(
+            if (amount != 0)
+            {
+                _Points.Distinct().ToList().ForEach(
                     x =>
                     {
                         if (!x.Position.Equals(CenterSpline.Position))
@@ -241,11 +243,14 @@ namespace MonoGame.SplineFlower.Spline
                         amount, 1f));
                         }
                     });
+            }
         }
 
         public void Scale(float amount)
         {
-            _Points.Distinct().ToList().ForEach(
+            if (amount != 0)
+            {
+                _Points.Distinct().ToList().ForEach(
                     x =>
                     {
                         if (!x.Position.Equals(CenterSpline.Position))
@@ -258,23 +263,27 @@ namespace MonoGame.SplineFlower.Spline
                         amount, 90f));
                         }
                     });
+            }
         }
 
         public void ScaleRotate(float amount)
         {
-            _Points.Distinct().ToList().ForEach(
-                    x =>
-                    {
-                        if (!x.Position.Equals(CenterSpline.Position))
+            if (amount != 0)
+            {
+                _Points.Distinct().ToList().ForEach(
+                        x =>
                         {
-                            x.SetPosition(Functions.RotateToPosition(
-                                x.Position,
-                            new Vector2(
-                                CenterSpline.Position.X,
-                                CenterSpline.Position.Y),
-                            amount, 45f));
-                        }
-                    });
+                            if (!x.Position.Equals(CenterSpline.Position))
+                            {
+                                x.SetPosition(Functions.RotateToPosition(
+                                    x.Position,
+                                new Vector2(
+                                    CenterSpline.Position.X,
+                                    CenterSpline.Position.Y),
+                                amount, 45f));
+                            }
+                        });
+            }
         }
 
         public void Position(Vector2 position)

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower", "MonoGame.SplineFlower\MonoGame.SplineFlower.csproj", "{A80B8857-995D-48E0-AAFF-E425588E756D}"
 EndProject
@@ -77,8 +77,8 @@ Global
 		{E5CDB18E-9F83-4AE3-8ACE-32A425E3BA02}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5CDB18E-9F83-4AE3-8ACE-32A425E3BA02}.Release|x86.ActiveCfg = Release|Any CPU
 		{E5CDB18E-9F83-4AE3-8ACE-32A425E3BA02}.Release|x86.Build.0 = Release|Any CPU
-		{47ED5EF0-837F-4938-9892-7A920426C5A9}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{47ED5EF0-837F-4938-9892-7A920426C5A9}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{47ED5EF0-837F-4938-9892-7A920426C5A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47ED5EF0-837F-4938-9892-7A920426C5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47ED5EF0-837F-4938-9892-7A920426C5A9}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{47ED5EF0-837F-4938-9892-7A920426C5A9}.Debug|x86.Build.0 = Debug|Any CPU
 		{47ED5EF0-837F-4938-9892-7A920426C5A9}.NuGetRelease|Any CPU.ActiveCfg = NuGetRelease|Any CPU

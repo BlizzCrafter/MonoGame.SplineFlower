@@ -10,24 +10,15 @@ namespace MonoGame.SplineFlower.Samples.Controls
     {
         private Vector2 _NearestPoint = Vector2.Zero;
         private float _NearestPointSplinePosition = 0f;
-        public float NearestPointAccuracy { get; set; } = Setup.SplineMarkerResolution;
-
-        public void CreateCatMulRomSpline()
-        {
-            MySpline = new CatMulRomSpline();
-            CenterSpline();
-        }
-
-        public void CreateBezierSpline()
-        {
-            MySpline = new BezierSpline();
-            CenterSpline();
-        }
 
         protected override void Initialize()
         {
             base.Initialize();
             Setup.Initialize(GraphicsDevice);
+        }
+
+        public override void InitializeSplineControlSample()
+        {
             Setup.ShowCurves = true;
             Setup.ShowDirectionVectors = true;
             Setup.ShowLines = true;
@@ -44,6 +35,18 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Editor.SetDisplayStyle = Forms.Services.GFXService.DisplayStyle.TopRight;
             Editor.ShowCursorPosition = false;
             Editor.ShowFPS = false;
+        }
+
+        public void CreateCatMulRomSpline()
+        {
+            MySpline = new CatMulRomSpline();
+            CenterSpline();
+        }
+
+        public void CreateBezierSpline()
+        {
+            MySpline = new BezierSpline();
+            CenterSpline();
         }
 
         public void ReorderTriggerList()
@@ -69,7 +72,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             if (MySpline != null)
             {
-                _NearestPoint = MySpline.FindNearestPoint(TestTransform.Position, out _NearestPointSplinePosition, NearestPointAccuracy);
+                _NearestPoint = MySpline.FindNearestPoint(TestTransform.Position, out _NearestPointSplinePosition, Setup.SplineMarkerResolution);
             }
         }
 

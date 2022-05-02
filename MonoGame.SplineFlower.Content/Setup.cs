@@ -49,7 +49,7 @@ namespace MonoGame.SplineFlower.Content
 
         public static bool ShowTangents { get; set; } = true;
 
-        public static Color CenterSplineColor { get; set; } = new Color(237, 188, 100, 225);
+        public static Color CenterSplineColor { get; set; } = Color.Magenta;
         public static int CenterSplineIndex { get; } = -999999;
         public static bool ShowCenterSpline { get; set; } = true;
 

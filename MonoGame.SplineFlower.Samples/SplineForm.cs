@@ -10,6 +10,21 @@ namespace MonoGame.SplineFlower.Samples
 {
     public partial class SplineForm : Form
     {
+        private TransformControl CurrentTransformControl
+        {
+            get
+            {
+                foreach (Control control in tabControlEditorTabs.SelectedTab.Controls)
+                {
+                    if (control is TransformControl)
+                    {
+                        return control as TransformControl;
+                    }
+                }
+                return null;
+            }
+        }
+
         private void toolStripDropDownButtonTwitter_Click(object sender, EventArgs e)
         {
             Process.Start("https://twitter.com/blizz_crafter");
@@ -31,24 +46,12 @@ namespace MonoGame.SplineFlower.Samples
             comboBoxCenterTransformMode.SelectedIndex = 3;
             comboBoxCenterTransformMode_2.SelectedIndex = 3;
 
-            InitializeSplineControlSample();
+            CurrentTransformControl.InitializeSplineControlSample();
         }
 
         private void tabControlEditorTabs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InitializeSplineControlSample();
-        }
-
-        private void InitializeSplineControlSample()
-        {
-            foreach (Control control in tabControlEditorTabs.SelectedTab.Controls)
-            {
-                if (control is TransformControl)
-                {
-                    ((TransformControl)control).InitializeSplineControlSample();
-                    break;
-                }
-            }
+            CurrentTransformControl.InitializeSplineControlSample();
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)

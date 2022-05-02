@@ -556,7 +556,7 @@ namespace MonoGame.SplineFlower.Spline
             float step = AccuracyToStepSize(accuracy);
 
             float minDistance = float.PositiveInfinity;
-            for (float i = 0f; i < MaxProgress(); i += step)
+            for (float i = 0f; i < MaxProgress() + 0.1f; i += step)
             {
                 Vector2 thisPoint = GetPoint(i);
                 float thisDistance = (worldPos - thisPoint).LengthSquared();

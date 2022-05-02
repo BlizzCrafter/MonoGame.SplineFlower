@@ -48,6 +48,7 @@ namespace MonoGame.SplineFlower.Content
         public static bool ShowTriggers { get; set; } = true;
 
         public static bool ShowTangents { get; set; } = true;
+        public static Color TangentColor { get; set; } = new Color(237, 188, 100, 225);
 
         public static Color CenterSplineColor { get; set; } = Color.Magenta;
         public static int CenterSplineIndex { get; } = -999999;

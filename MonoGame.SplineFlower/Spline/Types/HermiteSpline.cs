@@ -185,8 +185,8 @@ namespace MonoGame.SplineFlower.Spline.Types
                     float distance = Vector2.Distance(GetAllTangents[i].Position, GetAllPoints[i].Position);
                     float angle = (float)Math.Atan2(GetAllPoints[i].Position.Y - GetAllTangents[i].Position.Y, GetAllPoints[i].Position.X - GetAllTangents[i].Position.X);
 
-                    DrawLine(spriteBatch, GetAllTangents[i].Position, angle, distance, GetAllTangents[i].IsSelected ? Setup.BaseLineColor : Setup.CenterSplineColor, Setup.BaseLineThickness);
-                    DrawPoint(spriteBatch, GetAllTangents[i].Position, i, angle, GetAllTangents[i].IsSelected ? Setup.BaseLineColor : Setup.CenterSplineColor);
+                    DrawLine(spriteBatch, GetAllTangents[i].Position, angle, distance, GetAllTangents[i].IsSelected ? Setup.BaseLineColor : Setup.TangentColor, Setup.BaseLineThickness);
+                    DrawPoint(spriteBatch, GetAllTangents[i].Position, i, angle, GetAllTangents[i].IsSelected ? Setup.BaseLineColor : Setup.TangentColor);
                 }
             }
         }

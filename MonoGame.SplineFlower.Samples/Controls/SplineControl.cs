@@ -15,6 +15,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Initialize();
             Setup.Initialize(GraphicsDevice);
+        }
+
+        public override void InitializeSplineControlSample()
+        {
             Setup.ShowCurves = true;
             Setup.ShowDirectionVectors = true;
             Setup.ShowLines = true;
@@ -30,6 +34,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             Editor.ShowCursorPosition = false;
             Editor.ShowFPS = false;
         }
+
         public void CreateBezierSpline()
         {
             MySpline = new BezierSpline();

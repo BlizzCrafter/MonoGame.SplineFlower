@@ -13,8 +13,11 @@ namespace MonoGame.SplineFlower.Samples.Controls
         protected override void Initialize()
         {
             base.Initialize();
-
             Setup.Initialize(Editor.graphics);
+        }
+
+        public override void InitializeSplineControlSample()
+        {
             Setup.ShowCurves = false;
             Setup.ShowDirectionVectors = false;
             Setup.ShowLines = false;
@@ -25,7 +28,7 @@ namespace MonoGame.SplineFlower.Samples.Controls
             MySpline.PolygonStripeTexture = Editor.Content.Load<Texture2D>("roadTexture");
             MySpline.Loop = true;
 
-            CenterSpline();            
+            CenterSpline();
 
             SetMultiSampleCount(8);
 

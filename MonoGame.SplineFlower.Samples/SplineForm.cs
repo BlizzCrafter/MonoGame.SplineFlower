@@ -1,7 +1,9 @@
 ﻿using MonoGame.SplineFlower.Content;
+using MonoGame.SplineFlower.Samples.Controls;
 using MonoGame.SplineFlower.Spline.Types;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MonoGame.SplineFlower.Samples
@@ -28,6 +30,25 @@ namespace MonoGame.SplineFlower.Samples
             comboBoxWalkerMode.SelectedIndex = 0;
             comboBoxCenterTransformMode.SelectedIndex = 3;
             comboBoxCenterTransformMode_2.SelectedIndex = 3;
+
+            InitializeSplineControlSample();
+        }
+
+        private void tabControlEditorTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitializeSplineControlSample();
+        }
+
+        private void InitializeSplineControlSample()
+        {
+            foreach (Control control in tabControlEditorTabs.SelectedTab.Controls)
+            {
+                if (control is TransformControl)
+                {
+                    ((TransformControl)control).InitializeSplineControlSample();
+                    break;
+                }
+            }
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)
@@ -128,7 +149,7 @@ namespace MonoGame.SplineFlower.Samples
         {
             if (findNearestPointControl1 != null && findNearestPointControl1.MySpline != null)
             {
-                findNearestPointControl1.NearestPointAccuracy = (float)numericUpDownAccuracy.Value;
+                Setup.SetSplineMarkerResolution((float)numericUpDownAccuracy.Value);
             }
         }
 
@@ -226,14 +247,8 @@ namespace MonoGame.SplineFlower.Samples
             Setup.SetSplineMarkerResolution((float)((NumericUpDown)sender).Value);
         }
 
-        private void numericUpDownCurveCount_ValueChanged(object sender, EventArgs e)
-        {
-            buttonGenerate.Enabled = true;
-        }
-
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
-            ((Button)sender).Enabled = false;
             chainSplineControl.CreateSpline((int)numericUpDownCurveCount.Value);
         }
     }

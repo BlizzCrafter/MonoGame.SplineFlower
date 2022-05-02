@@ -31,6 +31,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
         protected System.Drawing.Point TranslatePointFirstClick;
         protected Transform TestTransform;
 
+        public abstract void InitializeSplineControlSample();
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);

@@ -51,6 +51,14 @@
             this.labelAddTension = new System.Windows.Forms.Label();
             this.hermiteSplineControl = new MonoGame.SplineFlower.Samples.Controls.HermiteSplineControl();
             this.tabPageChainSpline = new System.Windows.Forms.TabPage();
+            this.labelRotate = new System.Windows.Forms.Label();
+            this.buttonGenerate = new System.Windows.Forms.Button();
+            this.labelCurves = new System.Windows.Forms.Label();
+            this.numericUpDownCurveCount = new System.Windows.Forms.NumericUpDown();
+            this.labelResolution = new System.Windows.Forms.Label();
+            this.numericUpDownResolution = new System.Windows.Forms.NumericUpDown();
+            this.buttonRotateStop = new System.Windows.Forms.Button();
+            this.buttonRotateMinus = new System.Windows.Forms.Button();
             this.buttonRotatePlus = new System.Windows.Forms.Button();
             this.chainSplineControl = new MonoGame.SplineFlower.Samples.Controls.ChainSplineControl();
             this.tabPagePolygonSplineControl = new System.Windows.Forms.TabPage();
@@ -74,28 +82,20 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButtonGitHub = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButtonTwitter = new System.Windows.Forms.ToolStripDropDownButton();
-            this.buttonRotateMinus = new System.Windows.Forms.Button();
-            this.buttonRotateStop = new System.Windows.Forms.Button();
-            this.labelResolution = new System.Windows.Forms.Label();
-            this.numericUpDownResolution = new System.Windows.Forms.NumericUpDown();
-            this.labelCurves = new System.Windows.Forms.Label();
-            this.numericUpDownCurveCount = new System.Windows.Forms.NumericUpDown();
-            this.buttonGenerate = new System.Windows.Forms.Button();
-            this.labelRotate = new System.Windows.Forms.Label();
             this.tabControlEditorTabs.SuspendLayout();
             this.tabPageBezierSpline.SuspendLayout();
             this.tabPageCatMulRom.SuspendLayout();
             this.tabPageHermiteSpline.SuspendLayout();
             this.panelAddSubstractTangentValues.SuspendLayout();
             this.tabPageChainSpline.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCurveCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResolution)).BeginInit();
             this.tabPagePolygonSplineControl.SuspendLayout();
             this.tabPageFindNearestPoint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAccuracy)).BeginInit();
             this.tabPageAdvancedControls.SuspendLayout();
             this.tabPageInfo.SuspendLayout();
             this.statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResolution)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCurveCount)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlEditorTabs
@@ -114,6 +114,7 @@
             this.tabControlEditorTabs.SelectedIndex = 0;
             this.tabControlEditorTabs.Size = new System.Drawing.Size(782, 553);
             this.tabControlEditorTabs.TabIndex = 2;
+            this.tabControlEditorTabs.SelectedIndexChanged += new System.EventHandler(this.tabControlEditorTabs_SelectedIndexChanged);
             // 
             // tabPageBezierSpline
             // 
@@ -402,6 +403,126 @@
             this.tabPageChainSpline.Text = "ChainSpline";
             this.tabPageChainSpline.UseVisualStyleBackColor = true;
             // 
+            // labelRotate
+            // 
+            this.labelRotate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelRotate.AutoSize = true;
+            this.labelRotate.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRotate.Location = new System.Drawing.Point(3, 466);
+            this.labelRotate.Name = "labelRotate";
+            this.labelRotate.Size = new System.Drawing.Size(63, 20);
+            this.labelRotate.TabIndex = 13;
+            this.labelRotate.Text = "Rotate";
+            // 
+            // buttonGenerate
+            // 
+            this.buttonGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGenerate.Location = new System.Drawing.Point(464, 489);
+            this.buttonGenerate.Name = "buttonGenerate";
+            this.buttonGenerate.Size = new System.Drawing.Size(50, 25);
+            this.buttonGenerate.TabIndex = 12;
+            this.buttonGenerate.Text = "OK";
+            this.buttonGenerate.UseVisualStyleBackColor = true;
+            this.buttonGenerate.Click += new System.EventHandler(this.buttonGenerate_Click);
+            // 
+            // labelCurves
+            // 
+            this.labelCurves.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCurves.AutoSize = true;
+            this.labelCurves.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCurves.Location = new System.Drawing.Point(520, 466);
+            this.labelCurves.Name = "labelCurves";
+            this.labelCurves.Size = new System.Drawing.Size(63, 20);
+            this.labelCurves.TabIndex = 11;
+            this.labelCurves.Text = "Curves";
+            // 
+            // numericUpDownCurveCount
+            // 
+            this.numericUpDownCurveCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownCurveCount.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownCurveCount.Location = new System.Drawing.Point(520, 489);
+            this.numericUpDownCurveCount.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.numericUpDownCurveCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownCurveCount.Name = "numericUpDownCurveCount";
+            this.numericUpDownCurveCount.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDownCurveCount.TabIndex = 10;
+            this.numericUpDownCurveCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDownCurveCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // labelResolution
+            // 
+            this.labelResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelResolution.AutoSize = true;
+            this.labelResolution.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResolution.Location = new System.Drawing.Point(646, 466);
+            this.labelResolution.Name = "labelResolution";
+            this.labelResolution.Size = new System.Drawing.Size(99, 20);
+            this.labelResolution.TabIndex = 9;
+            this.labelResolution.Text = "Resolution";
+            // 
+            // numericUpDownResolution
+            // 
+            this.numericUpDownResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownResolution.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownResolution.Location = new System.Drawing.Point(646, 489);
+            this.numericUpDownResolution.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownResolution.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownResolution.Name = "numericUpDownResolution";
+            this.numericUpDownResolution.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDownResolution.TabIndex = 8;
+            this.numericUpDownResolution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDownResolution.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownResolution.ValueChanged += new System.EventHandler(this.numericUpDownResolution_ValueChanged);
+            // 
+            // buttonRotateStop
+            // 
+            this.buttonRotateStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonRotateStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRotateStop.Location = new System.Drawing.Point(34, 491);
+            this.buttonRotateStop.Name = "buttonRotateStop";
+            this.buttonRotateStop.Size = new System.Drawing.Size(25, 25);
+            this.buttonRotateStop.TabIndex = 3;
+            this.buttonRotateStop.Text = "■";
+            this.buttonRotateStop.UseVisualStyleBackColor = true;
+            this.buttonRotateStop.Click += new System.EventHandler(this.buttonRotateStop_Click);
+            // 
+            // buttonRotateMinus
+            // 
+            this.buttonRotateMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonRotateMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRotateMinus.Location = new System.Drawing.Point(65, 491);
+            this.buttonRotateMinus.Name = "buttonRotateMinus";
+            this.buttonRotateMinus.Size = new System.Drawing.Size(25, 25);
+            this.buttonRotateMinus.TabIndex = 2;
+            this.buttonRotateMinus.Text = "-";
+            this.buttonRotateMinus.UseVisualStyleBackColor = true;
+            this.buttonRotateMinus.Click += new System.EventHandler(this.buttonRotateMinus_Click);
+            // 
             // buttonRotatePlus
             // 
             this.buttonRotatePlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -598,7 +719,6 @@
             this.findNearestPointControl1.MouseHoverUpdatesOnly = false;
             this.findNearestPointControl1.MySpline = null;
             this.findNearestPointControl1.Name = "findNearestPointControl1";
-            this.findNearestPointControl1.NearestPointAccuracy = 1000F;
             this.findNearestPointControl1.SetCenterTransformMode = MonoGame.SplineFlower.Samples.Controls.TransformControl.CenterTransformMode.ScaleRotate;
             this.findNearestPointControl1.Size = new System.Drawing.Size(768, 518);
             this.findNearestPointControl1.TabIndex = 0;
@@ -698,133 +818,6 @@
             this.toolStripDropDownButtonTwitter.Text = "@BlizzCrafter";
             this.toolStripDropDownButtonTwitter.Click += new System.EventHandler(this.toolStripDropDownButtonTwitter_Click);
             // 
-            // buttonRotateMinus
-            // 
-            this.buttonRotateMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonRotateMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRotateMinus.Location = new System.Drawing.Point(65, 491);
-            this.buttonRotateMinus.Name = "buttonRotateMinus";
-            this.buttonRotateMinus.Size = new System.Drawing.Size(25, 25);
-            this.buttonRotateMinus.TabIndex = 2;
-            this.buttonRotateMinus.Text = "-";
-            this.buttonRotateMinus.UseVisualStyleBackColor = true;
-            this.buttonRotateMinus.Click += new System.EventHandler(this.buttonRotateMinus_Click);
-            // 
-            // buttonRotateStop
-            // 
-            this.buttonRotateStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonRotateStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRotateStop.Location = new System.Drawing.Point(34, 491);
-            this.buttonRotateStop.Name = "buttonRotateStop";
-            this.buttonRotateStop.Size = new System.Drawing.Size(25, 25);
-            this.buttonRotateStop.TabIndex = 3;
-            this.buttonRotateStop.Text = "■";
-            this.buttonRotateStop.UseVisualStyleBackColor = true;
-            this.buttonRotateStop.Click += new System.EventHandler(this.buttonRotateStop_Click);
-            // 
-            // labelResolution
-            // 
-            this.labelResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelResolution.AutoSize = true;
-            this.labelResolution.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResolution.Location = new System.Drawing.Point(646, 466);
-            this.labelResolution.Name = "labelResolution";
-            this.labelResolution.Size = new System.Drawing.Size(99, 20);
-            this.labelResolution.TabIndex = 9;
-            this.labelResolution.Text = "Resolution";
-            // 
-            // numericUpDownResolution
-            // 
-            this.numericUpDownResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownResolution.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownResolution.Increment = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.numericUpDownResolution.Location = new System.Drawing.Point(646, 489);
-            this.numericUpDownResolution.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDownResolution.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownResolution.Name = "numericUpDownResolution";
-            this.numericUpDownResolution.Size = new System.Drawing.Size(120, 27);
-            this.numericUpDownResolution.TabIndex = 8;
-            this.numericUpDownResolution.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDownResolution.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDownResolution.ValueChanged += new System.EventHandler(this.numericUpDownResolution_ValueChanged);
-            // 
-            // labelCurves
-            // 
-            this.labelCurves.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCurves.AutoSize = true;
-            this.labelCurves.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurves.Location = new System.Drawing.Point(520, 466);
-            this.labelCurves.Name = "labelCurves";
-            this.labelCurves.Size = new System.Drawing.Size(63, 20);
-            this.labelCurves.TabIndex = 11;
-            this.labelCurves.Text = "Curves";
-            // 
-            // numericUpDownCurveCount
-            // 
-            this.numericUpDownCurveCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownCurveCount.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownCurveCount.Location = new System.Drawing.Point(520, 489);
-            this.numericUpDownCurveCount.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.numericUpDownCurveCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownCurveCount.Name = "numericUpDownCurveCount";
-            this.numericUpDownCurveCount.Size = new System.Drawing.Size(120, 27);
-            this.numericUpDownCurveCount.TabIndex = 10;
-            this.numericUpDownCurveCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDownCurveCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownCurveCount.ValueChanged += new System.EventHandler(this.numericUpDownCurveCount_ValueChanged);
-            // 
-            // buttonGenerate
-            // 
-            this.buttonGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonGenerate.Enabled = false;
-            this.buttonGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonGenerate.Location = new System.Drawing.Point(464, 489);
-            this.buttonGenerate.Name = "buttonGenerate";
-            this.buttonGenerate.Size = new System.Drawing.Size(50, 25);
-            this.buttonGenerate.TabIndex = 12;
-            this.buttonGenerate.Text = "OK";
-            this.buttonGenerate.UseVisualStyleBackColor = true;
-            this.buttonGenerate.Click += new System.EventHandler(this.buttonGenerate_Click);
-            // 
-            // labelRotate
-            // 
-            this.labelRotate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelRotate.AutoSize = true;
-            this.labelRotate.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRotate.Location = new System.Drawing.Point(3, 466);
-            this.labelRotate.Name = "labelRotate";
-            this.labelRotate.Size = new System.Drawing.Size(63, 20);
-            this.labelRotate.TabIndex = 13;
-            this.labelRotate.Text = "Rotate";
-            // 
             // SplineForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -845,6 +838,8 @@
             this.panelAddSubstractTangentValues.PerformLayout();
             this.tabPageChainSpline.ResumeLayout(false);
             this.tabPageChainSpline.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCurveCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResolution)).EndInit();
             this.tabPagePolygonSplineControl.ResumeLayout(false);
             this.tabPagePolygonSplineControl.PerformLayout();
             this.tabPageFindNearestPoint.ResumeLayout(false);
@@ -855,8 +850,6 @@
             this.tabPageInfo.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResolution)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCurveCount)).EndInit();
             this.ResumeLayout(false);
 
         }

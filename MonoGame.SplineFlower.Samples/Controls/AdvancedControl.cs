@@ -17,6 +17,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Initialize();
             Setup.Initialize(Editor.graphics);
+        }
+
+        public override void InitializeSplineControlSample()
+        {
             Setup.ShowCurves = true;
             Setup.ShowDirectionVectors = false;
             Setup.ShowLines = false;
@@ -28,8 +32,8 @@ namespace MonoGame.SplineFlower.Samples.Controls
 
             MySplineWalker = new CarAdvanced();
             MySplineWalker.CreateSplineWalker(
-                MySpline, 
-                SplineWalker.SplineWalkerMode.Loop, 
+                MySpline,
+                SplineWalker.SplineWalkerMode.Loop,
                 9,
                 triggerDirection: SplineWalker.SplineWalkerTriggerDirection.ForwardAndBackward);
             MySplineWalker.LoadContent(Editor.Content);

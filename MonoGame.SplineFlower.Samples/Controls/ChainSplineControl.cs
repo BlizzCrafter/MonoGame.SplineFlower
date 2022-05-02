@@ -15,6 +15,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
         {
             base.Initialize();
             Setup.Initialize(Editor.graphics);
+        }
+
+        public override void InitializeSplineControlSample()
+        {
             Setup.ShowCurves = true;
             Setup.ShowDirectionVectors = false;
             Setup.ShowLines = true;

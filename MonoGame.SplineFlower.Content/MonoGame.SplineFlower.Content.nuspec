@@ -6,8 +6,8 @@
     <title>MonoGame.SplineFlower.Content</title>
     <authors>Marcel Härtel</authors>
     <owners>Marcel Härtel</owners>
-    <projectUrl>https://github.com/sqrMin1/MonoGame.SplineFlower</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/sqrMin1/MonoGame.SplineFlower/master/Logos/Logo_Square_256.png</iconUrl>
+    <projectUrl>https://github.com/BlizzCrafter/MonoGame.SplineFlower</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/BlizzCrafter/MonoGame.SplineFlower/master/Logos/Logo_Square_256.png</iconUrl>
 	<license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Debug your splines with this package. Call Setup.Initialize(graphics.GraphicsDevice); to do that.</description>
@@ -15,14 +15,12 @@
     <tags>MonoGame WindowsForms Splines</tags>
 	<references>
 		<group targetFramework="net461">
-		<reference file="MonoGame.Framework.dll" />
 		<reference file="MonoGame.SplineFlower.Content.dll" />
 		<reference file="MonoGame.SplineFlower.Utils.dll" />
 		</group>
 	</references>
   </metadata>
   <files>
-    <file src="..\MonoGame.SplineFlower.Samples\bin\NuGetRelease\MonoGame.Framework.*" target="lib\net461" />
-	<file src="bin\NuGetRelease\MonoGame.SplineFlower.Utils.dll" target="lib\net461" />
+	<file src="bin\$configuration$\MonoGame.SplineFlower.Utils.dll" target="lib\net461" />
 </files>
 </package>

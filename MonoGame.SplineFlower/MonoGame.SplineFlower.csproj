@@ -42,8 +42,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.8.9013.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Framework.Portable.9000.3.8.9013\lib\portable-net40+sl5+win8+wpa81+wp8\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -74,13 +75,12 @@
       <Name>MonoGame.SplineFlower.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == NuGetRelease nuget pack "$(ProjectPath)" -properties Configuration=NuGetRelease -OutputDirectory "$(SolutionDir)create"
-if $(ConfigurationName) == NuGetRelease nuget push -Source nuget.org -SkipDuplicate "$(SolutionDir)create\*.nupkg"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == NuGetRelease (
+	nuget pack "$(ProjectPath)" -properties Configuration=NuGetRelease -OutputDirectory "$(SolutionDir)create"
+	nuget push -Source nuget.org -SkipDuplicate "$(SolutionDir)create\*.nupkg" )
+  if $(ConfigurationName) == Release nuget pack "$(ProjectPath)" -properties Configuration=Release -OutputDirectory "$(SolutionDir)create"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

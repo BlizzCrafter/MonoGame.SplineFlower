@@ -51,7 +51,7 @@ namespace MonoGame.SplineFlower.Samples
 
         private void tabControlEditorTabs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CurrentTransformControl.InitializeSplineControlSample();
+            CurrentTransformControl?.InitializeSplineControlSample();
         }
 
         private void buttonAddCurve_Click(object sender, EventArgs e)

@@ -77,10 +77,10 @@ namespace MonoGame.SplineFlower.Samples.Controls
             
             if (e.Button == MouseButtons.Right)
             {
-                if (MySpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !base.MySpline.SelectedTransform.IsCenter)
+                if (MySpline.SelectTransform(new Vector2(e.X, e.Y)) != null && !MySpline.SelectedTransform.IsCenter)
                 {
-                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(base.MySpline.SelectedTransform.Index).Next();
-                    MySpline.SetControlPointMode(base.MySpline.SelectedTransform.Index, nextMode);
+                    SplineBase.ControlPointMode nextMode = MySpline.GetControlPointMode(MySpline.SelectedTransform.Index).Next();
+                    MySpline.SetControlPointMode(MySpline.SelectedTransform.Index, nextMode);
                 }
             }
         }
@@ -111,11 +111,16 @@ namespace MonoGame.SplineFlower.Samples.Controls
                 Editor.spriteBatch.Begin();
 
                 if (MySpline != null) MySpline.Draw(Editor.spriteBatch);
-                if (MySplineWalker != null && MySplineWalker.Initialized) MySplineWalker.Draw(Editor.spriteBatch);
-                if (MySplineMarker != null && MySplineMarker.Initialized) MySplineMarker.Draw(Editor.spriteBatch);
-
-                Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker.GetProgress.ToString(), new Vector2(10, 10), Color.White);
-                Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.GetProgress.ToString(), new Vector2(10, 30), Color.White);
+                if (MySplineWalker != null && MySplineWalker.Initialized)
+                {
+                    MySplineWalker.Draw(Editor.spriteBatch);
+                    Editor.spriteBatch.DrawString(Editor.Font, "Walker: " + MySplineWalker.GetProgress.ToString(), new Vector2(10, 30), Color.White);
+                }
+                if (MySplineMarker != null && MySplineMarker.Initialized)
+                {
+                    MySplineMarker.Draw(Editor.spriteBatch);
+                    Editor.spriteBatch.DrawString(Editor.Font, "Marker: " + MySplineMarker.GetProgress.ToString(), new Vector2(10, 10), Color.White);
+                }
 
                 Editor.spriteBatch.End();
 

@@ -466,6 +466,11 @@ namespace MonoGame.SplineFlower.Spline
             EventTriggered?.Invoke(obj);
         }
 
+        public void InitializeTriggerEvent(Action<Trigger> triggerEvent)
+        {
+            EventTriggered = triggerEvent;
+        }
+
         public void ReorderTriggerList()
         {
             List<Trigger> ordered = _Trigger.OrderBy(x => x.GetPlainProgress).ToList();

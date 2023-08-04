@@ -123,7 +123,7 @@ namespace MonoGame.SplineFlower
             GetProgress = 0;
             ResetTriggerIndex(false);
 
-            _Spline.EventTriggered += EventTriggered;
+            if (canTriggerEvents) _Spline.InitializeTriggerEvent(EventTriggered);
 
             _oldKeyboardState = Keyboard.GetState();
             _oldGamePadState = GamePad.GetState(PlayerIndex.One);

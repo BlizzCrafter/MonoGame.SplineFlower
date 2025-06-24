@@ -7,7 +7,7 @@
 	<OutputPath>..\bin\</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	<IsPackable>true</IsPackable>
-	<Description>Load your splines with the ContentManager of the MonoGame.</Description>
+	<Description>Load json spline data with the content pipeline of MonoGame.</Description>
   </PropertyGroup>
 
   <ItemGroup>

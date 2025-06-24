@@ -1,11 +1,7 @@
 ![Banner](Logos/Logo_Banner_800.png)
 
 # Welcome to MonoGame.SplineFlower!
-[![License](https://img.shields.io/badge/License-MIT!-blue.svg?style=flat-square&colorA=bc9621&colorB=77c433)](https://github.com/sqrMin1/MonoGame.SplineFlower/blob/master/LICENSE)
-
-[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=flat-square&logo=NuGet&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower)
-[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content-blue.svg?style=flat-square&logo=NuGet&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content)
-[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=flat-square&logo=NuGet&colorA=3260c4&colorB=77c433)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content.Pipeline)
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=for-the-badge&logo=NuGet&logoColor=0289CC&logoSize=auto&colorA=262626&colorB=707070)](https://www.nuget.org/packages/MonoGame.SplineFlower) [![NuGet](https://img.shields.io/badge/NuGet-/MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=for-the-badge&logo=NuGet&logoColor=0289CC&logoSize=auto&colorA=262626&colorB=707070)](https://www.nuget.org/packages//MonoGame.SplineFlower.Content.Pipeline)
 
 Create wonderful smooth **Bézier-, CatMulRom- and Hermite-Splines** with **TriggerEvents** for your **MonoGame** project.
 
@@ -17,23 +13,11 @@ Create wonderful smooth **Bézier-, CatMulRom- and Hermite-Splines** with **Trig
 ### Setup
 
 The **Visual Studio 2022** solution contains the following projects:
-- **MonoGame.SplineFlower** (the portable class library)
-- **MonoGame.SplineFlower.Content** (spline data and setup class)
+- **MonoGame.SplineFlower** (the spline library)
 - **MonoGame.SplineFlower.Content.Pipeline** (creates .xnb files out of .json spline data)
 - **MonoGame.SplineFlower.Samples** (showing features of the library)
 - **MonoGame.SplineFlower.Editor** (create, import and export splines)
 - **MonoGame.SplineFlower.GameTest** (DesktopGL project which loads a spline with the ContentManager)
-
-1. In your own MonoGame project you need to reference **MonoGame.SplineFlower** if you want to use the library capabilities
-2. If you want to load splines with the **ContentManager**, you also need to reference **MonoGame.SplineFlower.Content.Pipeline**
-> Note: You don't need this reference if you want to load spline data with **Json.Net**
-3. When you want to draw the spline - inclusive trigger events - you need to reference **MonoGame.SplineFlower.Content** to have access
-to the **static class Setup**, because you need to call **Setup.Initialize(graphics.GraphicsDevice);** for this purpose
-> Note: You don't need this reference if you don't want to draw your splines. **You don't need to draw splines at all.**
-This is just a **Debug** feature to make your life as a game developer easier ;)
-
-For an easy installation you should make use of the nuget package manager:
-![Nuget](doc/Nuget.png)
 
 ### Capabilities
 

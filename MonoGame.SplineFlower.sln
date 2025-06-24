@@ -10,10 +10,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Content.Pipeline", "MonoGame.SplineFlower.Content.Pipeline\MonoGame.SplineFlower.Content.Pipeline.csproj", "{C0EE0A24-1A96-4AC8-9C09-2755448E65D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Samples", "MonoGame.SplineFlower.Samples\MonoGame.SplineFlower.Samples.csproj", "{B11CB829-877E-4BD5-85AA-73C83E160427}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9} = {C0EE0A24-1A96-4AC8-9C09-2755448E65D9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Editor", "MonoGame.SplineFlower.Editor\MonoGame.SplineFlower.Editor.csproj", "{04D6495C-FED4-40C9-B367-361021C561A4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9} = {C0EE0A24-1A96-4AC8-9C09-2755448E65D9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.GameTest", "MonoGame.SplineFlower.GameTest\MonoGame.SplineFlower.GameTest.csproj", "{0F759BFC-D900-45FB-9AB0-FE7E5B18A536}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9} = {C0EE0A24-1A96-4AC8-9C09-2755448E65D9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

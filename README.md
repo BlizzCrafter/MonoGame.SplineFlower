@@ -1,7 +1,7 @@
 ![Banner](Logos/Logo_Banner_800.png)
 
 # Welcome to MonoGame.SplineFlower!
-[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=for-the-badge&logo=NuGet&logoColor=0289CC&logoSize=auto&colorA=262626&colorB=707070)](https://www.nuget.org/packages/MonoGame.SplineFlower) [![NuGet](https://img.shields.io/badge/NuGet-/MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=for-the-badge&logo=NuGet&logoColor=0289CC&logoSize=auto&colorA=262626&colorB=707070)](https://www.nuget.org/packages//MonoGame.SplineFlower.Content.Pipeline)
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower-blue.svg?style=for-the-badge&logo=NuGet&logoColor=0289CC&logoSize=auto&colorA=262626&colorB=707070)](https://www.nuget.org/packages/MonoGame.SplineFlower) [![NuGet](https://img.shields.io/badge/NuGet-MonoGame.SplineFlower.Content.Pipeline-blue.svg?style=for-the-badge&logo=NuGet&logoColor=0289CC&logoSize=auto&colorA=262626&colorB=707070)](https://www.nuget.org/packages/MonoGame.SplineFlower.Content.Pipeline)
 
 Create wonderful smooth **Bézier-, CatMulRom- and Hermite-Splines** with **TriggerEvents** for your **MonoGame** project.
 

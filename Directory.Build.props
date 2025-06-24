@@ -1,0 +1,7 @@
+<Project>
+	<Import Project="Packages.props" />
+	<Import Project="Nuget.props" />
+	<PropertyGroup>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+</Project>

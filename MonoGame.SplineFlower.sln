@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower", "MonoGame.SplineFlower\MonoGame.SplineFlower.csproj", "{4244A82D-0C43-4A56-A902-EFFFF63E7CF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Content.Pipeline", "MonoGame.SplineFlower.Content.Pipeline\MonoGame.SplineFlower.Content.Pipeline.csproj", "{C0EE0A24-1A96-4AC8-9C09-2755448E65D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Samples", "MonoGame.SplineFlower.Samples\MonoGame.SplineFlower.Samples.csproj", "{B11CB829-877E-4BD5-85AA-73C83E160427}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.Editor", "MonoGame.SplineFlower.Editor\MonoGame.SplineFlower.Editor.csproj", "{04D6495C-FED4-40C9-B367-361021C561A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SplineFlower.GameTest", "MonoGame.SplineFlower.GameTest\MonoGame.SplineFlower.GameTest.csproj", "{0F759BFC-D900-45FB-9AB0-FE7E5B18A536}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4244A82D-0C43-4A56-A902-EFFFF63E7CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4244A82D-0C43-4A56-A902-EFFFF63E7CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4244A82D-0C43-4A56-A902-EFFFF63E7CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4244A82D-0C43-4A56-A902-EFFFF63E7CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11CB829-877E-4BD5-85AA-73C83E160427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11CB829-877E-4BD5-85AA-73C83E160427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11CB829-877E-4BD5-85AA-73C83E160427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11CB829-877E-4BD5-85AA-73C83E160427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D6495C-FED4-40C9-B367-361021C561A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D6495C-FED4-40C9-B367-361021C561A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D6495C-FED4-40C9-B367-361021C561A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D6495C-FED4-40C9-B367-361021C561A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F759BFC-D900-45FB-9AB0-FE7E5B18A536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F759BFC-D900-45FB-9AB0-FE7E5B18A536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F759BFC-D900-45FB-9AB0-FE7E5B18A536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F759BFC-D900-45FB-9AB0-FE7E5B18A536}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4244A82D-0C43-4A56-A902-EFFFF63E7CF5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C0EE0A24-1A96-4AC8-9C09-2755448E65D9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58886B4E-367F-4B69-A453-713658860C18}
+	EndGlobalSection
+EndGlobal

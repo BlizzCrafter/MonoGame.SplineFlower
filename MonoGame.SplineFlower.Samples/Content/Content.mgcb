@@ -1,0 +1,46 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin
+/intermediateDir:obj
+/platform:Windows
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:..\..\bin\MonoGame.SplineFlower.Content.Pipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin arrow.xnb
+/copy:arrow.xnb
+
+#begin Audio/cardrive.xnb
+/copy:Audio/cardrive.xnb
+
+#begin Audio/handbrake.xnb
+/copy:Audio/handbrake.xnb
+
+#begin Audio/horn.xnb
+/copy:Audio/horn.xnb
+
+#begin Beam_Green.xnb
+/copy:Beam_Green.xnb
+
+#begin Beam_Red.xnb
+/copy:Beam_Red.xnb
+
+#begin car.xnb
+/copy:car.xnb
+
+#begin RaceTrack.xnb
+/copy:RaceTrack.xnb
+
+#begin roadTexture.xnb
+/copy:roadTexture.xnb
+
+#begin SplineTrack.xnb
+/copy:SplineTrack.xnb
+

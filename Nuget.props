@@ -1,0 +1,22 @@
+<Project>
+	<PropertyGroup>
+		<id>MonoGame.SplineFlower</id>
+		<Version>$(MonoGameSplineFlowerVersion)</Version>
+		<Authors>Marcel Härtel</Authors>
+		<Product>MonoGame.SplineFlower</Product>
+		<Description>Create wonderful smooth Bézier-, CatMulRom- and Hermite-Splines with Trigger Events for your MonoGame project.</Description>
+		<PackageProjectUrl>https://github.com/BlizzCrafter/MonoGame.SplineFlower</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/BlizzCrafter/MonoGame.SplineFlower.git</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageIcon>Logo_Square_256.png</PackageIcon>
+		<Tags>MonoGame WindowsForms Splines</Tags>
+		<PackageOutputPath>../</PackageOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" PackagePath="\" />
+		<None Include="$(MSBuildThisFileDirectory)\LICENSE.txt" Pack="true" PackagePath="\" />
+		<None Include="$(MSBuildThisFileDirectory)\Logos\Logo_Square_256.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+</Project>

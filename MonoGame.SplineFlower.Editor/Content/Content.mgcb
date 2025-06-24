@@ -1,0 +1,51 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin
+/intermediateDir:obj
+/platform:Windows
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:..\..\bin\MonoGame.SplineFlower.Content.Pipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin BezierTest.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:BezierTest.json
+
+#begin CatMulRomImportTestNEW.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:CatMulRomImportTestNEW.json
+
+#begin CatMulRomTest.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:CatMulRomTest.json
+
+#begin HermiteTest.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:HermiteTest.json
+
+#begin RaceTrack.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:RaceTrack.json
+
+#begin SplineFlower.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:SplineFlower.json
+
+#begin SplineTrack.json
+/importer:SplineImporter
+/processor:SplineProcessor
+/build:SplineTrack.json
+

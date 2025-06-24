@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+	<MonoGamePlatform>Windows</MonoGamePlatform>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+	<IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Content\Content.mgcb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Forms.DX" Version="3.2.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame.SplineFlower.Samples\MonoGame.SplineFlower.Samples.csproj" />
+    <ProjectReference Include="..\MonoGame.SplineFlower\MonoGame.SplineFlower.csproj" />
+  </ItemGroup>
+
+</Project>

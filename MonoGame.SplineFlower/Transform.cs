@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGame.SplineFlower
 {
@@ -65,6 +66,13 @@ namespace MonoGame.SplineFlower
                 return true;
             }
             return false;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (IsPoint) spriteBatch.DrawPoint(Position, Setup.PointColor);
+            else if (IsCenter) spriteBatch.DrawCircle(Position, Setup.CenterSplineColor);
+            else if (IsTangent) spriteBatch.DrawPoint(Position, Setup.TangentColor);
         }
 
         public bool Equals(Transform x, Transform y)

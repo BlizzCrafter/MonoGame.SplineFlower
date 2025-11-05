@@ -21,6 +21,22 @@ namespace MonoGame.SplineFlower.Spline
 
             RecalculateSpline();
         }
+        public SplineBase(Vector2[] points) : this()
+        {
+            if (this is BezierSpline && points.Length < 4) throw new Exception("You need at least 4 points to successfully create a Bezier-Spline.'");
+            else if (this is CatMulRomSpline && points.Length < 4) throw new Exception("You need at least 4 points to successfully create a CatMulRom-Spline.'");
+            else if (this is HermiteSpline && points.Length < 2) throw new Exception("You need at least 2 points to successfully create a Hermite-Spline.'");
+
+            Array.Resize(ref _Points, points.Length);
+            for (int i = 0; i < points.Length; i++)
+            {
+                _Points[i] = new Transform(points[i]);
+            }
+
+            _Trigger = new List<Trigger>();
+
+            RecalculateSpline();
+        }
 
         private void RecalculateSpline()
         {

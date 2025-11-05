@@ -9,6 +9,7 @@ namespace MonoGame.SplineFlower.Spline.Types
             Reset();
         }
         public CatMulRomSpline(Transform[] points) : base(points) { }
+        public CatMulRomSpline(Vector2[] points) : base(points) { }
 
         public override Vector2 GetPoint(float t)
         {

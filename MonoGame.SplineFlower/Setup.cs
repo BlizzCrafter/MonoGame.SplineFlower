@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.SplineFlower.Converter;
 using MonoGame.SplineFlower.Rendering;
+using MonoGame.SplineFlower.Spline;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -40,7 +41,16 @@ namespace MonoGame.SplineFlower
         public static float DirectionLineLength { get; set; } = 50f;
         public static bool ShowDirectionVectors { get; set; } = true;
 
-        public static Color PointColor { get; set; } = Color.Red;
+        public static Color PointColor 
+        {
+            get { return _pointColor; }
+            set
+            {
+                _pointColor = value;
+                SplineBase._ModeColors[0] = _pointColor;
+            }
+        }
+        private static Color _pointColor = Color.Red;
         public static int PointThickness { get; set; } = 10;
         public static Color StartPointColor { get; set; } = Color.White;
         public static int StartPointThickness { get; set; } = 14;

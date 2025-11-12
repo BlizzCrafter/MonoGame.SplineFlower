@@ -109,7 +109,7 @@ namespace MonoGame.SplineFlower.Spline
         }
         private ControlPointMode[] _Modes;
 
-        private static Color[] _ModeColors = {
+        internal static Color[] _ModeColors = {
             Setup.PointColor,
             Color.Yellow,
             Color.Cyan

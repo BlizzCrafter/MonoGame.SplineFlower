@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.SplineFlower.Converter;
 using MonoGame.SplineFlower.Rendering;
+using MonoGame.SplineFlower.Serialization.Converter;
 using MonoGame.SplineFlower.Spline;
 using System.Text.Json;
 using System.Text.Json.Serialization;

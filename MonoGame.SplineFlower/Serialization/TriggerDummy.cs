@@ -1,4 +1,4 @@
-﻿namespace MonoGame.SplineFlower
+﻿namespace MonoGame.SplineFlower.Serialization
 {
     public class TriggerDummy
     {

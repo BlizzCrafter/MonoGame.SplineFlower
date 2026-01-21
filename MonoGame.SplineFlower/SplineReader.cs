@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using MonoGame.SplineFlower.Serialization;
 using MonoGame.SplineFlower.Spline;
 using static MonoGame.SplineFlower.Spline.SplineBase;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Text.Json.Serialization;
 
-namespace MonoGame.SplineFlower
+namespace MonoGame.SplineFlower.Serialization
 {
     public class TransformDummy
     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.SplineFlower.Serialization;
 
 namespace MonoGame.SplineFlower.Spline.Types
 {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.SplineFlower.Rendering;
+using MonoGame.SplineFlower.Serialization;
 using MonoGame.SplineFlower.Spline.Types;
 
 namespace MonoGame.SplineFlower.Spline

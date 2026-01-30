@@ -41,6 +41,9 @@ namespace MonoGame.SplineFlower
         public static float DirectionLineLength { get; set; } = 50f;
         public static bool ShowDirectionVectors { get; set; } = true;
 
+        public static bool ShowBoundingBox { get; set; } = true;
+        public static Color BoundingBoxColor { get; set; } = Color.Yellow;
+
         public static Color PointColor 
         {
             get { return _pointColor; }

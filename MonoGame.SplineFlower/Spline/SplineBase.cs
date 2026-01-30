@@ -917,7 +917,20 @@ namespace MonoGame.SplineFlower.Spline
                     }
                 }
                 if (Setup.ShowCenterSpline) DrawCircle(spriteBatch, CenterSpline.Position, Setup.CenterSplineColor);
+                if (Setup.ShowBoundingBox) DrawRectangle(spriteBatch, BoundingBox, Setup.BoundingBoxColor, Setup.BaseLineThickness);
             }
+        }
+
+        protected void DrawRectangle(SpriteBatch spriteBatch, Rectangle rectangle, Color color, float thickness)
+        {
+            //Top
+            DrawLine(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), new Vector2(rectangle.Right, rectangle.Top), color, thickness);
+            //Left
+            DrawLine(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), new Vector2(rectangle.Left, rectangle.Bottom), color, thickness);
+            //Right
+            DrawLine(spriteBatch, new Vector2(rectangle.Right, rectangle.Top), new Vector2(rectangle.Right, rectangle.Bottom), color, thickness);
+            //Bottom
+            DrawLine(spriteBatch, new Vector2(rectangle.Left, rectangle.Bottom), new Vector2(rectangle.Right, rectangle.Bottom), color, thickness);
         }
 
         protected void DrawLine(SpriteBatch spriteBatch, Vector2 position, Vector2 lastPosition, Color color, float thickness, bool directionLine = false)
